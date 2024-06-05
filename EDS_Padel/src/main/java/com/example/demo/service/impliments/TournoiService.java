@@ -16,7 +16,7 @@ import java.util.List;
     @Autowired
     public TournoiRepository tournoiRepository;
     @Override
-    public Tournoi saveMembre(Tournoi tournoi) {
+    public Tournoi saveTournoi(Tournoi tournoi) {
         return tournoiRepository.save(tournoi);
 
     }

@@ -16,7 +16,7 @@ public class TerrainService implements ITerrain {
     public TerrainRepository terrainRepository;
 
     @Override
-    public Terrain saveMembre(Terrain terrain) {
+    public Terrain saveTerrain(Terrain terrain) {
         return terrainRepository.save(terrain);
     }
 

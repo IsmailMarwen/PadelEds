@@ -17,7 +17,7 @@ import java.util.List;
         public MaterielRepository materielRepository;
 
     @Override
-    public Materiel saveMembre(Materiel materiel) {
+    public Materiel saveMateriel(Materiel materiel) {
         return materielRepository.save(materiel);
     }
 

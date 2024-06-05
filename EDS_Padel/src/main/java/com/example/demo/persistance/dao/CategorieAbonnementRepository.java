@@ -9,9 +9,6 @@ public interface CategorieAbonnementRepository extends JpaRepository<CategorieAb
 
 
 
-    @Query(value = "select count(*) from CategorieAbonnement",nativeQuery = true)
-    int getQuantityOfCategorieAbonnement();
-    @Query(value = "select * from CategorieAbonnement where id= :idCategorie",nativeQuery = true)
-    Patient getPatientByIdCategorieAbonnement(@Param("id") int idCategorie);
+
 
 }
