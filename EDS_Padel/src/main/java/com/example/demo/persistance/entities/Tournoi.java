@@ -1,0 +1,77 @@
+package com.example.demo.persistance.entities;
+
+import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Tournoi {
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private int idTournoi;
+        private String nomTournoi;
+        private String typeTournoi;
+        private Date dateDebut;
+        private Date dateFin;
+
+        private int prixParticipation;
+
+        public int getIdTournoi() {
+                return idTournoi;
+        }
+
+        public void setIdTournoi(int idTournoi) {
+                this.idTournoi = idTournoi;
+        }
+
+        public String getNomTournoi() {
+                return nomTournoi;
+        }
+
+        public void setNomTournoi(String nomTournoi) {
+                this.nomTournoi = nomTournoi;
+        }
+
+        public String getTypeTournoi() {
+                return typeTournoi;
+        }
+
+        public void setTypeTournoi(String typeTournoi) {
+                this.typeTournoi = typeTournoi;
+        }
+
+        public Date getDateDebut() {
+                return dateDebut;
+        }
+
+        public void setDateDebut(Date dateDebut) {
+                this.dateDebut = dateDebut;
+        }
+
+        public Date getDateFin() {
+                return dateFin;
+        }
+
+        public void setDateFin(Date dateFin) {
+                this.dateFin = dateFin;
+        }
+
+        public int getPrixParticipation() {
+                return prixParticipation;
+        }
+
+        public void setPrixParticipation(int prixParticipation) {
+                this.prixParticipation = prixParticipation;
+        }
+
+
+
+
+
+}
