@@ -20,4 +20,44 @@ public class Materiel {
     private String image;
     private double prix;
     private int nb;
+
+    public int getIdMateriel() {
+        return idMateriel;
+    }
+
+    public void setIdMateriel(int idMateriel) {
+        this.idMateriel = idMateriel;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+
+    public int getNb() {
+        return nb;
+    }
+
+    public void setNb(int nb) {
+        this.nb = nb;
+    }
 }
