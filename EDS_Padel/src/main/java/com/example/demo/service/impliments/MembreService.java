@@ -16,7 +16,7 @@ public class MembreService implements IMembre {
 
     @Override
     public Membre saveMembre(Membre membre) {
-        return membreRepository.save((membre));
+        return membreRepository.save(membre);
     }
 
     @Override

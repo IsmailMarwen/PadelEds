@@ -1,9 +1,7 @@
 package com.example.demo.service.impliments;
 
-import com.example.demo.persistance.dao.CategorieAbonnementRepository;
 import com.example.demo.persistance.dao.MaterielRepository;
 import com.example.demo.persistance.entities.Materiel;
-import com.example.demo.service.interfaces.ICategorieAbonnement;
 import com.example.demo.service.interfaces.IMateriel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

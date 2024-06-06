@@ -1,9 +1,7 @@
 package com.example.demo.service.impliments;
 
-import com.example.demo.persistance.dao.MaterielRepository;
 import com.example.demo.persistance.dao.TerrainRepository;
 import com.example.demo.persistance.entities.Terrain;
-import com.example.demo.service.interfaces.IMateriel;
 import com.example.demo.service.interfaces.ITerrain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
