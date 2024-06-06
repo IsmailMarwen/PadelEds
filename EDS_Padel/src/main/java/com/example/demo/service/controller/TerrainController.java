@@ -9,7 +9,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "", allowedHeaders = "")
 @RestController
-@RequestMapping("/api/Terrain")
+@RequestMapping("/api/terrain")
 public class TerrainController {
     @Autowired
     public ITerrain iTerrain;
