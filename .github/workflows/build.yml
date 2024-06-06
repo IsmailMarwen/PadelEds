@@ -3,9 +3,8 @@ name: Build
 on:
   push:
     branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened]
+      - backend
+
 
 jobs:
   build:
@@ -36,4 +35,4 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=TestEdsPadel -Dsonar.projectName='TestEdsPadel'
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=EdsPadelTesting -Dsonar.projectName='EdsPadelTesting'
