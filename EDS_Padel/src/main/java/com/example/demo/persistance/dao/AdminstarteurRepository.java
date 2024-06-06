@@ -1,7 +1,7 @@
 package com.example.demo.persistance.dao;
 
-import com.example.demo.persistance.entities.Adminstrateur;
+import com.example.demo.persistance.entities.Administrateur;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AdminstarteurRepository extends JpaRepository<Adminstrateur,Long> {
+public interface AdminstarteurRepository extends JpaRepository<Administrateur,Long> {
 }

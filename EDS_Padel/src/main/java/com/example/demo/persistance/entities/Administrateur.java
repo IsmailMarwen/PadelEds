@@ -8,5 +8,5 @@ import javax.persistence.Entity;
 @Entity
 @Data
 @AllArgsConstructor
-public class Adminstrateur extends Utilisatuer {
+public class Administrateur extends Utilisatuer {
 }
