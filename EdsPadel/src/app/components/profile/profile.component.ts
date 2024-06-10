@@ -3,11 +3,11 @@ import { isPlatformBrowser } from '@angular/common';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.css'
 })
-export class AppComponent implements OnInit {
+export class ProfileComponent implements OnInit {
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
     private offcanvasService: NgbOffcanvas
   ) {}
   ngOnInit() {
+    this.applyTheme('theme2')
   }
 	openEnd(content: TemplateRef<any>) {
 		this.offcanvasService.open(content, { position: 'end' });

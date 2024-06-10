@@ -1,3 +1,9 @@
+   <!-- loader Start -->
+   <div id="loading">
+    <div class="loader simple-loader">
+        <div class="loader-body"></div>
+    </div>    </div>
+  <!-- loader END -->
 <a class="btn btn-fixed-end btn-warning btn-icon btn-setting"  (click)="openEnd(content)">
     <svg width="24" viewBox="0 0 24 24" class="animated-rotate icon-24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8064 7.62361L20.184 6.54352C19.6574 5.6296 18.4905 5.31432 17.5753 5.83872V5.83872C17.1397 6.09534 16.6198 6.16815 16.1305 6.04109C15.6411 5.91402 15.2224 5.59752 14.9666 5.16137C14.8021 4.88415 14.7137 4.56839 14.7103 4.24604V4.24604C14.7251 3.72922 14.5302 3.2284 14.1698 2.85767C13.8094 2.48694 13.3143 2.27786 12.7973 2.27808H11.5433C11.0367 2.27807 10.5511 2.47991 10.1938 2.83895C9.83644 3.19798 9.63693 3.68459 9.63937 4.19112V4.19112C9.62435 5.23693 8.77224 6.07681 7.72632 6.0767C7.40397 6.07336 7.08821 5.98494 6.81099 5.82041V5.82041C5.89582 5.29601 4.72887 5.61129 4.20229 6.52522L3.5341 7.62361C3.00817 8.53639 3.31916 9.70261 4.22975 10.2323V10.2323C4.82166 10.574 5.18629 11.2056 5.18629 11.8891C5.18629 12.5725 4.82166 13.2041 4.22975 13.5458V13.5458C3.32031 14.0719 3.00898 15.2353 3.5341 16.1454V16.1454L4.16568 17.2346C4.4124 17.6798 4.82636 18.0083 5.31595 18.1474C5.80554 18.2866 6.3304 18.2249 6.77438 17.976V17.976C7.21084 17.7213 7.73094 17.6516 8.2191 17.7822C8.70725 17.9128 9.12299 18.233 9.37392 18.6717C9.53845 18.9489 9.62686 19.2646 9.63021 19.587V19.587C9.63021 20.6435 10.4867 21.5 11.5433 21.5H12.7973C13.8502 21.5001 14.7053 20.6491 14.7103 19.5962V19.5962C14.7079 19.088 14.9086 18.6 15.2679 18.2407C15.6272 17.8814 16.1152 17.6807 16.6233 17.6831C16.9449 17.6917 17.2594 17.7798 17.5387 17.9394V17.9394C18.4515 18.4653 19.6177 18.1544 20.1474 17.2438V17.2438L20.8064 16.1454C21.0615 15.7075 21.1315 15.186 21.001 14.6964C20.8704 14.2067 20.55 13.7894 20.1108 13.5367V13.5367C19.6715 13.284 19.3511 12.8666 19.2206 12.3769C19.09 11.8873 19.16 11.3658 19.4151 10.928C19.581 10.6383 19.8211 10.3982 20.1108 10.2323V10.2323C21.0159 9.70289 21.3262 8.54349 20.8064 7.63277V7.63277V7.62361Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -22,14 +28,14 @@
                 <span class="ms-2 "> Auto </span>
               </div>
     
-               <div class="btn btn-border" data-setting="color-mode" data-name="color" data-value="dark">
-                 <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <div class="btn btn-border" (click)="toggleDarkMode()">
+                <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fill="currentColor" d="M9,2C7.95,2 6.95,2.16 6,2.46C10.06,3.73 13,7.5 13,12C13,16.5 10.06,20.27 6,21.54C6.95,21.84 7.95,22 9,22A10,10 0 0,0 19,12A10,10 0 0,0 9,2Z" />
                   </svg>
                 <span class="ms-2 "> Dark  </span>
               </div>
-               <div class="btn btn-border active" data-setting="color-mode" data-name="color" data-value="light">
-                  <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <div class="btn btn-border" (click)="toggleLightMode()">
+                <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill="currentColor" d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z" />
                 </svg>
                 <span class="ms-2 "> Light</span>
@@ -42,42 +48,42 @@
 
             </div>
             <div class="grid-cols-5 mb-4 d-grid gap-x-2">
-            <button class="btn btn-border bg-transparent" (click)="applyTheme('theme1')">
+            <a class="btn btn-border bg-transparent" (click)="applyTheme('theme1')" [class.active]="selectedTheme === 'theme1'">
                 <svg class="customizer-btn icon-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32">
                   <circle cx="12" cy="12" r="10" fill="#00C3F9" />
                   <path d="M2,12 a1,1 1 1,0 20,0" fill="#573BFF" />
                 </svg>
-              </button>
-              <button class="btn btn-border bg-transparent"  (click)="applyTheme('theme2')">
+              </a>
+              <a class="btn btn-border bg-transparent"  (click)="applyTheme('theme2')" [class.active]="selectedTheme === 'theme2'">
                 <svg class="customizer-btn icon-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32">
                   <circle cx="12" cy="12" r="10" fill="#91969E" />
                   <path d="M2,12 a1,1 1 1,0 20,0" fill="#FD8D00" />
                 </svg>
-              </button>
-              <button class="btn btn-border bg-transparent" (click)="applyTheme('theme3')">
+              </a>
+              <a class="btn btn-border bg-transparent" (click)="applyTheme('theme3')" [class.active]="selectedTheme === 'theme3'">
                 <svg class="customizer-btn icon-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32">
                   <circle cx="12" cy="12" r="10" fill="#DB5363" />
                   <path d="M2,12 a1,1 1 1,0 20,0" fill="#366AF0" />
                 </svg>
-              </button>
-              <button class="btn btn-border bg-transparent" (click)="applyTheme('theme4')">
+              </a>
+              <a class="btn btn-border bg-transparent" (click)="applyTheme('theme4')" [class.active]="selectedTheme === 'theme4'">
                 <svg class="customizer-btn icon-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32">
                   <circle cx="12" cy="12" r="10" fill="#EA6A12" />
                   <path d="M2,12 a1,1 1 1,0 20,0" fill="#6410F1" />
                 </svg>
-              </button>
-              <button class="btn btn-border bg-transparent" (click)="applyTheme('theme5')">
+              </a>
+              <a class="btn btn-border bg-transparent" (click)="applyTheme('theme5')" [class.active]="selectedTheme === 'theme5'">
                 <svg class="customizer-btn icon-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32">
                   <circle cx="12" cy="12" r="10" fill="#E586B3" />
                   <path d="M2,12 a1,1 1 1,0 20,0" fill="#25C799" />
                 </svg>
-              </button>
-              <button class="btn btn-border bg-transparent" (click)="applyTheme('theme6')">
+              </a>
+              <a class="btn btn-border bg-transparent" (click)="applyTheme('theme6')" [class.active]="selectedTheme === 'theme6'">
                 <svg class="customizer-btn icon-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32">
                   <circle cx="12" cy="12" r="10" fill="#0000FF" />
                   <path d="M2,12 a1,1 1 1,0 20,0" fill="#079aa2" />
                 </svg>
-              </button>  </div>
+              </a>  </div>
             <hr class="hr-horizontal">
             <h5 class="mb-3 mt-4">Scheme Direction</h5>
             <div class="d-grid gap-3 grid-cols-2 mb-4">
@@ -186,7 +192,7 @@
 <aside class="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all ">
     <div class="sidebar-header d-flex align-items-center justify-content-start">
 
-        <a href="../dashboard/index.html" class="navbar-brand">
+        <a  class="navbar-brand">
             <!--Logo start-->
             <!--logo End-->
             
@@ -236,7 +242,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../dashboard/index.html">
+                    <a class="nav-link active" aria-current="page" href="">
                         <i class="icon">
                             <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-20">
                                 <path opacity="0.4" d="M16.0756 2H19.4616C20.8639 2 22.0001 3.14585 22.0001 4.55996V7.97452C22.0001 9.38864 20.8639 10.5345 19.4616 10.5345H16.0756C14.6734 10.5345 13.5371 9.38864 13.5371 7.97452V4.55996C13.5371 3.14585 14.6734 2 16.0756 2Z" fill="currentColor"></path>
@@ -266,7 +272,7 @@
                     </a>
                     <ul class="sub-nav collapse" id="horizontal-menu" data-bs-parent="#sidebar-menu">
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/index-horizontal.html">
+                            <a class="nav-link ">
                               <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -279,7 +285,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/index-dual-horizontal.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -292,7 +298,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/index-dual-compact.html">
+                            <a class="nav-link " >
                                 <i class="icon svg-icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -305,7 +311,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/index-boxed.html">
+                            <a class="nav-link ">
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -318,7 +324,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/index-boxed-fancy.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -369,7 +375,7 @@
                     </a>
                     <ul class="sub-nav collapse" id="sidebar-special" data-bs-parent="#sidebar-menu">
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/special-pages/billing.html">
+                            <a class="nav-link " >
                               <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -382,7 +388,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/special-pages/calender.html">
+                            <a class="nav-link ">
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -395,7 +401,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/special-pages/kanban.html">
+                            <a class="nav-link " >
                                <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -408,7 +414,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/special-pages/pricing.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -421,7 +427,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/special-pages/rtl-support.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -434,7 +440,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/special-pages/timeline.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -465,7 +471,7 @@
                     </a>
                     <ul class="sub-nav collapse" id="sidebar-auth" data-bs-parent="#sidebar-menu">
                         <li class="nav-item">
-                            <a class="nav-link" href="../dashboard/auth/sign-in.html">
+                            <a class="nav-link" >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -478,7 +484,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../dashboard/auth/sign-up.html">
+                            <a class="nav-link" >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -491,7 +497,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../dashboard/auth/confirm-mail.html">
+                            <a class="nav-link" >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -504,7 +510,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../dashboard/auth/lock-screen.html">
+                            <a class="nav-link" >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -517,7 +523,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../dashboard/auth/recoverpw.html">
+                            <a class="nav-link" >
                                <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -552,7 +558,7 @@
                     </a>
                     <ul class="sub-nav collapse" id="sidebar-user" data-bs-parent="#sidebar-menu">
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/app/user-profile.html">
+                            <a class="nav-link ">
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -565,7 +571,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/app/user-add.html">
+                            <a class="nav-link ">
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -578,7 +584,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/app/user-list.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -609,7 +615,7 @@
                     </a>
                     <ul class="sub-nav collapse" id="utilities-error" data-bs-parent="#sidebar-menu">
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/errors/error404.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -621,7 +627,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/errors/error500.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -633,7 +639,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/errors/maintenance.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg  class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -647,7 +653,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "  href="../dashboard/admin.html">
+                    <a class="nav-link "  >
                         <i class="icon">
                         <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M7.7688 8.71387H16.2312C18.5886 8.71387 20.5 10.5831 20.5 12.8885V17.8254C20.5 20.1308 18.5886 22 16.2312 22H7.7688C5.41136 22 3.5 20.1308 3.5 17.8254V12.8885C3.5 10.5831 5.41136 8.71387 7.7688 8.71387ZM11.9949 17.3295C12.4928 17.3295 12.8891 16.9419 12.8891 16.455V14.2489C12.8891 13.772 12.4928 13.3844 11.9949 13.3844C11.5072 13.3844 11.1109 13.772 11.1109 14.2489V16.455C11.1109 16.9419 11.5072 17.3295 11.9949 17.3295Z" fill="currentColor"></path>
@@ -691,7 +697,7 @@
                     </a>
                     <ul class="sub-nav collapse" id="sidebar-widget" data-bs-parent="#sidebar-menu">
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/widget/widgetbasic.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -704,7 +710,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/widget/widgetchart.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -717,7 +723,7 @@
                             </a>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/widget/widgetcard.html">
+                            <a class="nav-link ">
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -748,7 +754,7 @@
                     </a>
                     <ul class="sub-nav collapse" id="sidebar-maps" data-bs-parent="#sidebar-menu">
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/maps/google.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -761,7 +767,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/maps/vector.html">
+                            <a class="nav-link " >
                                <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -792,7 +798,7 @@
                     </a>
                     <ul class="sub-nav collapse" id="sidebar-form" data-bs-parent="#sidebar-menu">
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/form/form-element.html">
+                            <a class="nav-link " >
                                <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -805,7 +811,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/form/form-wizard.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -818,7 +824,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/form/form-validation.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -849,7 +855,7 @@
                     </a>
                     <ul class="sub-nav collapse" id="sidebar-table" data-bs-parent="#sidebar-menu">
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/table/bootstrap-table.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -862,7 +868,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/table/table-data.html">
+                            <a class="nav-link " >
                                <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -893,7 +899,7 @@
                     </a>
                     <ul class="sub-nav collapse" id="sidebar-icons" data-bs-parent="#sidebar-menu">
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/icons/solid.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -906,7 +912,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/icons/outline.html">
+                            <a class="nav-link " >
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -918,7 +924,7 @@
                                  <span class="item-name">Outlined</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../dashboard/icons/dual-tone.html">
+                            <a class="nav-link " >
                                <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -940,7 +946,7 @@
     <!--Nav Start-->
     <nav class="nav navbar navbar-expand-lg navbar-light iq-navbar">
       <div class="container-fluid navbar-inner">
-        <a href="../dashboard/index.html" class="navbar-brand">
+        <a href="" class="navbar-brand">
             <!--Logo start-->
             <!--logo End-->
             
@@ -1005,7 +1011,7 @@
               </a>
             </li>
             <li class="nav-item dropdown">
-                <a href="#" class="search-toggle nav-link" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="search-toggle nav-link" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="../../../assets/images/Flag/flag001.png" class="img-fluid rounded-circle" alt="user" style="height: 30px; min-width: 30px; width: 30px;">
                 <span class="bg-primary"></span>
                 </a>
@@ -1182,10 +1188,10 @@
                 </div>
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="../dashboard/app/user-profile.html">Profile</a></li>
-                <li><a class="dropdown-item" href="../dashboard/app/user-privacy-setting.html">Privacy Setting</a></li>
+                <li><a class="dropdown-item" >Profile</a></li>
+                <li><a class="dropdown-item" >Privacy Setting</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="../dashboard/auth/sign-in.html">Logout</a></li>
+                <li><a class="dropdown-item" >Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -1226,518 +1232,523 @@
     <!--Nav End-->
   </div>
   <div class="conatiner-fluid content-inner mt-n5 py-0">
-<div class="row">
-    <div class="col-md-12 col-lg-12">
-        <div class="d-flex row row-cols-1">
-          <div class="overflow-hidden d-slider1">
-            <ul class="p-0 m-0 mb-2 swiper-wrapper list-inline d-flex flex-row">
-              <li class="swiper-slide card card-slide col-md-4" data-aos="fade-up" data-aos-delay="700">
-                <div class="card-body">
-                  <div class="progress-widget">
-                    <div id="circle-progress-01" class="text-center circle-progress-01 circle-progress circle-progress-primary" data-min-value="0" data-max-value="100" data-value="90" data-type="percent">
-                      <svg class="card-slie-arrow icon-24" width="24"  viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M5,17.59L15.59,7H9V5H19V15H17V8.41L6.41,19L5,17.59Z" />
-                      </svg>
+    <div class="row">
+       <div class="col-md-12 col-lg-12">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+            <div class="col">
+                <div class="swiper-slide card card-slide" data-aos="fade-up" data-aos-delay="700">
+                    <div class="card-body">
+                        <div class="progress-widget">
+                            <div id="circle-progress-01" class="text-center circle-progress-01 circle-progress circle-progress-primary" data-min-value="0" data-max-value="100" data-value="90" data-type="percent">
+                                <svg class="card-slie-arrow icon-24" width="24"  viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M5,17.59L15.59,7H9V5H19V15H17V8.41L6.41,19L5,17.59Z" />
+                                </svg>
+                            </div>
+                            <div class="progress-detail">
+                                <p class="mb-2">Total Sales</p>
+                                <h4 class="counter">$560K</h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="progress-detail">
-                      <p class="mb-2">Total Sales</p>
-                      <h4 class="counter">$560K</h4>
-                    </div>
-                  </div>
                 </div>
-              </li>
-              <li class="swiper-slide card card-slide col-md-4" data-aos="fade-up" data-aos-delay="800">
-                <div class="card-body">
-                  <div class="progress-widget">
-                    <div id="circle-progress-02" class="text-center circle-progress-01 circle-progress circle-progress-info" data-min-value="0" data-max-value="100" data-value="80" data-type="percent">
-                      <svg class="card-slie-arrow icon-24" width="24" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M19,6.41L17.59,5L7,15.59V9H5V19H15V17H8.41L19,6.41Z" />
-                      </svg>
+            </div>
+            <div class="col">
+                <div class="swiper-slide card card-slide" data-aos="fade-up" data-aos-delay="800">
+                    <div class="card-body">
+                        <div class="progress-widget">
+                            <div id="circle-progress-02" class="text-center circle-progress-01 circle-progress circle-progress-info" data-min-value="0" data-max-value="100" data-value="80" data-type="percent">
+                                <svg class="card-slie-arrow icon-24" width="24" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M19,6.41L17.59,5L7,15.59V9H5V19H15V17H8.41L19,6.41Z" />
+                                </svg>
+                            </div>
+                            <div class="progress-detail">
+                                <p class="mb-2">Total Profit</p>
+                                <h4 class="counter">$185K</h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="progress-detail">
-                      <p class="mb-2">Total Profit</p>
-                      <h4 class="counter">$185K</h4>
-                    </div>
-                  </div>
                 </div>
-              </li>
-              <li class="swiper-slide card card-slide col-md-4" data-aos="fade-up" data-aos-delay="900">
-                <div class="card-body">
-                  <div class="progress-widget">
-                    <div id="circle-progress-03" class="text-center circle-progress-01 circle-progress circle-progress-primary" data-min-value="0" data-max-value="100" data-value="70" data-type="percent">
-                      <svg class="card-slie-arrow icon-24" width="24" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M19,6.41L17.59,5L7,15.59V9H5V19H15V17H8.41L19,6.41Z" />
-                      </svg>
+            </div>
+            <div class="col">
+                <div class="swiper-slide card card-slide" data-aos="fade-up" data-aos-delay="900">
+                    <div class="card-body">
+                        <div class="progress-widget">
+                            <div id="circle-progress-03" class="text-center circle-progress-01 circle-progress circle-progress-primary" data-min-value="0" data-max-value="100" data-value="70" data-type="percent">
+                                <svg class="card-slie-arrow icon-24" width="24" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M19,6.41L17.59,5L7,15.59V9H5V19H15V17H8.41L19,6.41Z" />
+                                </svg>
+                            </div>
+                            <div class="progress-detail">
+                                <p class="mb-2">Total Cost</p>
+                                <h4 class="counter">$375K</h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="progress-detail">
-                      <p class="mb-2">Total Cost</p>
-                      <h4 class="counter">$375K</h4>
-                    </div>
-                  </div>
                 </div>
-              </li>
-              <li class="swiper-slide card card-slide col-md-4" data-aos="fade-up" data-aos-delay="1000">
-                <div class="card-body">
-                  <div class="progress-widget">
-                    <div id="circle-progress-04" class="text-center circle-progress-01 circle-progress circle-progress-info" data-min-value="0" data-max-value="100" data-value="60" data-type="percent">
-                      <svg class="card-slie-arrow icon-24" width="24px"  viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M5,17.59L15.59,7H9V5H19V15H17V8.41L6.41,19L5,17.59Z" />
-                      </svg>
+            </div>
+            <div class="col">
+                <div class="swiper-slide card card-slide" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="card-body">
+                        <div class="progress-widget">
+                            <div id="circle-progress-04" class="text-center circle-progress-01 circle-progress circle-progress-info" data-min-value="0" data-max-value="100" data-value="60" data-type="percent">
+                                <svg class="card-slie-arrow icon-24" width="24px" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M5,17.59L15.59,7H9V5H19V15H17V8.41L6.41,19L5,17.59Z" />
+                                </svg>
+                            </div>
+                            <div class="progress-detail">
+                                <p class="mb-2">Revenue</p>
+                                <h4 class="counter">$742K</h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="progress-detail">
-                      <p class="mb-2">Revenue</p>
-                      <h4 class="counter">$742K</h4>
-                    </div>
-                  </div>
                 </div>
-              </li>
-            </ul>
+            </div>
+        </div>
+        
+       </div>
+       <div class="col-md-12 col-lg-8">
+          <div class="row">
+             <div class="col-md-12">
+                <div class="card" data-aos="fade-up" data-aos-delay="800">
+                   <div class="flex-wrap card-header d-flex justify-content-between align-items-center">
+                      <div class="header-title">
+                         <h4 class="card-title">$855.8K</h4>
+                         <p class="mb-0">Gross Sales</p>          
+                      </div>
+                      <div class="d-flex align-items-center align-self-center">
+                         <div class="d-flex align-items-center text-primary">
+                            <svg class="icon-12" xmlns="http://www.w3.org/2000/svg" width="12" viewBox="0 0 24 24" fill="currentColor">
+                               <g>
+                                  <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                               </g>
+                            </svg>
+                            <div class="ms-2">
+                               <span class="text-gray">Sales</span>
+                            </div>
+                         </div>
+                         <div class="d-flex align-items-center ms-3 text-info">
+                            <svg class="icon-12" xmlns="http://www.w3.org/2000/svg" width="12" viewBox="0 0 24 24" fill="currentColor">
+                               <g>
+                                  <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                               </g>
+                            </svg>
+                            <div class="ms-2">
+                               <span class="text-gray">Cost</span>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="dropdown">
+                         <a href="#" class="text-gray dropdown-toggle" id="dropdownMenuButton22" data-bs-toggle="dropdown" aria-expanded="false">
+                         This Week
+                         </a>
+                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton22">
+                            <li><a class="dropdown-item" href="#">This Week</a></li>
+                            <li><a class="dropdown-item" href="#">This Month</a></li>
+                            <li><a class="dropdown-item" href="#">This Year</a></li>
+                         </ul>
+                      </div>
+                   </div>
+                   <div class="card-body">
+                      <div id="d-main" class="d-main"></div>
+                   </div>
+                </div>
+             </div>
+             <div class="col-md-12 col-xl-6">
+                <div class="card" data-aos="fade-up" data-aos-delay="900">
+                   <div class="flex-wrap card-header d-flex justify-content-between">
+                      <div class="header-title">
+                         <h4 class="card-title">Earnings</h4>            
+                      </div>   
+                      <div class="dropdown">
+                         <a href="#" class="text-gray dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            This Week
+                         </a>
+                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">This Week</a></li>
+                            <li><a class="dropdown-item" href="#">This Month</a></li>
+                            <li><a class="dropdown-item" href="#">This Year</a></li>
+                         </ul>
+                      </div>
+                   </div>
+                   <div class="card-body">
+                      <div class="flex-wrap d-flex align-items-center justify-content-between">
+                         <div id="myChart" class="col-md-8 col-lg-8 myChart"></div>
+                         <div class="d-grid gap col-md-4 col-lg-4">
+                            <div class="d-flex align-items-start">
+                               <svg class="mt-2 icon-14" xmlns="http://www.w3.org/2000/svg" width="14" viewBox="0 0 24 24" fill="#3a57e8">
+                                  <g>
+                                     <circle cx="12" cy="12" r="8" fill="#3a57e8"></circle>
+                                  </g>
+                               </svg>
+                               <div class="ms-3">
+                                  <span class="text-gray">Fashion</span>
+                                  <h6>251K</h6>
+                               </div>
+                            </div>
+                            <div class="d-flex align-items-start">
+                               <svg class="mt-2 icon-14" xmlns="http://www.w3.org/2000/svg" width="14" viewBox="0 0 24 24" fill="#4bc7d2">
+                                  <g>
+                                     <circle cx="12" cy="12" r="8" fill="#4bc7d2"></circle>
+                                  </g>
+                               </svg>
+                               <div class="ms-3">
+                                  <span class="text-gray">Accessories</span>
+                                  <h6>176K</h6>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div class="col-md-12 col-xl-6">
+                <div class="card" data-aos="fade-up" data-aos-delay="1000">
+                   <div class="flex-wrap card-header d-flex justify-content-between">
+                      <div class="header-title">
+                         <h4 class="card-title">Conversions</h4>            
+                      </div>
+                      <div class="dropdown">
+                         <a href="#" class="text-gray dropdown-toggle" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                            This Week
+                         </a>
+                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton3">
+                            <li><a class="dropdown-item" href="#">This Week</a></li>
+                            <li><a class="dropdown-item" href="#">This Month</a></li>
+                            <li><a class="dropdown-item" href="#">This Year</a></li>
+                         </ul>
+                      </div>
+                   </div>
+                   <div class="card-body">
+                      <div id="d-activity" class="d-activity"></div>
+                   </div>
+                </div>
+             </div>         
+             <div class="col-md-12 col-lg-12">
+                <div class="overflow-hidden card" data-aos="fade-up" data-aos-delay="600">
+                   <div class="flex-wrap card-header d-flex justify-content-between">
+                      <div class="header-title">
+                         <h4 class="mb-2 card-title">Enterprise Clients</h4>
+                         <p class="mb-0">
+                            <svg class ="me-2 text-primary icon-24" width="24"  viewBox="0 0 24 24">
+                               <path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
+                            </svg>
+                            15 new acquired this month
+                         </p>            
+                      </div>
+                   </div>
+                   <div class="p-0 card-body">
+                      <div class="mt-4 table-responsive">
+                         <table id="basic-table" class="table mb-0 table-striped" role="grid">
+                            <thead>
+                               <tr>
+                                  <th>COMPANIES</th>
+                                  <th>CONTACTS</th>
+                                  <th>ORDER</th>
+                                  <th>COMPLETION</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                               <tr>
+                                  <td>
+                                     <div class="d-flex align-items-center">
+                                        <img class="rounded bg-soft-primary img-fluid avatar-40 me-3" src="../assets/images/shapes/01.png" alt="profile">
+                                        <h6>Addidis Sportwear</h6>
+                                     </div>
+                                  </td>
+                                  <td>
+                                     <div class="iq-media-group iq-media-group-1">
+                                        <a href="#" class="iq-media-1">
+                                           <div class="icon iq-icon-box-3 rounded-pill">SP</div>
+                                        </a>
+                                        <a href="#" class="iq-media-1">
+                                           <div class="icon iq-icon-box-3 rounded-pill">PP</div>
+                                        </a>
+                                        <a href="#" class="iq-media-1">
+                                           <div class="icon iq-icon-box-3 rounded-pill">MM</div>
+                                        </a>
+                                     </div>
+                                  </td>
+                                  <td>$14,000</td>
+                                  <td>
+                                     <div class="mb-2 d-flex align-items-center">
+                                        <h6>60%</h6>
+                                     </div>
+                                     <div class="shadow-none progress bg-soft-primary w-100" style="height: 4px">
+                                        <div class="progress-bar bg-primary" data-toggle="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                     </div>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td>
+                                     <div class="d-flex align-items-center">
+                                        <img class="rounded bg-soft-primary img-fluid avatar-40 me-3" src="../assets/images/shapes/05.png" alt="profile">
+                                        <h6>Netflixer Platforms</h6>
+                                     </div>
+                                  </td>
+                                  <td>
+                                     <div class="iq-media-group iq-media-group-1">
+                                        <a href="#" class="iq-media-1">
+                                           <div class="icon iq-icon-box-3 rounded-pill">SP</div>
+                                        </a>
+                                        <a href="#" class="iq-media-1">
+                                           <div class="icon iq-icon-box-3 rounded-pill">PP</div>
+                                        </a>
+                                     </div>
+                                  </td>
+                                  <td>$30,000</td>
+                                  <td>
+                                     <div class="mb-2 d-flex align-items-center">
+                                        <h6>25%</h6>
+                                     </div>
+                                     <div class="shadow-none progress bg-soft-primary w-100" style="height: 4px">
+                                        <div class="progress-bar bg-primary" data-toggle="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                     </div>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td>
+                                     <div class="d-flex align-items-center">
+                                        <img class="rounded bg-soft-primary img-fluid avatar-40 me-3" src="../assets/images/shapes/02.png" alt="profile">
+                                        <h6>Shopifi Stores</h6>
+                                     </div>
+                                  </td>
+                                  <td>                                 
+                                     <div class="iq-media-group iq-media-group-1">
+                                        <a href="#" class="iq-media-1">
+                                           <div class="icon iq-icon-box-3 rounded-pill">PP</div>
+                                        </a>
+                                        <a href="#" class="iq-media-1">
+                                           <div class="icon iq-icon-box-3 rounded-pill">TP</div>
+                                        </a>
+                                     </div>
+                                  </td>
+                                  <td>$8,500</td>
+                                  <td>
+                                     <div class="mb-2 d-flex align-items-center">
+                                        <h6>100%</h6>
+                                     </div>
+                                     <div class="shadow-none progress bg-soft-success w-100" style="height: 4px">
+                                        <div class="progress-bar bg-success" data-toggle="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                     </div>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td>
+                                     <div class="d-flex align-items-center">
+                                        <img class="rounded bg-soft-primary img-fluid avatar-40 me-3" src="../assets/images/shapes/03.png" alt="profile">
+                                        <h6>Bootstrap Technologies</h6>
+                                     </div>
+                                  </td>
+                                  <td>
+                                     <div class="iq-media-group iq-media-group-1">
+                                        <a href="#" class="iq-media-1">
+                                           <div class="icon iq-icon-box-3 rounded-pill">SP</div>
+                                        </a>
+                                        <a href="#" class="iq-media-1">
+                                           <div class="icon iq-icon-box-3 rounded-pill">PP</div>
+                                        </a>
+                                        <a href="#" class="iq-media-1">
+                                           <div class="icon iq-icon-box-3 rounded-pill">MM</div>
+                                        </a>
+                                        <a href="#" class="iq-media-1">
+                                           <div class="icon iq-icon-box-3 rounded-pill">TP</div>
+                                        </a>
+                                     </div>
+                                  </td>
+                                  <td>$20,500</td>
+                                  <td>
+                                     <div class="mb-2 d-flex align-items-center">
+                                        <h6>100%</h6>
+                                     </div>
+                                     <div class="shadow-none progress bg-soft-success w-100" style="height: 4px">
+                                        <div class="progress-bar bg-success" data-toggle="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                     </div>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td>
+                                     <div class="d-flex align-items-center">
+                                        <img class="rounded bg-soft-primary img-fluid avatar-40 me-3" src="../assets/images/shapes/04.png" alt="profile">
+                                        <h6>Community First</h6>
+                                     </div>
+                                  </td>
+                                  <td>
+                                     <div class="iq-media-group iq-media-group-1">
+                                        <a href="#" class="iq-media-1">
+                                           <div class="icon iq-icon-box-3 rounded-pill">MM</div>
+                                        </a>
+                                     </div>
+                                  </td>
+                                  <td>$9,800</td>
+                                  <td>
+                                     <div class="mb-2 d-flex align-items-center">
+                                        <h6>75%</h6>
+                                     </div>
+                                     <div class="shadow-none progress bg-soft-primary w-100" style="height: 4px">
+                                        <div class="progress-bar bg-primary" data-toggle="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                     </div>
+                                  </td>
+                               </tr>
+                            </tbody>
+                         </table>
+                      </div>
+                   </div>
+                </div>
+             </div>
           </div>
-        </div>
-      </div>
-<div class="col-md-12 col-lg-8">
-  <div class="row">
-     <div class="col-md-12">
-        <div class="card" data-aos="fade-up" data-aos-delay="800">
-           <div class="flex-wrap card-header d-flex justify-content-between align-items-center">
-              <div class="header-title">
-                 <h4 class="card-title">$855.8K</h4>
-                 <p class="mb-0">Gross Sales</p>          
-              </div>
-              <div class="d-flex align-items-center align-self-center">
-                 <div class="d-flex align-items-center text-primary">
-                    <svg class="icon-12" xmlns="http://www.w3.org/2000/svg" width="12" viewBox="0 0 24 24" fill="currentColor">
-                       <g>
-                          <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                       </g>
-                    </svg>
-                    <div class="ms-2">
-                       <span class="text-gray">Sales</span>
-                    </div>
-                 </div>
-                 <div class="d-flex align-items-center ms-3 text-info">
-                    <svg class="icon-12" xmlns="http://www.w3.org/2000/svg" width="12" viewBox="0 0 24 24" fill="currentColor">
-                       <g>
-                          <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                       </g>
-                    </svg>
-                    <div class="ms-2">
-                       <span class="text-gray">Cost</span>
-                    </div>
-                 </div>
-              </div>
-              <div class="dropdown">
-                 <a href="#" class="text-gray dropdown-toggle" id="dropdownMenuButton22" data-bs-toggle="dropdown" aria-expanded="false">
-                 This Week
-                 </a>
-                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton22">
-                    <li><a class="dropdown-item" href="#">This Week</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                 </ul>
-              </div>
-           </div>
-           <div class="card-body">
-              <div id="d-main" class="d-main"></div>
-           </div>
-        </div>
-     </div>
-     <div class="col-md-12 col-xl-6">
-        <div class="card" data-aos="fade-up" data-aos-delay="900">
-           <div class="flex-wrap card-header d-flex justify-content-between">
-              <div class="header-title">
-                 <h4 class="card-title">Earnings</h4>            
-              </div>   
-              <div class="dropdown">
-                 <a href="#" class="text-gray dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    This Week
-                 </a>
-                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">This Week</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                 </ul>
-              </div>
-           </div>
-           <div class="card-body">
-              <div class="flex-wrap d-flex align-items-center justify-content-between">
-                 <div id="myChart" class="col-md-8 col-lg-8 myChart"></div>
-                 <div class="d-grid gap col-md-4 col-lg-4">
-                    <div class="d-flex align-items-start">
-                       <svg class="mt-2 icon-14" xmlns="http://www.w3.org/2000/svg" width="14" viewBox="0 0 24 24" fill="#3a57e8">
-                          <g>
-                             <circle cx="12" cy="12" r="8" fill="#3a57e8"></circle>
-                          </g>
-                       </svg>
-                       <div class="ms-3">
-                          <span class="text-gray">Fashion</span>
-                          <h6>251K</h6>
-                       </div>
-                    </div>
-                    <div class="d-flex align-items-start">
-                       <svg class="mt-2 icon-14" xmlns="http://www.w3.org/2000/svg" width="14" viewBox="0 0 24 24" fill="#4bc7d2">
-                          <g>
-                             <circle cx="12" cy="12" r="8" fill="#4bc7d2"></circle>
-                          </g>
-                       </svg>
-                       <div class="ms-3">
-                          <span class="text-gray">Accessories</span>
-                          <h6>176K</h6>
-                       </div>
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
-     <div class="col-md-12 col-xl-6">
-        <div class="card" data-aos="fade-up" data-aos-delay="1000">
-           <div class="flex-wrap card-header d-flex justify-content-between">
-              <div class="header-title">
-                 <h4 class="card-title">Conversions</h4>            
-              </div>
-              <div class="dropdown">
-                 <a href="#" class="text-gray dropdown-toggle" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
-                    This Week
-                 </a>
-                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton3">
-                    <li><a class="dropdown-item" href="#">This Week</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                 </ul>
-              </div>
-           </div>
-           <div class="card-body">
-              <div id="d-activity" class="d-activity"></div>
-           </div>
-        </div>
-     </div>         
-     <div class="col-md-12 col-lg-12">
-        <div class="overflow-hidden card" data-aos="fade-up" data-aos-delay="600">
-           <div class="flex-wrap card-header d-flex justify-content-between">
-              <div class="header-title">
-                 <h4 class="mb-2 card-title">Enterprise Clients</h4>
-                 <p class="mb-0">
-                    <svg class ="me-2 text-primary icon-24" width="24"  viewBox="0 0 24 24">
-                       <path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
-                    </svg>
-                    15 new acquired this month
-                 </p>            
-              </div>
-           </div>
-           <div class="p-0 card-body">
-              <div class="mt-4 table-responsive">
-                 <table id="basic-table" class="table mb-0 table-striped" role="grid">
-                    <thead>
-                       <tr>
-                          <th>COMPANIES</th>
-                          <th>CONTACTS</th>
-                          <th>ORDER</th>
-                          <th>COMPLETION</th>
-                       </tr>
-                    </thead>
-                    <tbody>
-                       <tr>
-                          <td>
-                             <div class="d-flex align-items-center">
-                                <img class="rounded bg-soft-primary img-fluid avatar-40 me-3" src="../../../../../assets/images/shapes/01.png" alt="profile">
-                                <h6>Addidis Sportwear</h6>
-                             </div>
-                          </td>
-                          <td>
-                             <div class="iq-media-group iq-media-group-1">
-                                <a href="#" class="iq-media-1">
-                                   <div class="icon iq-icon-box-3 rounded-pill">SP</div>
-                                </a>
-                                <a href="#" class="iq-media-1">
-                                   <div class="icon iq-icon-box-3 rounded-pill">PP</div>
-                                </a>
-                                <a href="#" class="iq-media-1">
-                                   <div class="icon iq-icon-box-3 rounded-pill">MM</div>
-                                </a>
-                             </div>
-                          </td>
-                          <td>$14,000</td>
-                          <td>
-                             <div class="mb-2 d-flex align-items-center">
-                                <h6>60%</h6>
-                             </div>
-                             <div class="shadow-none progress bg-soft-primary w-100" style="height: 4px">
-                                <div class="progress-bar bg-primary" data-toggle="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                             </div>
-                          </td>
-                       </tr>
-                       <tr>
-                          <td>
-                             <div class="d-flex align-items-center">
-                                <img class="rounded bg-soft-primary img-fluid avatar-40 me-3" src="../../../../../assets/images/shapes/05.png" alt="profile">
-                                <h6>Netflixer Platforms</h6>
-                             </div>
-                          </td>
-                          <td>
-                             <div class="iq-media-group iq-media-group-1">
-                                <a href="#" class="iq-media-1">
-                                   <div class="icon iq-icon-box-3 rounded-pill">SP</div>
-                                </a>
-                                <a href="#" class="iq-media-1">
-                                   <div class="icon iq-icon-box-3 rounded-pill">PP</div>
-                                </a>
-                             </div>
-                          </td>
-                          <td>$30,000</td>
-                          <td>
-                             <div class="mb-2 d-flex align-items-center">
-                                <h6>25%</h6>
-                             </div>
-                             <div class="shadow-none progress bg-soft-primary w-100" style="height: 4px">
-                                <div class="progress-bar bg-primary" data-toggle="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                             </div>
-                          </td>
-                       </tr>
-                       <tr>
-                          <td>
-                             <div class="d-flex align-items-center">
-                                <img class="rounded bg-soft-primary img-fluid avatar-40 me-3" src="../../../../../assets/images/shapes/02.png" alt="profile">
-                                <h6>Shopifi Stores</h6>
-                             </div>
-                          </td>
-                          <td>                                 
-                             <div class="iq-media-group iq-media-group-1">
-                                <a href="#" class="iq-media-1">
-                                   <div class="icon iq-icon-box-3 rounded-pill">PP</div>
-                                </a>
-                                <a href="#" class="iq-media-1">
-                                   <div class="icon iq-icon-box-3 rounded-pill">TP</div>
-                                </a>
-                             </div>
-                          </td>
-                          <td>$8,500</td>
-                          <td>
-                             <div class="mb-2 d-flex align-items-center">
-                                <h6>100%</h6>
-                             </div>
-                             <div class="shadow-none progress bg-soft-success w-100" style="height: 4px">
-                                <div class="progress-bar bg-success" data-toggle="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                             </div>
-                          </td>
-                       </tr>
-                       <tr>
-                          <td>
-                             <div class="d-flex align-items-center">
-                                <img class="rounded bg-soft-primary img-fluid avatar-40 me-3" src="../../../../../assets/images/shapes/03.png" alt="profile">
-                                <h6>Bootstrap Technologies</h6>
-                             </div>
-                          </td>
-                          <td>
-                             <div class="iq-media-group iq-media-group-1">
-                                <a href="#" class="iq-media-1">
-                                   <div class="icon iq-icon-box-3 rounded-pill">SP</div>
-                                </a>
-                                <a href="#" class="iq-media-1">
-                                   <div class="icon iq-icon-box-3 rounded-pill">PP</div>
-                                </a>
-                                <a href="#" class="iq-media-1">
-                                   <div class="icon iq-icon-box-3 rounded-pill">MM</div>
-                                </a>
-                                <a href="#" class="iq-media-1">
-                                   <div class="icon iq-icon-box-3 rounded-pill">TP</div>
-                                </a>
-                             </div>
-                          </td>
-                          <td>$20,500</td>
-                          <td>
-                             <div class="mb-2 d-flex align-items-center">
-                                <h6>100%</h6>
-                             </div>
-                             <div class="shadow-none progress bg-soft-success w-100" style="height: 4px">
-                                <div class="progress-bar bg-success" data-toggle="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                             </div>
-                          </td>
-                       </tr>
-                       <tr>
-                          <td>
-                             <div class="d-flex align-items-center">
-                                <img class="rounded bg-soft-primary img-fluid avatar-40 me-3" src="../../../../../assets/images/shapes/04.png" alt="profile">
-                                <h6>Community First</h6>
-                             </div>
-                          </td>
-                          <td>
-                             <div class="iq-media-group iq-media-group-1">
-                                <a href="#" class="iq-media-1">
-                                   <div class="icon iq-icon-box-3 rounded-pill">MM</div>
-                                </a>
-                             </div>
-                          </td>
-                          <td>$9,800</td>
-                          <td>
-                             <div class="mb-2 d-flex align-items-center">
-                                <h6>75%</h6>
-                             </div>
-                             <div class="shadow-none progress bg-soft-primary w-100" style="height: 4px">
-                                <div class="progress-bar bg-primary" data-toggle="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                             </div>
-                          </td>
-                       </tr>
-                    </tbody>
-                 </table>
-              </div>
-           </div>
-        </div>
-     </div>
-  </div>
-</div>
-<div class="col-md-12 col-lg-4">
-  <div class="row">
-     <div class="col-md-12 col-lg-12">
-        <div class="card credit-card-widget" data-aos="fade-up" data-aos-delay="900">
-           <div class="pb-4 border-0 card-header">
-              <div class="p-4 border border-white rounded primary-gradient-card">
-                 <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                       <h5 class="font-weight-bold">VISA </h5>
-                       <P class="mb-0">PREMIUM ACCOUNT</P>  
-                    </div>
-                    <div class="master-card-content">
-                       <svg class="master-card-1 icon-60" width="60"  viewBox="0 0 24 24">
-                          <path fill="#ffffff" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
-                       </svg>
-                       <svg class="master-card-2 icon-60" width="60"  viewBox="0 0 24 24">
-                          <path fill="#ffffff" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
-                       </svg>
-                    </div>
-                 </div>
-                 <div class="my-4">
-                    <div class="card-number">
-                       <span class="fs-5 me-2">5789</span>
-                       <span class="fs-5 me-2">****</span>
-                       <span class="fs-5 me-2">****</span>
-                       <span class="fs-5">2847</span>
-                    </div>
-                 </div>
-                 <div class="mb-2 d-flex align-items-center justify-content-between">
-                    <p class="mb-0">Card holder</p>
-                    <p class="mb-0">Expire Date</p>
-                 </div>
-                 <div class="d-flex align-items-center justify-content-between">
-                    <h6>Mike Smith</h6>
-                    <h6 class="ms-5">06/11</h6>
-                 </div>
-              </div>
-           </div>
-           <div class="card-body">
-              <div class="flex-wrap mb-4 d-flex align-itmes-center justify-content-between">
-                 <div class="d-flex align-itmes-center me-0 me-md-4">
-                    <div>
-                       <div class="p-3 mb-2 rounded bg-soft-primary">
-                          <svg class="icon-20"  width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9303 7C16.9621 6.92913 16.977 6.85189 16.9739 6.77432H17C16.8882 4.10591 14.6849 2 12.0049 2C9.325 2 7.12172 4.10591 7.00989 6.77432C6.9967 6.84898 6.9967 6.92535 7.00989 7H6.93171C5.65022 7 4.28034 7.84597 3.88264 10.1201L3.1049 16.3147C2.46858 20.8629 4.81062 22 7.86853 22H16.1585C19.2075 22 21.4789 20.3535 20.9133 16.3147L20.1444 10.1201C19.676 7.90964 18.3503 7 17.0865 7H16.9303ZM15.4932 7C15.4654 6.92794 15.4506 6.85153 15.4497 6.77432C15.4497 4.85682 13.8899 3.30238 11.9657 3.30238C10.0416 3.30238 8.48184 4.85682 8.48184 6.77432C8.49502 6.84898 8.49502 6.92535 8.48184 7H15.4932ZM9.097 12.1486C8.60889 12.1486 8.21321 11.7413 8.21321 11.2389C8.21321 10.7366 8.60889 10.3293 9.097 10.3293C9.5851 10.3293 9.98079 10.7366 9.98079 11.2389C9.98079 11.7413 9.5851 12.1486 9.097 12.1486ZM14.002 11.2389C14.002 11.7413 14.3977 12.1486 14.8858 12.1486C15.3739 12.1486 15.7696 11.7413 15.7696 11.2389C15.7696 10.7366 15.3739 10.3293 14.8858 10.3293C14.3977 10.3293 14.002 10.7366 14.002 11.2389Z" fill="currentColor"></path>                                            
-                          </svg>
-                       </div>
-                    </div>
-                    <div class="ms-3">
-                       <h5>1153</h5>
-                       <small class="mb-0">Products</small>
-                    </div>
-                 </div>
-                 <div class="d-flex align-itmes-center">
-                    <div>
-                       <div class="p-3 mb-2 rounded bg-soft-info">
-                          <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1213 11.2331H16.8891C17.3088 11.2331 17.6386 10.8861 17.6386 10.4677C17.6386 10.0391 17.3088 9.70236 16.8891 9.70236H14.1213C13.7016 9.70236 13.3719 10.0391 13.3719 10.4677C13.3719 10.8861 13.7016 11.2331 14.1213 11.2331ZM20.1766 5.92749C20.7861 5.92749 21.1858 6.1418 21.5855 6.61123C21.9852 7.08067 22.0551 7.7542 21.9652 8.36549L21.0159 15.06C20.8361 16.3469 19.7569 17.2949 18.4879 17.2949H7.58639C6.25742 17.2949 5.15828 16.255 5.04837 14.908L4.12908 3.7834L2.62026 3.51807C2.22057 3.44664 1.94079 3.04864 2.01073 2.64043C2.08068 2.22305 2.47038 1.94649 2.88006 2.00874L5.2632 2.3751C5.60293 2.43735 5.85274 2.72207 5.88272 3.06905L6.07257 5.35499C6.10254 5.68257 6.36234 5.92749 6.68209 5.92749H20.1766ZM7.42631 18.9079C6.58697 18.9079 5.9075 19.6018 5.9075 20.459C5.9075 21.3061 6.58697 22 7.42631 22C8.25567 22 8.93514 21.3061 8.93514 20.459C8.93514 19.6018 8.25567 18.9079 7.42631 18.9079ZM18.6676 18.9079C17.8282 18.9079 17.1487 19.6018 17.1487 20.459C17.1487 21.3061 17.8282 22 18.6676 22C19.4969 22 20.1764 21.3061 20.1764 20.459C20.1764 19.6018 19.4969 18.9079 18.6676 18.9079Z" fill="currentColor"></path>                                            
-                          </svg>                                        
-                       </div>
-                    </div>
-                    <div class="ms-3">
-                       <h5>81K</h5>
-                       <small class="mb-0">Order Served</small>
-                    </div>
-                 </div>
-              </div>
-              <div class="mb-4">
-                 <div class="flex-wrap d-flex justify-content-between">
-                    <h2 class="mb-2">$405,012,300</h2>
-                    <div>
-                       <span class="badge bg-success rounded-pill">YoY 24%</span>
-                    </div>
-                 </div>
-                 <p class="text-info">Life time sales</p>
-              </div>
-              <div class="grid-cols-2 d-grid gap-card">
-                 <button class="p-2 btn btn-primary text-uppercase">SUMMARY</button>
-                 <button class="p-2 btn btn-info text-uppercase">ANALYTICS</button>
-              </div>
-           </div>
-        </div>
-        <div class="card" data-aos="fade-up" data-aos-delay="500">
-           <div class="text-center card-body d-flex justify-content-around">
-              <div>
-                 <h2 class="mb-2">750<small>K</small></h2>
-                 <p class="mb-0 text-gray">Website Visitors</p>
-              </div>
-              <hr class="hr-vertial">
-              <div>
-                 <h2 class="mb-2">7,500</h2>
-                 <p class="mb-0 text-gray">New Customers</p>
-              </div>
-           </div>
-        </div> 
-     </div>
-     <div class="col-md-12 col-lg-12">
-        <div class="card" data-aos="fade-up" data-aos-delay="600">
-           <div class="flex-wrap card-header d-flex justify-content-between">
-              <div class="header-title">
-                 <h4 class="mb-2 card-title">Activity overview</h4>
-                 <p class="mb-0">
-                    <svg class ="me-2 icon-24" width="24" height="24" viewBox="0 0 24 24">
-                       <path fill="#17904b" d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z" />
-                    </svg>
-                    16% this month
-                 </p>
-              </div>
-           </div>
-           <div class="card-body">
-              <div class="mb-2  d-flex profile-media align-items-top">
-                 <div class="mt-1 profile-dots-pills border-primary"></div>
-                 <div class="ms-4">
-                    <h6 class="mb-1 ">$2400, Purchase</h6>
-                    <span class="mb-0">11 JUL 8:10 PM</span>
-                 </div>
-              </div>
-              <div class="mb-2  d-flex profile-media align-items-top">
-                 <div class="mt-1 profile-dots-pills border-primary"></div>
-                 <div class="ms-4">
-                    <h6 class="mb-1 ">New order #8744152</h6>
-                    <span class="mb-0">11 JUL 11 PM</span>
-                 </div>
-              </div>
-              <div class="mb-2  d-flex profile-media align-items-top">
-                 <div class="mt-1 profile-dots-pills border-primary"></div>
-                 <div class="ms-4">
-                    <h6 class="mb-1 ">Affiliate Payout</h6>
-                    <span class="mb-0">11 JUL 7:64 PM</span>
-                 </div>
-              </div>
-              <div class="mb-2  d-flex profile-media align-items-top">
-                 <div class="mt-1 profile-dots-pills border-primary"></div>
-                 <div class="ms-4">
-                    <h6 class="mb-1 ">New user added</h6>
-                    <span class="mb-0">11 JUL 1:21 AM</span>
-                 </div>
-              </div>
-              <div class="mb-1  d-flex profile-media align-items-top">
-                 <div class="mt-1 profile-dots-pills border-primary"></div>
-                 <div class="ms-4">
-                    <h6 class="mb-1 ">Product added</h6>
-                    <span class="mb-0">11 JUL 4:50 AM</span>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
-  </div>
-</div> 
-</div>
-  </div>
+       </div>
+       <div class="col-md-12 col-lg-4">
+          <div class="row">
+             <div class="col-md-12 col-lg-12">
+                <div class="card credit-card-widget" data-aos="fade-up" data-aos-delay="900">
+                   <div class="pb-4 border-0 card-header">
+                      <div class="p-4 border border-white rounded primary-gradient-card">
+                         <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                               <h5 class="font-weight-bold">VISA </h5>
+                               <P class="mb-0">PREMIUM ACCOUNT</P>  
+                            </div>
+                            <div class="master-card-content">
+                               <svg class="master-card-1 icon-60" width="60"  viewBox="0 0 24 24">
+                                  <path fill="#ffffff" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                               </svg>
+                               <svg class="master-card-2 icon-60" width="60"  viewBox="0 0 24 24">
+                                  <path fill="#ffffff" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                               </svg>
+                            </div>
+                         </div>
+                         <div class="my-4">
+                            <div class="card-number">
+                               <span class="fs-5 me-2">5789</span>
+                               <span class="fs-5 me-2">****</span>
+                               <span class="fs-5 me-2">****</span>
+                               <span class="fs-5">2847</span>
+                            </div>
+                         </div>
+                         <div class="mb-2 d-flex align-items-center justify-content-between">
+                            <p class="mb-0">Card holder</p>
+                            <p class="mb-0">Expire Date</p>
+                         </div>
+                         <div class="d-flex align-items-center justify-content-between">
+                            <h6>Mike Smith</h6>
+                            <h6 class="ms-5">06/11</h6>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="card-body">
+                      <div class="flex-wrap mb-4 d-flex align-itmes-center justify-content-between">
+                         <div class="d-flex align-itmes-center me-0 me-md-4">
+                            <div>
+                               <div class="p-3 mb-2 rounded bg-soft-primary">
+                                  <svg class="icon-20"  width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9303 7C16.9621 6.92913 16.977 6.85189 16.9739 6.77432H17C16.8882 4.10591 14.6849 2 12.0049 2C9.325 2 7.12172 4.10591 7.00989 6.77432C6.9967 6.84898 6.9967 6.92535 7.00989 7H6.93171C5.65022 7 4.28034 7.84597 3.88264 10.1201L3.1049 16.3147C2.46858 20.8629 4.81062 22 7.86853 22H16.1585C19.2075 22 21.4789 20.3535 20.9133 16.3147L20.1444 10.1201C19.676 7.90964 18.3503 7 17.0865 7H16.9303ZM15.4932 7C15.4654 6.92794 15.4506 6.85153 15.4497 6.77432C15.4497 4.85682 13.8899 3.30238 11.9657 3.30238C10.0416 3.30238 8.48184 4.85682 8.48184 6.77432C8.49502 6.84898 8.49502 6.92535 8.48184 7H15.4932ZM9.097 12.1486C8.60889 12.1486 8.21321 11.7413 8.21321 11.2389C8.21321 10.7366 8.60889 10.3293 9.097 10.3293C9.5851 10.3293 9.98079 10.7366 9.98079 11.2389C9.98079 11.7413 9.5851 12.1486 9.097 12.1486ZM14.002 11.2389C14.002 11.7413 14.3977 12.1486 14.8858 12.1486C15.3739 12.1486 15.7696 11.7413 15.7696 11.2389C15.7696 10.7366 15.3739 10.3293 14.8858 10.3293C14.3977 10.3293 14.002 10.7366 14.002 11.2389Z" fill="currentColor"></path>                                            
+                                  </svg>
+                               </div>
+                            </div>
+                            <div class="ms-3">
+                               <h5>1153</h5>
+                               <small class="mb-0">Products</small>
+                            </div>
+                         </div>
+                         <div class="d-flex align-itmes-center">
+                            <div>
+                               <div class="p-3 mb-2 rounded bg-soft-info">
+                                  <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1213 11.2331H16.8891C17.3088 11.2331 17.6386 10.8861 17.6386 10.4677C17.6386 10.0391 17.3088 9.70236 16.8891 9.70236H14.1213C13.7016 9.70236 13.3719 10.0391 13.3719 10.4677C13.3719 10.8861 13.7016 11.2331 14.1213 11.2331ZM20.1766 5.92749C20.7861 5.92749 21.1858 6.1418 21.5855 6.61123C21.9852 7.08067 22.0551 7.7542 21.9652 8.36549L21.0159 15.06C20.8361 16.3469 19.7569 17.2949 18.4879 17.2949H7.58639C6.25742 17.2949 5.15828 16.255 5.04837 14.908L4.12908 3.7834L2.62026 3.51807C2.22057 3.44664 1.94079 3.04864 2.01073 2.64043C2.08068 2.22305 2.47038 1.94649 2.88006 2.00874L5.2632 2.3751C5.60293 2.43735 5.85274 2.72207 5.88272 3.06905L6.07257 5.35499C6.10254 5.68257 6.36234 5.92749 6.68209 5.92749H20.1766ZM7.42631 18.9079C6.58697 18.9079 5.9075 19.6018 5.9075 20.459C5.9075 21.3061 6.58697 22 7.42631 22C8.25567 22 8.93514 21.3061 8.93514 20.459C8.93514 19.6018 8.25567 18.9079 7.42631 18.9079ZM18.6676 18.9079C17.8282 18.9079 17.1487 19.6018 17.1487 20.459C17.1487 21.3061 17.8282 22 18.6676 22C19.4969 22 20.1764 21.3061 20.1764 20.459C20.1764 19.6018 19.4969 18.9079 18.6676 18.9079Z" fill="currentColor"></path>                                            
+                                  </svg>                                        
+                               </div>
+                            </div>
+                            <div class="ms-3">
+                               <h5>81K</h5>
+                               <small class="mb-0">Order Served</small>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="mb-4">
+                         <div class="flex-wrap d-flex justify-content-between">
+                            <h2 class="mb-2">$405,012,300</h2>
+                            <div>
+                               <span class="badge bg-success rounded-pill">YoY 24%</span>
+                            </div>
+                         </div>
+                         <p class="text-info">Life time sales</p>
+                      </div>
+                      <div class="grid-cols-2 d-grid gap-card">
+                         <button class="p-2 btn btn-primary text-uppercase">SUMMARY</button>
+                         <button class="p-2 btn btn-info text-uppercase">ANALYTICS</button>
+                      </div>
+                   </div>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="500">
+                   <div class="text-center card-body d-flex justify-content-around">
+                      <div>
+                         <h2 class="mb-2">750<small>K</small></h2>
+                         <p class="mb-0 text-gray">Website Visitors</p>
+                      </div>
+                      <hr class="hr-vertial">
+                      <div>
+                         <h2 class="mb-2">7,500</h2>
+                         <p class="mb-0 text-gray">New Customers</p>
+                      </div>
+                   </div>
+                </div> 
+             </div>
+             <div class="col-md-12 col-lg-12">
+                <div class="card" data-aos="fade-up" data-aos-delay="600">
+                   <div class="flex-wrap card-header d-flex justify-content-between">
+                      <div class="header-title">
+                         <h4 class="mb-2 card-title">Activity overview</h4>
+                         <p class="mb-0">
+                            <svg class ="me-2 icon-24" width="24" height="24" viewBox="0 0 24 24">
+                               <path fill="#17904b" d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z" />
+                            </svg>
+                            16% this month
+                         </p>
+                      </div>
+                   </div>
+                   <div class="card-body">
+                      <div class="mb-2  d-flex profile-media align-items-top">
+                         <div class="mt-1 profile-dots-pills border-primary"></div>
+                         <div class="ms-4">
+                            <h6 class="mb-1 ">$2400, Purchase</h6>
+                            <span class="mb-0">11 JUL 8:10 PM</span>
+                         </div>
+                      </div>
+                      <div class="mb-2  d-flex profile-media align-items-top">
+                         <div class="mt-1 profile-dots-pills border-primary"></div>
+                         <div class="ms-4">
+                            <h6 class="mb-1 ">New order #8744152</h6>
+                            <span class="mb-0">11 JUL 11 PM</span>
+                         </div>
+                      </div>
+                      <div class="mb-2  d-flex profile-media align-items-top">
+                         <div class="mt-1 profile-dots-pills border-primary"></div>
+                         <div class="ms-4">
+                            <h6 class="mb-1 ">Affiliate Payout</h6>
+                            <span class="mb-0">11 JUL 7:64 PM</span>
+                         </div>
+                      </div>
+                      <div class="mb-2  d-flex profile-media align-items-top">
+                         <div class="mt-1 profile-dots-pills border-primary"></div>
+                         <div class="ms-4">
+                            <h6 class="mb-1 ">New user added</h6>
+                            <span class="mb-0">11 JUL 1:21 AM</span>
+                         </div>
+                      </div>
+                      <div class="mb-1  d-flex profile-media align-items-top">
+                         <div class="mt-1 profile-dots-pills border-primary"></div>
+                         <div class="ms-4">
+                            <h6 class="mb-1 ">Product added</h6>
+                            <span class="mb-0">11 JUL 4:50 AM</span>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div> 
+    </div>
+          </div>
   <div class="btn-download">
       <a class="btn btn-success px-3 py-2" href="https://iqonic.design/product/admin-templates/hope-ui-admin-free-open-source-bootstrap-admin-template/" target="_blank" >
           <svg class="icon-24"  width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1750,8 +1761,8 @@
   <footer class="footer">
       <div class="footer-body">
           <ul class="left-panel list-inline mb-0 p-0">
-              <li class="list-inline-item"><a href="../dashboard/extra/privacy-policy.html">Privacy Policy</a></li>
-              <li class="list-inline-item"><a href="../dashboard/extra/terms-of-service.html">Terms of Use</a></li>
+              <li class="list-inline-item"><a >Privacy Policy</a></li>
+              <li class="list-inline-item"><a >Terms of Use</a></li>
           </ul>
           <div class="right-panel">
               ©<script>document.write(new Date().getFullYear())</script> Hope UI, Made with

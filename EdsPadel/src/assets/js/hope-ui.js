@@ -213,15 +213,7 @@ Array.from(document.querySelectorAll('[data-toggle="slider-tab"]'), (elem) => {
   }
 })
 
-let Scrollbar
-if (typeof Scrollbar !== typeof null) {
-  if (document.querySelectorAll(".data-scrollbar").length) {
-    Scrollbar = window.Scrollbar
-    Scrollbar.init(document.querySelector('.data-scrollbar'), {
-      continuousScrolling: false,
-    })
-  }
-}
+
 
 /*---------------------------------------------------------------------
   Data tables
@@ -258,19 +250,7 @@ if (tableTh !== null) {
 /*---------------------------------------------------------------------
               AOS Animation Plugin
 -----------------------------------------------------------------------*/
-if (typeof AOS !== typeof undefined) {
-  AOS.init({
-    startEvent: 'DOMContentLoaded',
-    disable: function () {
-      var maxWidth = 996;
-      return window.innerWidth < maxWidth;
-    },
-    throttleDelay: 10,
-    once: true,
-    duration: 700,
-    offset: 10
-  });
-}
+
 /*---------------------------------------------------------------------
               Resize Plugins
 -----------------------------------------------------------------------*/
