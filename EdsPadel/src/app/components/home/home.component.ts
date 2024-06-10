@@ -1,4 +1,4 @@
-import { Component, OnInit,TemplateRef, Renderer2, Inject, PLATFORM_ID,NgZone,inject } from '@angular/core';
+import { Component, AfterViewInit ,TemplateRef, Renderer2, Inject, PLATFORM_ID,NgZone,inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 
@@ -8,14 +8,15 @@ import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './home.component.css',
 
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterViewInit  {
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
     private ngZone: NgZone,
     private offcanvasService: NgbOffcanvas
   ) {}
-  ngOnInit(): void {
+  ngAfterViewInit() {
+    console.log('hhhhhhh')
   }
 	openEnd(content: TemplateRef<any>) {
 		this.offcanvasService.open(content, { position: 'end' });
@@ -48,7 +49,6 @@ export class HomeComponent implements OnInit {
       const bodyClasses = document.body.classList;
       const themeClasses = Array.from(bodyClasses).filter(cls => cls.startsWith('theme-color-'));
       themeClasses.forEach(cls => bodyClasses.remove(cls));
-      // Add new theme class
       this.renderer.addClass(document.body, custombodyclass);
       const primaryColor = getComputedStyle(document.body).getPropertyValue('--bs-primary');
       sessionStorage.setItem('colorcustomchart-mode', primaryColor);
@@ -71,4 +71,3 @@ export class HomeComponent implements OnInit {
     }
   }
 }
-
