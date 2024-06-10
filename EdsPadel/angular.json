@@ -35,9 +35,29 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css",
+              "src/assets/css/hope-ui.min.css",
+              "src/assets/css/custom.min.css",
+              "src/assets/css/dark.min.css",
+              "src/assets/css/customizer.min.css",
+              "src/assets/css/rtl.min.css",
+              "src/assets/vendor/aos/dist/aos.css"
             ],
-            "scripts": [],
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "src/assets/js/core/libs.min.js",
+            "src/assets/js/core/external.min.js",
+            "src/assets/js/charts/widgetcharts.js",
+            "src/assets/js/charts/vectore-chart.js",
+            "src/assets/js/charts/dashboard.js",
+            "src/assets/js/plugins/fslightbox.js",
+            "src/assets/js/plugins/setting.js",
+            "src/assets/js/plugins/slider-tabs.js",
+            "src/assets/js/plugins/form-wizard.js",
+            "src/assets/vendor/aos/dist/aos.js",
+            "src/assets/js/hope-ui.js"
+
+          ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -101,10 +121,14 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+          ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "39a1af59-fb0f-40f2-b20a-1a8d98f3b09e"
   }
 }
