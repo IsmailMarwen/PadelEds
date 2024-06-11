@@ -11,6 +11,8 @@ import AOS from 'aos';
 })
 export class HomeComponent implements OnInit {
   selectedTheme: string = ''
+  currentMode: string = '';
+
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -24,7 +26,7 @@ export class HomeComponent implements OnInit {
     this.scheduleScrollbarInit();
     this.initAOS();
     this.activateMode('color-mode', 'dark');
-
+    this.currentMode='dark'
   }
   private initAOS() {
     if (typeof AOS !== typeof undefined) {
@@ -118,41 +120,39 @@ export class HomeComponent implements OnInit {
   }
   activateMode(setting: string, value: string): void {
     let detailObj = {};
-
+  
     if (setting === 'color-mode') {
-        detailObj = { dark: value };
-        document.body.classList.add(value);
-        sessionStorage.setItem('color-mode', value);
+      detailObj = { dark: value };
+      document.body.classList.add(value);
+      sessionStorage.setItem('color-mode', value);
+      this.applyDarkModeToTable(true); // Appliquer le mode sombre au tableau
+      this.updateInputMode(true); // Mettre à jour le mode de l'élément input
 
-        // Exemple de mise à jour d'éléments spécifiques en mode sombre
-        const sidebar = document.querySelector('.sidebar');
-        if (sidebar) {
-            sidebar.classList.add('dark-sidebar');
-        }
-        const navbar = document.querySelector('.navbar');
-        if (navbar) {
-            navbar.classList.add('dark-navbar');
-        }
+    } else if (setting === 'light-mode') {
+      detailObj = { light: value };
+      document.body.classList.remove('dark');
+      sessionStorage.setItem('color-mode', value);
+      this.applyDarkModeToTable(false); // Appliquer le mode clair au tableau
+      this.updateInputMode(false); // Mettre à jour le mode de l'élément input
+
     }
-    else if (setting === 'light-mode') {
-        detailObj = { light: value };
-        document.body.classList.remove('dark');
-        sessionStorage.setItem('color-mode', value);
-
-        // Réinitialiser les modifications pour le mode sombre
-        const sidebar = document.querySelector('.sidebar');
-        if (sidebar) {
-            sidebar.classList.remove('dark-sidebar');
-        }
-        const navbar = document.querySelector('.navbar');
-        if (navbar) {
-            navbar.classList.remove('dark-navbar');
-        }
-    }
-
+  
     const event = new CustomEvent("ChangeMode", { detail: detailObj });
     document.dispatchEvent(event);
-}
+    this.currentMode = value === 'dark' ? 'dark' : 'light';
+  }
+  
+  applyDarkModeToTable(isDark: boolean): void {
+    const table = document.getElementById('basic-table');
+    if (table) {
+      if (isDark) {
+        table.classList.add('table-dark');
+      } else {
+        table.classList.remove('table-dark');
+      }
+    }
+  }
+  
 
   toggleDarkMode(): void {
     this.activateMode('color-mode', 'dark');
@@ -160,5 +160,18 @@ export class HomeComponent implements OnInit {
 
   toggleLightMode(): void {
     this.activateMode('light-mode', 'light');
+  }
+  isModeActive(mode: string): boolean {
+    return this.currentMode === mode;
+  }
+  updateInputMode(isDark: boolean): void {
+    const inputElement = document.querySelector('.search-input input');
+    if (inputElement) {
+      if (isDark) {
+        inputElement.classList.add('dark');
+      } else {
+        inputElement.classList.remove('dark');
+      }
+    }
   }
 }

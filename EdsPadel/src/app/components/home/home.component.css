@@ -1,3 +1,61 @@
 p{
     color: #8a92a6;
 }
+.mb-0{
+    color: #8a92a6;
+}
+
+
+ 
+table.table-dark {
+    background-color: #222738 !important;
+    color: hsl(0, 0%, 100%);
+  }
+  
+  table.table-dark th, table.table-dark td {
+    border-color: #444444;
+    background-color: #222738 !important;
+
+  }
+  .table-striped.table-dark > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-bg-type: #222738 !important;
+  }
+  
+  .table-striped.table-dark > tbody > tr:nth-of-type(even) > * {
+    --bs-table-accent-bg: #222738 !important;
+    color: var(--bs-table-striped-color);
+  }
+  
+
+  
+  .dark .progress-bar.bg-primary {
+    background-color: #bb86fc;
+  }
+  
+  .dark .progress-bar.bg-success {
+    background-color: #03dac5;
+  }
+  
+  .dark .bg-soft-primary {
+    background-color: rgba(98, 0, 238, 0.1);
+  }
+  
+  .dark .bg-soft-success {
+    background-color: rgba(3, 218, 198, 0.1);
+  }
+  
+  .dark h6 {
+    color: #ffffff;
+  }
+  .form-control.dark {
+    background-color: #222738 !important;
+    color: white; /* Couleur du texte */
+  }
+  
+  .form-control.dark::placeholder {
+    color: rgba(255, 255, 255, 0.5); /* Couleur du texte d'espacement */
+  }
+  
+  .form-control.dark + .input-group-text svg {
+    stroke: white; /* Couleur du trait du SVG */
+  }

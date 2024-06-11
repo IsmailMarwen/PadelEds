@@ -189,11 +189,17 @@ if (document.querySelectorAll('#d-main').length) {
       },
       tooltip: {
         enabled: true,
+      
       },
+
   };
 
   const chart = new ApexCharts(document.querySelector("#d-main"), options);
   chart.render();
+  const tooltipText = document.querySelector('.apexcharts-tooltip-text');
+if (tooltipText) {
+    tooltipText.style.color = '#222738';
+}
   document.addEventListener('ColorChange', (e) => {
     const newOpt = {
       colors: [e.detail.detail1, e.detail.detail2],
