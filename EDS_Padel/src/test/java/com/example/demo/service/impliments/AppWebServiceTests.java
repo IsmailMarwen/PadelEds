@@ -53,7 +53,7 @@ public class AppWebServiceTests {
     @Test
     void testGetAppWebByIdAppWeb() {
         AppWeb appWeb = new AppWeb();
-        appWeb.setIdAppWeb(1);
+        appWeb.setIdAppWeb(1L);
         appWeb.setNomAppWeb("AppWeb");
 
         when(appWebRepository.findById(1L)).thenReturn(Optional.of(appWeb));
@@ -67,7 +67,7 @@ public class AppWebServiceTests {
     @Test
     void testUpdateAppWeb() {
         AppWeb appWeb = new AppWeb();
-        appWeb.setIdAppWeb(1);
+        appWeb.setIdAppWeb(1L);
         appWeb.setNomAppWeb("AppWeb");
 
         when(appWebRepository.saveAndFlush(any(AppWeb.class))).thenReturn(appWeb);

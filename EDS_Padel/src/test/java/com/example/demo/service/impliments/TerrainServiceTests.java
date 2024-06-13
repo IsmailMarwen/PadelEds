@@ -61,7 +61,7 @@ public class TerrainServiceTests {
     @Test
     void testGetTerrainByIdTerrain() {
         Terrain terrain = new Terrain();
-        terrain.setIdTerrain(1);
+        terrain.setIdTerrain(1L);
         terrain.setNomTerrain("Terrain1");
 
         when(terrainRepository.findById(1L)).thenReturn(Optional.of(terrain));
@@ -76,7 +76,7 @@ public class TerrainServiceTests {
     @Test
     void testUpdateTerrain() {
         Terrain Terrain = new Terrain();
-        Terrain.setIdTerrain(1);
+        Terrain.setIdTerrain(1L);
         Terrain.setNomTerrain("Terrain1");
 
         when(terrainRepository.saveAndFlush(any(Terrain.class))).thenReturn(Terrain);

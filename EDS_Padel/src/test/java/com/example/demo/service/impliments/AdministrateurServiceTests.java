@@ -58,7 +58,7 @@ class AdministrateurServiceTests {
 @Test
     void testGetAdminstarteurByIdAdminstarteur() {
         Administrateur administrateur = new Administrateur();
-        administrateur.setIdUtilisateur(1);
+        administrateur.setIdUtilisateur(1L);
         administrateur.setNom("John Doe");
 
         when(adminstarteurRepository.findById(1L)).thenReturn(Optional.of(administrateur));
@@ -73,7 +73,7 @@ class AdministrateurServiceTests {
     @Test
     void testUpdateAdminstarteur() {
         Administrateur administrateur = new Administrateur();
-        administrateur.setIdUtilisateur(1);
+        administrateur.setIdUtilisateur(1L);
         administrateur.setNom("John Doe");
 
         when(adminstarteurRepository.saveAndFlush(any(Administrateur.class))).thenReturn(administrateur);

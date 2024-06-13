@@ -1,7 +1,6 @@
 package com.example.demo.service.controller;
 import com.example.demo.persistance.entities.Administrateur;
 import com.example.demo.service.interfaces.IAdministrateur;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,11 +9,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/administrateur")
 public class AdministrateurController {
-    @Autowired
-    public IAdministrateur iAdministrateur;
+
+    private final IAdministrateur iAdministrateur;
+    public AdministrateurController(IAdministrateur iAdministrateur){
+        this.iAdministrateur=iAdministrateur;
+    }
     @PostMapping("/add")
-    Administrateur save(@RequestBody Administrateur administrateur) {
-        Administrateur a= iAdministrateur.saveAdminstrateur(administrateur);
+    Administrateur save(@RequestBody Administrateur a) {
+        iAdministrateur.saveAdminstrateur(a);
         return a ;
     }
     @PutMapping("/update")

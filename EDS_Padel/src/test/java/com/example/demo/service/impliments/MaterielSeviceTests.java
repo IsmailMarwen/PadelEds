@@ -59,7 +59,7 @@ public class MaterielSeviceTests {
     @Test
     void testGetMaterielByIdMateriel() {
         Materiel materiel = new Materiel();
-        materiel.setIdMateriel(1);
+        materiel.setIdMateriel(1L);
         materiel.setReference("Materiel1");
 
         when(materielRepository.findById(1L)).thenReturn(Optional.of(materiel));
@@ -74,7 +74,7 @@ public class MaterielSeviceTests {
     @Test
     void testUpdateMateriel() {
         Materiel materiel = new Materiel();
-        materiel.setIdMateriel(1);
+        materiel.setIdMateriel(1L);
         materiel.setReference("Materiel1");
 
         when(materielRepository.saveAndFlush(any(Materiel.class))).thenReturn(materiel);

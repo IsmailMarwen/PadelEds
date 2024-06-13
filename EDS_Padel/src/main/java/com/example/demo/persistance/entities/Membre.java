@@ -1,20 +1,14 @@
 package com.example.demo.persistance.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.persistence.Entity;
 
 @Entity
 @NoArgsConstructor
+@Getter
+@Setter
 public class Membre extends Utilisatuer {
-    public boolean isValidation() {
-        return validation;
-    }
-
-    public void setValidation(boolean validation) {
-        this.validation = validation;
-    }
 
     private boolean validation;
 }

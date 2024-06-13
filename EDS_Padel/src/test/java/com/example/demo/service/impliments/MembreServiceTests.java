@@ -53,7 +53,7 @@ public class MembreServiceTests {
     @Test
     void testGetMembreByIdMembre() {
         Membre membre = new Membre();
-        membre.setIdUtilisateur(1);
+        membre.setIdUtilisateur(1L);
         membre.setNom("Membre");
         when(membreRepository.findById(1L)).thenReturn(Optional.of(membre));
         Membre result = membreService.getMembreByIdMembre(1L);
@@ -64,7 +64,7 @@ public class MembreServiceTests {
     @Test
     void testUpdateMembre() {
         Membre membre = new Membre();
-        membre.setIdUtilisateur(1);
+        membre.setIdUtilisateur(1L);
         membre.setNom("Membre");
 
         when(membreRepository.saveAndFlush(any(Membre.class))).thenReturn(membre);

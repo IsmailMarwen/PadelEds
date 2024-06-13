@@ -59,7 +59,7 @@ public class CategorieAbonnementServiceTests {
     @Test
     void testGetCategorieAbonnementByIdCategorieAbonnement() {
         CategorieAbonnement categorieAbonnement = new CategorieAbonnement();
-        categorieAbonnement.setIdCategorie(1);
+        categorieAbonnement.setIdCategorie(1L);
         categorieAbonnement.setDesignation("CategorieAbonnement1");
 
         when(categorieAbonnementRepository.findById(1L)).thenReturn(Optional.of(categorieAbonnement));
@@ -74,7 +74,7 @@ public class CategorieAbonnementServiceTests {
     @Test
     void testUpdateCategorieAbonnement() {
         CategorieAbonnement categorieAbonnement = new CategorieAbonnement();
-        categorieAbonnement.setIdCategorie(1);
+        categorieAbonnement.setIdCategorie(1L);
         categorieAbonnement.setDesignation("CategorieAbonnement1");
 
         when(categorieAbonnementRepository.saveAndFlush(any(CategorieAbonnement.class))).thenReturn(categorieAbonnement);

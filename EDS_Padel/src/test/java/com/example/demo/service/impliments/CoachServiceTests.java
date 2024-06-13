@@ -54,7 +54,7 @@ public class CoachServiceTests {
     @Test
     void testGetCoachByIdCoach() {
         Coach coach = new Coach();
-        coach.setIdUtilisateur(1);
+        coach.setIdUtilisateur(1L);
         coach.setNom("Coach");
         when(coachRepository.findById(1L)).thenReturn(Optional.of(coach));
         Coach result = coachService.getCoachByIdCoach(1L);
@@ -65,7 +65,7 @@ public class CoachServiceTests {
     @Test
     void testUpdateCoach() {
         Coach coach = new Coach();
-        coach.setIdUtilisateur(1);
+        coach.setIdUtilisateur(1L);
         coach.setNom("Coach");
 
         when(coachRepository.saveAndFlush(any(Coach.class))).thenReturn(coach);

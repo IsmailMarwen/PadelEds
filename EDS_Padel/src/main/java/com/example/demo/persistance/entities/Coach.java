@@ -1,26 +1,15 @@
 package com.example.demo.persistance.entities;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 
 @Entity
 @NoArgsConstructor
+@Getter
+@Setter
 public class Coach extends  Utilisatuer{
-    public double getSalaireHoraire() {
-        return salaireHoraire;
-    }
-
-    public void setSalaireHoraire(double salaireHoraire) {
-        this.salaireHoraire = salaireHoraire;
-    }
-
-    public boolean isValidation() {
-        return validation;
-    }
-
-    public void setValidation(boolean validation) {
-        this.validation = validation;
-    }
-
     private  double salaireHoraire;
     private boolean validation;
 }

@@ -1,5 +1,8 @@
 package com.example.demo.persistance.entities;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,29 +10,15 @@ import javax.persistence.Id;
 
 @Entity
 @NoArgsConstructor
-
+@Getter
+@Setter
 
 
 
 public class CategorieAbonnement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idCategorie;
+    private Long idCategorie;
     private String designation;
 
-    public long getIdCategorie() {
-        return idCategorie;
-    }
-
-    public void setIdCategorie(long idCategorie) {
-        this.idCategorie = idCategorie;
-    }
-
-    public String getDesignation() {
-        return designation;
-    }
-
-    public void setDesignation(String designation) {
-        this.designation = designation;
-    }
 }

@@ -44,7 +44,7 @@ public class ClubService implements  IClub {
 
     @Override
     public List<Club> getClubsByNomClub(String nomClub) {
-       return  clubRepository.findByNomClubContainingIgnoreCase(nomClub);
+        return  clubRepository.findByNomClubContainingIgnoreCase(nomClub);
     }
 
     @Override

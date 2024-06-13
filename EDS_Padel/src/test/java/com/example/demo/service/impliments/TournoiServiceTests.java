@@ -59,7 +59,7 @@ public class TournoiServiceTests {
     @Test
     void testGetTournoiByIdTournoi() {
         Tournoi tournoi = new Tournoi();
-        tournoi.setIdTournoi(1);
+        tournoi.setIdTournoi(1L);
         tournoi.setNomTournoi("Tournoi1");
 
         when(tournoiRepository.findById(1L)).thenReturn(Optional.of(tournoi));
@@ -74,7 +74,7 @@ public class TournoiServiceTests {
     @Test
     void testUpdateTournoi() {
         Tournoi Tournoi = new Tournoi();
-        Tournoi.setIdTournoi(1);
+        Tournoi.setIdTournoi(1L);
         Tournoi.setNomTournoi("Tournoi1");
 
         when(tournoiRepository.saveAndFlush(any(Tournoi.class))).thenReturn(Tournoi);
