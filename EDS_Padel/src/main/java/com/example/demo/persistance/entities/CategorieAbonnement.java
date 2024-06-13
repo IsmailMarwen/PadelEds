@@ -14,14 +14,14 @@ import javax.persistence.Id;
 public class CategorieAbonnement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCategorie;
+    private long idCategorie;
     private String designation;
 
-    public int getIdCategorie() {
+    public long getIdCategorie() {
         return idCategorie;
     }
 
-    public void setIdCategorie(int idCategorie) {
+    public void setIdCategorie(long idCategorie) {
         this.idCategorie = idCategorie;
     }
 

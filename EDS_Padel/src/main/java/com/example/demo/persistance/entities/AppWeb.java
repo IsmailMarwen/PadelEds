@@ -1,30 +1,61 @@
 package com.example.demo.persistance.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 public class AppWeb {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idAppWeb;
+    private Long idAppWeb;
     private  String nomAppWeb;
     private String logoAppWeb;
     private  String couleurAppWeb;
     private String bannerImage;
     private  String adresseUrl;
+    private String mode;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idClub", referencedColumnName = "idClub")
+    @JsonIgnoreProperties({"appWeb"})
+    private Club club;
+    public String getMode() {
+        return mode;
+    }
 
-    public int getIdAppWeb() {
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    public String getCouleurSideBar() {
+        return couleurSideBar;
+    }
+
+    public void setCouleurSideBar(String couleurSideBar) {
+        this.couleurSideBar = couleurSideBar;
+    }
+
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+
+
+    private String couleurSideBar;
+
+    public long getIdAppWeb() {
         return idAppWeb;
     }
 
-    public void setIdAppWeb(int idAppWeb) {
+    public void setIdAppWeb(long idAppWeb) {
         this.idAppWeb = idAppWeb;
     }
 

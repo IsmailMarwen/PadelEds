@@ -9,14 +9,25 @@ import lombok.NoArgsConstructor;
 
 public class Terrain {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idTerrain;
+    private long idTerrain;
     private String nomTerrain;
 
-    public int getIdTerrain() {
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+
+    @ManyToOne
+    private Club club;
+
+    public long getIdTerrain() {
         return idTerrain;
     }
 
-    public void setIdTerrain(int idTerrain) {
+    public void setIdTerrain(long idTerrain) {
         this.idTerrain = idTerrain;
     }
 

@@ -1,14 +1,17 @@
 package com.example.demo.persistance.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
 public class Club {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idClub;
+    private long idClub;
     private  String nomClub;
     private String email;
     private  double latitude ;
@@ -25,14 +28,76 @@ public class Club {
     private String offre;
     private  boolean payement;
     private  String matriculeFiscale;
-    @OneToOne
+    @OneToOne(mappedBy = "club")
+    @JsonManagedReference
     private AppWeb appWeb;
+    @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    private List<Administrateur> administrateurs;
+    @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    private List<Membre> membres;
 
-    public int getIdClub() {
+    public List<Administrateur> getAdministrateurs() {
+        return administrateurs;
+    }
+
+    public void setAdministrateurs(List<Administrateur> administrateurs) {
+        this.administrateurs = administrateurs;
+    }
+
+    public List<Membre> getMembres() {
+        return membres;
+    }
+
+    public void setMembres(List<Membre> membres) {
+        this.membres = membres;
+    }
+
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
+    public void setCoaches(List<Coach> coaches) {
+        this.coaches = coaches;
+    }
+
+    @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    private List<Coach> coaches;
+    @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    private List<Materiel> materiels;
+
+    public List<Materiel> getMateriels() {
+        return materiels;
+    }
+
+    public void setMateriels(List<Materiel> materiels) {
+        this.materiels = materiels;
+    }
+
+    public List<Terrain> getTerrains() {
+        return terrains;
+    }
+
+    public void setTerrains(List<Terrain> terrains) {
+        this.terrains = terrains;
+    }
+
+    public List<Tournoi> getTournois() {
+        return tournois;
+    }
+
+    public void setTournois(List<Tournoi> tournois) {
+        this.tournois = tournois;
+    }
+
+    @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    private List<Terrain> terrains;
+    @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    private List<Tournoi> tournois;
+    public long getIdClub() {
         return idClub;
     }
 
-    public void setIdClub(int idClub) {
+    public void setIdClub(long idClub) {
         this.idClub = idClub;
     }
 

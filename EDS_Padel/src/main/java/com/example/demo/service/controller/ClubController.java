@@ -1,7 +1,9 @@
 package com.example.demo.service.controller;
 
 import com.example.demo.persistance.entities.AppWeb;
+import com.example.demo.persistance.entities.Club;
 import com.example.demo.service.interfaces.IAppWeb;
+import com.example.demo.service.interfaces.IClub;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,32 +14,44 @@ import java.util.List;
 @RequestMapping("/api/club")
 public class ClubController {
     @Autowired
-    public IAppWeb iAppWeb;
+    public IClub iClub;
     @PostMapping("/add")
-    AppWeb save(@RequestBody AppWeb appWeb) {
-        AppWeb a=iAppWeb.saveAppWeb(appWeb);
+    Club save(@RequestBody Club club) {
+        Club a=iClub.saveClub(club);
         return a ;
     }
     @PutMapping("/update")
-    AppWeb update(@RequestBody AppWeb appWeb) {
+    Club update(@RequestBody Club club) {
 
-        return iAppWeb.updateAppWeb(appWeb);
+        return iClub.updateClub(club);
     }
     @GetMapping("/getAll")
-    List<AppWeb> getAllAppWebs() {
+    List<Club> getAllClubs() {
 
-        return iAppWeb.getListAppWeb();
+        return iClub.getListClub();
     }
 
     @GetMapping("/getById/{id}")
-    AppWeb getAppWebById(@PathVariable Long id) {
+    Club getClubById(@PathVariable Long id) {
 
-        return iAppWeb.getAppWebByIdAppWeb(id);
+        return iClub.getClubByIdClub(id);
     }
 
     @DeleteMapping("/delete/{id}")
     boolean delete(@PathVariable Long id) {
-        iAppWeb.deleteAppWeb(id);
+        iClub.deleteClub(id);
         return true;
+    }
+    @GetMapping("/proximite")
+    public List<Club> getClubsNearLocation(@RequestParam double latitude, @RequestParam double longitude, @RequestParam double distance) {
+        return iClub.getClubsNearLocation(latitude, longitude, distance);
+    }
+    @GetMapping("/ville")
+    public List<Club> getClubsByVille(@RequestParam String ville) {
+        return iClub.getClubsByVille(ville);
+    }
+    @GetMapping("/nom")
+    public List<Club> getClubsByNom(@RequestParam String nom) {
+        return iClub.getClubsByNomClub(nom);
     }
 }

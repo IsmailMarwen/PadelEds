@@ -5,7 +5,7 @@ import javax.persistence.*;
 public class Utilisatuer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUtilisateur;
+    private long idUtilisateur;
     private String nom;
     private String prenom;
     private String email;
@@ -15,11 +15,22 @@ public class Utilisatuer {
     private String password;
     private String role;
 
-    public int getIdUtilisateur() {
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+
+    @ManyToOne
+    private  Club club;
+
+    public long getIdUtilisateur() {
         return idUtilisateur;
     }
 
-    public void setIdUtilisateur(int idUtilisateur) {
+    public void setIdUtilisateur(long idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
     }
 

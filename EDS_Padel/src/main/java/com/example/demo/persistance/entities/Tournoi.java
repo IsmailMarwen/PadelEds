@@ -10,7 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Tournoi {
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private int idTournoi;
+        private long idTournoi;
         private String nomTournoi;
         private String typeTournoi;
         private Date dateDebut;
@@ -18,11 +18,22 @@ public class Tournoi {
 
         private int prixParticipation;
 
-        public int getIdTournoi() {
+        public Club getClub() {
+                return club;
+        }
+
+        public void setClub(Club club) {
+                this.club = club;
+        }
+
+        @ManyToOne
+        private Club club;
+
+        public long getIdTournoi() {
                 return idTournoi;
         }
 
-        public void setIdTournoi(int idTournoi) {
+        public void setIdTournoi(long idTournoi) {
                 this.idTournoi = idTournoi;
         }
 

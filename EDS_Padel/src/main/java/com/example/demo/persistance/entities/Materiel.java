@@ -1,26 +1,35 @@
 package com.example.demo.persistance.entities;
 import lombok.NoArgsConstructor;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 
 public class Materiel {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idMateriel;
+    private long idMateriel;
     private String reference;
     private String image;
     private double prix;
     private int nb;
 
-    public int getIdMateriel() {
+
+
+    @ManyToOne
+    private  Club club;
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+    public long getIdMateriel() {
         return idMateriel;
     }
 
-    public void setIdMateriel(int idMateriel) {
+    public void setIdMateriel(long idMateriel) {
         this.idMateriel = idMateriel;
     }
 

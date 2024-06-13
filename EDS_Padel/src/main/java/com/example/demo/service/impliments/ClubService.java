@@ -35,5 +35,21 @@ public class ClubService implements  IClub {
     public Club getClubByIdClub(Long id) {
         return clubRepository.findById(id).get();
     }
+
+    @Override
+    public List<Club> getClubsNearLocation(double latitude, double longitude, double distance) {
+        return clubRepository.findClubsNearLocation(latitude, longitude, distance);
+
+    }
+
+    @Override
+    public List<Club> getClubsByNomClub(String nomClub) {
+       return  clubRepository.findByNomClubContainingIgnoreCase(nomClub);
+    }
+
+    @Override
+    public List<Club> getClubsByVille(String ville) {
+        return clubRepository.findByVille(ville);
+    }
 }
 

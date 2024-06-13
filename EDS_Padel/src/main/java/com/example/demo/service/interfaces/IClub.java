@@ -10,4 +10,8 @@ public interface IClub {
     boolean deleteClub(Long id);
     List<Club> getListClub();
     Club getClubByIdClub(Long id);
+    public List<Club> getClubsNearLocation(double latitude, double longitude, double distance);
+    public List<Club> getClubsByNomClub(String nomClub);
+    public List<Club> getClubsByVille(String ville);
+
 }
