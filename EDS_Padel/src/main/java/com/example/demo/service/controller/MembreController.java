@@ -1,7 +1,7 @@
 package com.example.demo.service.controller;
 import com.example.demo.persistance.entities.Membre;
 import com.example.demo.service.interfaces.IMembre;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,8 +10,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/membre")
 public class MembreController {
-    @Autowired
-    public IMembre iMembre;
+    private final IMembre iMembre;
+    public MembreController(IMembre iMembre){
+        this.iMembre=iMembre;}
     @PostMapping("/add")
     Membre save(@RequestBody Membre membre) {
         Membre m=iMembre.saveMembre(membre);

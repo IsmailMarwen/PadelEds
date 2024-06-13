@@ -2,7 +2,7 @@ package com.example.demo.service.controller;
 
 import com.example.demo.persistance.entities.CategorieAbonnement;
 import com.example.demo.service.interfaces.ICategorieAbonnement;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,8 +11,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/CategorieAbonnement")
 public class CategorieAbonnementController {
-    @Autowired
-    public ICategorieAbonnement iCategorieAbonnement;
+    private final ICategorieAbonnement iCategorieAbonnement;
+    public CategorieAbonnementController(ICategorieAbonnement iCategorieAbonnement){
+        this.iCategorieAbonnement=iCategorieAbonnement;}
     @PostMapping("/add")
     CategorieAbonnement save(@RequestBody CategorieAbonnement CategorieAbonnement) {
         CategorieAbonnement a=iCategorieAbonnement.saveCategorieAbonnement(CategorieAbonnement);

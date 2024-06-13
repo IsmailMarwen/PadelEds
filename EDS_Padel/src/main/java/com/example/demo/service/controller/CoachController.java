@@ -1,7 +1,6 @@
 package com.example.demo.service.controller;
 import com.example.demo.persistance.entities.Coach;
 import com.example.demo.service.interfaces.ICoach;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,8 +9,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/coach")
 public class CoachController {
-    @Autowired
-    public ICoach iCoach;
+    private final ICoach iCoach;
+    public CoachController(ICoach iCoach){
+        this.iCoach=iCoach;}
     @PostMapping("/add")
     Coach save(@RequestBody Coach coach) {
         Coach c=iCoach.saveCoach(coach);

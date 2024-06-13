@@ -2,7 +2,7 @@ package com.example.demo.service.controller;
 
 import com.example.demo.persistance.entities.Terrain;
 import com.example.demo.service.interfaces.ITerrain;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,8 +11,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/terrain")
 public class TerrainController {
-    @Autowired
-    public ITerrain iTerrain;
+    private final ITerrain iTerrain;
+    public TerrainController(ITerrain iTerrain){
+        this.iTerrain=iTerrain;}
     @PostMapping("/add")
     Terrain save(@RequestBody Terrain Terrain) {
         Terrain a=iTerrain.saveTerrain(Terrain);

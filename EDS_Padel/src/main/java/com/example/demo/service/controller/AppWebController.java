@@ -1,17 +1,17 @@
 package com.example.demo.service.controller;
 import com.example.demo.persistance.entities.AppWeb;
 import com.example.demo.service.interfaces.IAppWeb;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/appWeb")
 public class AppWebController {
-    @Autowired
-    public IAppWeb iAppWeb;
+    private final IAppWeb iAppWeb;
+    public AppWebController(IAppWeb iAppWeb){
+        this.iAppWeb=iAppWeb;
+    }
     @PostMapping("/add")
     AppWeb save(@RequestBody AppWeb appWeb) {
         AppWeb a=iAppWeb.saveAppWeb(appWeb);

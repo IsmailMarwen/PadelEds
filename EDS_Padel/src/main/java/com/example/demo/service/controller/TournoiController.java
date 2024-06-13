@@ -2,17 +2,16 @@ package com.example.demo.service.controller;
 
 import com.example.demo.persistance.entities.Tournoi;
 import com.example.demo.service.interfaces.ITournoi;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @CrossOrigin(origins = "", allowedHeaders = "")
 @RestController
 @RequestMapping("/api/Tournoi")
 public class TournoiController {
-    @Autowired
-    public ITournoi iTournoi;
+    private final ITournoi iTournoi;
+    public TournoiController(ITournoi iTournoi){
+        this.iTournoi=iTournoi;}
     @PostMapping("/add")
     Tournoi save(@RequestBody Tournoi Tournoi) {
         Tournoi a=iTournoi.saveTournoi(Tournoi);

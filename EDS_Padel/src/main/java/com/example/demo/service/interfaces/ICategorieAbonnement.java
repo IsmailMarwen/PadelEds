@@ -1,7 +1,7 @@
 package com.example.demo.service.interfaces;
 
 import com.example.demo.persistance.entities.CategorieAbonnement;
-import com.example.demo.service.impliments.CategorieAbonnementService;
+
 
 import java.util.List;
 

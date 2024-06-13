@@ -1,20 +1,20 @@
 package com.example.demo.service.controller;
 
-import com.example.demo.persistance.entities.AppWeb;
-import com.example.demo.persistance.entities.Club;
-import com.example.demo.service.interfaces.IAppWeb;
-import com.example.demo.service.interfaces.IClub;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.persistance.entities.Club;
+import com.example.demo.service.interfaces.IClub;
+
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
+
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/club")
 public class ClubController {
-    @Autowired
-    public IClub iClub;
+    private final IClub iClub;
+    public ClubController(IClub iClub){
+        this.iClub=iClub;}
     @PostMapping("/add")
     Club save(@RequestBody Club club) {
         Club a=iClub.saveClub(club);
