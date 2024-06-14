@@ -31,6 +31,7 @@ public class Club {
     private String offre;
     private  boolean payement;
     private  String matriculeFiscale;
+    private  String adresse;
     @OneToOne(mappedBy = "club")
     @JsonIgnoreProperties("club")
     private AppWeb appWeb;
