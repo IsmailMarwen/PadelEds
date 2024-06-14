@@ -3,6 +3,16 @@ import { isPlatformBrowser } from '@angular/common';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import Scrollbar from 'smooth-scrollbar';
 import AOS from 'aos';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ImageBannerComponent } from '../image-banner/image-banner.component';
+import { AppwebserviceService } from '../../services/appwebservice.service';
+import { ChangeDetectorRef } from '@angular/core';
+
+declare var window: any;
+declare const Waypoint: any;
+declare const CircleProgress: any;
+declare const ApexCharts: any;
+
 
 @Component({
   selector: 'app-home',
@@ -12,22 +22,450 @@ import AOS from 'aos';
 export class HomeComponent implements OnInit {
   selectedTheme: string = ''
   currentMode: string = '';
-
+ currentSidebarColor: string = ''
+ bannerImage:any
+ nameApp:String=''
+ logoApp:string=""
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
     private ngZone: NgZone,
     private elRef: ElementRef,
-    private offcanvasService: NgbOffcanvas
+    private offcanvasService: NgbOffcanvas,
+    private modalService: NgbModal,
+    private cdr: ChangeDetectorRef,
+    private service:AppwebserviceService
   ) {}
 
   ngOnInit() {
+    this.nameApp='Padel Eds'
+    this.initSidebarToggle();
+    this.initSidebarState();
     this.applyTheme('theme2');
     this.scheduleScrollbarInit();
     this.initAOS();
-    this.activateMode('color-mode', 'dark');
-    this.currentMode='dark'
+    this.initCircleProgress();
+    this.initChart();
+    this.initProgressBar();
+    this.initChartBar();
+    this.initChartRadial();
+    //this.activateMode('color-mode', 'dark');
+    //this.currentMode = 'dark';
+    this.changeSidebarColor('sidebar-color')
+    this.service.bannerImage$.subscribe(image => {
+      this.bannerImage = image;
+   });
+   this.service.logo$.subscribe(image => {
+    this.logoApp = image;
+ });
+   this.bannerImage=localStorage.getItem("banner")
+   if (window.counterUp !== undefined) {
+    const counterUp = window.counterUp["default"];
+    const counterElements = document.querySelectorAll('.counter');
+    Array.from(counterElements).forEach((el: Element) => {
+      if (typeof Waypoint !== 'undefined') {
+        const waypoint = new Waypoint({
+          element: el,
+          handler: function () {
+            counterUp(el, {
+              duration: 1000,
+              delay: 10,
+            });
+            this.destroy();
+          },
+          offset: "bottom-in-view"
+        });
+      }
+    });
+  
+
   }
+ }
+ changeLogo(event: any) {
+  const file: File = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+        this.logoApp=e.target.result;
+        this.service.setLogoAppWeb(e.target.result);
+      
+
+    };
+    reader.readAsDataURL(file);
+  }
+}
+ initSidebarToggle(): void {
+  const sidebarToggleBtn = document.querySelectorAll('[data-toggle="sidebar"]');
+  const sidebar = document.querySelector('.sidebar-default');
+
+  if (sidebar !== null) {
+    const sidebarActiveItem = sidebar.querySelectorAll('.active');
+
+    Array.from(sidebarActiveItem).forEach((elem: Element) => {
+      if (!elem.closest('ul')?.classList.contains('iq-main-menu')) {
+        const childMenu = elem.closest('ul');
+        if (childMenu) {
+          childMenu.classList.add('show');
+          const parentMenu = childMenu.closest('li')?.querySelector('.nav-link');
+          if (parentMenu) {
+            parentMenu.classList.add('collapsed');
+            parentMenu.setAttribute('aria-expanded', 'true');
+          }
+        }
+      }
+    });
+  }
+
+  Array.from(sidebarToggleBtn).forEach((sidebarBtn: Element) => {
+    this.sidebarToggle(sidebarBtn);
+  });
+}
+
+sidebarToggle(elem: Element): void {
+  elem.addEventListener('click', () => {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+      if (sidebar.classList.contains('sidebar-mini')) {
+        sidebar.classList.remove('sidebar-mini');
+      } else {
+        sidebar.classList.add('sidebar-mini');
+      }
+    }
+  });
+}
+
+initSidebarState(): void {
+  const sidebar = document.querySelector('.sidebar-default');
+
+  if (sidebar !== null) {
+    const sidebarActiveItem = sidebar.querySelectorAll('.active');
+
+    Array.from(sidebarActiveItem).forEach((elem: Element) => {
+      if (!elem.closest('ul')?.classList.contains('iq-main-menu')) {
+        const childMenu = elem.closest('ul');
+        if (childMenu) {
+          childMenu.classList.add('show');
+          const parentMenu = childMenu.closest('li')?.querySelector('.nav-link');
+          if (parentMenu) {
+            parentMenu.classList.add('collapsed');
+            parentMenu.setAttribute('aria-expanded', 'true');
+          }
+        }
+      }
+    });
+  }
+}
+ initChartRadial(): void {
+  if (document.querySelectorAll('#myChart').length) {
+    const themeColors = this.getThemeColors(this.selectedTheme);
+    if (themeColors) {
+    const options = {
+      series: [55, 75],
+      chart: {
+        height: 230,
+        type: 'radialBar',
+      },
+      colors: [themeColors.detail1, themeColors.detail2],
+      plotOptions: {
+        radialBar: {
+          hollow: {
+            margin: 10,
+            size: "50%",
+          },
+          track: {
+            margin: 10,
+            strokeWidth: '50%',
+          },
+          dataLabels: {
+            show: false,
+          }
+        }
+      },
+      labels: ['Apples', 'Oranges'],
+    };
+
+    if (typeof ApexCharts !== 'undefined') {
+      const chart = new ApexCharts(document.querySelector("#myChart"), options);
+      chart.render();
+
+      document.addEventListener('ColorChange', (e:any) => {
+        const newOpt = { colors: [e.detail.detail2, e.detail.detail1] };
+        chart.updateOptions(newOpt);
+      });
+    }
+  }}
+}
+ initChartBar(): void {
+  if (document.querySelectorAll('#d-activity').length) {
+    const themeColors = this.getThemeColors(this.selectedTheme);
+    if (themeColors) {
+
+    const options = {
+      series: [{
+        name: 'Successful deals',
+        data: [30, 50, 35, 60, 40, 60, 60, 30, 50, 35]
+      }, {
+        name: 'Failed deals',
+        data: [40, 50, 55, 50, 30, 80, 30, 40, 50, 55]
+      }],
+      chart: {
+        type: 'bar',
+        height: 230,
+        stacked: true,
+        toolbar: {
+          show: false
+        }
+      },
+      colors: [themeColors.detail1, themeColors.detail2],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: '28%',
+          endingShape: 'rounded',
+          borderRadius: 5,
+        },
+      },
+      legend: {
+        show: false
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        show: true,
+        width: 2,
+        colors: ['transparent']
+      },
+      xaxis: {
+        categories: ['S', 'M', 'T', 'W', 'T', 'F', 'S', 'M', 'T', 'W'],
+        labels: {
+          minHeight: 20,
+          maxHeight: 20,
+          style: {
+            colors: "#8A92A6",
+          },
+        }
+      },
+      yaxis: {
+        title: {
+          text: ''
+        },
+        labels: {
+          minWidth: 19,
+          maxWidth: 19,
+          style: {
+            colors: "#8A92A6",
+          },
+        }
+      },
+      fill: {
+        opacity: 1
+      },
+      tooltip: {
+        y: {
+          formatter: function (val: any) {
+            return "$ " + val + " thousands";
+          }
+        }
+      }
+    };
+
+    const chart = new ApexCharts(document.querySelector("#d-activity"), options);
+    chart.render();
+    document.addEventListener('ColorChange', (e:any) => {
+      const newOpt = { colors: [e.detail.detail1, e.detail.detail2] };
+      chart.updateOptions(newOpt);
+    });
+  }}
+}
+ initChart(): void {
+
+  if (document.querySelectorAll('#d-main').length) {
+    const themeColors = this.getThemeColors(this.selectedTheme);
+    if (themeColors) {
+    const options = {
+      series: [{
+        name: 'total',
+        data: [94, 80, 94, 80, 94, 80, 94]
+      }, {
+        name: 'pipline',
+        data: [72, 60, 84, 60, 74, 60, 78]
+      }],
+      chart: {
+        fontFamily: '"Inter", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+        height: 245,
+        type: 'area',
+        toolbar: {
+          show: false
+        },
+        sparkline: {
+          enabled: false,
+        },
+      },
+      colors: [themeColors.detail1, themeColors.detail2],
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'smooth',
+        width: 3,
+      },
+      yaxis: {
+        show: true,
+        labels: {
+          show: true,
+          minWidth: 19,
+          maxWidth: 19,
+          style: {
+            colors: "#8A92A6",
+          },
+          offsetX: -5,
+        },
+      },
+      legend: {
+        show: false,
+      },
+      xaxis: {
+        labels: {
+          minHeight: 22,
+          maxHeight: 22,
+          show: true,
+          style: {
+            colors: "#8A92A6",
+          },
+        },
+        lines: {
+          show: false  //or just here to disable only x axis grids
+        },
+        categories: ["Jan", "Feb", "Mar", "Apr", "Jun", "Jul", "Aug"]
+      },
+      grid: {
+        show: false,
+      },
+      fill: {
+        type: 'gradient',
+        gradient: {
+          shade: 'dark',
+          type: "vertical",
+          shadeIntensity: 0,
+          gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
+          inverseColors: true,
+          opacityFrom: .4,
+          opacityTo: .1,
+          stops: [0, 50, 80],
+          colors: ["#3a57e8", "#4bc7d2"]
+        }
+      },
+      tooltip: {
+        enabled: true,
+      },
+    };
+
+    const chart = new ApexCharts(document.querySelector("#d-main"), options);
+    chart.render();
+    const tooltipText = document.querySelector('.apexcharts-tooltip-text');
+
+    document.addEventListener('ColorChange', (e:any) => {
+      const newOpt = {
+        colors: [e.detail.detail1, e.detail.detail2],
+        fill: {
+          type: 'gradient',
+          gradient: {
+            shade: 'dark',
+            type: "vertical",
+            shadeIntensity: 0,
+            gradientToColors: [e.detail.detail1, e.detail.detail2], // optional, if not defined - uses the shades of same color in series
+            inverseColors: true,
+            opacityFrom: .4,
+            opacityTo: .1,
+            stops: [0, 50, 60],
+            colors: [e.detail.detail1, e.detail.detail2],
+          }
+        },
+      }
+      chart.updateOptions(newOpt);
+    });
+  }}
+}
+progressBarInit(elem: HTMLElement): void {
+  const currentValue = elem.getAttribute('aria-valuenow');
+  elem.style.width = '0%';
+  elem.style.transition = 'width 2s';
+  if (typeof Waypoint !== 'undefined') {
+    new Waypoint({
+      element: elem,
+      handler: function () {
+        setTimeout(() => {
+          elem.style.width = currentValue + '%';
+        }, 100);
+      },
+      offset: 'bottom-in-view',
+    });
+  }
+}
+
+initProgressBar(): void {
+  const customProgressBar = document.querySelectorAll('[data-toggle="progress-bar"]');
+  Array.prototype.slice.call(customProgressBar).forEach((elem: HTMLElement) => {
+    this.progressBarInit(elem);
+  });
+}
+ initCircleProgress(): void {
+  const progressBar = document.querySelectorAll('.circle-progress');
+  if (progressBar) {
+    progressBar.forEach((elem: any) => {
+      const minValue = elem.getAttribute('data-min-value');
+      const maxValue = elem.getAttribute('data-max-value');
+      const value = elem.getAttribute('data-value');
+      const type = elem.getAttribute('data-type');
+      if (elem.id !== '' && elem.id !== null) {
+        new CircleProgress(`#${elem.id}`, {
+          min: minValue,
+          max: maxValue,
+          value: value,
+          textFormat: type,
+        });
+      }
+    });
+  }
+}
+  openLargeModal() {
+    const modalRef = this.modalService.open(ImageBannerComponent, { size: 'xl', centered: true }); // Utilisez size: 'xl' pour un modal de grande taille
+    modalRef.componentInstance.name = 'World';
+    modalRef.result.then((result) => {
+      console.log(result);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+  changeSidebarColor(color: string): void {
+    console.log(color);
+  
+    // Retirer la classe 'active' des éléments de couleur de la barre latérale
+    const sidebarColors = document.querySelectorAll('[data-setting="sidebar"][data-name="sidebar-color"]');
+    Array.from(sidebarColors, (el) => {
+      el.classList.remove('active');
+    });
+  
+    // Retirer la classe de couleur actuelle de la barre latérale
+    const sidebarDefault = document.querySelector('.sidebar-default');
+    if (sidebarDefault) {
+      const currentValue = this.currentSidebarColor;
+      if (currentValue) {
+        sidebarDefault.classList.remove(currentValue);
+      }
+    }
+  
+    // Ajouter la classe de la nouvelle couleur à la barre latérale
+    if (sidebarDefault) {
+      sidebarDefault.classList.add(color);
+    }
+  
+    // Mettre à jour la couleur actuelle du sidebar
+    this.currentSidebarColor = color;
+  }
+  
+  
   private initAOS() {
     if (typeof AOS !== typeof undefined) {
       AOS.init({
@@ -97,7 +535,6 @@ export class HomeComponent implements OnInit {
       themeClasses.forEach(cls => bodyClasses.remove(cls));
       this.renderer.addClass(document.body, custombodyclass);
       const primaryColor = getComputedStyle(document.body).getPropertyValue('--bs-primary');
-      sessionStorage.setItem('colorcustomchart-mode', primaryColor);
       document.documentElement.style.setProperty('--bs-info', detail2!);
       const color = sessionStorage.getItem('colorcustomchart-mode');
       const eventDetail1 = color && color !== 'null' && color !== '' ? color.trim() : detail1.trim();
@@ -124,14 +561,12 @@ export class HomeComponent implements OnInit {
     if (setting === 'color-mode') {
       detailObj = { dark: value };
       document.body.classList.add(value);
-      sessionStorage.setItem('color-mode', value);
       this.applyDarkModeToTable(true); // Appliquer le mode sombre au tableau
       this.updateInputMode(true); // Mettre à jour le mode de l'élément input
 
     } else if (setting === 'light-mode') {
       detailObj = { light: value };
       document.body.classList.remove('dark');
-      sessionStorage.setItem('color-mode', value);
       this.applyDarkModeToTable(false); // Appliquer le mode clair au tableau
       this.updateInputMode(false); // Mettre à jour le mode de l'élément input
 
@@ -140,6 +575,7 @@ export class HomeComponent implements OnInit {
     const event = new CustomEvent("ChangeMode", { detail: detailObj });
     document.dispatchEvent(event);
     this.currentMode = value === 'dark' ? 'dark' : 'light';
+
   }
   
   applyDarkModeToTable(isDark: boolean): void {

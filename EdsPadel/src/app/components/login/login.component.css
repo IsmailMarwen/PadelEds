@@ -1,0 +1,61 @@
+.blurred-image {
+    filter: blur(0px); /* Ajustez la valeur du flou selon vos préférences */
+  }
+
+  /* Appliquer une transparence à l'image */
+  .transparent-image {
+    opacity: 0.8; /* Ajustez la valeur de l'opacité selon vos préférences */
+  }
+  .btn{
+    background-color: #fcbc04; 
+  }
+  .loc{
+    height: 20px !important;
+    width: 20px !important;
+
+  }
+
+  .scrollable-list {
+    position: relative; /* Permet de positionner le bouton par rapport à ce div */
+    max-height: 300px; /* Hauteur maximale de la liste pour permettre le défilement */
+    overflow-y: auto; /* Activation du défilement vertical si nécessaire */
+    border: 1px solid #ccc; /* Bordure pour la liste */
+    padding: 10px; /* Espacement interne */
+    margin-top: 10px; /* Espacement supérieur */
+}
+.scrollable-list::-webkit-scrollbar {
+    width: 8px; /* Largeur de la scrollbar */
+    background-color: #fcbc04; /* Couleur de fond de la scrollbar */
+}
+
+.scrollable-list::-webkit-scrollbar-thumb {
+    background-color: #888; /* Couleur de la poignée de la scrollbar */
+    border-radius: 4px; /* Arrondi des coins de la poignée */
+}
+
+  
+
+
+
+
+.hr-horizontal {
+    border: 0;
+    height: 1px;
+    background: #fcbc04;
+    margin: 10px 0;
+    width: 100%;
+  }
+  li{
+    cursor: pointer;
+  }
+  .card-header{
+    background-color: transparent !important;
+  }
+  sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 999; /* Assure une position au-dessus du reste du contenu */
+    background-color: #ffffff; /* Couleur de fond pour le header fixe */
+    padding: 10px; /* Espacement intérieur */
+    border-bottom: 1px solid #ccc; /* Bordure en bas du header */
+}

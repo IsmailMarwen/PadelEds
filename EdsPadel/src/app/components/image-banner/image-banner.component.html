@@ -1,0 +1,280 @@
+    <div class="modal-content custom-modal-content" [ngClass]="currentMode">
+      <div class="modal-header">
+        <h4 class="modal-title">Modifier le bandeau</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="conatiner-fluid ">
+            <div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <div class="header-title">
+                                    <h4 class="card-title">                             <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.63751 3.39549C5.06051 3.39549 3.39551 5.16249 3.39551 7.88849V16.1025C3.39551 16.8675 3.53751 17.5505 3.78051 18.1415C3.791 18.129 4.01986 17.8501 4.3184 17.4863C4.90188 16.7752 5.75156 15.7398 5.75751 15.7345C6.44951 14.9445 7.74851 13.7665 9.45351 14.4795C9.82712 14.6344 10.1592 14.8466 10.4649 15.042C10.4947 15.061 10.5242 15.0799 10.5535 15.0985C11.1265 15.4815 11.4635 15.6615 11.8135 15.6315C11.9585 15.6115 12.0945 15.5685 12.2235 15.4885C12.7101 15.1885 13.9718 13.4009 14.3496 12.8656C14.405 12.7871 14.4414 12.7355 14.4535 12.7195C15.5435 11.2995 17.2235 10.9195 18.6235 11.7595C18.8115 11.8715 20.1585 12.8125 20.6045 13.1905V7.88849C20.6045 5.16249 18.9395 3.39549 16.3535 3.39549H7.63751ZM16.3535 2.00049C19.7305 2.00049 21.9995 4.36249 21.9995 7.88849V16.1025C21.9995 16.1912 21.9902 16.2743 21.9809 16.3574C21.9744 16.4159 21.9678 16.4742 21.9645 16.5345C21.9624 16.5709 21.9613 16.6073 21.9603 16.6438C21.9589 16.6923 21.9575 16.7409 21.9535 16.7895C21.9515 16.8085 21.9478 16.8267 21.944 16.845C21.9403 16.8632 21.9365 16.8815 21.9345 16.9005C21.9015 17.2145 21.8505 17.5145 21.7795 17.8055C21.7627 17.8782 21.7433 17.9483 21.7238 18.0191L21.7195 18.0345C21.6395 18.3165 21.5455 18.5855 21.4325 18.8425C21.4127 18.8857 21.3918 18.9278 21.3709 18.9699C21.357 18.998 21.3431 19.0261 21.3295 19.0545C21.2075 19.2995 21.0755 19.5345 20.9225 19.7525C20.8942 19.7928 20.8641 19.8307 20.8339 19.8685C20.814 19.8936 20.794 19.9186 20.7745 19.9445C20.6155 20.1505 20.4495 20.3475 20.2615 20.5265C20.224 20.5622 20.1834 20.5948 20.1428 20.6275C20.1175 20.6479 20.0921 20.6683 20.0675 20.6895C19.8745 20.8555 19.6775 21.0145 19.4605 21.1505C19.4132 21.1802 19.3628 21.2052 19.3127 21.2301C19.2803 21.2462 19.2479 21.2622 19.2165 21.2795C18.9955 21.4015 18.7725 21.5205 18.5295 21.6125C18.4711 21.6347 18.4088 21.6508 18.3465 21.6669C18.3021 21.6783 18.2577 21.6898 18.2145 21.7035C18.1929 21.7102 18.1713 21.7169 18.1497 21.7236C17.9326 21.7912 17.7162 21.8585 17.4825 21.8985C17.3471 21.9222 17.2034 21.9313 17.0596 21.9405C16.9974 21.9444 16.9351 21.9484 16.8735 21.9535C16.8073 21.9584 16.7423 21.9664 16.6773 21.9744C16.5716 21.9874 16.4656 22.0005 16.3535 22.0005H7.63751C7.26151 22.0005 6.90251 21.9625 6.55551 21.9055C6.54251 21.9035 6.53051 21.9015 6.51851 21.8995C5.16551 21.6665 4.04251 21.0135 3.25551 20.0285C3.25005 20.0285 3.2479 20.0248 3.24504 20.0199C3.24319 20.0167 3.24105 20.013 3.23751 20.0095C2.44651 19.0135 1.99951 17.6745 1.99951 16.1025V7.88849C1.99951 4.36249 4.27051 2.00049 7.63751 2.00049H16.3535ZM11.0001 8.51505C11.0001 9.87 9.86639 11.0001 8.50496 11.0001C7.30825 11.0001 6.2879 10.1257 6.05922 8.99372C6.02143 8.82387 6.00011 8.64919 6.00011 8.46872C6.00011 7.10412 7.10864 6.00009 8.47879 6.00009C9.17647 6.00009 9.80825 6.29347 10.2608 6.76152C10.7152 7.21317 11.0001 7.83564 11.0001 8.51505Z" fill="currentColor"></path>                            </svg>                         Bandeau personnalisé
+                                       </h4>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p> Formats acceptés : JPEG (.jpg, .jpeg), GIF (.gif), PNG (.png)
+                                    Poids maximal du fichier : 16 Mo
+                                    Largeur minimale requise : 1170 pixels
+                                    Hauteur maximale recommandée : <= 300 pixels</p>
+                                <form>
+                                  
+                                 
+                                    <button type="file" class="btn btn-primary" >                                <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path d="M7.38948 8.98403H6.45648C4.42148 8.98403 2.77148 10.634 2.77148 12.669V17.544C2.77148 19.578 4.42148 21.228 6.45648 21.228H17.5865C19.6215 21.228 21.2715 19.578 21.2715 17.544V12.659C21.2715 10.63 19.6265 8.98403 17.5975 8.98403L16.6545 8.98403" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path d="M12.0215 2.19044V14.2314" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path d="M9.10645 5.1189L12.0214 2.1909L14.9374 5.1189" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                            
+                                        Choisir fichier
+                                    <input (change)="onFileSelected($event)" qq-button-id="da364f30-182d-4710-bb78-2f875d3e801a" title="" type="file" name="qqfile" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; height: 100%;">
+
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <div class="header-title">
+                                    <h4 class="card-title"><svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                            <path d="M11.2301 7.29052V3.2815C11.2301 2.85523 11.5701 2.5 12.0001 2.5C12.3851 2.5 12.7113 2.79849 12.763 3.17658L12.7701 3.2815V7.29052L17.55 7.29083C19.93 7.29083 21.8853 9.23978 21.9951 11.6704L22 11.8861V16.9254C22 19.373 20.1127 21.3822 17.768 21.495L17.56 21.5H6.44C4.06 21.5 2.11409 19.5608 2.00484 17.1213L2 16.9047L2 11.8758C2 9.4281 3.87791 7.40921 6.22199 7.29585L6.43 7.29083H11.23V13.6932L9.63 12.041C9.33 11.7312 8.84 11.7312 8.54 12.041C8.39 12.1959 8.32 12.4024 8.32 12.6089C8.32 12.7659 8.3648 12.9295 8.45952 13.0679L8.54 13.1666L11.45 16.1819C11.59 16.3368 11.79 16.4194 12 16.4194C12.1667 16.4194 12.3333 16.362 12.4653 16.2533L12.54 16.1819L15.45 13.1666C15.75 12.8568 15.75 12.3508 15.45 12.041C15.1773 11.7594 14.7475 11.7338 14.4462 11.9642L14.36 12.041L12.77 13.6932V7.29083L11.2301 7.29052Z" fill="currentColor"></path>                            </svg>                                                
+                                        Lien hypertexte  (Facultatif)
+                                       </h4>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p>Renseignez ci-dessous une adresse URL qui s'ouvrira lorsqu'un internautre clique sur le bandeau.
+
+                                    Laissez le champ vide pour désactiver le lien.</p>
+                                <form>
+                                    <div class="form-group">
+                                        <label class="form-label t" for="url">Adresse URL :</label>
+                                        <input type="url" name="url" [(ngModel)]="url" class="form-control" id="url">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" (click)="editImage(url)">                                <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9846 21.606C11.9846 21.606 19.6566 19.283 19.6566 12.879C19.6566 6.474 19.9346 5.974 19.3196 5.358C18.7036 4.742 12.9906 2.75 11.9846 2.75C10.9786 2.75 5.26557 4.742 4.65057 5.358C4.03457 5.974 4.31257 6.474 4.31257 12.879C4.31257 19.283 11.9846 21.606 11.9846 21.606Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path d="M9.38574 11.8746L11.2777 13.7696L15.1757 9.86963" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                                                        
+                                        Enregister</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                      
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="row">
+                            <div 
+                            class="col-lg-6" 
+                            [ngClass]="{'selected-image': selectedImage === 'https://media.babolat.com//image/upload/f_auto,q_auto,c_crop,w_2000,h_751/Website_content/Padel_News/02092020-Launch/padel-equipment/equipment-banner-2.jpg'}"
+                            (click)="editImage('https://media.babolat.com//image/upload/f_auto,q_auto,c_crop,w_2000,h_751/Website_content/Padel_News/02092020-Launch/padel-equipment/equipment-banner-2.jpg')"
+                          >
+                            <img src="https://media.babolat.com//image/upload/f_auto,q_auto,c_crop,w_2000,h_751/Website_content/Padel_News/02092020-Launch/padel-equipment/equipment-banner-2.jpg" class="card-img">
+                            <svg *ngIf="selectedImage === 'https://media.babolat.com//image/upload/f_auto,q_auto,c_crop,w_2000,h_751/Website_content/Padel_News/02092020-Launch/padel-equipment/equipment-banner-2.jpg'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                              <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                            </svg>
+                          </div>
+                          <div 
+                          class="col-lg-6" 
+                          [ngClass]="{'selected-image': selectedImage === 'https://ausopen.com/sites/default/files/202112/31/hero-banner-padel_images_1920x890_1_0.jpg'}"
+                          (click)="editImage('https://ausopen.com/sites/default/files/202112/31/hero-banner-padel_images_1920x890_1_0.jpg')"
+                        >
+                          <img src="https://ausopen.com/sites/default/files/202112/31/hero-banner-padel_images_1920x890_1_0.jpg" class="card-img">
+                          <svg *ngIf="selectedImage === 'https://ausopen.com/sites/default/files/202112/31/hero-banner-padel_images_1920x890_1_0.jpg'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                            <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                          </svg>
+                        </div>
+                        
+                   
+                          </div>
+                          <hr class="hr-horizontal">
+
+                          <div class="row">
+                            <div 
+                            class="col-lg-6" 
+                            [ngClass]="{'selected-image': selectedImage === 'https://padelusa.com/cdn/shop/articles/Copy_of_Summer_Sale_Announcement_Banner_Landscape_520_x_300_px_5.png?v=1665432229'}"
+                            (click)="editImage('https://padelusa.com/cdn/shop/articles/Copy_of_Summer_Sale_Announcement_Banner_Landscape_520_x_300_px_5.png?v=1665432229')"
+                          >
+                            <img src="https://padelusa.com/cdn/shop/articles/Copy_of_Summer_Sale_Announcement_Banner_Landscape_520_x_300_px_5.png?v=1665432229" class="card-img">
+                            <svg *ngIf="selectedImage === 'https://padelusa.com/cdn/shop/articles/Copy_of_Summer_Sale_Announcement_Banner_Landscape_520_x_300_px_5.png?v=1665432229'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                              <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                            </svg>
+                          </div>
+                          <div 
+                          class="col-lg-6" 
+                          [ngClass]="{'selected-image': selectedImage === 'https://d1heoihvzm7u4h.cloudfront.net/d2864b914461bfbfc4b3fb1d75e69c505a66f96d_BANNER_5_exercicios_para_melhorar_a_sua_performance_no_padel_940x300.jpg'}"
+                          (click)="editImage('https://d1heoihvzm7u4h.cloudfront.net/d2864b914461bfbfc4b3fb1d75e69c505a66f96d_BANNER_5_exercicios_para_melhorar_a_sua_performance_no_padel_940x300.jpg')"
+                        >
+                          <img src="https://d1heoihvzm7u4h.cloudfront.net/d2864b914461bfbfc4b3fb1d75e69c505a66f96d_BANNER_5_exercicios_para_melhorar_a_sua_performance_no_padel_940x300.jpg" class="card-img">
+                          <svg *ngIf="selectedImage === 'https://d1heoihvzm7u4h.cloudfront.net/d2864b914461bfbfc4b3fb1d75e69c505a66f96d_BANNER_5_exercicios_para_melhorar_a_sua_performance_no_padel_940x300.jpg'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                            <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                          </svg>
+                        </div>
+                          
+                   
+                          </div> 
+                          <hr class="hr-horizontal">
+
+                          <div class="row">
+                            <div 
+                            class="col-lg-6" 
+                            [ngClass]="{'selected-image': selectedImage === 'https://shop.eu.thesportsedit.com/cdn/shop/files/padel_banner_1_1320x717_crop_center.jpg?v=4211025810985772562'}"
+                            (click)="editImage('https://shop.eu.thesportsedit.com/cdn/shop/files/padel_banner_1_1320x717_crop_center.jpg?v=4211025810985772562')"
+                          >
+                            <img src="https://shop.eu.thesportsedit.com/cdn/shop/files/padel_banner_1_1320x717_crop_center.jpg?v=4211025810985772562" class="card-img">
+                            <svg *ngIf="selectedImage === 'https://shop.eu.thesportsedit.com/cdn/shop/files/padel_banner_1_1320x717_crop_center.jpg?v=4211025810985772562'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                              <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                            </svg>
+                          </div>
+                          <div 
+                          class="col-lg-6" 
+                          [ngClass]="{'selected-image': selectedImage === 'https://iambeachtennis.com/cdn/shop/collections/iambeachtennis-mormaii-beach-tennis-brand-banner-vini-font-racket_bd7bdd0f-4374-4beb-ae93-81f6911a6cef_1200x1200.webp?v=1676259336'}"
+                          (click)="editImage('https://iambeachtennis.com/cdn/shop/collections/iambeachtennis-mormaii-beach-tennis-brand-banner-vini-font-racket_bd7bdd0f-4374-4beb-ae93-81f6911a6cef_1200x1200.webp?v=1676259336')"
+                        >
+                          <img src="https://iambeachtennis.com/cdn/shop/collections/iambeachtennis-mormaii-beach-tennis-brand-banner-vini-font-racket_bd7bdd0f-4374-4beb-ae93-81f6911a6cef_1200x1200.webp?v=1676259336" class="card-img">
+                          <svg *ngIf="selectedImage === 'https://iambeachtennis.com/cdn/shop/collections/iambeachtennis-mormaii-beach-tennis-brand-banner-vini-font-racket_bd7bdd0f-4374-4beb-ae93-81f6911a6cef_1200x1200.webp?v=1676259336'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                            <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                          </svg>
+                        </div>
+                           
+                   
+                          </div>
+                          <hr class="hr-horizontal">
+
+                          <div class="row">
+                            <div 
+                            class="col-lg-6" 
+                            [ngClass]="{'selected-image': selectedImage === 'https://www.sportlife.es/uploads/s1/96/86/44/3/banner-principal-4.jpeg'}"
+                            (click)="editImage('https://www.sportlife.es/uploads/s1/96/86/44/3/banner-principal-4.jpeg')"
+                          >
+                            <img src="https://www.sportlife.es/uploads/s1/96/86/44/3/banner-principal-4.jpeg" class="card-img">
+                            <svg *ngIf="selectedImage === 'https://www.sportlife.es/uploads/s1/96/86/44/3/banner-principal-4.jpeg'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                              <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                            </svg>
+                          </div>
+                          <div 
+                          class="col-lg-6" 
+                          [ngClass]="{'selected-image': selectedImage === 'https://grimbergen.arenal.be/sites/arenal/files/styles/headers/public/uploads/media/images/media_image/sam_7990.jpg?itok=yrjYBISE'}"
+                          (click)="editImage('https://grimbergen.arenal.be/sites/arenal/files/styles/headers/public/uploads/media/images/media_image/sam_7990.jpg?itok=yrjYBISE')"
+                        >
+                          <img src="https://grimbergen.arenal.be/sites/arenal/files/styles/headers/public/uploads/media/images/media_image/sam_7990.jpg?itok=yrjYBISE" class="card-img">
+                          <svg *ngIf="selectedImage === 'https://grimbergen.arenal.be/sites/arenal/files/styles/headers/public/uploads/media/images/media_image/sam_7990.jpg?itok=yrjYBISE'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                            <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                          </svg>
+                        </div>
+                        
+                   
+                          </div> 
+                          <hr class="hr-horizontal">
+
+                          <div class="row">
+                            <div 
+                            class="col-lg-6" 
+                            [ngClass]="{'selected-image': selectedImage === 'https://kerkrade.arenal.nl/sites/arenal/files/styles/headers/public/uploads/media/images/20.jpg?itok=SVegGXuo'}"
+                            (click)="editImage('https://kerkrade.arenal.nl/sites/arenal/files/styles/headers/public/uploads/media/images/20.jpg?itok=SVegGXuo')"
+                          >
+                            <img src="https://kerkrade.arenal.nl/sites/arenal/files/styles/headers/public/uploads/media/images/20.jpg?itok=SVegGXuo" class="card-img">
+                            <svg *ngIf="selectedImage === 'https://kerkrade.arenal.nl/sites/arenal/files/styles/headers/public/uploads/media/images/20.jpg?itok=SVegGXuo'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                              <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                            </svg>
+                          </div>
+                          <div 
+                          class="col-lg-6" 
+                          [ngClass]="{'selected-image': selectedImage === 'https://www.clublasanta.co.uk/wp-content/uploads/NMS_JAN21_Padel-Tennis-211-scaled-e1689673044788.jpg'}"
+                          (click)="editImage('https://www.clublasanta.co.uk/wp-content/uploads/NMS_JAN21_Padel-Tennis-211-scaled-e1689673044788.jpg')"
+                        >
+                          <img src="https://www.clublasanta.co.uk/wp-content/uploads/NMS_JAN21_Padel-Tennis-211-scaled-e1689673044788.jpg" class="card-img">
+                          <svg *ngIf="selectedImage === 'https://www.clublasanta.co.uk/wp-content/uploads/NMS_JAN21_Padel-Tennis-211-scaled-e1689673044788.jpg'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                            <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                          </svg>
+                        </div>
+                           
+                   
+                          </div> 
+                          <hr class="hr-horizontal">
+
+                          <div class="row">
+                            <div 
+                            class="col-lg-6" 
+                            [ngClass]="{'selected-image': selectedImage === 'https://www.agoride.com/wp-content/uploads/2023/10/shutterstock_1192835851-1-1200x600.jpg'}"
+                            (click)="editImage('https://www.agoride.com/wp-content/uploads/2023/10/shutterstock_1192835851-1-1200x600.jpg')"
+                          >
+                            <img src="https://www.agoride.com/wp-content/uploads/2023/10/shutterstock_1192835851-1-1200x600.jpg" class="card-img">
+                            <svg *ngIf="selectedImage === 'https://www.agoride.com/wp-content/uploads/2023/10/shutterstock_1192835851-1-1200x600.jpg'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                              <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                            </svg>
+                          </div>
+                          <div 
+                          class="col-lg-6" 
+                          [ngClass]="{'selected-image': selectedImage === 'https://www.sportsland.fr/wp-content/uploads/2020/03/raquette-padel3.jpg'}"
+                          (click)="editImage('https://www.sportsland.fr/wp-content/uploads/2020/03/raquette-padel3.jpg')"
+                        >
+                          <img src="https://www.sportsland.fr/wp-content/uploads/2020/03/raquette-padel3.jpg" class="card-img">
+                          <svg *ngIf="selectedImage === 'https://www.sportsland.fr/wp-content/uploads/2020/03/raquette-padel3.jpg'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                            <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                          </svg>
+                        </div>
+                           
+                   
+                          </div> 
+                          <hr class="hr-horizontal">
+
+                          <div class="row">
+                            <div 
+                            class="col-lg-6" 
+                            [ngClass]="{'selected-image': selectedImage === 'https://t4.ftcdn.net/jpg/06/05/74/57/360_F_605745700_i7YcDD5sRInEwyB1I4mrmB5A2HlWz8DI.jpg'}"
+                            (click)="editImage('https://t4.ftcdn.net/jpg/06/05/74/57/360_F_605745700_i7YcDD5sRInEwyB1I4mrmB5A2HlWz8DI.jpg')"
+                          >
+                            <img src="https://t4.ftcdn.net/jpg/06/05/74/57/360_F_605745700_i7YcDD5sRInEwyB1I4mrmB5A2HlWz8DI.jpg" class="card-img">
+                            <svg *ngIf="selectedImage === 'https://t4.ftcdn.net/jpg/06/05/74/57/360_F_605745700_i7YcDD5sRInEwyB1I4mrmB5A2HlWz8DI.jpg'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                              <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                            </svg>
+                          </div>
+                          <div 
+                          class="col-lg-6" 
+                          [ngClass]="{'selected-image': selectedImage === 'https://png.pngtree.com/thumb_back/fw800/background/20220912/pngtree-padel-tennis-racket-sport-court-and-balls-paddle-tennis-hobby-racket-and-balls-photo-image_48622122.jpg'}"
+                          (click)="editImage('https://png.pngtree.com/thumb_back/fw800/background/20220912/pngtree-padel-tennis-racket-sport-court-and-balls-paddle-tennis-hobby-racket-and-balls-photo-image_48622122.jpg')"
+                        >
+                          <img src="https://png.pngtree.com/thumb_back/fw800/background/20220912/pngtree-padel-tennis-racket-sport-court-and-balls-paddle-tennis-hobby-racket-and-balls-photo-image_48622122.jpg" class="card-img">
+                          <svg *ngIf="selectedImage === 'https://png.pngtree.com/thumb_back/fw800/background/20220912/pngtree-padel-tennis-racket-sport-court-and-balls-paddle-tennis-hobby-racket-and-balls-photo-image_48622122.jpg'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                            <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                          </svg>
+                        </div>
+                           
+                   
+                          </div> 
+                          <hr class="hr-horizontal">
+
+                          <div class="row">
+                            <div 
+                            class="col-lg-6" 
+                            [ngClass]="{'selected-image': selectedImage === 'https://studentensportvlaanderen.be/en/assets/components/phpthumbof/cache/1027_paddle_shutterstock_172447979.655677f43bb0c97d0764581116f7c290.jpg'}"
+                            (click)="editImage('https://studentensportvlaanderen.be/en/assets/components/phpthumbof/cache/1027_paddle_shutterstock_172447979.655677f43bb0c97d0764581116f7c290.jpg')"
+                          >
+                            <img src="https://studentensportvlaanderen.be/en/assets/components/phpthumbof/cache/1027_paddle_shutterstock_172447979.655677f43bb0c97d0764581116f7c290.jpg" class="card-img">
+                            <svg *ngIf="selectedImage === 'https://studentensportvlaanderen.be/en/assets/components/phpthumbof/cache/1027_paddle_shutterstock_172447979.655677f43bb0c97d0764581116f7c290.jpg'" class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path opacity="0.4" d="M22 12C22 17.515 17.514 22 12 22C6.486 22 2 17.515 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12Z" fill="currentColor"></path>
+                              <path d="M16.2211 10.5575C16.2211 10.7485 16.1481 10.9405 16.0021 11.0865L12.5321 14.5735C12.3911 14.7145 12.2001 14.7935 12.0001 14.7935C11.8011 14.7935 11.6101 14.7145 11.4691 14.5735L7.99707 11.0865C7.70507 10.7935 7.70507 10.3195 7.99907 10.0265C8.29307 9.73448 8.76807 9.73548 9.06007 10.0285L12.0001 12.9815L14.9401 10.0285C15.2321 9.73548 15.7061 9.73448 16.0001 10.0265C16.1481 10.1725 16.2211 10.3655 16.2211 10.5575Z" fill="currentColor"></path>
+                            </svg>
+                          </div>
+                         
+                          
+                   
+                          </div> 
+                      
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
+      </div>
+    </div>
+  

@@ -83,46 +83,11 @@ if (typeof bootstrap !== typeof undefined) {
 /*---------------------------------------------------------------------
               Circle Progress
 -----------------------------------------------------------------------*/
-const progressBar = document.getElementsByClassName('circle-progress')
-if (typeof progressBar !== typeof undefined) {
-  Array.from(progressBar, (elem) => {
-    const minValue = elem.getAttribute('data-min-value')
-    const maxValue = elem.getAttribute('data-max-value')
-    const value = elem.getAttribute('data-value')
-    const type = elem.getAttribute('data-type')
-    if (elem.getAttribute('id') !== '' && elem.getAttribute('id') !== null) {
-      new CircleProgress('#' + elem.getAttribute('id'), {
-        min: minValue,
-        max: maxValue,
-        value: value,
-        textFormat: type,
-      });
-    }
-  })
-}
+
 /*---------------------------------------------------------------------
               Progress Bar
 -----------------------------------------------------------------------*/
-const progressBarInit = (elem) => {
-  const currentValue = elem.getAttribute('aria-valuenow')
-  elem.style.width = '0%'
-  elem.style.transition = 'width 2s'
-  if (typeof Waypoint !== typeof undefined) {
-    new Waypoint({
-      element: elem,
-      handler: function () {
-        setTimeout(() => {
-          elem.style.width = currentValue + '%'
-        }, 100);
-      },
-      offset: 'bottom-in-view',
-    })
-  }
-}
-const customProgressBar = document.querySelectorAll('[data-toggle="progress-bar"]')
-Array.from(customProgressBar, (elem) => {
-  progressBarInit(elem)
-})
+
 /*---------------------------------------------------------------------
                  noUiSlider
 -----------------------------------------------------------------------*/
@@ -185,25 +150,7 @@ if (typeof copy !== typeof undefined) {
 /*---------------------------------------------------------------------
               CounterUp 2
 -----------------------------------------------------------------------*/
-if (window.counterUp !== undefined) {
-  const counterUp = window.counterUp["default"];
-  const counterUp2 = document.querySelectorAll('.counter')
-  Array.from(counterUp2, (el) => {
-    if (typeof Waypoint !== typeof undefined) {
-      const waypoint = new Waypoint({
-        element: el,
-        handler: function () {
-          counterUp(el, {
-            duration: 1000,
-            delay: 10,
-          });
-          this.destroy();
-        },
-        offset: "bottom-in-view",
-      });
-    }
-  })
-}
+
 /*---------------------------------------------------------------------
               SliderTab
 -----------------------------------------------------------------------*/

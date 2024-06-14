@@ -1,0 +1,39 @@
+img {
+    border-radius: 6px;
+    box-sizing: border-box;
+    border: 2px solid #eee;
+    cursor: pointer;
+    height: 46.79px;
+}
+.selected-image {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .selected-image img {
+    filter: blur(1.5px) !important;
+  }
+  
+  .selected-image svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  .light .custom-modal-content {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  /* Styles pour le mode sombre */
+  .dark .custom-modal-content {
+    background-color: #333;
+    color: #fff;
+  }
+  p{
+    color: #8a92a6;
+  }
+  .t{
+    color: #8a92a6;
+  }
