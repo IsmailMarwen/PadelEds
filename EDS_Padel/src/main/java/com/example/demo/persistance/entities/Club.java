@@ -1,4 +1,5 @@
 package com.example.demo.persistance.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,16 +37,22 @@ public class Club {
     @JsonIgnoreProperties("club")
     private AppWeb appWeb;
     @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    @JsonIgnore
     private List<Administrateur> administrateurs;
     @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    @JsonIgnore
     private List<Membre> membres;
     @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    @JsonIgnore
     private List<Coach> coaches;
     @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    @JsonIgnore
     private List<Materiel> materiels;
     @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    @JsonIgnore
     private List<Terrain> terrains;
     @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    @JsonIgnore
     private List<Tournoi> tournois;
 
 

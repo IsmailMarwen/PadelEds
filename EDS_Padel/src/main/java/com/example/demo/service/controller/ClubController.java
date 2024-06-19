@@ -1,7 +1,9 @@
 package com.example.demo.service.controller;
 
 
+import com.example.demo.persistance.entities.AppWeb;
 import com.example.demo.persistance.entities.Club;
+import com.example.demo.persistance.helper.ClubAppWebRequest;
 import com.example.demo.service.interfaces.IClub;
 
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +18,8 @@ public class ClubController {
     public ClubController(IClub iClub){
         this.iClub=iClub;}
     @PostMapping("/add")
-    Club save(@RequestBody Club club) {
-        Club a=iClub.saveClub(club);
+    Club save(@RequestBody ClubAppWebRequest clubAppWebRequest) {
+        Club a=iClub.saveClub(clubAppWebRequest);
         return a ;
     }
     @PutMapping("/update")

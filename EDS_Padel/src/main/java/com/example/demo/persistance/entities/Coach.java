@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Coach extends  Utilisatuer{
+public class Coach extends Utilisateur {
     private  double salaireHoraire;
     private boolean validation;
 }

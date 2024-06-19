@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Membre extends Utilisatuer {
+public class Membre extends Utilisateur {
 
     private boolean validation;
 }

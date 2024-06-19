@@ -1,11 +1,13 @@
 package com.example.demo.service.interfaces;
 
+import com.example.demo.persistance.entities.AppWeb;
 import com.example.demo.persistance.entities.Club;
+import com.example.demo.persistance.helper.ClubAppWebRequest;
 
 import java.util.List;
 
 public interface IClub {
-    Club saveClub(Club club);
+    Club saveClub(ClubAppWebRequest clubAppWebRequest);
     Club updateClub(Club club);
     boolean deleteClub(Long id);
     List<Club> getListClub();

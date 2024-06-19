@@ -19,7 +19,9 @@ public class AppWeb {
     private  String couleurAppWeb;
     private String bannerImage;
     private  String adresseUrl;
-    @OneToOne(cascade = CascadeType.ALL)
+    private String mode;
+    private String couleurSideBar
+    ;@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idClub", referencedColumnName = "idClub")
     private Club club;
 }

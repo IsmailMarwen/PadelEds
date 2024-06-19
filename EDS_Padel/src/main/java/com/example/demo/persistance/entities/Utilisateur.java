@@ -1,4 +1,5 @@
 package com.example.demo.persistance.entities;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +8,7 @@ import javax.persistence.*;
 @MappedSuperclass
 @Getter
 @Setter
-public class Utilisatuer {
+public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUtilisateur;
@@ -19,7 +20,7 @@ public class Utilisatuer {
     private String username;
     private String password;
     private String role;
+    private boolean updated;
     @ManyToOne
-    private  Club club;
-
+    private Club club;
 }
