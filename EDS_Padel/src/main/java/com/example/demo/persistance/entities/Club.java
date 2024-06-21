@@ -56,6 +56,34 @@ public class Club {
     private List<Tournoi> tournois;
 
 
-
-
+    @Override
+    public String toString() {
+        return "Club{" +
+                "idClub=" + idClub +
+                ", nomClub='" + nomClub + '\'' +
+                ", email='" + email + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", codePostal='" + codePostal + '\'' +
+                ", ville='" + ville + '\'' +
+                ", pays='" + pays + '\'' +
+                ", fuseau='" + fuseau + '\'' +
+                ", horaireInfos='" + horaireInfos + '\'' +
+                ", telPrincipal='" + telPrincipal + '\'' +
+                ", telSecondaire='" + telSecondaire + '\'' +
+                ", activite='" + activite + '\'' +
+                ", nbTerrain=" + nbTerrain +
+                ", offre='" + offre + '\'' +
+                ", payement=" + payement +
+                ", matriculeFiscale='" + matriculeFiscale + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", appWeb=" + appWeb +
+                ", administrateurs=" + administrateurs +
+                ", membres=" + membres +
+                ", coaches=" + coaches +
+                ", materiels=" + materiels +
+                ", terrains=" + terrains +
+                ", tournois=" + tournois +
+                '}';
+    }
 }

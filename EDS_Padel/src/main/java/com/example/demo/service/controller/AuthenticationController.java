@@ -1,5 +1,6 @@
 package com.example.demo.service.controller;
 import com.example.demo.persistance.entities.Club;
+import com.example.demo.persistance.entities.Utilisateur;
 import com.example.demo.persistance.helper.LoginRequest;
 import com.example.demo.persistance.helper.LoginResponse;
 import com.example.demo.service.impliments.AuthenticationService;
@@ -32,5 +33,9 @@ public class AuthenticationController {
             loginResponse.setToken("");
             return loginResponse;
         }
+    }
+    @PostMapping("/resetPassword")
+    public Utilisateur resetPassword(@RequestBody Utilisateur user){
+        return authenticationService.resetPassword(user);
     }
 }

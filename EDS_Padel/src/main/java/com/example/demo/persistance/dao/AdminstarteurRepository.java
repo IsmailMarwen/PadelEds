@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AdminstarteurRepository extends JpaRepository<Administrateur,Long> {
     Administrateur findByUsernameAndClub(String username, Club club);
+    Administrateur findByEmailAndClub(String email, Club club);
 }

@@ -70,7 +70,6 @@ public class ClubService implements  IClub {
                 ".container { padding: 20px; }" +
                 "h1 { color: #333; }" +
                 "p { font-size: 16px; color: #555; }" +
-                ".button { display: inline-block; padding: 10px 20px; font-size: 16px; color: #ffff; background-color: #fcbc04; text-decoration: none; border-radius: 5px; }" +
                 ".logo { width: 50px; margin-bottom: 20px; }" + // Adjust logo size as needed
                 "</style>" +
                 "</head>" +
@@ -82,7 +81,7 @@ public class ClubService implements  IClub {
                 "<p><strong>Nom d'utilisateur : admin</strong></p>" +
                 "<p><strong>Mot de passe : " + generatedPassword + "</strong></p>" +
                 "<p>Veuillez changer votre mot de passe après la première connexion.</p>" +
-                "<a href='http://localhost:4200//login' class='button'>Connectez-vous</a>" +
+                "<a href='http://localhost:4200/"+savedAppWeb.getAdresseUrl()+"/loginClub' style='display: inline-block; padding: 10px 20px; font-size: 16px; color: #ffff; background-color: #fcbc04; text-decoration: none; border-radius: 5px;'>Connectez-vous</a>" +
                 "<p>Cordialement,<br>Expert Dev Solutions</p>" +
                 "</div>" +
                 "</body>" +

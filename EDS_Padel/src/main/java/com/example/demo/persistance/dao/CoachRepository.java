@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CoachRepository extends JpaRepository<Coach,Long> {
     Coach findByUsernameAndClub(String username, Club club);
-
+    Coach findByEmailAndClub(String email, Club club);
 }
