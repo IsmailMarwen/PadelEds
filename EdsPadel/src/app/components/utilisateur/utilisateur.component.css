@@ -1,0 +1,164 @@
+.modal-backdrop.show {
+    opacity: 0.5;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 20
+}
+.icon-link {
+    cursor: pointer;
+}
+.button-add{
+    padding-top: 5% !important;
+    padding-right: 5% !important;
+}
+p{
+    color: #8a92a6;
+}
+.mb-0{
+    color: #8a92a6;
+}
+
+
+ 
+table.table-dark {
+    background-color: #222738 !important;
+    color: hsl(0, 0%, 100%);
+  }
+  
+  table.table-dark th, table.table-dark td {
+    border-color: #444444;
+    background-color: #222738 !important;
+
+  }
+  .table-striped.table-dark > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-bg-type: #222738 !important;
+  }
+  
+  .table-striped.table-dark > tbody > tr:nth-of-type(even) > * {
+    --bs-table-accent-bg: #222738 !important;
+    color: var(--bs-table-striped-color);
+  }
+  
+
+  
+  .dark .progress-bar.bg-primary {
+    background-color: #bb86fc;
+  }
+  
+  .dark .progress-bar.bg-success {
+    background-color: #03dac5;
+  }
+  
+  .dark .bg-soft-primary {
+    background-color: rgba(98, 0, 238, 0.1);
+  }
+  
+  .dark .bg-soft-success {
+    background-color: rgba(3, 218, 198, 0.1);
+  }
+  
+  .dark h6 {
+    color: #ffffff;
+  }
+  .form-control.dark {
+    background-color: #222738 !important;
+    color: white; /* Couleur du texte */
+  }
+  
+  .form-control.dark::placeholder {
+    color: rgba(255, 255, 255, 0.5); /* Couleur du texte d'espacement */
+  }
+  
+  .form-control.dark + .input-group-text svg {
+    stroke: white; /* Couleur du trait du SVG */
+  }
+  /* Personnalisez les styles pour le modal */
+.modal-xl {
+    width: 97%;
+    max-width: none; /* Pour enlever la largeur maximale */
+  }
+  
+  /* Pour rendre le modal responsive */
+  @media (max-width: 1200px) {
+    .modal-xl {
+      width: 95%;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .modal-xl {
+      width: 90%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .modal-xl {
+      width: 85%;
+    }
+  }
+  .banner {
+    position: relative;
+    width: 100%;
+    height: 215px; /* ou toute autre hauteur que vous souhaitez */
+    overflow: hidden;
+  }
+  
+  .banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s; /* Transition pour l'effet de flou */
+  }
+  
+  .banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    opacity: 0; /* Rendre le bouton invisible par défaut */
+    transition: opacity 0.3s; /* Transition pour l'apparition du bouton */
+  }
+  
+  .banner:hover .banner-img {
+    filter: blur(5px); /* Appliquer un flou lorsque la souris passe dessus */
+  }
+  
+  .banner:hover .banner-content {
+    opacity: 1; /* Rendre le bouton visible lorsque la souris passe dessus */
+  }
+  
+  .large-text {
+    font-size: 24px; /* Adjust the size as needed */
+    font-weight: bold;
+
+  }
+  .padding{
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+  .padding-icon{
+    margin-bottom:10px;
+
+  }
+  .table-responsive {
+    max-height: 900px; /* Set the desired height */
+    overflow-y: auto; /* Enable vertical scroll */
+}
+.no-users {
+  color: red;
+  text-align: center;
+
+}
+.medium-text {
+  font-size: 1.2rem; /* Medium text size */
+  margin-right: 0.5rem; /* Adjust the value as needed */
+
+}

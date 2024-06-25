@@ -15,6 +15,10 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateClubComponent } from './components/create-club/create-club.component';
 import { RouterModule} from '@angular/router';
+import { UtilisateurComponent } from './components/utilisateur/utilisateur.component';
+import { TerrainComponent } from './components/terrain/terrain.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,10 @@ import { RouterModule} from '@angular/router';
     LoginComponent,
     SignupComponent,
     CreateClubComponent,
+    UtilisateurComponent,
+    TerrainComponent,
+    AddUserComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

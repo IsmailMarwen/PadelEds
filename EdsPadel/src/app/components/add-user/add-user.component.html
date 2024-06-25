@@ -1,0 +1,81 @@
+<div class="modal-content custom-modal-content" [ngClass]="currentMode">
+    <div class="modal-header">
+      <h4 class="modal-title">Add User</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <form >
+          <div class="row">
+            <div class="col-md-6">
+              
+              <div class="form-group">
+                <label class="form-label">Role</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" id="administrateur" value="Administrateur" [(ngModel)]="user.role" name="role">
+                  <label class="form-check-label" for="male">administrateur</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" id="coach" value="Coach" [(ngModel)]="user.role" name="role">
+                  <label class="form-check-label" for="female">coach</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="membre" value="Membre" [(ngModel)]="user.role" name="role">
+                    <label class="form-check-label" for="female">membre</label>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="nom">Nom</label>
+                <input type="text" class="form-control" id="nom" placeholder="Nom" [(ngModel)]="user.nom" name="nom">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="prenom">Prenom</label>
+                <input type="text" class="form-control" id="prenom" placeholder="Prenom" [(ngModel)]="user.prenom" name="prenom">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Email" [(ngModel)]="user.email" name="email">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="phone">Phone</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Phone" [(ngModel)]="user.telephone" name="phone">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label">Gender</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" id="male" value="Male" [(ngModel)]="user.genre" name="gender">
+                  <label class="form-check-label" for="male">Male</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" id="female" value="Female" [(ngModel)]="user.genre" name="gender">
+                  <label class="form-check-label" for="female">Female</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username" [(ngModel)]="user.username" name="username">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="user.password" name="password">
+              </div>
+              <div class="form-group">
+              <label>Image</label>
+              <div class="form-group">
+                <label for="customFile" class="form-label custom-file-input">Example file input</label>
+                <input class="form-control" type="file" id="customFile"  [(ngModel)]="user.image">
+                </div>
+            </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" (click)="addUser()">Submit</button>
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
