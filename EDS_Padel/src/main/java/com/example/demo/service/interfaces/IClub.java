@@ -15,5 +15,8 @@ public interface IClub {
     public List<Club> getClubsNearLocation(double latitude, double longitude, double distance);
     public List<Club> getClubsByNomClub(String nomClub);
     public List<Club> getClubsByVille(String ville);
+    public boolean emailExists(String email);
+    public boolean nomClubExists(String nomClub);
+    public boolean adresseUrlExists(String adresseUrl);
 
 }

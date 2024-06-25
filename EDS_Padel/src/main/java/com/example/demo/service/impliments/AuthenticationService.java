@@ -5,7 +5,10 @@ import com.example.demo.persistance.dao.ClubRepository;
 import com.example.demo.persistance.dao.CoachRepository;
 import com.example.demo.persistance.dao.MembreRepository;
 import com.example.demo.persistance.entities.*;
+import com.example.demo.persistance.helper.ContactRequest;
 import com.example.demo.persistance.helper.JwtUtil;
+import com.example.demo.persistance.helper.UpdatePasswordRequest;
+import com.example.demo.persistance.helper.UpdatePasswordResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -68,7 +71,7 @@ public class AuthenticationService {
     }
 
     private String generateToken(Utilisateur utilisateur) {
-        return jwtUtil.generateToken(utilisateur.getUsername(), utilisateur.getRole(), utilisateur.getClub().getIdClub());
+        return jwtUtil.generateToken(utilisateur.getUsername(), utilisateur.getRole(), utilisateur.getIdUtilisateur(),utilisateur.getUpdated());
     }
     private String getColorButton(String theme){
         if(theme.equals("theme1")){
@@ -96,6 +99,7 @@ public class AuthenticationService {
         if (membre != null) {
             String generatedPassword = generateRandomPassword(8);
             membre.setPassword(generatedPassword);
+            membre.setUpdated(false);
             membreRepository.saveAndFlush(membre);
             sendResetPasswordEmail(user, generatedPassword);
             return membre;
@@ -105,6 +109,7 @@ public class AuthenticationService {
         if (coach != null) {
             String generatedPassword = generateRandomPassword(8);
             coach.setPassword(generatedPassword);
+            coach.setUpdated(false);
             coachRepository.saveAndFlush(coach);
             sendResetPasswordEmail(user, generatedPassword);
             return coach;
@@ -114,6 +119,7 @@ public class AuthenticationService {
         if (administrateur != null) {
             String generatedPassword = generateRandomPassword(8);
             administrateur.setPassword(generatedPassword);
+            administrateur.setUpdated(false);
             administrateurRepository.saveAndFlush(administrateur);
             sendResetPasswordEmail(user, generatedPassword);
             return administrateur;
@@ -164,5 +170,62 @@ public class AuthenticationService {
             e.printStackTrace();
         }
     }
+public UpdatePasswordResponse updatePassword(UpdatePasswordRequest updatePasswordRequest){
+    UpdatePasswordResponse updatePasswordResponse=new UpdatePasswordResponse();
 
+    if(updatePasswordRequest.getRole().equals("membre")){
+        membreRepository.updatePasswordMembreByIdClub(updatePasswordRequest.getPassword(),updatePasswordRequest.getIdClub(),updatePasswordRequest.getUserId());
+        updatePasswordResponse.setUpdated(true);
+        return updatePasswordResponse;
+    }
+    if(updatePasswordRequest.getRole().equals("coach")){
+        coachRepository.updatePasswordCoachByIdClub(updatePasswordRequest.getPassword(),updatePasswordRequest.getIdClub(),updatePasswordRequest.getUserId());
+        updatePasswordResponse.setUpdated(true);
+        return updatePasswordResponse;
+    }
+    if(updatePasswordRequest.getRole().equals("admin")){
+        administrateurRepository.updatePasswordAdminByIdClub(updatePasswordRequest.getPassword(),updatePasswordRequest.getIdClub(),updatePasswordRequest.getUserId());
+        updatePasswordResponse.setUpdated(true);
+        return updatePasswordResponse;
+    }
+    return updatePasswordResponse;
+
+}
+public ContactRequest contactClub(ContactRequest contactRequest){
+        Club club=clubRepository.findById(contactRequest.getIdClub()).get();
+        AppWeb appWeb=club.getAppWeb();
+        String logoUrl =appWeb.getLogoAppWeb();
+    String subject = contactRequest.getSujet();
+    String htmlBody = "<html>" +
+            "<head>" +
+            "<style>" +
+            "body { font-family: Arial, sans-serif; margin: 0; padding: 0; }" +
+            ".container { padding: 20px; }" +
+            "h1 { color: #333; }" +
+            "p { font-size: 16px; color: #555; }" +
+            ".logo { width: 50px; margin-bottom: 20px; vertical-align: middle; }" +
+            ".club-name { display: inline-block; vertical-align: middle; margin-left: 10px; font-size: 24px; color: #333; }" +
+            "</style>" +
+            "</head>" +
+            "<body>" +
+            "<div class='container'>" +
+            "<div>" +
+            "<img src='" + logoUrl + "' alt='Logo' class='logo'>" +
+            "<h4 class='club-name'>" + club.getNomClub() + "</h4>" +
+            "</div>" +
+            "<h1>Bonjour,</h1>" +
+            "<p>Un mail envoyé par l'utilisateur " + contactRequest.getNom() + " " + contactRequest.getPrenom() + " qui a un email " + contactRequest.getEmailUser() + "</p>"+
+            "<p>"+contactRequest.getDescription()+"</p>" +
+            "<p>Cordialement,<br>Expert Dev Solutions</p>" +
+            "</div>" +
+            "</body>" +
+            "</html>";
+
+    try {
+        emailService.sendHtmlMessage(club.getEmail(), subject, htmlBody);
+    } catch (MessagingException e) {
+        e.printStackTrace();
+    }
+        return contactRequest;
+}
 }

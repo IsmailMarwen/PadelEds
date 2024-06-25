@@ -66,15 +66,23 @@ public class AppWebServiceTests {
     }
     @Test
     void testUpdateAppWeb() {
+        // Arrange
         AppWeb appWeb = new AppWeb();
         appWeb.setIdAppWeb(1L);
         appWeb.setNomAppWeb("AppWeb");
 
+        // Mock the behavior of findById to return an existing AppWeb instance
+        when(appWebRepository.findById(1L)).thenReturn(Optional.of(appWeb));
+
+        // Mock the behavior of saveAndFlush to return the same instance
         when(appWebRepository.saveAndFlush(any(AppWeb.class))).thenReturn(appWeb);
 
+        // Act
         AppWeb updateAppWeb = appWebService.updateAppWeb(appWeb);
 
+        // Assert
         assertThat(updateAppWeb.getNomAppWeb()).isEqualTo("AppWeb");
+        verify(appWebRepository, times(1)).findById(1L);
         verify(appWebRepository, times(1)).saveAndFlush(appWeb);
     }
 

@@ -13,4 +13,6 @@ public interface ClubRepository extends JpaRepository<Club,Long> {
     List<Club> findByVille(String ville);
 
     List<Club> findByNomClubContainingIgnoreCase(String nomClub);
+    boolean existsByEmail(String email);
+    boolean existsByNomClub(String nomClub);
 }

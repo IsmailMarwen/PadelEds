@@ -19,7 +19,7 @@ public class JwtUtil {
     private int expiration; // Durée d'expiration en secondes
 
     // Générer le token JWT avec expiration
-    public String generateToken(String username, String role, Long clubId) {
+    public String generateToken(String username, String role, Long userId,Boolean updated) {
         // Utilisation de Keys.secretKeyFor pour générer une clé sécurisée HS512
         SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
@@ -30,7 +30,8 @@ public class JwtUtil {
         String token = Jwts.builder()
                 .setSubject(username)
                 .claim("role", role)
-                .claim("clubId", clubId)
+                .claim("userId", userId)
+                .claim("updated",updated)
                 .setExpiration(expirationDate) // Définir l'expiration du token
                 .signWith(secretKey)
                 .compact();

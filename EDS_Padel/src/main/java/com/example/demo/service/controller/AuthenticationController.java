@@ -1,8 +1,7 @@
 package com.example.demo.service.controller;
 import com.example.demo.persistance.entities.Club;
 import com.example.demo.persistance.entities.Utilisateur;
-import com.example.demo.persistance.helper.LoginRequest;
-import com.example.demo.persistance.helper.LoginResponse;
+import com.example.demo.persistance.helper.*;
 import com.example.demo.service.impliments.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +33,16 @@ public class AuthenticationController {
             return loginResponse;
         }
     }
-    @PostMapping("/resetPassword")
+    @PutMapping("/resetPassword")
     public Utilisateur resetPassword(@RequestBody Utilisateur user){
         return authenticationService.resetPassword(user);
+    }
+    @PutMapping("/updatePassword")
+    public UpdatePasswordResponse updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest){
+        return authenticationService.updatePassword(updatePasswordRequest);
+    }
+    @PostMapping("/contact")
+    public ContactRequest contact(@RequestBody ContactRequest contactRequest){
+        return authenticationService.contactClub(contactRequest);
     }
 }

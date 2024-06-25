@@ -2,6 +2,7 @@ package com.example.demo.service.impliments;
 import java.security.SecureRandom;
 
 import com.example.demo.persistance.dao.AdminstarteurRepository;
+import com.example.demo.persistance.dao.AppWebRepository;
 import com.example.demo.persistance.dao.ClubRepository;
 import com.example.demo.persistance.entities.Administrateur;
 import com.example.demo.persistance.entities.AppWeb;
@@ -40,9 +41,26 @@ public class ClubService implements  IClub {
     @Autowired
     private AdminstarteurRepository administrateurRepository;
     @Autowired
+    private AppWebRepository appWebRepository;
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     @Override
     public Club saveClub(ClubAppWebRequest clubAppWebRequest) {
+        // Vérifiez si l'email du club existe déjà
+        if (clubRepository.existsByEmail(clubAppWebRequest.getClub().getEmail())) {
+            return null; // Indique un échec
+        }
+
+        // Vérifiez si le nom du club existe déjà
+        if (clubRepository.existsByNomClub(clubAppWebRequest.getClub().getNomClub())) {
+            return null; // Indique un échec
+        }
+        System.out.println(appWebRepository.existsByAdresseUrl(clubAppWebRequest.getAppWeb().getAdresseUrl()));
+
+        if (appWebRepository.existsByAdresseUrl(clubAppWebRequest.getAppWeb().getAdresseUrl())) {
+            return null;
+        }
+
         String generatedPassword = generateRandomPassword(8);
 
         // Save the club
@@ -55,12 +73,17 @@ public class ClubService implements  IClub {
         // Set the AppWeb entity to the Club entity and save the Club again
         savedClub.setAppWeb(savedAppWeb);
         clubRepository.save(savedClub);
+
+        // Create and save the admin
         Administrateur admin = new Administrateur();
-        admin.setUsername("admin"); // Set username for admin
-        admin.setPassword(generatedPassword); // Set generated password for admin
-        admin.setRole("admin"); // Set role for admin
+        admin.setUsername("admin");
+        admin.setPassword(passwordEncoder.encode(generatedPassword));
+        admin.setRole("admin");
         admin.setClub(savedClub);
+        admin.setEmail(savedClub.getEmail());
+        admin.setUpdated(false);
         administrateurRepository.save(admin);
+
         // Send email with credentials
         String subject = "Informations d'authentification pour votre nouveau club";
         String htmlBody = "<html>" +
@@ -70,18 +93,18 @@ public class ClubService implements  IClub {
                 ".container { padding: 20px; }" +
                 "h1 { color: #333; }" +
                 "p { font-size: 16px; color: #555; }" +
-                ".logo { width: 50px; margin-bottom: 20px; }" + // Adjust logo size as needed
+                ".logo { width: 50px; margin-bottom: 20px; }" +
                 "</style>" +
                 "</head>" +
                 "<body>" +
                 "<div class='container'>" +
-                "<img src='https://scontent.ftun14-1.fna.fbcdn.net/v/t39.30808-6/291888548_441109058022997_1842427483752470346_n.png?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=9sCyIIEYrhsQ7kNvgEi0sN5&_nc_ht=scontent.ftun14-1.fna&oh=00_AYDMRgL_D9JXFw_K98l4nzC7mJwGellHAUhm9gCQUWSW-A&oe=667704EF' alt='Logo' class='logo'>" + // Add the logo URL
+                "<img src='https://scontent.ftun14-1.fna.fbcdn.net/v/t39.30808-6/291888548_441109058022997_1842427483752470346_n.png?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=9sCyIIEYrhsQ7kNvgEi0sN5&_nc_ht=scontent.ftun14-1.fna&oh=00_AYDMRgL_D9JXFw_K98l4nzC7mJwGellHAUhm9gCQUWSW-A&oe=667704EF' alt='Logo' class='logo'>" +
                 "<h1>Bonjour,</h1>" +
                 "<p>Votre club a été créé avec succès.</p>" +
                 "<p><strong>Nom d'utilisateur : admin</strong></p>" +
                 "<p><strong>Mot de passe : " + generatedPassword + "</strong></p>" +
                 "<p>Veuillez changer votre mot de passe après la première connexion.</p>" +
-                "<a href='http://localhost:4200/"+savedAppWeb.getAdresseUrl()+"/loginClub' style='display: inline-block; padding: 10px 20px; font-size: 16px; color: #ffff; background-color: #fcbc04; text-decoration: none; border-radius: 5px;'>Connectez-vous</a>" +
+                "<a href='http://localhost:4200/" + savedAppWeb.getAdresseUrl() + "/loginClub' style='display: inline-block; padding: 10px 20px; font-size: 16px; color: #ffff; background-color: #fcbc04; text-decoration: none; border-radius: 5px;'>Connectez-vous</a>" +
                 "<p>Cordialement,<br>Expert Dev Solutions</p>" +
                 "</div>" +
                 "</body>" +
@@ -131,6 +154,18 @@ public class ClubService implements  IClub {
     @Override
     public List<Club> getClubsByVille(String ville) {
         return clubRepository.findByVille(ville);
+    }
+    @Override
+    public boolean emailExists(String email) {
+        return clubRepository.existsByEmail(email);
+    }
+    @Override
+    public boolean nomClubExists(String nomClub) {
+        return clubRepository.existsByNomClub(nomClub);
+    }
+    @Override
+    public boolean adresseUrlExists(String adresseUrl) {
+        return appWebService.existsByAdresseUrl(adresseUrl);
     }
 }
 

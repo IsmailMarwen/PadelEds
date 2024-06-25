@@ -15,8 +15,12 @@ public class AppWeb {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAppWeb;
     private  String nomAppWeb;
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String logoAppWeb;
-    private  String couleurAppWeb;
+    private String couleurAppWeb;
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String bannerImage;
     private  String adresseUrl;
     private String mode;

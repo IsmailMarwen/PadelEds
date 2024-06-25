@@ -20,7 +20,8 @@ public class Utilisateur {
     private String username;
     private String password;
     private String role;
-    private boolean updated;
+    private Boolean updated;
     @ManyToOne
     private Club club;
+
 }

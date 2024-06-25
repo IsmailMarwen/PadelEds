@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,10 +15,13 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@FilterDef(name = "tenantFilter", parameters = @ParamDef(name = "tenantId", type = "long"))
+@Filter(name = "tenantFilter", condition = "tenant_id = :tenantId")
 public class Club {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idClub;
+    private Long tenantId;
     private  String nomClub;
     private String email;
     private  double latitude ;
