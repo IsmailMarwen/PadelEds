@@ -12,6 +12,7 @@ public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUtilisateur;
+    private String image;
     private String nom;
     private String prenom;
     private String email;

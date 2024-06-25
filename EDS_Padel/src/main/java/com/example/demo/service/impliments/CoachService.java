@@ -1,6 +1,7 @@
 package com.example.demo.service.impliments;
 
 import com.example.demo.persistance.dao.CoachRepository;
+import com.example.demo.persistance.entities.Club;
 import com.example.demo.persistance.entities.Coach;
 import com.example.demo.service.interfaces.ICoach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,10 @@ public class CoachService implements ICoach {
     @Override
     public Coach getCoachByIdCoach(Long id) {
         return coachRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Coach> getCoachsByNom(String nom) {
+        return coachRepository.findByNom(nom);
     }
 }
