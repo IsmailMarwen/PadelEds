@@ -1,6 +1,6 @@
 package com.example.demo.service.controller;
-import com.example.demo.persistance.entities.SuperAdmin;
 
+import com.example.demo.persistance.entities.SuperAdmin;
 import com.example.demo.service.interfaces.ISuperAdmin;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,7 +8,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "", allowedHeaders = "")
 @RestController
-@RequestMapping("/api/SuperAdmin")
+@RequestMapping("/api/superAdmin")
 public class SuperAdminController {
     private final ISuperAdmin iSuperAdmin;
     public SuperAdminController(ISuperAdmin iSuperAdmin){

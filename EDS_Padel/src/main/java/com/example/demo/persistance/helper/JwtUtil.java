@@ -1,5 +1,6 @@
 package com.example.demo.persistance.helper;
 
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -32,6 +33,22 @@ public class JwtUtil {
                 .claim("role", role)
                 .claim("userId", userId)
                 .claim("updated",updated)
+                .setExpiration(expirationDate) // Définir l'expiration du token
+                .signWith(secretKey)
+                .compact();
+
+        return token;
+    }
+    public String generateTokenSuperAdmin() {
+        // Utilisation de Keys.secretKeyFor pour générer une clé sécurisée HS512
+        SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+
+        // Calculer la date d'expiration
+        Date expirationDate = new Date(System.currentTimeMillis() + expiration * 1000); // Date actuelle + expiration en ms
+
+        // Construction du token JWT
+        String token = Jwts.builder()
+
                 .setExpiration(expirationDate) // Définir l'expiration du token
                 .signWith(secretKey)
                 .compact();

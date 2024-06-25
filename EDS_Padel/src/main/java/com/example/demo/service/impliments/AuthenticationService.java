@@ -1,9 +1,6 @@
 package com.example.demo.service.impliments;
 
-import com.example.demo.persistance.dao.AdminstarteurRepository;
-import com.example.demo.persistance.dao.ClubRepository;
-import com.example.demo.persistance.dao.CoachRepository;
-import com.example.demo.persistance.dao.MembreRepository;
+import com.example.demo.persistance.dao.*;
 import com.example.demo.persistance.entities.*;
 import com.example.demo.persistance.helper.ContactRequest;
 import com.example.demo.persistance.helper.JwtUtil;
@@ -38,7 +35,8 @@ public class AuthenticationService {
 
     @Autowired
     private AdminstarteurRepository administrateurRepository;
-
+    @Autowired
+    private SuperAdminRepository superAdminRepository;
     @Autowired
     private JwtUtil jwtUtil;
 
@@ -69,9 +67,19 @@ public class AuthenticationService {
 
         return null;
     }
+    public String authenticateAndGenerateTokenSuperAdmin(String email, String password) {
+        SuperAdmin superAdmin = superAdminRepository.findByEmailAndPassword(email,password);
+        if (superAdmin != null ) {
+            return generateTokenSuperAdmin();
+        }
+        return null;
+    }
 
     private String generateToken(Utilisateur utilisateur) {
         return jwtUtil.generateToken(utilisateur.getUsername(), utilisateur.getRole(), utilisateur.getIdUtilisateur(),utilisateur.getUpdated());
+    }
+    private String generateTokenSuperAdmin() {
+        return jwtUtil.generateTokenSuperAdmin();
     }
     private String getColorButton(String theme){
         if(theme.equals("theme1")){

@@ -1,5 +1,6 @@
 package com.example.demo.service.controller;
 import com.example.demo.persistance.entities.Club;
+import com.example.demo.persistance.entities.SuperAdmin;
 import com.example.demo.persistance.entities.Utilisateur;
 import com.example.demo.persistance.helper.*;
 import com.example.demo.service.impliments.AuthenticationService;
@@ -21,7 +22,6 @@ public class AuthenticationController {
         String password = loginRequest.getPassword();
 
         String token = authenticationService.authenticateAndGenerateToken(username, password, club);
-        System.out.println("******** test");
 
         if (token != null) {
             LoginResponse loginResponse=new LoginResponse();
@@ -31,6 +31,23 @@ public class AuthenticationController {
             LoginResponse loginResponse=new LoginResponse();
             loginResponse.setToken("");
             return loginResponse;
+        }
+    }
+    @PostMapping("/superadmin/login")
+    public LoginSuperAdminResponse login(@RequestBody SuperAdmin superAdmin) {
+        String email = superAdmin.getEmail();
+        String password = superAdmin.getPassword();
+
+        String token = authenticationService.authenticateAndGenerateTokenSuperAdmin(email, password);
+
+        if (token != null) {
+            LoginSuperAdminResponse loginSuperAdminResponse=new LoginSuperAdminResponse();
+            loginSuperAdminResponse.setToken(token);
+            return loginSuperAdminResponse;
+        } else {
+            LoginSuperAdminResponse loginSuperAdminResponse=new LoginSuperAdminResponse();
+            loginSuperAdminResponse.setToken("");
+            return loginSuperAdminResponse;
         }
     }
     @PutMapping("/resetPassword")

@@ -33,7 +33,6 @@ public class Club {
     private  String telSecondaire;
     private String activite;
     private  int nbTerrain ;
-    private String offre;
     private  boolean payement;
     private  String matriculeFiscale;
     private  String adresse;
@@ -58,7 +57,8 @@ public class Club {
     @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
     @JsonIgnore
     private List<Tournoi> tournois;
-
+    @ManyToOne
+    private TypeAbonnement typeAbonnement;
 
     @Override
     public String toString() {
@@ -77,7 +77,6 @@ public class Club {
                 ", telSecondaire='" + telSecondaire + '\'' +
                 ", activite='" + activite + '\'' +
                 ", nbTerrain=" + nbTerrain +
-                ", offre='" + offre + '\'' +
                 ", payement=" + payement +
                 ", matriculeFiscale='" + matriculeFiscale + '\'' +
                 ", adresse='" + adresse + '\'' +
