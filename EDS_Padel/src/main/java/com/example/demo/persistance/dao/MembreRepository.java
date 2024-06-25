@@ -9,6 +9,9 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 
+import java.lang.reflect.Member;
+import java.util.List;
+
 public interface MembreRepository extends JpaRepository<Membre,Long> {
     Membre findByUsernameAndClub(String username, Club club);
     Membre findByEmailAndClub(String email, Club club);

@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 
+import java.util.List;
+
 public interface AdminstarteurRepository extends JpaRepository<Administrateur,Long> {
     Administrateur findByUsernameAndClub(String username, Club club);
     Administrateur findByEmailAndClub(String email, Club club);
@@ -16,4 +18,5 @@ public interface AdminstarteurRepository extends JpaRepository<Administrateur,Lo
     @Transactional
     @Query("UPDATE Administrateur m SET m.password = :password, m.updated = true WHERE m.club.idClub = :idClub AND m.idUtilisateur= :idUser")
     void updatePasswordAdminByIdClub(@Param("password") String password, @Param("idClub") Long idClub,@Param("idUser") Long idUser);
+
 }

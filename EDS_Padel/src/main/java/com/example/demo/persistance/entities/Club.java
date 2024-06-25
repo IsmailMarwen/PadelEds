@@ -15,13 +15,11 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@FilterDef(name = "tenantFilter", parameters = @ParamDef(name = "tenantId", type = "long"))
-@Filter(name = "tenantFilter", condition = "tenant_id = :tenantId")
+
 public class Club {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idClub;
-    private Long tenantId;
     private  String nomClub;
     private String email;
     private  double latitude ;
