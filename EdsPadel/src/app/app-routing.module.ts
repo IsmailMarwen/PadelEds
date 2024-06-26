@@ -14,10 +14,12 @@ import { ContactComponent } from './components/contact/contact.component';
 import { SuperAdminComponent } from './components/super-admin/super-admin.component';
 import { UsersSuperAdminComponent } from './components/users-super-admin/users-super-admin.component';
 import { ComplexesComponent } from './components/complexes/complexes.component';
+import { ConfigAppWebComponent } from './components/config-app-web/config-app-web.component';
 const routes: Routes = [
   {path:'eds/admin/home',component:SuperAdminComponent},
   {path:'eds/admin/users',component:UsersSuperAdminComponent},
   {path:'eds/admin/complexes',component:ComplexesComponent},
+  {path:'eds/admin/configApp/:id',component:ConfigAppWebComponent},
   { path: '', component: LoginComponent},
   { path: ':url/signUp', component: SignupComponent},
   { path: ':url/home', component: HomeComponent,canActivate:[authGuard]},

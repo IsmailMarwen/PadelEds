@@ -36,6 +36,8 @@ import { CreateUserSuperAdminComponent } from './components/create-user-super-ad
 import { UpdateUserSuperAdminComponent } from './components/update-user-super-admin/update-user-super-admin.component';
 import { ComplexesComponent } from './components/complexes/complexes.component';
 import { TypAbonnementComponent } from './components/typ-abonnement/typ-abonnement.component';
+import { ConfigAppWebComponent } from './components/config-app-web/config-app-web.component';
+import { ActiviteComponent } from './components/activite/activite.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +60,8 @@ import { TypAbonnementComponent } from './components/typ-abonnement/typ-abonneme
     UpdateUserSuperAdminComponent,
     ComplexesComponent,
     TypAbonnementComponent,
+    ConfigAppWebComponent,
+    ActiviteComponent,
     
   ],
   imports: [

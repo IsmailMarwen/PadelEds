@@ -51,13 +51,13 @@
               
     
                 <div class="btn btn-border d-block " >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-padel" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Free  </span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-free" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Free  </span>
                 </div>
                 <div class="btn btn-border d-block " >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-football" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Silver  </span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-silver" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Silver  </span>
                 </div>
                 <div class="btn btn-border d-block " >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-volley" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Gold  </span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-gold" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Gold  </span>
                 </div>
                
               </div>
@@ -166,7 +166,13 @@
                         <span class="item-name">Factures</span>
                     </a>
                 </li>
-               
+                <li class="nav-item">
+                    <a class="nav-link "  >
+                        <i class="icon">
+                            <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.164 6.08252C15.4791 6.08684 15.7949 6.09117 16.1119 6.09441C19.5172 6.09441 22 8.52216 22 11.8748V16.1811C22 19.5337 19.5172 21.9615 16.1119 21.9615C14.7478 21.9904 13.3837 22 12.0098 22C10.6359 22 9.25221 21.9904 7.88813 21.9615C4.48283 21.9615 2 19.5337 2 16.1811V11.8748C2 8.52216 4.48283 6.09441 7.89794 6.09441C9.18351 6.07514 10.4985 6.05588 11.8332 6.05588V5.8921C11.8332 5.22736 11.2738 4.68786 10.6065 4.68786H9.63494C8.52601 4.68786 7.62316 3.80154 7.62316 2.72254C7.62316 2.32755 7.95682 2 8.35918 2C8.77134 2 9.09519 2.32755 9.09519 2.72254C9.09519 3.01156 9.34053 3.24277 9.63494 3.24277H10.6065C12.0883 3.25241 13.2954 4.43738 13.3052 5.88247V6.06551C13.9239 6.06551 14.5425 6.074 15.164 6.08252ZM10.8518 14.7457H9.82139V15.7669C9.82139 16.1618 9.48773 16.4894 9.08538 16.4894C8.67321 16.4894 8.34936 16.1618 8.34936 15.7669V14.7457H7.30913C6.90677 14.7457 6.57311 14.4277 6.57311 14.0231C6.57311 13.6281 6.90677 13.3006 7.30913 13.3006H8.34936V12.289C8.34936 11.894 8.67321 11.5665 9.08538 11.5665C9.48773 11.5665 9.82139 11.894 9.82139 12.289V13.3006H10.8518C11.2542 13.3006 11.5878 13.6281 11.5878 14.0231C11.5878 14.4277 11.2542 14.7457 10.8518 14.7457ZM15.0226 13.1175H15.1207C15.5231 13.1175 15.8567 12.7996 15.8567 12.395C15.8567 12 15.5231 11.6724 15.1207 11.6724H15.0226C14.6104 11.6724 14.2866 12 14.2866 12.395C14.2866 12.7996 14.6104 13.1175 15.0226 13.1175ZM16.7007 16.4316H16.7988C17.2012 16.4316 17.5348 16.1137 17.5348 15.7091C17.5348 15.3141 17.2012 14.9865 16.7988 14.9865H16.7007C16.2875 14.9865 15.9647 15.3141 15.9647 15.7091C15.9647 16.1137 16.2875 16.4316 16.7007 16.4316Z" fill="currentColor"></path>                            </svg>                            </i>
+                        <span class="item-name">Activités</span>
+                    </a>
+                </li>
             </ul></div>
     </div>
     <div class="sidebar-footer"></div>
@@ -464,8 +470,8 @@
               </div>
               
               <div class="card-body px-0">
-                 <div class="table-responsive">
-                    <table id="user-list-table" class="table table-striped custom-table" role="grid" data-bs-toggle="data-table">
+                <div class="table-responsive">
+                    <table *ngIf="clubs.length > 0; else emptyTable" id="user-list-table" class="table table-striped custom-table" role="grid" data-bs-toggle="data-table">
                         <thead>
                             <tr class="ligth">
                                 <th>Profile</th>
@@ -476,17 +482,33 @@
                                 <th>Activité</th>
                                 <th>Abonnement</th>
                                 <th style="min-width: 100px">Action</th>
+                                <th>App Web</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let club of clubs; let i = index">
-                                <td class="text-center"><img class="bg-soft-primary rounded img-fluid avatar-40 me-3" [src]="club.profileImage" alt="profile"></td>
+                                <td class="text-center">
+                                    <img class="bg-soft-primary rounded img-fluid avatar-40 me-3" [src]="club.profileImage" alt="profile">
+                                </td>
                                 <td>{{ club.nomClub }}</td>
                                 <td>{{ club.email }}</td>
                                 <td>{{ club.adresse }}</td>
                                 <td>{{ club.telephone }}</td>
-                                <td> <span class="badge bg-info">{{ club.activite }}</span>&nbsp;<span class="badge bg-success">Football</span></td>
-                                <td>{{ club.abonnement }}</td>
+                                <td>
+                                    <span class="badge bg-info">{{ club.activite }}</span>&nbsp;
+                                    <span class="badge bg-success">Football</span>
+                                </td>
+                                <td>
+                                    <span 
+                                        class="badge" 
+                                        [ngClass]="{
+                                            'bg-free': club.abonnement === 'free',
+                                            'bg-silver': club.abonnement === 'silver',
+                                            'bg-gold': club.abonnement === 'gold'
+                                        }">
+                                        {{ club.abonnement }}
+                                    </span>
+                                </td>
                                 <td>
                                     <div class="flex align-items-center list-user-action">
                                         <a class="btn btn-sm btn-icon btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" (click)="EditUser()">
@@ -498,7 +520,7 @@
                                                 </svg>
                                             </span>
                                         </a>
-                                        <a class="btn btn-sm btn-icon btn-danger"  data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" >
+                                        <a class="btn btn-sm btn-icon btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                             <span class="btn-inner">
                                                 <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
                                                     <path d="M19.3248 9.46826C19.3248 9.46826 18.7818 16.2033 18.4668 19.0403C18.3168 20.3953 17.4798 21.1893 16.1088 21.2143C13.4998 21.2613 10.8878 21.2643 8.27979 21.2093C6.96079 21.1823 6.13779 20.3783 5.99079 19.0473C5.67379 16.1853 5.13379 9.46826 5.13379 9.46826" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -509,12 +531,24 @@
                                         </a>
                                     </div>
                                 </td>
+                                <td> <a class="btn btn-sm btn-icon btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" (click)="goToconfig()">
+                                    <span class="btn-inner">
+                                        <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11.4925 2.78906H7.75349C4.67849 2.78906 2.75049 4.96606 2.75049 8.04806V16.3621C2.75049 19.4441 4.66949 21.6211 7.75349 21.6211H16.5775C19.6625 21.6211 21.5815 19.4441 21.5815 16.3621V12.3341" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.82812 10.921L16.3011 3.44799C17.2321 2.51799 18.7411 2.51799 19.6721 3.44799L20.8891 4.66499C21.8201 5.59599 21.8201 7.10599 20.8891 8.03599L13.3801 15.545C12.9731 15.952 12.4211 16.181 11.8451 16.181H8.09912L8.19312 12.401C8.20712 11.845 8.43412 11.315 8.82812 10.921Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M15.1655 4.60254L19.7315 9.16854" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </span>
+                                </a></td>
                             </tr>
                         </tbody>
                     </table>
-                    
-                      
-                 </div>
+                    <ng-template #emptyTable>
+                        <div class="empty-table">
+                            <img src="../../../assets/images/aucunRes.png" alt="No Results"  />
+                        </div>
+                    </ng-template>
+                </div>
               </div>
            </div>
         </div>

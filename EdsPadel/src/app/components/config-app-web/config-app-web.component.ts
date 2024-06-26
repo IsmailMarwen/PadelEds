@@ -16,11 +16,11 @@ declare const Waypoint: any;
 declare const CircleProgress: any;
 declare const ApexCharts: any;
 @Component({
-  selector: 'app-complexes',
-  templateUrl: './complexes.component.html',
-  styleUrl: './complexes.component.css'
+  selector: 'app-config-app-web',
+  templateUrl: './config-app-web.component.html',
+  styleUrl: './config-app-web.component.css'
 })
-export class ComplexesComponent implements OnInit,AfterViewInit  {
+export class ConfigAppWebComponent implements OnInit,AfterViewInit  {
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -553,9 +553,5 @@ goComplexes(){
 }
 openEnd(content: TemplateRef<any>) {
   this.offcanvasService.open(content, { position: 'end' });
-}
-goToconfig(){
-  this.router.navigate(["/eds/admin/configApp/1"])
-
 }
 }
