@@ -1,4 +1,4 @@
-import { Component, OnInit ,TemplateRef, Renderer2, Inject, PLATFORM_ID,NgZone,inject } from '@angular/core';
+import { Component, OnInit ,TemplateRef, Renderer2, Inject, PLATFORM_ID,NgZone,inject,AfterViewInit } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 
@@ -7,7 +7,7 @@ import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit ,AfterViewInit {
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -15,6 +15,10 @@ export class AppComponent implements OnInit {
     private offcanvasService: NgbOffcanvas
   ) {}
   ngOnInit() {
+  }
+  ngAfterViewInit(): void {
+    this.initSidebarToggle()
+
   }
 	openEnd(content: TemplateRef<any>) {
 		this.offcanvasService.open(content, { position: 'end' });
@@ -67,5 +71,43 @@ export class AppComponent implements OnInit {
         }
       });
     }
+  }
+  initSidebarToggle(): void {
+    const sidebarToggleBtn = document.querySelectorAll('[data-toggle="sidebar"]');
+    const sidebar = document.querySelector('.sidebar-default');
+  
+    if (sidebar !== null) {
+      const sidebarActiveItem = sidebar.querySelectorAll('.active');
+  
+      Array.from(sidebarActiveItem).forEach((elem: Element) => {
+        if (!elem.closest('ul')?.classList.contains('iq-main-menu')) {
+          const childMenu = elem.closest('ul');
+          if (childMenu) {
+            childMenu.classList.add('show');
+            const parentMenu = childMenu.closest('li')?.querySelector('.nav-link');
+            if (parentMenu) {
+              parentMenu.classList.add('collapsed');
+              parentMenu.setAttribute('aria-expanded', 'true');
+            }
+          }
+        }
+      });
+    }
+  
+    Array.from(sidebarToggleBtn).forEach((sidebarBtn: Element) => {
+      this.sidebarToggle(sidebarBtn);
+    });
+  }
+  sidebarToggle(elem: Element): void {
+    elem.addEventListener('click', () => {
+      const sidebar = document.querySelector('.sidebar');
+      if (sidebar) {
+        if (sidebar.classList.contains('sidebar-mini')) {
+          sidebar.classList.remove('sidebar-mini');
+        } else {
+          sidebar.classList.add('sidebar-mini');
+        }
+      }
+    });
   }
 }

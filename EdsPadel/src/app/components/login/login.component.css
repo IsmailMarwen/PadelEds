@@ -59,3 +59,43 @@
     padding: 10px; /* Espacement intérieur */
     border-bottom: 1px solid #ccc; /* Bordure en bas du header */
 }
+
+.preloade-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.preloade {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Remove fixed positioning */
+  width: 100px; /* Set a width for the container */
+  height: 100px; /* Set a height for the container */
+}
+
+.circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  position: absolute;
+  animation: rotate 2s infinite ease-in-out;
+}
+
+.circle2 {
+  animation-delay: 1s;
+}
+
+@keyframes rotate {
+  0% {
+    transform: scale(0) translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: scale(1) translateX(100px) rotate(180deg);
+  }
+  100% {
+    transform: scale(0) translateX(0) rotate(360deg);
+  }
+}

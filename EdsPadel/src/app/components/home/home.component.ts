@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, Inject, PLATFORM_ID, NgZone, ElementRef, TemplateRef } from '@angular/core';
+import { Component, OnInit, Renderer2, Inject, PLATFORM_ID, NgZone, ElementRef, TemplateRef,AfterViewInit  } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import Scrollbar from 'smooth-scrollbar';
@@ -7,6 +7,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ImageBannerComponent } from '../image-banner/image-banner.component';
 import { AppwebserviceService } from '../../services/appwebservice.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { NgToastService,ToastType } from 'ng-angular-popup';
 
 declare var window: any;
 declare const Waypoint: any;
@@ -19,13 +22,20 @@ declare const ApexCharts: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,AfterViewInit  {
   selectedTheme: string = ''
   currentMode: string = '';
  currentSidebarColor: string = ''
  bannerImage:any
  nameApp:String=''
  logoApp:string=""
+ idClub:any
+ theme:any
+ preload:boolean=true
+ themeDetail1:any
+ themeDetail2:any
+ idAppWeb:any
+ adresseUrl:any
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -34,14 +44,56 @@ export class HomeComponent implements OnInit {
     private offcanvasService: NgbOffcanvas,
     private modalService: NgbModal,
     private cdr: ChangeDetectorRef,
-    private service:AppwebserviceService
-  ) {}
+    private service:AppwebserviceService,
+    private router: Router,
+    private toast:NgToastService
 
+  ) {}
+  ngAfterViewInit() {
+this.initAll()
+  }
+  logout(){
+    localStorage.removeItem('jwt_token');
+    this.router.navigate([this.adresseUrl+"/loginClub"])
+  }
   ngOnInit() {
-    this.nameApp='Padel Eds'
-    this.initSidebarToggle();
+    
+    this.applyTheme('theme1')//important
+    this.idClub=localStorage.getItem("idClub")
+    this.service.getInfoClub(this.idClub).subscribe(data=>{
+      
+      this.adresseUrl=data.appWeb.adresseUrl
+    this.idAppWeb=data.appWeb.idAppWeb      
+    this.nameApp=data.appWeb.nomAppWeb
+      this.applyTheme(data.appWeb.couleurAppWeb);
+      const themeColors = this.getThemeColors(data.appWeb.couleurAppWeb);
+      if (themeColors) {
+        this.themeDetail1 = themeColors.detail1;
+        this.themeDetail2 = themeColors.detail2;
+      }
+      this.changeSidebarColor(data.appWeb.couleurSideBar)
+      this.activateMode('color-mode', data.appWeb.mode);
+      if(data.appWeb.mode=="dark"){
+        this.applyDarkModeToTable(true)
+        this.updateInputMode(true);
+      }else{
+        this.applyDarkModeToTable(false)
+        this.updateInputMode(false);
+      }
+      this.currentMode = data.appWeb.mode;
+      this.changeSidebarColor(data.appWeb.couleurSideBar)
+
+        this.service.setBannerImage(data.appWeb.bannerImage)
+        this.service.bannerImage$.subscribe(image => {
+          this.bannerImage = image;
+       });
+      
+   
+      this.logoApp=data.appWeb.logoAppWeb
+      setTimeout(() => {
+        this.preload = false;
+        this.initSidebarToggle();
     this.initSidebarState();
-    this.applyTheme('theme2');
     this.scheduleScrollbarInit();
     this.initAOS();
     this.initCircleProgress();
@@ -49,16 +101,12 @@ export class HomeComponent implements OnInit {
     this.initProgressBar();
     this.initChartBar();
     this.initChartRadial();
-    //this.activateMode('color-mode', 'dark');
-    //this.currentMode = 'dark';
-    this.changeSidebarColor('sidebar-color')
-    this.service.bannerImage$.subscribe(image => {
-      this.bannerImage = image;
-   });
-   this.service.logo$.subscribe(image => {
-    this.logoApp = image;
- });
-   this.bannerImage=localStorage.getItem("banner")
+      }, 2000);
+    })
+   
+
+   
+ 
    if (window.counterUp !== undefined) {
     const counterUp = window.counterUp["default"];
     const counterElements = document.querySelectorAll('.counter');
@@ -80,20 +128,35 @@ export class HomeComponent implements OnInit {
   
 
   }
- }
- changeLogo(event: any) {
-  const file: File = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-        this.logoApp=e.target.result;
-        this.service.setLogoAppWeb(e.target.result);
-      
+ 
 
-    };
-    reader.readAsDataURL(file);
-  }
+ }
+ initAll() {
+  this.initSidebarToggle();
+  this.initSidebarState();
+  this.scheduleScrollbarInit();
+  this.initAOS();
+  this.initCircleProgress();
+  this.initChart();
+  this.initProgressBar();
+  this.initChartBar();
+  this.initChartRadial();
 }
+
+changeLogo(event: any) {
+  const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.logoApp = e.target.result;
+        this.updateAppWeb();
+        
+      };
+      reader.readAsDataURL(file);
+    }
+
+}
+
  initSidebarToggle(): void {
   const sidebarToggleBtn = document.querySelectorAll('[data-toggle="sidebar"]');
   const sidebar = document.querySelector('.sidebar-default');
@@ -439,9 +502,7 @@ initProgressBar(): void {
     });
   }
   changeSidebarColor(color: string): void {
-    console.log(color);
   
-    // Retirer la classe 'active' des éléments de couleur de la barre latérale
     const sidebarColors = document.querySelectorAll('[data-setting="sidebar"][data-name="sidebar-color"]');
     Array.from(sidebarColors, (el) => {
       el.classList.remove('active');
@@ -464,7 +525,31 @@ initProgressBar(): void {
     // Mettre à jour la couleur actuelle du sidebar
     this.currentSidebarColor = color;
   }
+  changeSidebarColorUpdate(color: string): void {
   
+    const sidebarColors = document.querySelectorAll('[data-setting="sidebar"][data-name="sidebar-color"]');
+    Array.from(sidebarColors, (el) => {
+      el.classList.remove('active');
+    });
+  
+    // Retirer la classe de couleur actuelle de la barre latérale
+    const sidebarDefault = document.querySelector('.sidebar-default');
+    if (sidebarDefault) {
+      const currentValue = this.currentSidebarColor;
+      if (currentValue) {
+        sidebarDefault.classList.remove(currentValue);
+      }
+    }
+  
+    // Ajouter la classe de la nouvelle couleur à la barre latérale
+    if (sidebarDefault) {
+      sidebarDefault.classList.add(color);
+    }
+  
+    // Mettre à jour la couleur actuelle du sidebar
+    this.currentSidebarColor = color;
+    this.updateAppWeb()
+  }
   
   private initAOS() {
     if (typeof AOS !== typeof undefined) {
@@ -511,9 +596,20 @@ initProgressBar(): void {
         const themeColors = this.getThemeColors(theme);
         if (themeColors) {
             this.customizerMode(themeColors.custombodyclass, themeColors.detail1, themeColors.detail2);
-            this.selectedTheme = theme; // Mettre à jour le thème sélectionné
+            this.selectedTheme = theme; 
         }
     });
+}
+applyThemeUpdate(theme: string): void {
+  this.ngZone.run(() => {
+      console.log(`applyTheme called with theme: ${theme}`);
+      const themeColors = this.getThemeColors(theme);
+      if (themeColors) {
+          this.customizerMode(themeColors.custombodyclass, themeColors.detail1, themeColors.detail2);
+          this.selectedTheme = theme; 
+          this.updateAppWeb()
+      }
+  });
 }
 
   getThemeColors(theme: string): { custombodyclass: string, detail1: string, detail2: string } | null {
@@ -577,7 +673,29 @@ initProgressBar(): void {
     this.currentMode = value === 'dark' ? 'dark' : 'light';
 
   }
+  activateModeUpdate(setting: string, value: string): void {
+    let detailObj = {};
   
+    if (setting === 'color-mode') {
+      detailObj = { dark: value };
+      document.body.classList.add(value);
+      this.applyDarkModeToTable(true); // Appliquer le mode sombre au tableau
+      this.updateInputMode(true); // Mettre à jour le mode de l'élément input
+
+    } else if (setting === 'light-mode') {
+      detailObj = { light: value };
+      document.body.classList.remove('dark');
+      this.applyDarkModeToTable(false); // Appliquer le mode clair au tableau
+      this.updateInputMode(false); // Mettre à jour le mode de l'élément input
+
+    }
+  
+    const event = new CustomEvent("ChangeMode", { detail: detailObj });
+    document.dispatchEvent(event);
+    this.currentMode = value === 'dark' ? 'dark' : 'light';
+    this.updateAppWeb()
+
+  }
   applyDarkModeToTable(isDark: boolean): void {
     const table = document.getElementById('basic-table');
     if (table) {
@@ -591,11 +709,11 @@ initProgressBar(): void {
   
 
   toggleDarkMode(): void {
-    this.activateMode('color-mode', 'dark');
+    this.activateModeUpdate('color-mode', 'dark');
   }
 
   toggleLightMode(): void {
-    this.activateMode('light-mode', 'light');
+    this.activateModeUpdate('light-mode', 'light');
   }
   isModeActive(mode: string): boolean {
     return this.currentMode === mode;
@@ -609,5 +727,22 @@ initProgressBar(): void {
         inputElement.classList.remove('dark');
       }
     }
+  }
+  updateAppWeb(){
+    var data={
+      'idAppWeb':this.idAppWeb,
+      "nomAppWeb": this.nameApp,
+      "logoAppWeb": this.logoApp,
+      "couleurAppWeb": this.selectedTheme,
+      "bannerImage": this.bannerImage,
+      "mode":this.currentMode,
+      "couleurSideBar":this.currentSidebarColor,
+      "adresseUrl":this.adresseUrl,
+      "Club":{"idClub":localStorage.getItem("idClub")}
+  }
+  this.service.updateAppWeb(data).subscribe(data=>{
+    this.toast.toast('Modification De App Web',ToastType.SUCCESS, 'Succes', 5000);
+
+  })
   }
 }

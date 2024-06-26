@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { AppwebserviceService } from '../../services/appwebservice.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,14 +14,22 @@ export class LoginComponent implements OnInit {
   clubs:any;
   search:boolean=false
   nom:any
+  preload:boolean=false
   ngOnInit(): void {
     
   
   }
   goToCreateClub(){
-    this.router.navigate(["/createClub"])
+    this.router.navigate(["/payement"])
+  }
+  goToClub(idClub:any,adrresUrl:any){
+     localStorage.setItem('idClub',idClub)
+     this.router.navigate([adrresUrl+'/loginClub'])
+
   }
   getClubs(): void {
+    this.search=true
+    this.preload=true
     this.service.getClubsProximete(this.latitude, this.longitude, 500.0).subscribe(data => {
       this.clubs = data.map((club:any) => {
         club.distance = this.calculateDistance(this.latitude, this.longitude, club.latitude, club.longitude);
@@ -28,6 +37,10 @@ export class LoginComponent implements OnInit {
       });
       this.clubs.sort((a:any, b:any) => a.distance - b.distance);
       console.log(this.clubs);
+      setTimeout(() => {
+        this.preload = false;
+  
+      }, 2000);
     });
   }
 
@@ -49,6 +62,8 @@ export class LoginComponent implements OnInit {
   }
   getClubsByNom(nom:any){
     this.search=true
+    this.preload=true
+    
     this.clubs=null;
     this.service.getClubsByNom(nom).subscribe(data => {
       this.clubs = data.map((club:any) => {
@@ -57,6 +72,10 @@ export class LoginComponent implements OnInit {
       });
       this.clubs.sort((a:any, b:any) => a.distance - b.distance);
       console.log(this.clubs);
+      setTimeout(() => {
+        this.preload = false;
+  
+      }, 2000);
     });
   }
   closeList() {
@@ -74,7 +93,6 @@ export class LoginComponent implements OnInit {
     }
   }
   getClubsByProximete(){
-    this.search=true
     this.setCurrentLocation().then(() => {
 
       this.getClubs();

@@ -15,7 +15,27 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateClubComponent } from './components/create-club/create-club.component';
 import { RouterModule} from '@angular/router';
-
+import { PayementComponent } from './components/payement/payement.component';
+import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
+import { LoginClubComponent } from './components/login-club/login-club.component';
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { MessageService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastsContainerComponent } from './components/toasts-container/toasts-container.component';
+import {NgToastModule} from 'ng-angular-popup';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { SuperAdminComponent } from './components/super-admin/super-admin.component';
+import { UsersSuperAdminComponent } from './components/users-super-admin/users-super-admin.component';
+import { CreateUserSuperAdminComponent } from './components/create-user-super-admin/create-user-super-admin.component';
+import { UpdateUserSuperAdminComponent } from './components/update-user-super-admin/update-user-super-admin.component';
+import { ComplexesComponent } from './components/complexes/complexes.component';
+import { TypAbonnementComponent } from './components/typ-abonnement/typ-abonnement.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +45,20 @@ import { RouterModule} from '@angular/router';
     LoginComponent,
     SignupComponent,
     CreateClubComponent,
+    PayementComponent,
+    ConfirmEmailComponent,
+    LoginClubComponent,
+    UpdatePasswordComponent,
+    ToastsContainerComponent,
+    ResetPasswordComponent,
+    ContactComponent,
+    SuperAdminComponent,
+    UsersSuperAdminComponent,
+    CreateUserSuperAdminComponent,
+    UpdateUserSuperAdminComponent,
+    ComplexesComponent,
+    TypAbonnementComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -36,10 +70,17 @@ import { RouterModule} from '@angular/router';
     FormsModule,
     HttpClientModule,
     RouterModule,
-    
+    GoogleMapsModule,
+    ToastModule,
+    ButtonModule,
+    RippleModule,
+    ProgressBarModule,
+    BrowserAnimationsModule,
+    NgToastModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,27 @@
+.card-header{
+    background-color: transparent !important;
+}
+.upload-icone{
+    background-color: #fcbc04;
+}
+.main-content {
+    overflow: hidden !important;
+}
+.btnStart{
+    background-color: #ffff;
+    color: #fcbc04;
+    border:solid 1px;
+    border-color: #fcbc04;
+}
+.btnStart:hover{
+    background-color: #fcbc04 !important;
+    color: #ffff;
+    border:solid 1px;
+    border-color: #fcbc04;
+}
+.btnStart::after{
+    background-color: #fcbc04 !important;
+    color: #ffff;
+    border:solid 1px;
+    border-color: #fcbc04;
+}
