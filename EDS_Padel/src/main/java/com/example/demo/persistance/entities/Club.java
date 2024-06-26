@@ -57,6 +57,12 @@ public class Club {
     @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
     @JsonIgnore
     private List<Tournoi> tournois;
+    @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    @JsonIgnore
+    private List<Activite> activites;
+    @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    @JsonIgnore
+    private List<Ressource> Ressources;
     @ManyToOne
     private TypeAbonnement typeAbonnement;
 
