@@ -10,11 +10,16 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class TypeDepense {
+public class TypeAbonnementClub {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String designation;
+    private String libType;
+    private int nbMois;
+    private int nbJours;
+    private double forfait;
+
     @ManyToOne
-    private Club club;
+    @JoinColumn(name = "categorie_abonnement_id") // Optionnel mais recommandé pour la clarté
+    private CategorieAbonnement categorieAbonnement;
 }

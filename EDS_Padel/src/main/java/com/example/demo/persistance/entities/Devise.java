@@ -10,11 +10,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class TypeDepense {
+
+public class Devise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String designation;
+    private  Long id;
+    private String lib;
+    private String centieme;
     @ManyToOne
     private Club club;
 }

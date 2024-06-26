@@ -41,6 +41,12 @@ public class Club {
     private AppWeb appWeb;
     @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
     @JsonIgnore
+    private List<TauxTva> tauxTvas;
+    @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    @JsonIgnore
+    private List<TypeDepense> typeDepenses;
+    @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    @JsonIgnore
     private List<Administrateur> administrateurs;
     @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
     @JsonIgnore
@@ -51,9 +57,7 @@ public class Club {
     @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
     @JsonIgnore
     private List<Materiel> materiels;
-    @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
-    @JsonIgnore
-    private List<Terrain> terrains;
+
     @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
     @JsonIgnore
     private List<Tournoi> tournois;
@@ -63,6 +67,9 @@ public class Club {
     @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
     @JsonIgnore
     private List<Ressource> Ressources;
+    @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    @JsonIgnore
+    private List<Devise> devises;
     @ManyToOne
     private TypeAbonnement typeAbonnement;
 
@@ -91,7 +98,6 @@ public class Club {
                 ", membres=" + membres +
                 ", coaches=" + coaches +
                 ", materiels=" + materiels +
-                ", terrains=" + terrains +
                 ", tournois=" + tournois +
                 '}';
     }

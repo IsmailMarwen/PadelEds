@@ -1,21 +1,20 @@
 package com.example.demo.persistance.entities;
-import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
-
-public class Terrain {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTerrain;
-    private String nomTerrain;
+public class TauxTva {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private double taux;
     @ManyToOne
     private Club club;
-
 }
