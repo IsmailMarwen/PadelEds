@@ -5,7 +5,7 @@ import com.example.demo.service.interfaces.ITournoi;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin(origins = "", allowedHeaders = "")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/Tournoi")
 public class TournoiController {
