@@ -398,7 +398,7 @@ login(){
   this.service.getAddressCoordinates(this.adresse).subscribe(res=>{
     console.log(res)
   })
-  /*
+  
   this.preload=true
   let formValid = true;
 
@@ -527,6 +527,6 @@ if(!this.sidebarcolor){
       
       this.toast.toast(error.error, ToastType.DANGER, 'Erreur', 5000);
     }
-  );*/
+  );
 }
 }

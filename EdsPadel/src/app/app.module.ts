@@ -38,6 +38,10 @@ import { ComplexesComponent } from './components/complexes/complexes.component';
 import { TypAbonnementComponent } from './components/typ-abonnement/typ-abonnement.component';
 import { ConfigAppWebComponent } from './components/config-app-web/config-app-web.component';
 import { ActiviteComponent } from './components/activite/activite.component';
+import { CreateTypAbonnementComponent } from './components/create-typ-abonnement/create-typ-abonnement.component';
+import { UpdateTypAbonnementComponent } from './components/update-typ-abonnement/update-typ-abonnement.component';
+import { CreateActiviteComponent } from './components/create-activite/create-activite.component';
+import { UpdateActiviteComponent } from './components/update-activite/update-activite.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +66,10 @@ import { ActiviteComponent } from './components/activite/activite.component';
     TypAbonnementComponent,
     ConfigAppWebComponent,
     ActiviteComponent,
+    CreateTypAbonnementComponent,
+    UpdateTypAbonnementComponent,
+    CreateActiviteComponent,
+    UpdateActiviteComponent,
     
   ],
   imports: [

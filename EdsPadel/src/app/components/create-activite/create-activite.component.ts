@@ -5,20 +5,17 @@ import { MessageService } from 'primeng/api';
 import { NgToastService, ToastType } from 'ng-angular-popup';
 
 @Component({
-  selector: 'app-create-user-super-admin',
-  templateUrl: './create-user-super-admin.component.html',
-  styleUrls: ['./create-user-super-admin.component.css']
+  selector: 'app-create-activite',
+  templateUrl: './create-activite.component.html',
+  styleUrls: ['./create-activite.component.css']
 })
-export class CreateUserSuperAdminComponent {
-  imgProfile: string = "../../../assets/images/avatars/avtar_6.png";
+export class CreateActiviteComponent {
+  libelle: any;
+  couleur: any;
   preload: boolean = false;
-  user: any = {
-    imgProfile: this.imgProfile,
-    nom: '',
-    prenom: '',
-    email: '',
-    telephone: '',
-    password: ''
+  activite: any = {
+    libelle: '',
+    couleur: ''
   };
 
   constructor(
@@ -32,19 +29,7 @@ export class CreateUserSuperAdminComponent {
     this.activeModal.dismiss('Cross click');
   }
 
-  changeLogo(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.imgProfile = e.target.result;
-        this.user.imgProfile = e.target.result; // Save the base64 string to the user object
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
-  addUser() {
+  addActivite() {
     this.preload = true;
     let formValid = true;
 
@@ -52,25 +37,13 @@ export class CreateUserSuperAdminComponent {
     this.clearErrorMessages();
 
     // Vérifiez si les champs obligatoires sont vides
-    if (!this.user.nom) {
+    if (!this.activite.libelle) {
       formValid = false;
-      this.showErrorMessage('fname', 'Nom est obligatoire');
+      this.showErrorMessage('libelle', 'Libelle est obligatoire');
     }
-    if (!this.user.prenom) {
+    if (!this.activite.couleur) {
       formValid = false;
-      this.showErrorMessage('lname', 'Prénom est obligatoire');
-    }
-    if (!this.user.email) {
-      formValid = false;
-      this.showErrorMessage('email', 'Email est obligatoire');
-    }
-    if (!this.user.telephone) {
-      formValid = false;
-      this.showErrorMessage('tel', 'Téléphone est obligatoire');
-    }
-    if (!this.user.password) {
-      formValid = false;
-      this.showErrorMessage('pass', 'Mot de passe est obligatoire');
+      this.showErrorMessage('couleur', 'Couleur est obligatoire');
     }
 
     if (!formValid) {
@@ -79,22 +52,19 @@ export class CreateUserSuperAdminComponent {
       return;
     }
 
-    this.service.addSuperUser(this.user).subscribe(
+    this.service.addActivite(this.activite).subscribe(
       response => {
-        console.log('User added successfully:', response);
+        console.log('Activite added successfully:', response);
         this.preload = false;
         this.activeModal.close('saved');
       },
       (error) => {
-        console.error('Error adding user:', error);
+        console.error('Error adding activite:', error);
         this.preload = false;
 
         // Handle specific errors
-        if (error.error === "L'email du club existe déjà") {
-          this.showErrorMessage('email', 'L\'email du club existe déjà');
-        }
-        if (error.error === "Le nom du club existe déjà") {
-          this.showErrorMessage('fname', 'Le nom du club existe déjà');
+        if (error.error === "L'libelle du club existe déjà") {
+          this.showErrorMessage('libelle', 'Le libelle du club existe déjà');
         }
 
         this.toast.toast(error.error, ToastType.DANGER, 'Erreur', 5000);

@@ -15,10 +15,15 @@ import { SuperAdminComponent } from './components/super-admin/super-admin.compon
 import { UsersSuperAdminComponent } from './components/users-super-admin/users-super-admin.component';
 import { ComplexesComponent } from './components/complexes/complexes.component';
 import { ConfigAppWebComponent } from './components/config-app-web/config-app-web.component';
+import { TypAbonnementComponent } from './components/typ-abonnement/typ-abonnement.component';
+import { ActiviteComponent } from './components/activite/activite.component';
 const routes: Routes = [
   {path:'eds/admin/home',component:SuperAdminComponent},
   {path:'eds/admin/users',component:UsersSuperAdminComponent},
   {path:'eds/admin/complexes',component:ComplexesComponent},
+  {path:'eds/admin/activites',component:ActiviteComponent},
+  {path:'eds/admin/abonnements',component:TypAbonnementComponent},
+
   {path:'eds/admin/configApp/:id',component:ConfigAppWebComponent},
   { path: '', component: LoginComponent},
   { path: ':url/signUp', component: SignupComponent},

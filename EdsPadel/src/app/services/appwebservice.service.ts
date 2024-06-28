@@ -36,8 +36,44 @@ export class AppwebserviceService {
   getClubsByNom(nom:any):Observable<any>{
     return this.http.get(this.apiUrl+"/club/nom?nom="+nom)
   }
+  getClubs():Observable<any>{
+    return this.http.get(this.apiUrl+"/club/getAll")
+  }
+  getAbonnements():Observable<any>{
+    return this.http.get(this.apiUrl+"/TypeAbonnement/getAll")
+  }
   saveClub(data:any):Observable<any>{
     return this.http.post(this.apiUrl+"/club/add",data);
+  }
+  addSuperUser(data:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/superAdmin/add",data);
+  }
+  addabonnement(abonnement:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/TypeAbonnement/add",abonnement);
+  }
+  addActivite(activite:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/activite/add",activite);
+  }
+  getUsers():Observable<any>{
+    return this.http.get<any[]>(this.apiUrl+"/superAdmin/getAll")
+  }
+  getActivites():Observable<any>{
+    return this.http.get<any[]>(this.apiUrl+"/activite/getAll")
+  }
+  deleteSuperUser(userId: number): Observable<any> {
+    const url = `${this.apiUrl}/superAdmin/delete/${userId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+  }
+  deleteSuperAbonnement(abonnementId: number): Observable<any> {
+    const url = `${this.apiUrl}/TypeAbonnement/delete/${abonnementId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+  }
+  deleteActivite(activiteId: number): Observable<any> {
+    const url = `${this.apiUrl}/activite/delete/${activiteId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
   }
   getCoordinates(address: string): Observable<{ lat: number, lon: number }> {
     const url = `${this.geocodeUrl}?q=${encodeURIComponent(address)}&format=json&addressdetails=1&limit=1`;
@@ -93,6 +129,15 @@ export class AppwebserviceService {
   }
   updateAppWeb(data:any):Observable<any>{
     return this.http.put(this.apiUrl+'/appWeb/update',data)
+  }
+  updateSuperUser(user:any):Observable<any>{
+    return this.http.put(this.apiUrl+'/superAdmin/update',user)
+  }
+  updateAbonnemet(abonnement:any):Observable<any>{
+    return this.http.put(this.apiUrl+'/TypeAbonnement/update',abonnement)
+  }
+  updateActivite(activite:any):Observable<any>{
+    return this.http.put(this.apiUrl+'/activite/update',activite)
   }
   getWeatherForecast(city: string):Observable<any> {
     return this.http.get(`${this.meteoApiUrl}/forecast?q=${city}&units=metric&appid=${this.apiKey}&lang=fr`);

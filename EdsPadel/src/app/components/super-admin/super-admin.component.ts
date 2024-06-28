@@ -508,4 +508,10 @@ goHome(){
 goComplexes(){
   this.router.navigate(["/eds/admin/complexes"])
 }
+goAbonnements(){
+  this.router.navigate(["/eds/admin/abonnements"])
+}
+goActivites(){
+  this.router.navigate(["/eds/admin/activites"])
+}
 }

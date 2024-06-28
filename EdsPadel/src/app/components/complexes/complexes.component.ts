@@ -32,6 +32,7 @@ export class ComplexesComponent implements OnInit,AfterViewInit  {
     private service:AppwebserviceService,
     private router: Router,
     private toast:NgToastService,
+    private userService: AppwebserviceService
   ) {}
  preload:boolean=true
  themeDetail1:string="#fcbc04"
@@ -43,24 +44,18 @@ export class ComplexesComponent implements OnInit,AfterViewInit  {
   { profileImage: 'assets/images/shapes/03.png', nom: 'Dan', prenom: 'Druff', email: 'dandruff.com', telephone: '+55 6523 456 856' },
   { profileImage: 'assets/images/shapes/04.png', nom: 'Hans', prenom: 'Olo', email: 'hansolo.com', telephone: '+91 2586 253 125' }
 ];
-clubs = [
-  { profileImage: 'assets/images/shapes/01.png', nomClub: 'Anna', email: 'annasthesia.com',adresse: 'Sthesia',  telephone: '(760) 756 7568',activite: 'padel' ,abonnement:"free"},
-  { profileImage: 'assets/images/shapes/02.png', nomClub: 'Brock',  email: 'brocklee.com',adresse: 'Lee', telephone: '+62 5689 458 658',activite: 'padel' ,abonnement:"gold"},
-  { profileImage: 'assets/images/shapes/03.png', nomClub: 'Dan',email: 'dandruff.com', adresse: 'Druff',  telephone: '+55 6523 456 856',activite: 'padel',abonnement:"free" },
-  { profileImage: 'assets/images/shapes/04.png', nomClub: 'Hans', email: 'hansolo.com',adresse: 'Olo',  telephone: '+91 2586 253 125',activite: 'padel',abonnement:"silver" },
-  { profileImage: 'assets/images/shapes/01.png', nomClub: 'Anna', email: 'annasthesia.com',adresse: 'Sthesia',  telephone: '(760) 756 7568',activite: 'padel' ,abonnement:"free"},
-  { profileImage: 'assets/images/shapes/02.png', nomClub: 'Brock',  email: 'brocklee.com',adresse: 'Lee', telephone: '+62 5689 458 658',activite: 'padel' ,abonnement:"gold"},
-  { profileImage: 'assets/images/shapes/03.png', nomClub: 'Dan',email: 'dandruff.com', adresse: 'Druff',  telephone: '+55 6523 456 856',activite: 'padel',abonnement:"free" },
-  { profileImage: 'assets/images/shapes/04.png', nomClub: 'Hans', email: 'hansolo.com',adresse: 'Olo',  telephone: '+91 2586 253 125',activite: 'padel',abonnement:"silver" },
-  { profileImage: 'assets/images/shapes/01.png', nomClub: 'Anna', email: 'annasthesia.com',adresse: 'Sthesia',  telephone: '(760) 756 7568',activite: 'padel' ,abonnement:"free"},
-  { profileImage: 'assets/images/shapes/02.png', nomClub: 'Brock',  email: 'brocklee.com',adresse: 'Lee', telephone: '+62 5689 458 658',activite: 'padel' ,abonnement:"gold"},
-  { profileImage: 'assets/images/shapes/03.png', nomClub: 'Dan',email: 'dandruff.com', adresse: 'Druff',  telephone: '+55 6523 456 856',activite: 'padel',abonnement:"free" },
-  { profileImage: 'assets/images/shapes/04.png', nomClub: 'Hans', email: 'hansolo.com',adresse: 'Olo',  telephone: '+91 2586 253 125',activite: 'padel',abonnement:"silver" },
-  { profileImage: 'assets/images/shapes/01.png', nomClub: 'Anna', email: 'annasthesia.com',adresse: 'Sthesia',  telephone: '(760) 756 7568',activite: 'padel' ,abonnement:"free"},
-  { profileImage: 'assets/images/shapes/02.png', nomClub: 'Brock',  email: 'brocklee.com',adresse: 'Lee', telephone: '+62 5689 458 658',activite: 'padel' ,abonnement:"gold"},
-  { profileImage: 'assets/images/shapes/03.png', nomClub: 'Dan',email: 'dandruff.com', adresse: 'Druff',  telephone: '+55 6523 456 856',activite: 'padel',abonnement:"free" },
-  { profileImage: 'assets/images/shapes/04.png', nomClub: 'Hans', email: 'hansolo.com',adresse: 'Olo',  telephone: '+91 2586 253 125',activite: 'padel',abonnement:"silver" }
-];
+
+  
+  id:string='';
+  image:string='';
+  nomClub: string = '';
+  email: string = '';
+  adresse: string = '';
+  telephone: string = '';
+  activite: string = '';
+  abonnement: string = '';
+  
+  clubs: any[] = [];
  ngAfterViewInit() {
     }
     
@@ -551,11 +546,33 @@ goHome(){
 goComplexes(){
   this.router.navigate(["/eds/admin/complexes"])
 }
+
+goActivites(){
+  this.router.navigate(["/eds/admin/activites"])
+}
+
+goAbonnements(){
+  this.router.navigate(["/eds/admin/abonnements"])
+}
 openEnd(content: TemplateRef<any>) {
   this.offcanvasService.open(content, { position: 'end' });
 }
 goToconfig(){
   this.router.navigate(["/eds/admin/configApp/1"])
 
+}
+originalUsers: any[] = [];
+searchUsers(event: any): void {
+  const searchTerm = event.target.value.toLowerCase();
+  this.users = this.originalUsers.filter(user => {
+    return Object.values(user).some((value: any) => 
+      String(value).toLowerCase().includes(searchTerm)
+    );
+  });
+}
+getClubs(): void {
+  this.userService.getClubs().subscribe(clubs => {
+    this.clubs = clubs;
+  });
 }
 }
