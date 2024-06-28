@@ -125,7 +125,7 @@
                                <input type="text" class="form-control" name="ville" [(ngModel)]="ville" id="ville" placeholder="Ville">
                             </div>
                          
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                               <label class="form-label" for="cname">Adresse <span class="obl">*</span></label>   <span class="obl" *ngIf="!selectedAdresse">  choisir votre adresse par marker</span>
                               <input type="text" class="form-control" name="adresse" [(ngModel)]="adresse" id="adresse" placeholder="adresse">
 
@@ -135,6 +135,10 @@
                                <label class="form-label" for="codePostal">Code Postal <span class="obl">*</span></label>
                                <input type="text" class="form-control" id="codePostal" [(ngModel)]="codePostal" name="codePostal" placeholder="Code Postal">
                             </div>
+                            <div class="form-group col-md-6">
+                              <label class="form-label" for="codePostal">Raison Sociale <span class="obl">*</span></label>
+                              <input type="text" class="form-control" id="raisonSociale" [(ngModel)]="raisonSociale" name="raisonSociale" placeholder="Raison Sociale">
+                           </div>
                             <div class="form-group col-md-6">
                                <label class="form-label" for="matriculeFiscale">Matricule Fiscale <span class="obl">*</span></label>
                                <input type="text" class="form-control" id="matriculeFiscale" [(ngModel)]="matriculeFiscale" name="matriculeFiscale" placeholder="Matricule Fiscale">
@@ -148,28 +152,28 @@
                                <input type="text" class="form-control" id="pno" placeholder="Tél" [(ngModel)]="telSecondaire" name="telSecondaire">
                             </div>
                             <div class="form-group col-md-12">
+                              <label class="form-label">Activités <span class="obl">*</span></label>
+                              <div *ngFor="let activity of activities">
+                                <div class="form-check">
+                                  <input 
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    [id]="'activity-' + activity.id" 
+                                    [checked]="isSelected(activity)" 
+                                    (change)="toggleActivity(activity)"
+                                  >
+                                  <label class="form-check-label" [for]="'activity-' + activity.id">
+                                    {{ activity.libelle }}
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group col-md-12">
                               <label class="form-label" for="description">Description et Info</label>
                               <textarea id="description" class="form-control" placeholder="votre description" [(ngModel)]="descriptionInfo" name="descriptionInfo" ></textarea>
                             </div>
-                            <div class="form-group col-md-6">
-                              <label class="form-label" for="cname">Nombre de terrains à préconfigurer <span class="obl">*</span></label>
-                              <div class="input-group">
-                                <div class="input-wrapper">
-                                  <button type="button" class="btn btnPM" (click)="RemoveNbTerrain()" [disabled]="nbTerrain == 1" >
-                                    <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 459.313 459.314" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M459.313,229.648c0,22.201-17.992,40.199-40.205,40.199H40.181c-11.094,0-21.14-4.498-28.416-11.774 C4.495,250.808,0,240.76,0,229.66c-0.006-22.204,17.992-40.199,40.202-40.193h378.936 C441.333,189.472,459.308,207.456,459.313,229.648z"></path> </g> </g></svg>
-                                  </button>
-                                  <li class="form-control input-like">
-                                    <b>{{nbTerrain}}</b> Terrain(s)
-                                  </li>
-                                  <button type="button" class="btn btnPM" (click)="addNbTerrain()" >
-                                    <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 45.402 45.402" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M41.267,18.557H26.832V4.134C26.832,1.851,24.99,0,22.707,0c-2.283,0-4.124,1.851-4.124,4.135v14.432H4.141 c-2.283,0-4.139,1.851-4.138,4.135c-0.001,1.141,0.46,2.187,1.207,2.934c0.748,0.749,1.78,1.222,2.92,1.222h14.453V41.27 c0,1.142,0.453,2.176,1.201,2.922c0.748,0.748,1.777,1.211,2.919,1.211c2.282,0,4.129-1.851,4.129-4.133V26.857h14.435 c2.283,0,4.134-1.867,4.133-4.15C45.399,20.425,43.548,18.557,41.267,18.557z"></path> </g> </g></svg>
-                                  </button>
-                              
-                                </div>
-                              </div>                           </div>
-                           <span class="plus">Vous pourrez ajouter des terrains supplémentaires une fois connecté à votre espace</span>
-
-                         </div>
+                          
+                         </div> 
                          <div>
                         
                         </div> 
@@ -317,17 +321,18 @@
                </div>
             </div>
          </div>
+         <div class="row justify-content-center mb-5">
+          <div class="col-xl-6 col-lg-6">
+            <button class="btn btnTermine" (click)="login()" *ngIf="!preload">                                          <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                                                    
+              Terminer l'inscription </button>
+              <button class="btn btnTermine" (click)="login()" *ngIf="preload"><img src="../../../assets/images/preload.gif" height="25px"></button>
+  
+  
+            
+            </div>
+  </div>
        </div>
-       <div class="row justify-content-center">
-        <div class="col-xl-6 col-lg-6">
-          <button class="btn btnTermine" (click)="login()" *ngIf="!preload">                                          <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                                                    
-            Terminer l'inscription </button>
-            <button class="btn btnTermine" (click)="login()" *ngIf="preload"><img src="../../../assets/images/preload.gif" height="25px"></button>
-
-
-          
-          </div>
-</div>
+     
     </div>
     </div>
     <div class="btn-download">

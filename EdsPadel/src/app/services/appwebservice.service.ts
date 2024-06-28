@@ -1,7 +1,7 @@
 import { Injectable,TemplateRef } from '@angular/core';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, throwError,forkJoin } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,8 @@ export class AppwebserviceService {
   constructor(private http:HttpClient) { }
   private bannerImageSource = new BehaviorSubject<string>(localStorage.getItem('banner') || 'https://media.babolat.com//image/upload/f_auto,q_auto,c_crop,w_2000,h_751/Website_content/Padel_News/02092020-Launch/padel-equipment/equipment-banner-2.jpg');
 
+  
+
   bannerImage$ = this.bannerImageSource.asObservable();
   getWeather(city: string): Observable<any> {
     return this.http.get(`${this.meteoApiUrl}/weather?q=${city}&units=metric&appid=${this.apiKey}&lang=fr`);
@@ -30,11 +32,16 @@ export class AppwebserviceService {
   getClubsProximete(latitude:any,longitude:any,distance:any):Observable<any>{
     return this.http.get(this.apiUrl+"/club/proximite?latitude="+latitude+"&longitude="+longitude+"&distance="+distance)
   }
-  getClubsByVille(ville:any):Observable<any>{
-    return this.http.get(this.apiUrl+"/club/ville?ville="+ville)
+ 
+
+ 
+
+  getClubsByVille(ville: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/club/ville?ville=${ville}`);
   }
-  getClubsByNom(nom:any):Observable<any>{
-    return this.http.get(this.apiUrl+"/club/nom?nom="+nom)
+
+  getClubsByNom(nom: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/club/nom?nom=${nom}`);
   }
   saveClub(data:any):Observable<any>{
     return this.http.post(this.apiUrl+"/club/add",data);
@@ -104,5 +111,114 @@ export class AppwebserviceService {
   }
   contactClub(data:any):Observable<any>{
     return this.http.post(this.apiUrl+'/authentication/contact',data)
+  }
+  getAllUsers(): Observable<any[]> {
+    return new Observable(observer => {
+      forkJoin({
+        admins: this.getAdmins(),
+        members: this.getMembers(),
+        coaches: this.getCoaches(),
+        agents: this.getAgents()
+      }).subscribe({
+        next: ({ admins, members, coaches, agents }) => {
+          let users: any[] = [];
+          users = users.concat(admins, members, coaches, agents);
+          observer.next(users);
+          observer.complete();
+        },
+        error: err => observer.error(err)
+      });
+    });
+  }
+  getAdmins(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/administrateur/getAll`);
+  }
+
+  
+  // Methods for Members
+  getMembers(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/membre/getAll`);
+  }
+
+ 
+
+  // Methods for Coaches
+  getCoaches(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/coach/getAll`);
+  }
+
+  
+  deleteUser(userId: number, role: string): Observable<any> {
+    let endpoint = '';
+    switch (role) {
+      case 'Administrateur':
+        endpoint = `/administrateur/delete/${userId}`;
+        break;
+      case 'Coach':
+        endpoint = `/coach/delete/${userId}`;
+        break;
+      case 'Membre':
+        endpoint = `/membre/delete/${userId}`;
+        break;
+      case 'Agent':
+        endpoint = `/agentAcceuil/delete/${userId}`;
+        break;
+      default:
+        // Handle default case or error
+        break;
+    }
+    return this.http.delete(`${this.apiUrl}${endpoint}`);
+  }
+  
+  addUser(user: any): Observable<any> {
+    let endpoint = '';
+    switch (user.role) {
+      case 'Administrateur':
+        endpoint = '/administrateur';
+        break;
+      case 'Coach':
+        endpoint = '/coach';
+        break;
+      case 'Membre':
+        endpoint = '/membre';
+        break;
+      case 'Agent':
+        endpoint = '/agentAcceuil';
+        break;
+      default:
+        // Handle default case or error
+        break;
+    }
+    return this.http.post(`${this.apiUrl}${endpoint}/add`, user);
+  }
+  updateUser(user: any): Observable<any> {
+    let endpoint = '';
+    switch (user.role) {
+      case 'Administrateur':
+        endpoint = '/administrateur';
+        break;
+      case 'Coach':
+        endpoint = '/coach';
+        break;
+      case 'Membre':
+        endpoint = '/membre';
+        break;
+      case 'Agent':
+        endpoint = '/agentAcceuil';
+        break;
+      default:
+        // Handle default case or error
+        break;
+    }
+    return this.http.put(`${this.apiUrl}${endpoint}/update`, user);
+  }
+  getAllActivite():Observable<any>{
+    return this.http.get(this.apiUrl+"/activite/getAll")
+  }
+  updateClub(data:any):Observable<any>{
+    return this.http.put(this.apiUrl+"/club/update",data)
+  }
+  getAgents():Observable<any>{
+    return this.http.get(this.apiUrl+"/agentAcceuil/getAll")
   }
 }

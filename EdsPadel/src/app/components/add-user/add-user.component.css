@@ -1,0 +1,177 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+.card-header{
+    background-color: transparent !important;
+}
+
+.imgBanner {
+    border-radius: 6px;
+    box-sizing: border-box;
+    border: 2px solid #eee;
+    cursor: pointer;
+    height: 46.79px;
+}
+.flag {
+    width: 22px !important;
+    height: 22px !important;
+    margin-top: -2px;
+    margin-right: 8px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+}
+.countries-list {
+    position: absolute;
+    z-index: 1000; /* Assure que la liste est au-dessus des autres éléments */
+    background-color: #ffff; /* Fond blanc pour meilleure visibilité */
+    border: 1px solid #ccc; /* Bordure optionnelle pour démarcation */
+    max-height: 300px; /* Hauteur maximale pour la liste déroulante */
+    overflow-y: auto; /* Scroll si la liste est trop longue */
+    width: 95%; 
+  }
+  .scrollable-list {
+    position: relative;
+  }
+  
+  .form-group {
+    position: relative; /* Assure que les éléments du formulaire restent dans le flux du document */
+  }
+  .btndrop{
+    border: solid 1px;
+    border-color: #dee2e6;
+  }
+  .pays{
+    cursor: pointer;
+  }
+
+
+
+  .input-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    top: -7%;
+  }
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+  
+  .input-like {
+   
+  }
+  .btn.btndrop {
+    margin-left: .5rem !important;
+    align-items: center;
+  }
+  @media (max-width: 576px) {
+    .input-group {
+      flex-direction: column;
+    }
+    
+   
+}
+.main-content{
+    overflow-x: hidden !important;
+}
+.obl{
+    color: #8b0000;
+}
+.upload-icone {
+  
+    cursor: pointer !important;
+  }
+  
+  .sticky-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background: white !important;
+    z-index: 10; 
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .search-input {
+    width: 100%;
+  } 
+  
+  .file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .plus{
+    color:#6c757d
+  }
+  #Capa_1{
+      height: 15px;
+      width: 15px;;
+  }
+  .btnPM{
+    border: solid 1px;
+    border-color: #dee2e6;
+    margin-left: .5rem;
+    margin-right: .5rem;
+
+    align-items: center;
+  }
+  .btn-border:not(.active):hover {
+    color: #fcbc04 !important;
+    border-color: #fcbc04 !important;
+}
+  .btnTermine{
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-weight: 400;
+    height: auto !important;
+    background: #198754;
+    border-color: #198754;
+    color: #fff;
+    display: block;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;  }
+    .url{
+      color: #198754;
+    }
+    .active {
+      background-color: #fcbc04 !important; /* Exemple: arrière-plan sombre */
+      color: #fff !important; /* Exemple: texte en blanc */
+      border: 1px solid #fcbc04 !important; /* Exemple: bordure plus sombre */
+  }
+  .activeTheme {
+    color: #fcbc04 !important;
+    border-color: #fcbc04 !important;
+}
+.google-map-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden; /* Ensures the map doesn't overflow its container */
+}
+
+.google-map {
+  width: 100%;
+  height: 100%; /* The map fills the entire container */
+}
+.error {
+  border: 1px solid red;
+  background-color: #ffe6e6; /* Ou une autre couleur de fond rouge */
+}

@@ -15,19 +15,15 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateClubComponent } from './components/create-club/create-club.component';
 import { RouterModule} from '@angular/router';
+import { UtilisateurComponent } from './components/utilisateur/utilisateur.component';
+import { TerrainComponent } from './components/terrain/terrain.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { PayementComponent } from './components/payement/payement.component';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
 import { LoginClubComponent } from './components/login-club/login-club.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
-import { GoogleMapsModule } from '@angular/google-maps';
-import { ToastModule } from 'primeng/toast';
-import { ButtonModule } from 'primeng/button';
-import { RippleModule } from 'primeng/ripple';
-import { ProgressBarModule } from 'primeng/progressbar';
-import { MessageService } from 'primeng/api';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastsContainerComponent } from './components/toasts-container/toasts-container.component';
-import {NgToastModule} from 'ng-angular-popup';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { SuperAdminComponent } from './components/super-admin/super-admin.component';
@@ -36,8 +32,19 @@ import { CreateUserSuperAdminComponent } from './components/create-user-super-ad
 import { UpdateUserSuperAdminComponent } from './components/update-user-super-admin/update-user-super-admin.component';
 import { ComplexesComponent } from './components/complexes/complexes.component';
 import { TypAbonnementComponent } from './components/typ-abonnement/typ-abonnement.component';
-import { ConfigAppWebComponent } from './components/config-app-web/config-app-web.component';
 import { ActiviteComponent } from './components/activite/activite.component';
+import { ConfigAppWebComponent } from './components/config-app-web/config-app-web.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { MessageService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgToastModule} from 'ng-angular-popup';
+import { SocieteComponent } from './components/societe/societe.component';
+import { FilterUsersComponent } from './components/filter-users/filter-users.component';
+import { CalanderComponent } from './components/calander/calander.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +69,13 @@ import { ActiviteComponent } from './components/activite/activite.component';
     TypAbonnementComponent,
     ConfigAppWebComponent,
     ActiviteComponent,
-    
+    TerrainComponent,
+    AddUserComponent,
+    EditUserComponent,
+    UtilisateurComponent,
+    SocieteComponent,
+    FilterUsersComponent,
+    CalanderComponent
   ],
   imports: [
     BrowserModule,

@@ -38,7 +38,11 @@
               "src/custom-theme.scss",
               "src/styles.css",
               "node_modules/select2/dist/css/select2.min.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/primeng/resources/primeng.min.css",
+             "src/assets/vendor/fullcalendar/core/main.css",
+             "src/assets/vendor/fullcalendar/daygrid/main.css",
+             "src/assets/vendor/fullcalendar/timegrid/main.css",
+             "src/assets/vendor/fullcalendar/list/main.css"
 
             ],
             "scripts": [
@@ -54,8 +58,17 @@
               "src/assets/vendor/aos/dist/aos.js",
               "src/assets/js/hope-ui.js",
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/select2/dist/js/select2.min.js"
+              "node_modules/select2/dist/js/select2.min.js",
+              "src/assets/vendor/fullcalendar/core/main.js",
+              "src/assets/vendor/fullcalendar/daygrid/main.js",
+              "src/assets/vendor/fullcalendar/timegrid/main.js",
+              "src/assets/vendor/fullcalendar/list/main.js",
+              "src/assets/vendor/fullcalendar/interaction/main.js",
+              "src/assets/vendor/moment.min.js",
+              "src/assets/js/plugins/calender.js"
+            
             ],
+
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -120,7 +133,27 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "src/assets/js/core/libs.min.js",
+              "src/assets/js/core/external.min.js",
+              "src/assets/js/charts/widgetcharts.js",
+              "src/assets/js/charts/vectore-chart.js",
+              "src/assets/js/charts/dashboard.js",
+              "src/assets/js/plugins/fslightbox.js",
+              "src/assets/js/plugins/setting.js",
+              "src/assets/js/plugins/slider-tabs.js",
+              "src/assets/js/plugins/form-wizard.js",
+              "src/assets/vendor/aos/dist/aos.js",
+              "src/assets/js/hope-ui.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/select2/dist/js/select2.min.js",
+              "src/assets/vendor/fullcalendar/core/main.js",
+              "src/assets/vendor/fullcalendar/daygrid/main.js",
+              "src/assets/vendor/fullcalendar/timegrid/main.js",
+              "src/assets/vendor/fullcalendar/list/main.js",
+              "src/assets/vendor/fullcalendar/interaction/main.js",
+              "src/assets/vendor/moment.min.js",
+              "src/assets/js/plugins/calender.js"
             ]
           }
         }

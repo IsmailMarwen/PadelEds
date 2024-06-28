@@ -15,6 +15,11 @@ import { SuperAdminComponent } from './components/super-admin/super-admin.compon
 import { UsersSuperAdminComponent } from './components/users-super-admin/users-super-admin.component';
 import { ComplexesComponent } from './components/complexes/complexes.component';
 import { ConfigAppWebComponent } from './components/config-app-web/config-app-web.component';
+import { UtilisateurComponent } from './components/utilisateur/utilisateur.component';
+import { TerrainComponent } from './components/terrain/terrain.component';
+import { SocieteComponent } from './components/societe/societe.component';
+import { CalanderComponent } from './components/calander/calander.component';
+
 const routes: Routes = [
   {path:'eds/admin/home',component:SuperAdminComponent},
   {path:'eds/admin/users',component:UsersSuperAdminComponent},
@@ -23,13 +28,18 @@ const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: ':url/signUp', component: SignupComponent},
   { path: ':url/home', component: HomeComponent,canActivate:[authGuard]},
+  { path: ':url/societe', component: SocieteComponent,canActivate:[authGuard]},
   {path:':url/profile', component:ProfileComponent,canActivate:[authGuard]},
   {path:'createClub',component:CreateClubComponent},
   {path:'payement',component:PayementComponent},
   {path:'confirmEmail',component:ConfirmEmailComponent},
   {path:':url/loginClub',component:LoginClubComponent},
   {path:':url/updatePassword',component:UpdatePasswordComponent,canActivate:[authGuard]},
-  {path:':url/contact',component:ContactComponent}
+  {path:':url/contact',component:ContactComponent},
+  {path:':url/utilisateur',component:UtilisateurComponent},
+  {path:'terrain',component:TerrainComponent},
+  {path:'calander',component:CalanderComponent}
+
 ];
 
 @NgModule({
