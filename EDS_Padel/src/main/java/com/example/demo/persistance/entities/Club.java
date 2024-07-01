@@ -45,6 +45,9 @@ public class Club {
 
     @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
     @JsonIgnore
+    private List<Banque> banque;
+    @OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+    @JsonIgnore
     private List<TypeDepense> typeDepenses;
 
     @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)

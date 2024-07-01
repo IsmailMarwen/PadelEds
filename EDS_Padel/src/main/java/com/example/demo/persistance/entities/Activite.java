@@ -17,8 +17,9 @@ public class Activite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String libelle;
+    private String couleur;
 
-    @OneToMany(mappedBy = "activite", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="activite",fetch=FetchType.LAZY)
     @JsonIgnore
     private List<CategorieAbonnement> categorieAbonnements;
 
