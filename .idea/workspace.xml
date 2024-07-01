@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a4d5466-f464-431f-9a0d-bb67fcaf7ff9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/EDS_Padel/src/main/java/com/example/demo/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/EDS_Padel/src/main/java/com/example/demo/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EDS_Padel/src/main/java/com/example/demo/service/controller/CategorieAbonnementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EDS_Padel/src/main/java/com/example/demo/service/controller/CategorieAbonnementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EDS_Padel/src/main/java/com/example/demo/service/controller/MaterielController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EDS_Padel/src/main/java/com/example/demo/service/controller/MaterielController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EDS_Padel/src/main/java/com/example/demo/service/controller/SuperAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EDS_Padel/src/main/java/com/example/demo/service/controller/SuperAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EDS_Padel/src/main/java/com/example/demo/service/controller/TournoiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EDS_Padel/src/main/java/com/example/demo/service/controller/TournoiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EDS_Padel/src/main/java/com/example/demo/persistance/entities/Activite.java" beforeDir="false" afterPath="$PROJECT_DIR$/EDS_Padel/src/main/java/com/example/demo/persistance/entities/Activite.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +44,8 @@
       <updated>1717583616336</updated>
       <workItem from="1717583643768" duration="83000" />
       <workItem from="1719479278776" duration="193000" />
+      <workItem from="1719745731124" duration="92000" />
+      <workItem from="1719775087429" duration="76000" />
     </task>
     <servers />
   </component>
