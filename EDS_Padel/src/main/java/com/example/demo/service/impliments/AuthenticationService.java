@@ -29,7 +29,8 @@ public class AuthenticationService {
 
     @Autowired
     private MembreRepository membreRepository;
-
+    @Autowired
+    private AgentAcceuilRepository agentAcceuilRepository;
     @Autowired
     private CoachRepository coachRepository;
 
@@ -52,7 +53,10 @@ public class AuthenticationService {
         if (membre != null && membre.getPassword().equals(password)) {
             return generateToken(membre);
         }
-
+        AgentAcceuil agentAcceuil = agentAcceuilRepository.findByUsernameAndClub(username, club);
+        if (agentAcceuil != null && agentAcceuil.getPassword().equals(password)) {
+            return generateToken(agentAcceuil);
+        }
 
         Coach coach = coachRepository.findByUsernameAndClub(username, club);
         if (coach != null && coach.getPassword().equals(password)) {
@@ -112,7 +116,15 @@ public class AuthenticationService {
             sendResetPasswordEmail(user, generatedPassword);
             return membre;
         }
-
+        AgentAcceuil agentAcceuil = agentAcceuilRepository.findByEmailAndClub(user.getEmail(), user.getClub());
+        if (agentAcceuil != null) {
+            String generatedPassword = generateRandomPassword(8);
+            agentAcceuil.setPassword(generatedPassword);
+            agentAcceuil.setUpdated(false);
+            agentAcceuilRepository.saveAndFlush(agentAcceuil);
+            sendResetPasswordEmail(user, generatedPassword);
+            return agentAcceuil;
+        }
         Coach coach = coachRepository.findByEmailAndClub(user.getEmail(), user.getClub());
         if (coach != null) {
             String generatedPassword = generateRandomPassword(8);
@@ -193,6 +205,11 @@ public UpdatePasswordResponse updatePassword(UpdatePasswordRequest updatePasswor
     }
     if(updatePasswordRequest.getRole().equals("admin")){
         administrateurRepository.updatePasswordAdminByIdClub(updatePasswordRequest.getPassword(),updatePasswordRequest.getIdClub(),updatePasswordRequest.getUserId());
+        updatePasswordResponse.setUpdated(true);
+        return updatePasswordResponse;
+    }
+    if(updatePasswordRequest.getRole().equals("agent")){
+        agentAcceuilRepository.updatePasswordAgentByIdClub(updatePasswordRequest.getPassword(),updatePasswordRequest.getIdClub(),updatePasswordRequest.getUserId());
         updatePasswordResponse.setUpdated(true);
         return updatePasswordResponse;
     }

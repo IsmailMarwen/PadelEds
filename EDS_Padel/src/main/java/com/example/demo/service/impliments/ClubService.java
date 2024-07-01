@@ -72,12 +72,13 @@ public class ClubService implements  IClub {
 
         // Set the AppWeb entity to the Club entity and save the Club again
         savedClub.setAppWeb(savedAppWeb);
+        savedClub.setActivites(clubAppWebRequest.getClub().getActivites());
         clubRepository.save(savedClub);
 
         // Create and save the admin
         Administrateur admin = new Administrateur();
         admin.setUsername("admin");
-        admin.setPassword(passwordEncoder.encode(generatedPassword));
+        admin.setPassword(generatedPassword);
         admin.setRole("admin");
         admin.setClub(savedClub);
         admin.setEmail(savedClub.getEmail());

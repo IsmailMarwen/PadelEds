@@ -16,12 +16,12 @@ public class AppWeb {
     private Long idAppWeb;
     private  String nomAppWeb;
     @Lob
-    @Column(columnDefinition = "TEXT")
-    private String logoAppWeb;
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] logoAppWeb;
     private String couleurAppWeb;
     @Lob
-    @Column(columnDefinition = "TEXT")
-    private String bannerImage;
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] bannerImage;
     private  String adresseUrl;
     private String mode;
     private String couleurSideBar;
