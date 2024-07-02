@@ -45,6 +45,24 @@ import {NgToastModule} from 'ng-angular-popup';
 import { SocieteComponent } from './components/societe/societe.component';
 import { FilterUsersComponent } from './components/filter-users/filter-users.component';
 import { CalanderComponent } from './components/calander/calander.component';
+import { typeDepenseeComponent } from './components/type-depense/type-depense.component';
+import { CreateTypeDepenseComponent } from './components/create-type-depense/create-type-depense.component';
+import { UpdateTypeDepenseComponent } from './components/update-type-depense/update-type-depense.component';
+import { UpdateTauxTvaComponent } from './components/update-taux-tva/update-taux-tva.component';
+import { CreateTauxTvaComponent } from './components/create-taux-tva/create-taux-tva.component';
+import { TauxTvaComponent } from './components/taux-tva/taux-tva.component';
+import { DeviceComponent } from './components/device/device.component';
+import { CreateDeviceComponent } from './components/create-device/create-device.component';
+import { UpdateDeviceComponent } from './components/update-device/update-device.component';
+import { BanqueComponent } from './components/banque/banque.component';
+import { CreateBanqueComponent } from './components/create-banque/create-banque.component';
+import { UpdateBanqueComponent } from './components/update-banque/update-banque.component';
+import { RessourceComponent } from './components/ressource/ressource.component';
+import { CreateRessourceComponent } from './components/create-ressource/create-ressource.component';
+import { UpdateRessourceComponent } from './components/update-ressource/update-ressource.component';
+import { TypeAbonnementClubComponent } from './components/type-abonnement-club/type-abonnement-club.component';
+import { CreateTypeAbonnementClubComponent } from './components/create-type-abonnement-club/create-type-abonnement-club.component';
+import { UpdateTypeAbonnementClubComponent } from './components/update-type-abonnement-club/update-type-abonnement-club.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +93,25 @@ import { CalanderComponent } from './components/calander/calander.component';
     UtilisateurComponent,
     SocieteComponent,
     FilterUsersComponent,
-    CalanderComponent
+    CalanderComponent,
+    typeDepenseeComponent,
+    CreateTypeDepenseComponent,
+    UpdateTypeDepenseComponent,
+    UpdateTauxTvaComponent,
+    CreateTauxTvaComponent,
+    TauxTvaComponent,
+    DeviceComponent,
+    CreateDeviceComponent,
+    UpdateDeviceComponent,
+    BanqueComponent,
+    CreateBanqueComponent,
+    UpdateBanqueComponent,
+    RessourceComponent,
+    CreateRessourceComponent,
+    UpdateRessourceComponent,
+    TypeAbonnementClubComponent,
+    CreateTypeAbonnementClubComponent,
+    UpdateTypeAbonnementClubComponent
   ],
   imports: [
     BrowserModule,

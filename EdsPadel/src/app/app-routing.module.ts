@@ -19,6 +19,12 @@ import { UtilisateurComponent } from './components/utilisateur/utilisateur.compo
 import { TerrainComponent } from './components/terrain/terrain.component';
 import { SocieteComponent } from './components/societe/societe.component';
 import { CalanderComponent } from './components/calander/calander.component';
+import { typeDepenseeComponent } from './components/type-depense/type-depense.component';
+import { TauxTvaComponent } from './components/taux-tva/taux-tva.component';
+import { DeviceComponent } from './components/device/device.component';
+import { RessourceComponent } from './components/ressource/ressource.component';
+import { TypeAbonnementClubComponent } from './components/type-abonnement-club/type-abonnement-club.component';
+import { BanqueComponent } from './components/banque/banque.component';
 
 const routes: Routes = [
   {path:'eds/admin/home',component:SuperAdminComponent},
@@ -37,6 +43,14 @@ const routes: Routes = [
   {path:':url/updatePassword',component:UpdatePasswordComponent,canActivate:[authGuard]},
   {path:':url/contact',component:ContactComponent},
   {path:':url/utilisateur',component:UtilisateurComponent},
+{path:':url/typeDepense',component:typeDepenseeComponent},
+{path:':url/tauxTva',component:TauxTvaComponent},
+{path:':url/devise',component:DeviceComponent},
+{path:':url/ressource',component:RessourceComponent},
+{path:':url/banque',component:BanqueComponent},
+{path:':url/typeAbonnement',component:TypeAbonnementClubComponent},
+
+
   {path:'terrain',component:TerrainComponent},
   {path:'calander',component:CalanderComponent}
 

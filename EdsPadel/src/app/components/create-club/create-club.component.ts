@@ -518,7 +518,7 @@ this.service.getAddressCoordinates(adr+","+this.pays).subscribe(res=>{
           "activites":this.selectedActivities,
           "raisonSociale":this.raisonSociale,
           "typeAbonnement": {
-            "id": 1,
+            "id":1,
             "libTypeAbonnement": "free"
           }
       },
