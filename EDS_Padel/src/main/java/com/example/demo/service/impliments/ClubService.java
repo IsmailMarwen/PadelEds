@@ -69,7 +69,6 @@ public class ClubService implements  IClub {
         // Set the club to the AppWeb entity and save it
         clubAppWebRequest.getAppWeb().setClub(savedClub);
         AppWeb savedAppWeb = appWebService.saveAppWeb(clubAppWebRequest.getAppWeb());
-
         // Set the AppWeb entity to the Club entity and save the Club again
         savedClub.setAppWeb(savedAppWeb);
         savedClub.setActivites(clubAppWebRequest.getClub().getActivites());

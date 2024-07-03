@@ -13,8 +13,8 @@ public class Utilisateur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUtilisateur;
     @Lob
-    @Column(columnDefinition = "LONGBLOB")
-    private byte[] image;
+    @Column(name = "image", length = 1048576000)
+    private String image;
     private String nom;
     private String prenom;
     private String email;

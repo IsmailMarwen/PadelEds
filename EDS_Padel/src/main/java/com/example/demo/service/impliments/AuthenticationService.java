@@ -153,7 +153,7 @@ public class AuthenticationService {
 
         // Default values if AppWeb is null
         String buttonColor = appWeb != null ? getColorButton(appWeb.getCouleurAppWeb()) : "#000000";
-        byte [] logoUrl = appWeb != null ? appWeb.getLogoAppWeb() : null;
+        String logoUrl = appWeb != null ? appWeb.getLogoAppWeb() : null;
         String adresseUrl = appWeb != null ? appWeb.getAdresseUrl() : "default-address-url";
 
         String subject = "Reset Password";
@@ -219,7 +219,7 @@ public UpdatePasswordResponse updatePassword(UpdatePasswordRequest updatePasswor
 public ContactRequest contactClub(ContactRequest contactRequest){
         Club club=clubRepository.findById(contactRequest.getIdClub()).get();
         AppWeb appWeb=club.getAppWeb();
-        byte [] logoUrl =appWeb.getLogoAppWeb();
+        String logoUrl =appWeb.getLogoAppWeb();
     String subject = contactRequest.getSujet();
     String htmlBody = "<html>" +
             "<head>" +
