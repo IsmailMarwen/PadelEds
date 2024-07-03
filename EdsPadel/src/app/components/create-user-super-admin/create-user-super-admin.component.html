@@ -1,72 +1,84 @@
 <div class="modal-content custom-modal-content">
-    <div class="modal-header">
-      <h4 class="modal-title">                            <svg class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.5 12.5537C12.2546 12.5537 14.4626 10.3171 14.4626 7.52684C14.4626 4.73663 12.2546 2.5 9.5 2.5C6.74543 2.5 4.53737 4.73663 4.53737 7.52684C4.53737 10.3171 6.74543 12.5537 9.5 12.5537ZM9.5 15.0152C5.45422 15.0152 2 15.6621 2 18.2464C2 20.8298 5.4332 21.5 9.5 21.5C13.5448 21.5 17 20.8531 17 18.2687C17 15.6844 13.5668 15.0152 9.5 15.0152ZM19.8979 9.58786H21.101C21.5962 9.58786 22 9.99731 22 10.4995C22 11.0016 21.5962 11.4111 21.101 11.4111H19.8979V12.5884C19.8979 13.0906 19.4952 13.5 18.999 13.5C18.5038 13.5 18.1 13.0906 18.1 12.5884V11.4111H16.899C16.4027 11.4111 16 11.0016 16 10.4995C16 9.99731 16.4027 9.58786 16.899 9.58786H18.1V8.41162C18.1 7.90945 18.5038 7.5 18.999 7.5C19.4952 7.5 19.8979 7.90945 19.8979 8.41162V9.58786Z" fill="currentColor"></path>                            </svg>                         Ajouter Un Utilisateur</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
-    </div>
-    <div class="modal-body">
-      <div class="conatiner-fluid ">
-          <div>
-              <div class="row">
-                <div >
-                    <div class="card-header d-flex justify-content-between">
-                       <div class="header-title">
-                       </div>
-                    </div>
-                    <div class="card-body">
-                       <form>
-                          <div class="form-group">
-                             <div class="profile-img-edit position-relative">
-                                <img [src]="imgProfile" alt="profile-pic" class="theme-color-default-img profile-pic rounded avatar-100">
-                                
-                                <div class="upload-icone ">
-                                   <svg class="upload-button icon-14" width="14"  viewBox="0 0 24 24">
-                                      <path fill="#ffffff" d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" />
-                                   </svg>
-                                   <input (change)="changeLogo($event)" type="file" name="qqfile" class="file-input">
-                                </div>
-                             </div>
-                         
-                          </div>
-                      
-                          <div class="form-group">
-                             <label class="form-label" for="fname">Nom <span class="obl">*</span></label>
-                             <input type="text" class="form-control" id="fname" placeholder="Nom" name="nom" [(ngModel)]="nom">
-                          </div>
-                          <div class="form-group">
-                             <label class="form-label" for="lname">Prénom <span class="obl">*</span></label>
-                             <input type="text" class="form-control" id="lname" placeholder="Prénom" name="prenom" [(ngModel)]="prenom">
-                          </div>
-                          <div class="form-group">
-                             <label class="form-label" for="email">Email <span class="obl">*</span></label>
-                             <input type="text" class="form-control" id="email" placeholder="Email" name="email" [(ngModel)]="email">
-                          </div>
-                          <div class="form-group">
-                             <label class="form-label" for="tel">Téléphone <span class="obl">*</span></label>
-                             <input type="text" class="form-control" id="tel" placeholder="+216 " [(ngModel)]="telephone" name="telephone">
-                          </div>
-                          <div class="form-group">
-                            <label class="form-label" for="pass">Password <span class="obl">*</span></label>
-                            <input type="password" class="form-control" id="pass" placeholder="password" [(ngModel)]="password" name="password">
-                         </div>
-                         <div class="row justify-content-center">
+   <div class="modal-header">
+     <h4 class="modal-title">                            <svg class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.5 12.5537C12.2546 12.5537 14.4626 10.3171 14.4626 7.52684C14.4626 4.73663 12.2546 2.5 9.5 2.5C6.74543 2.5 4.53737 4.73663 4.53737 7.52684C4.53737 10.3171 6.74543 12.5537 9.5 12.5537ZM9.5 15.0152C5.45422 15.0152 2 15.6621 2 18.2464C2 20.8298 5.4332 21.5 9.5 21.5C13.5448 21.5 17 20.8531 17 18.2687C17 15.6844 13.5668 15.0152 9.5 15.0152ZM19.8979 9.58786H21.101C21.5962 9.58786 22 9.99731 22 10.4995C22 11.0016 21.5962 11.4111 21.101 11.4111H19.8979V12.5884C19.8979 13.0906 19.4952 13.5 18.999 13.5C18.5038 13.5 18.1 13.0906 18.1 12.5884V11.4111H16.899C16.4027 11.4111 16 11.0016 16 10.4995C16 9.99731 16.4027 9.58786 16.899 9.58786H18.1V8.41162C18.1 7.90945 18.5038 7.5 18.999 7.5C19.4952 7.5 19.8979 7.90945 19.8979 8.41162V9.58786Z" fill="currentColor"></path>                            </svg>                         Ajouter Un Utilisateur</h4>
+     <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+   </div>
+   <div class="modal-body">
+     <div class="conatiner-fluid ">
+         <div>
+             <div class="row">
+               <div >
+                   <div class="card-header d-flex justify-content-between">
+                      <div class="header-title">
+                      </div>
+                   </div>
+                   <div class="card-body">
+                      <form>
+                         <div class="form-group">
+                            <div class="profile-img-edit position-relative">
+                               <img [src]="image" alt="profile-pic" class="theme-color-default-img profile-pic rounded avatar-100">
+                               
+                               <div class="upload-icone ">
+                                  <svg class="upload-button icon-14" width="14"  viewBox="0 0 24 24">
+                                     <path fill="#ffffff" d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" />
+                                  </svg>
+                                  <input (change)="changeLogo($event)" type="file" name="image" id="imgProfile" class="file-input" [(ngModel)]="image">
+                               </div>
+                            </div>
+                            <div id="imgProfile-error" class="error-message"></div>
 
-                         <div class="col-xl-6 col-lg-6">
-                            <button class="btn btnTermine"  *ngIf="!preload">                                          <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                                                    
-                              Ajouter </button>
-                              <button class="btn btnTermine" *ngIf="preload"><img src="../../../assets/images/preload.gif" height="25px"></button>
-                  
-                  
-                            
-                            </div></div>
-                       </form>
-                    </div>
+                        
+                         </div>
+                     
+                         <div class="form-group">
+                            <label class="form-label" for="fname">Nom <span class="obl">*</span></label>
+                            <input type="text" class="form-control" id="fname" placeholder="Nom" name="nom" [(ngModel)]="nom">
+                            <div id="fname-error" class="error-message"></div>
+
+                         </div>
+                         <div class="form-group">
+                            <label class="form-label" for="lname">Prénom <span class="obl">*</span></label>
+                            <input type="text" class="form-control" id="lname" placeholder="Prénom" name="prenom" [(ngModel)]="prenom">
+                            <div id="lname-error" class="error-message"></div>
+
+                          </div>
+                         <div class="form-group">
+                            <label class="form-label" for="email">Email <span class="obl">*</span></label>
+                            <input type="text" class="form-control" id="email" placeholder="Email" name="email" [(ngModel)]="email">
+                            <div id="email-error" class="error-message"></div>
+
+                          </div>
+                         <div class="form-group">
+                            <label class="form-label" for="tel">Téléphone <span class="obl">*</span></label>
+                            <input type="text" class="form-control" id="tel" placeholder="+216 " [(ngModel)]="telephone" name="telephone">
+                            <div id="tel-error" class="error-message"></div>
+
+                          </div>
+                         <div class="form-group">
+                           <label class="form-label" for="pass">Password <span class="obl">*</span></label>
+                           <input type="password" class="form-control" id="pass" placeholder="password" [(ngModel)]="password" name="password">
+                           <div id="pass-error" class="error-message"></div>
+
+                          </div>
+                        <div class="row justify-content-center">
+
+                        <div class="col-xl-6 col-lg-6" (click)="addUser() ">
+                           <button class="btn btnTermine"  *ngIf="!preload">                                          <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                                                    
+                             Ajouter </button>
+                             <button class="btn btnTermine" *ngIf="preload"><img src="../../../assets/images/preload.gif" height="25px"></button>
+                 
+                 
+                           
+                           </div></div>
+                      </form>
+                   </div>
+                </div>
+                
+                     
+                   
                  </div>
                  
-                      
-                    
-                  </div>
-                  
-          </div>
-    </div>
-  
-  </div>
+         </div>
+   </div>
+ 
+ </div>

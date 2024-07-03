@@ -22,7 +22,7 @@ export class AddUserComponent implements OnInit, OnDestroy {
 
   imageProfile:string="../../../assets/images/avatars/avtar_6.png"
   currentMode: string = 'light';
-
+  
   constructor(public activeModal: NgbActiveModal, private service: AppwebserviceService) {}
 
   ngOnInit(): void {
@@ -45,14 +45,41 @@ export class AddUserComponent implements OnInit, OnDestroy {
       this.currentMode = 'light';
     }
   }
-
+  setRoleAdmin(){
+    this.role="admin"
+  }
+  setRoleCoach(){
+    this.role="coach"
+  }
+  setRoleAgent(){
+    this.role="agent"
+  }
+  setRoleMembre(){
+    this.role="membre"
+  }
+  setGenderMale(){
+    this.gender="homme"
+  }
+  setGenderFMale(){
+    this.gender="femme"
+  }
   addUser() {
+    this.preload=true
     var data={
-
+      nom:this.nom,
+      prenom:this.prenom,
+      role:this.role,
+      genre:this.gender,
+      telephone:this.phone,
+      image:this.imageProfile,
+      username:this.username,
+      password:this.password,
+      email:this.email
     }
     this.service.addUser(data).subscribe(
       response => {
         console.log('User added successfully:', response);
+        this.preload=false
         this.activeModal.close('saved');
       },
       (error) => {

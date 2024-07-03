@@ -1,0 +1,87 @@
+<div class="modal-content custom-modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">
+        <svg class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.761 12.001C19.761 12.8145 20.429 13.4764 21.25 13.4764C21.664 13.4764 22 13.8093 22 14.2195V16.8958C22 19.159 20.142 21 17.858 21H6.143C3.859 21 2 19.159 2 16.8958V14.2195C2 13.8093 2.336 13.4764 2.75 13.4764C3.572 13.4764 4.24 12.8145 4.24 12.001C4.24 11.2083 3.599 10.6118 2.75 10.6118C2.551 10.6118 2.361 10.5335 2.22 10.3938C2.079 10.2541 2 10.0648 2 9.86866L2.002 7.10514C2.002 4.84201 3.86 3 6.144 3H17.856C20.14 3 21.999 4.84201 21.999 7.10514L22 9.78245C22 9.97864 21.921 10.1689 21.781 10.3076C21.64 10.4473 21.45 10.5256 21.25 10.5256C20.429 10.5256 19.761 11.1875 19.761 12.001ZM14.252 12.648L15.431 11.5105C15.636 11.3143 15.707 11.025 15.618 10.7575C15.53 10.4899 15.3 10.2997 15.022 10.261L13.393 10.0252L12.664 8.5627C12.539 8.31102 12.285 8.15446 12.002 8.15347H12C11.718 8.15347 11.464 8.31003 11.337 8.56171L10.608 10.0252L8.982 10.26C8.701 10.2997 8.471 10.4899 8.382 10.7575C8.294 11.025 8.365 11.3143 8.569 11.5105L9.748 12.648L9.47 14.2562C9.422 14.5336 9.535 14.8091 9.765 14.9746C9.895 15.0667 10.046 15.1143 10.199 15.1143C10.316 15.1143 10.434 15.0855 10.542 15.0291L12 14.2701L13.455 15.0271C13.707 15.1608 14.006 15.14 14.235 14.9736C14.466 14.8091 14.579 14.5336 14.531 14.2562L14.252 12.648Z" fill="currentColor"></path>                            </svg>                                                              
+
+        Modifier Abonnement
+      </h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    </div>
+    <div class="modal-body">
+      <div class="container-fluid">
+        <div>
+          <div class="row">
+            <div>
+              <div class="card-header d-flex justify-content-between">
+                <div class="header-title">
+                </div>
+              </div>
+              <div class="card-body">
+                <form>
+                 
+                  <div class="form-group">
+                    <label class="form-label" for="codeTypeAbonnement">Code Type Abonnement <span
+                        class="obl">*</span></label>
+                    <input type="text" class="form-control" id="codeTypeAbonnement"
+                      placeholder="Code Type Abonnement" name="codeTypeAbonnement" [(ngModel)]="abonnement.codeTypeAbonnement">
+                    <div id="codeTypeAbonnement-error" class="error-message"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="libTypeAbonnement">Libellé Type Abonnement <span
+                        class="obl">*</span></label>
+                    <input type="text" class="form-control" id="libTypeAbonnement"
+                      placeholder="Libellé Type Abonnement" name="libTypeAbonnement" [(ngModel)]="abonnement.libTypeAbonnement">
+                    <div id="libTypeAbonnement-error" class="error-message"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="mthtTypeAbonnement">Montant HT Type Abonnement <span
+                        class="obl">*</span></label>
+                    <input type="text" class="form-control" id="mthtTypeAbonnement"
+                      placeholder="Montant HT Type Abonnement" name="mthtTypeAbonnement" [(ngModel)]="abonnement.mthtTypeAbonnement">
+                    <div id="mthtTypeAbonnement-error" class="error-message"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="tauxTva">Taux TVA <span class="obl">*</span></label>
+                    <input type="text" class="form-control" id="tauxTva" placeholder="Taux TVA" name="tauxTva"
+                      [(ngModel)]="abonnement.tauxTva">
+                    <div id="tauxTva-error" class="error-message"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="mtttc">Montant TTC <span class="obl">*</span></label>
+                    <input type="text" class="form-control" id="mtttc" placeholder="Montant TTC" name="mtttc"
+                      [(ngModel)]="abonnement.mtttc">
+                    <div id="mtttc-error" class="error-message"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="nbMois">Nombre de Mois <span class="obl">*</span></label>
+                    <input type="text" class="form-control" id="nbMois" placeholder="Nombre de Mois" name="nbMois"
+                      [(ngModel)]="abonnement.nbMois">
+                    <div id="nbMois-error" class="error-message"></div>
+                  </div>
+  
+                  <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-6" (click)="updateAbonnement()">
+                      <button class="btn btnTermine" *ngIf="!preload">
+                        <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z"
+                          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                      Modifier
+                    </button>
+                    <button class="btn btnTermine" *ngIf="preload">
+                      <img src="../../../assets/images/preload.gif" height="25px">
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

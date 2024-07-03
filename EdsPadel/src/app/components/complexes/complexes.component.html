@@ -488,25 +488,24 @@
                         <tbody>
                             <tr *ngFor="let club of clubs; let i = index">
                                 <td class="text-center">
-                                    <img class="bg-soft-primary rounded img-fluid avatar-40 me-3" [src]="club.profileImage" alt="profile">
+                                    <img class="bg-soft-primary rounded img-fluid avatar-40 me-3" [src]="club.appWeb.logoAppWeb" alt="profile">
                                 </td>
                                 <td>{{ club.nomClub }}</td>
                                 <td>{{ club.email }}</td>
                                 <td>{{ club.adresse }}</td>
-                                <td>{{ club.telephone }}</td>
+                                <td>{{ club.telPrincipal}}</td>
                                 <td>
-                                    <span class="badge bg-info">{{ club.activite }}</span>&nbsp;
-                                    <span class="badge bg-success">Football</span>
+                                    <span class="badge bg-info" *ngFor="let act of club.activites">{{ act.libelle }}</span>&nbsp;
                                 </td>
                                 <td>
                                     <span 
                                         class="badge" 
                                         [ngClass]="{
-                                            'bg-free': club.abonnement === 'free',
-                                            'bg-silver': club.abonnement === 'silver',
-                                            'bg-gold': club.abonnement === 'gold'
+                                            'bg-free': club.typeAbonnement.libTypeAbonnement=== 'free',
+                                            'bg-silver': club.typeAbonnement.libTypeAbonnement === 'silver',
+                                            'bg-gold': club.typeAbonnement.libTypeAbonnement=== 'gold'
                                         }">
-                                        {{ club.abonnement }}
+                                        {{ club.typeAbonnement.libTypeAbonnement }}
                                     </span>
                                 </td>
                                 <td>

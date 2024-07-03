@@ -12,7 +12,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   selectedImage: string | null = null;
   url: string | null = null;
   currentMode: string = 'light';
-
+  preload:boolean=false
   constructor(public activeModal: NgbActiveModal, private service: AppwebserviceService) {}
 
   ngOnInit(): void {
@@ -38,11 +38,13 @@ export class EditUserComponent implements OnInit, OnDestroy {
     }
   }
   updateUser() {
+    this.preload=true
     // Call the update user API with the user data
     this.service.updateUser(this.user).subscribe(
       response => {
         // Handle success response
         console.log('User updated successfully:', response);
+        this.preload=false
         this.activeModal.close('saved');
       },
       error => {
@@ -51,5 +53,21 @@ export class EditUserComponent implements OnInit, OnDestroy {
       }
     );
   }
-  
+ 
+  setGenderMale(){
+    this.user.genre="homme"
+  }
+  setGenderFMale(){
+    this.user.genre="femme"
+  }
+  changeLogo(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.user.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 }

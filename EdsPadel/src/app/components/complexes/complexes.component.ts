@@ -43,28 +43,15 @@ export class ComplexesComponent implements OnInit,AfterViewInit  {
   { profileImage: 'assets/images/shapes/03.png', nom: 'Dan', prenom: 'Druff', email: 'dandruff.com', telephone: '+55 6523 456 856' },
   { profileImage: 'assets/images/shapes/04.png', nom: 'Hans', prenom: 'Olo', email: 'hansolo.com', telephone: '+91 2586 253 125' }
 ];
-clubs = [
-  { profileImage: 'assets/images/shapes/01.png', nomClub: 'Anna', email: 'annasthesia.com',adresse: 'Sthesia',  telephone: '(760) 756 7568',activite: 'padel' ,abonnement:"free"},
-  { profileImage: 'assets/images/shapes/02.png', nomClub: 'Brock',  email: 'brocklee.com',adresse: 'Lee', telephone: '+62 5689 458 658',activite: 'padel' ,abonnement:"gold"},
-  { profileImage: 'assets/images/shapes/03.png', nomClub: 'Dan',email: 'dandruff.com', adresse: 'Druff',  telephone: '+55 6523 456 856',activite: 'padel',abonnement:"free" },
-  { profileImage: 'assets/images/shapes/04.png', nomClub: 'Hans', email: 'hansolo.com',adresse: 'Olo',  telephone: '+91 2586 253 125',activite: 'padel',abonnement:"silver" },
-  { profileImage: 'assets/images/shapes/01.png', nomClub: 'Anna', email: 'annasthesia.com',adresse: 'Sthesia',  telephone: '(760) 756 7568',activite: 'padel' ,abonnement:"free"},
-  { profileImage: 'assets/images/shapes/02.png', nomClub: 'Brock',  email: 'brocklee.com',adresse: 'Lee', telephone: '+62 5689 458 658',activite: 'padel' ,abonnement:"gold"},
-  { profileImage: 'assets/images/shapes/03.png', nomClub: 'Dan',email: 'dandruff.com', adresse: 'Druff',  telephone: '+55 6523 456 856',activite: 'padel',abonnement:"free" },
-  { profileImage: 'assets/images/shapes/04.png', nomClub: 'Hans', email: 'hansolo.com',adresse: 'Olo',  telephone: '+91 2586 253 125',activite: 'padel',abonnement:"silver" },
-  { profileImage: 'assets/images/shapes/01.png', nomClub: 'Anna', email: 'annasthesia.com',adresse: 'Sthesia',  telephone: '(760) 756 7568',activite: 'padel' ,abonnement:"free"},
-  { profileImage: 'assets/images/shapes/02.png', nomClub: 'Brock',  email: 'brocklee.com',adresse: 'Lee', telephone: '+62 5689 458 658',activite: 'padel' ,abonnement:"gold"},
-  { profileImage: 'assets/images/shapes/03.png', nomClub: 'Dan',email: 'dandruff.com', adresse: 'Druff',  telephone: '+55 6523 456 856',activite: 'padel',abonnement:"free" },
-  { profileImage: 'assets/images/shapes/04.png', nomClub: 'Hans', email: 'hansolo.com',adresse: 'Olo',  telephone: '+91 2586 253 125',activite: 'padel',abonnement:"silver" },
-  { profileImage: 'assets/images/shapes/01.png', nomClub: 'Anna', email: 'annasthesia.com',adresse: 'Sthesia',  telephone: '(760) 756 7568',activite: 'padel' ,abonnement:"free"},
-  { profileImage: 'assets/images/shapes/02.png', nomClub: 'Brock',  email: 'brocklee.com',adresse: 'Lee', telephone: '+62 5689 458 658',activite: 'padel' ,abonnement:"gold"},
-  { profileImage: 'assets/images/shapes/03.png', nomClub: 'Dan',email: 'dandruff.com', adresse: 'Druff',  telephone: '+55 6523 456 856',activite: 'padel',abonnement:"free" },
-  { profileImage: 'assets/images/shapes/04.png', nomClub: 'Hans', email: 'hansolo.com',adresse: 'Olo',  telephone: '+91 2586 253 125',activite: 'padel',abonnement:"silver" }
-];
+clubs:any = [];
  ngAfterViewInit() {
     }
     
     ngOnInit() {
+      this.service.getAllClub().subscribe(data=>{
+        this.clubs=data
+        console.log(this.clubs)
+      })
         this.applyTheme('theme1')
         setTimeout(() => {
           this.preload = false;

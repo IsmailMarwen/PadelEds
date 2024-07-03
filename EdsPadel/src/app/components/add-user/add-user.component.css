@@ -132,10 +132,7 @@
 
     align-items: center;
   }
-  .btn-border:not(.active):hover {
-    color: #fcbc04 !important;
-    border-color: #fcbc04 !important;
-}
+
   .btnTermine{
     padding-top: 14px;
     padding-bottom: 14px;
@@ -152,15 +149,8 @@
     .url{
       color: #198754;
     }
-    .active {
-      background-color: #fcbc04 !important; /* Exemple: arrière-plan sombre */
-      color: #fff !important; /* Exemple: texte en blanc */
-      border: 1px solid #fcbc04 !important; /* Exemple: bordure plus sombre */
-  }
-  .activeTheme {
-    color: #fcbc04 !important;
-    border-color: #fcbc04 !important;
-}
+  
+ 
 .google-map-container {
   width: 100%;
   position: relative;
@@ -174,4 +164,48 @@
 .error {
   border: 1px solid red;
   background-color: #ffe6e6; /* Ou une autre couleur de fond rouge */
+}
+.icon-padel{
+    color: rgb(13 202 240) !important; 
+  }
+  .icon-football{
+    color: rgb(25 135 84)!important; 
+  }
+  .icon-volley{
+    color: rgb(192 50 33);
+  }
+  .icon-basket{
+    color: #f16a1b;
+  }
+  .icon-tennis{
+    color:#f1d81b
+  }
+  .icon-ping{
+    color: #3b8aff;
+  }
+  .icon-handball{
+    color: #a1590c !important;
+  }
+  .icon-free{
+    color: #1671c1;
+  }
+  .icon-silver{
+    color: #575f66;
+  }
+  .icon-gold{
+    color: #a4801c;
+  }
+  .bg-free {
+    background-color: #1671c1;
+    color: white;
+}
+
+.bg-silver {
+    background-color: #575f66;
+    color: white;
+}
+
+.bg-gold {
+    background-color: #a4801c;
+    color: white;
 }

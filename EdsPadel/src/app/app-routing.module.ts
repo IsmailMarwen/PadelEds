@@ -19,11 +19,20 @@ import { UtilisateurComponent } from './components/utilisateur/utilisateur.compo
 import { TerrainComponent } from './components/terrain/terrain.component';
 import { SocieteComponent } from './components/societe/societe.component';
 import { CalanderComponent } from './components/calander/calander.component';
-
+import { ActiviteComponent } from './components/activite/activite.component';
+import { TypAbonnementComponent } from './components/typ-abonnement/typ-abonnement.component';
+import { typeDepenseeComponent } from './components/type-depense/type-depense.component';
+import { TauxTvaComponent } from './components/taux-tva/taux-tva.component';
+import { DeviceComponent } from './components/device/device.component';
+import { RessourceComponent } from './components/ressource/ressource.component';
+import { BanqueComponent } from './components/banque/banque.component';
+import { TypeAbonnementClubComponent } from './components/type-abonnement-club/type-abonnement-club.component';
 const routes: Routes = [
   {path:'eds/admin/home',component:SuperAdminComponent},
   {path:'eds/admin/users',component:UsersSuperAdminComponent},
   {path:'eds/admin/complexes',component:ComplexesComponent},
+  {path:'eds/admin/activites',component:ActiviteComponent},
+  {path:'eds/admin/abonnements',component:TypAbonnementComponent},
   {path:'eds/admin/configApp/:id',component:ConfigAppWebComponent},
   { path: '', component: LoginComponent},
   { path: ':url/signUp', component: SignupComponent},
@@ -38,7 +47,13 @@ const routes: Routes = [
   {path:':url/contact',component:ContactComponent},
   {path:':url/utilisateur',component:UtilisateurComponent},
   {path:'terrain',component:TerrainComponent},
-  {path:'calander',component:CalanderComponent}
+  {path:'calander',component:CalanderComponent,canActivate:[authGuard]},
+  {path:':url/typeDepense',component:typeDepenseeComponent,canActivate:[authGuard]},
+{path:':url/tauxTva',component:TauxTvaComponent,canActivate:[authGuard]},
+{path:':url/devise',component:DeviceComponent,canActivate:[authGuard]},
+{path:':url/ressource',component:RessourceComponent,canActivate:[authGuard]},
+{path:':url/banque',component:BanqueComponent,canActivate:[authGuard]},
+{path:':url/typeAbonnementClub',component:TypeAbonnementClubComponent,canActivate:[authGuard]},
 
 ];
 

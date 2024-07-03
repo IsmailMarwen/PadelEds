@@ -27,7 +27,27 @@
                            </div>
                        
                         </div>
-                    
+                        <div class="form-group">
+                          <label class="form-label" for="fname">Role <span class="obl">*</span></label>
+                          <div class="d-grid gap-3 grid-cols-2 mb-4">
+              
+    
+                            <div class="btn btn-border d-block " [ngClass]="{'active': role=='admin'}" (click)="setRoleAdmin()" >
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-padel" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Admin  </span>
+                            </div>
+                            <div class="btn btn-border d-block " [ngClass]="{'active': role=='agent'}" (click)="setRoleAgent()" >
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-football" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Agent  </span>
+                            </div>
+                            <div class="btn btn-border d-block " [ngClass]="{'active': role=='coach'}" (click)="setRoleCoach()" >
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-silver" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>               <span class="ms-2 "> Coach  </span>
+                            </div>
+                            <div class="btn btn-border d-block " [ngClass]="{'active': role=='membre'}" (click)="setRoleMembre()" >
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-basket" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Membre  </span>
+                            </div>
+                            
+                       
+                           
+                          </div>                       </div>
                         <div class="form-group">
                            <label class="form-label" for="fname">Nom <span class="obl">*</span></label>
                            <input type="text" class="form-control" id="fname" placeholder="Nom" name="nom" [(ngModel)]="nom">
@@ -37,6 +57,21 @@
                            <input type="text" class="form-control" id="lname" placeholder="Prénom" name="prenom" [(ngModel)]="prenom">
                         </div>
                         <div class="form-group">
+                          <label class="form-label" for="lname">Genre <span class="obl">*</span></label>
+                          <div class="d-grid gap-3 grid-cols-2 mb-4">
+              
+    
+                            <div class="btn btn-border d-block "  [ngClass]="{'active': gender=='homme'}" (click)="setGenderMale()">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-free" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Homme  </span>
+                            </div>
+                            <div class="btn btn-border d-block " [ngClass]="{'active': gender=='femme'}" (click)="setGenderFMale()" >
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-volley" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                     <span class="ms-2 "> Femme  </span>
+                            </div>
+                         
+                           
+                          </div>
+                       </div>
+                        <div class="form-group">
                            <label class="form-label" for="email">Email <span class="obl">*</span></label>
                            <input type="text" class="form-control" id="email" placeholder="Email" name="email" [(ngModel)]="email">
                         </div>
@@ -45,13 +80,17 @@
                            <input type="text" class="form-control" id="tel" placeholder="+216 " [(ngModel)]="phone" name="telephone">
                         </div>
                         <div class="form-group">
+                          <label class="form-label" for="tel">Username <span class="obl">*</span></label>
+                          <input type="text" class="form-control" id="tel" placeholder="username" [(ngModel)]="username" name="username">
+                       </div>
+                        <div class="form-group">
                           <label class="form-label" for="pass">Password <span class="obl">*</span></label>
                           <input type="password" class="form-control" id="pass" placeholder="password" [(ngModel)]="password" name="password">
                        </div>
                        <div class="row justify-content-center">
 
                        <div class="col-xl-6 col-lg-6">
-                          <button class="btn btnTermine"  *ngIf="!preload">                                          <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                                                    
+                          <button class="btn btnTermine"  *ngIf="!preload" (click)="addUser()">                                          <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                                                    
                             Ajouter </button>
                             <button class="btn btnTermine" *ngIf="preload"><img src="../../../assets/images/preload.gif" height="25px"></button>
                 

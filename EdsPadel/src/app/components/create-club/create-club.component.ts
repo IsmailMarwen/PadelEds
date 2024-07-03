@@ -250,6 +250,11 @@ selectedLogo:boolean=true
 activities: any[] = [];
 selectedActivities: { id: number, libelle: string }[] = [];
 raisonSociale:any
+logoAppWeb :any = "https://png.pngtree.com/png-vector/20220610/ourmid/pngtree-mascot-icon-illustration-of-a-padel-player-png-image_4955855.png";
+stringToByteArray(str: string): Uint8Array {
+  const encoder = new TextEncoder(); // Create a TextEncoder instance
+  return encoder.encode(str); // Encode the string to UTF-8 byte array
+}
 getCurrentLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -398,11 +403,13 @@ onClose() {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.logo = e.target.result;
+        this.logoAppWeb = e.target.result;
       };
       reader.readAsDataURL(file);
     }
   }
+  
+  
   selectPays(country: Country): void {
     this.selectedCountry = country;
     this.pays = country.name;
@@ -524,9 +531,9 @@ this.service.getAddressCoordinates(adr+","+this.pays).subscribe(res=>{
       },
       "appWeb": {
           "nomAppWeb": this.nomClub,
-          "logoAppWeb": this.logo,
+          "logoAppWeb": this.logoAppWeb,
           "couleurAppWeb": this.theme,
-          "bannerImage": "https://media.babolat.com//image/upload/f_auto,q_auto,c_crop,w_2000,h_751/Website_content/Padel_News/02092020-Launch/padel-equipment/equipment-banner-2.jpg",
+          "bannerImage":"https://media.babolat.com//image/upload/f_auto,q_auto,c_crop,w_2000,h_751/Website_content/Padel_News/02092020-Launch/padel-equipment/equipment-banner-2.jpg",
           "adresseUrl":this.adresseUrl ,
           "mode":this.mode,
           "couleurSideBar":this.sidebarcolor

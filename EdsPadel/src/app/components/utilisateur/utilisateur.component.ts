@@ -52,7 +52,8 @@ export class UtilisateurComponent implements OnInit,AfterViewInit  {
   searchQuery: string = '';
   users: any[] = [];
   originalUsers: any[] = []; // Array to store original users before filtering
-  selectedOption: string = '0';  
+  selectedOption: string = '0';
+  selectedGenre:string='';  
   options = [
     { value: '0', label: 'All Users' },
     { value: '1', label: 'Admin' },
@@ -774,30 +775,41 @@ applyThemeUpdate(theme: string): void {
     const selected = this.options.find(option => option.value === this.selectedOption);
     return selected ? selected.label : 'Select an option';
   }
-
-  selectOption(option: { value: string, label: string }) {
-    this.selectedOption = option.value;
+  applyFilters(): void {
+    let filteredUsers = this.originalUsers;
   
-    switch (option.value) {
-      case '0':
-        this.getUsers(); // Fetch all users
-        break;
-      case '1':
-        this.getAdmins();
-        break;
-      case '2':
-        this.getMembers();
-        break;
-      case '3':
-        this.getCoaches();
-        break;
-      case '3':
-        this.getCoaches();
-        break;
-      default:
-        this.getUsers(); // Default to fetching all users
-        break;
+    if (this.selectedGenre) {
+      filteredUsers = filteredUsers.filter(user => user.genre === this.selectedGenre);
     }
+  
+    if (this.selectedOption) {
+      switch (this.selectedOption) {
+        case 'admin':
+          filteredUsers = filteredUsers.filter(user => user.role === 'admin');
+          break;
+        case 'membre':
+          filteredUsers = filteredUsers.filter(user => user.role === 'membre');
+          break;
+        case 'coach':
+          filteredUsers = filteredUsers.filter(user => user.role === 'coach');
+          break;
+        case 'agent':
+          filteredUsers = filteredUsers.filter(user => user.role === 'agent');
+          break;
+        default:
+          break;
+      }
+    }
+  
+    this.users = filteredUsers; // Met à jour la liste des utilisateurs filtrés
+  }
+  selectOption(role: string): void {
+    if (this.selectedOption === role) {
+      this.selectedOption = ''; // Réinitialise le filtre de rôle si le même rôle est sélectionné à nouveau
+    } else {
+      this.selectedOption = role; // Applique le filtre de rôle
+    }
+    this.applyFilters(); // Applique les filtres combinés
   }
   
   getAdmins(): void {
@@ -826,8 +838,8 @@ applyThemeUpdate(theme: string): void {
 
   getUsers(): void {
     this.service.getAllUsers().subscribe(users => {
-      this.users = users;
       this.originalUsers = users;
+      this.applyFilters(); // Applique les filtres lors de la récupération initiale des utilisateurs
     });
   }
 
@@ -839,13 +851,21 @@ applyThemeUpdate(theme: string): void {
       );
     });
   }
-  
+  filterGenre(genre: string): void {
+    if (this.selectedGenre === genre) {
+      this.selectedGenre = ''; // Réinitialise le filtre de genre si le même genre est sélectionné à nouveau
+    } else {
+      this.selectedGenre = genre; // Applique le filtre de genre
+    }
+    this.applyFilters(); // Applique les filtres combinés
+  }
   deleteUser(userId: number, role: string): void {
+    console.log(role)
+    console.log(userId)
     this.service.deleteUser(userId, role).subscribe(() => {
       // Remove the deleted user from the users array
       this.users = this.users.filter(user => user.id !== userId);
   
-      // Fetch the updated list of users from the backend
       this.getUsers();
     }, error => {
       console.error('Error deleting user:', error);

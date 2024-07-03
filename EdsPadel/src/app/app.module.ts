@@ -45,6 +45,28 @@ import {NgToastModule} from 'ng-angular-popup';
 import { SocieteComponent } from './components/societe/societe.component';
 import { FilterUsersComponent } from './components/filter-users/filter-users.component';
 import { CalanderComponent } from './components/calander/calander.component';
+import { CreateTypAbonnementComponent } from './components/create-typ-abonnement/create-typ-abonnement.component';
+import { UpdateTypAbonnementComponent } from './components/update-typ-abonnement/update-typ-abonnement.component';
+import { CreateActiviteComponent } from './components/create-activite/create-activite.component';
+import { UpdateActiviteComponent } from './components/update-activite/update-activite.component';
+import { typeDepenseeComponent } from './components/type-depense/type-depense.component';
+import { BanqueComponent } from './components/banque/banque.component';
+import { CreateBanqueComponent } from './components/create-banque/create-banque.component';
+import { UpdateBanqueComponent } from './components/update-banque/update-banque.component';
+import { CreateDeviceComponent } from './components/create-device/create-device.component';
+import { CreateRessourceComponent } from './components/create-ressource/create-ressource.component';
+import { CreateTauxTvaComponent } from './components/create-taux-tva/create-taux-tva.component';
+import { CreateTypeAbonnementClubComponent } from './components/create-type-abonnement-club/create-type-abonnement-club.component';
+import { DeviceComponent } from './components/device/device.component';
+import { TauxTvaComponent } from './components/taux-tva/taux-tva.component';
+import { CreateTypeDepenseComponent } from './components/create-type-depense/create-type-depense.component';
+import { UpdateDeviceComponent } from './components/update-device/update-device.component';
+import { UpdateRessourceComponent } from './components/update-ressource/update-ressource.component';
+import { UpdateTauxTvaComponent } from './components/update-taux-tva/update-taux-tva.component';
+import { UpdateTypeAbonnementClubComponent } from './components/update-type-abonnement-club/update-type-abonnement-club.component';
+import { UpdateTypeDepenseComponent } from './components/update-type-depense/update-type-depense.component';
+import { TypeAbonnementClubComponent } from './components/type-abonnement-club/type-abonnement-club.component';
+import { RessourceComponent } from './components/ressource/ressource.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +97,30 @@ import { CalanderComponent } from './components/calander/calander.component';
     UtilisateurComponent,
     SocieteComponent,
     FilterUsersComponent,
-    CalanderComponent
+    CalanderComponent,
+    CreateTypAbonnementComponent,
+    UpdateTypAbonnementComponent,
+    CreateActiviteComponent,
+    UpdateActiviteComponent,
+    typeDepenseeComponent,
+    BanqueComponent,
+    CreateBanqueComponent,
+    UpdateBanqueComponent,
+    CreateDeviceComponent,
+    CreateRessourceComponent,
+    CreateTauxTvaComponent,
+    CreateTypeAbonnementClubComponent,
+    DeviceComponent,
+    TauxTvaComponent,
+    CreateTypeDepenseComponent,
+    UpdateDeviceComponent,
+    UpdateRessourceComponent,
+    UpdateTauxTvaComponent,
+    UpdateTypeAbonnementClubComponent,
+    UpdateTypeDepenseComponent,
+    TypeAbonnementClubComponent,
+    UpdateRessourceComponent,
+    RessourceComponent
   ],
   imports: [
     BrowserModule,

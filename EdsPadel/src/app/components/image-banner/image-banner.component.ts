@@ -50,21 +50,38 @@ export class ImageBannerComponent implements OnInit,OnDestroy  {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.selectedImage = e.target.result;
-        console.log(this.selectedImage)
         if(this.selectedImage!=null){
           this.service.setBannerImage(this.selectedImage);
         }
-        this.activeModal.close();
+        this.updateAppWeb()
+       
 
       };
       reader.readAsDataURL(file);
-      this.updateAppWeb()
     }
+  }
+  changeBannerImage(event: any) {
+    const file: File = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.selectedImage = e.target.result;
+          if(this.selectedImage!=null){
+            this.service.setBannerImage(this.selectedImage);
+
+          }
+          this.updateAppWeb();
+          this.activeModal.close();
+
+        };
+        reader.readAsDataURL(file);
+      }
+  
   }
   updateAppWeb(){
     var data={
       'idAppWeb':this.idAppWeb,
-      "bannerImage": localStorage.getItem("banner"),
+      "bannerImage": this.selectedImage,
   
   }
   this.service.updateAppWeb(data).subscribe(data=>{

@@ -59,6 +59,7 @@ export class LoginClubComponent implements OnInit {
     this.applyTheme('theme1')//important
     this.idClub=localStorage.getItem("idClub")
     this.service.getInfoClub(this.idClub).subscribe(data=>{
+      console.log(data)
       this.city=data.ville
       this.service.getWeatherForecast(data.ville).subscribe(data => {
         this.forecastData = data.list.filter((forecast: Forecast) => forecast.dt_txt.includes('12:00:00')).slice(0, 7);

@@ -151,16 +151,16 @@ export class AppwebserviceService {
   deleteUser(userId: number, role: string): Observable<any> {
     let endpoint = '';
     switch (role) {
-      case 'Administrateur':
+      case 'admin':
         endpoint = `/administrateur/delete/${userId}`;
         break;
-      case 'Coach':
+      case 'coach':
         endpoint = `/coach/delete/${userId}`;
         break;
-      case 'Membre':
+      case 'membre':
         endpoint = `/membre/delete/${userId}`;
         break;
-      case 'Agent':
+      case 'agent':
         endpoint = `/agentAcceuil/delete/${userId}`;
         break;
       default:
@@ -172,17 +172,18 @@ export class AppwebserviceService {
   
   addUser(user: any): Observable<any> {
     let endpoint = '';
+   
     switch (user.role) {
-      case 'Administrateur':
+      case 'admin':
         endpoint = '/administrateur';
         break;
-      case 'Coach':
+      case 'coach':
         endpoint = '/coach';
         break;
-      case 'Membre':
+      case 'membre':
         endpoint = '/membre';
         break;
-      case 'Agent':
+      case 'agent':
         endpoint = '/agentAcceuil';
         break;
       default:
@@ -194,16 +195,16 @@ export class AppwebserviceService {
   updateUser(user: any): Observable<any> {
     let endpoint = '';
     switch (user.role) {
-      case 'Administrateur':
+      case 'admin':
         endpoint = '/administrateur';
         break;
-      case 'Coach':
+      case 'coach':
         endpoint = '/coach';
         break;
-      case 'Membre':
+      case 'membre':
         endpoint = '/membre';
         break;
-      case 'Agent':
+      case 'agent':
         endpoint = '/agentAcceuil';
         break;
       default:
@@ -220,5 +221,140 @@ export class AppwebserviceService {
   }
   getAgents():Observable<any>{
     return this.http.get(this.apiUrl+"/agentAcceuil/getAll")
+  }
+  getAbonnements():Observable<any>{
+    return this.http.get(this.apiUrl+"/TypeAbonnement/getAll")
+  }
+ 
+  addSuperUser(data:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/superAdmin/add",data);
+  }
+  addabonnement(abonnement:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/TypeAbonnement/add",abonnement);
+  }
+  addActivite(activite:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/activite/add",activite);
+  }
+  getUsers():Observable<any>{
+    return this.http.get<any[]>(this.apiUrl+"/superAdmin/getAll")
+  }
+  getActivites():Observable<any>{
+    return this.http.get<any[]>(this.apiUrl+"/activite/getAll")
+  }
+  deleteSuperUser(userId: number): Observable<any> {
+    const url = `${this.apiUrl}/superAdmin/delete/${userId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+  }
+  deleteSuperAbonnement(abonnementId: number): Observable<any> {
+    const url = `${this.apiUrl}/TypeAbonnement/delete/${abonnementId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+  }
+  deleteActivite(activiteId: number): Observable<any> {
+    const url = `${this.apiUrl}/activite/delete/${activiteId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+  }
+  updateSuperUser(user:any):Observable<any>{
+    return this.http.put(this.apiUrl+'/superAdmin/update',user)
+  }
+  updateAbonnemet(abonnement:any):Observable<any>{
+    return this.http.put(this.apiUrl+'/TypeAbonnement/update',abonnement)
+  }
+  updateDepense(depense:any):Observable<any>{
+    return this.http.put(this.apiUrl+'/typeDepense/update',depense)
+  }
+  updateActivite(activite:any):Observable<any>{
+    return this.http.put(this.apiUrl+'/activite/update',activite)
+  }
+  addtypeDepense(data:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/typeDepense/add",data);
+  }
+  addtauxTva(data:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/tauxTva/add",data);
+  }
+  addDevise(data:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/devise/add",data);
+  }
+  addRessource(data:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/ressource/add",data);
+  }
+  addBanque(data:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/banque/add",data);
+  }
+  addTypeAbonnementClub(data:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/typeAbonnementClub/add",data);
+  }
+  getTauxTva(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/tauxTva/getAll`);
+  }
+  getAllClub(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/club/getAll`);
+  }
+  deletetypeDepense(typeDepenseId: number): Observable<any> {
+    const url = `${this.apiUrl}/superAdmin/delete/${typeDepenseId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+  }
+  deletetauxTva(tauxTvaId: number): Observable<any> {
+    const url = `${this.apiUrl}/tauxTva/delete/${tauxTvaId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+    
+  }
+  deletedevise(deviseId: number): Observable<any> {
+    const url = `${this.apiUrl}/devise/delete/${deviseId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+    
+  }
+  deleteRessource(ressourceId: number): Observable<any> {
+    const url = `${this.apiUrl}/ressource/delete/${ressourceId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+    
+  }
+  deleteBanque(banqueId: number): Observable<any> {
+    const url = `${this.apiUrl}/banque/delete/${banqueId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+    
+  }
+  deleteTypeAbonnementClub(TypeAbonnementClubId: number): Observable<any> {
+    const url = `${this.apiUrl}/typeAbonnementClub/delete/${TypeAbonnementClubId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+    
+  }
+  getAlltypeDepenses():Observable<any>{
+    return this.http.get(this.apiUrl+"/typeDepense/getAll")
+  }
+  getAllDevise():Observable<any>{
+    return this.http.get(this.apiUrl+"/devise/getAll")
+  }
+  getRessource():Observable<any>{
+    return this.http.get(this.apiUrl+"/ressource/getAll")
+  }
+  getBanque():Observable<any>{
+    return this.http.get(this.apiUrl+"/banque/getAll")
+  }
+  getTypeAbonnementClub():Observable<any>{
+    return this.http.get(this.apiUrl+"/typeAbonnementClub/getAll")
+  }
+  updatetauxTva(data:any):Observable<any>{
+    return this.http.put(this.apiUrl+"/tauxTva/update",data)
+  }
+  updateDevise(data:any):Observable<any>{
+    return this.http.put(this.apiUrl+"/devise/update",data)
+  }
+  updateRessource(data:any):Observable<any>{
+    return this.http.put(this.apiUrl+"/ressource/update",data)
+  }
+  updateBanque(data:any):Observable<any>{
+    return this.http.put(this.apiUrl+"/banque/update",data)
+  }
+  updateTypeAbonnementClub(data:any):Observable<any>{
+    return this.http.put(this.apiUrl+"/typeAbonnementClub/update",data)
   }
 }

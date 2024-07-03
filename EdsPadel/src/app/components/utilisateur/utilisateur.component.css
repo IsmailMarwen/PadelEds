@@ -229,13 +229,7 @@ table.table-dark th, table.table-dark td {
   margin-left: .5rem !important;
   align-items: center;
 }
-@media (max-width: 576px) {
-  .input-group {
-    flex-direction: column;
-  }
-  
- 
-}
+
 .main-content{
   overflow-x: hidden !important;
 }
@@ -273,10 +267,7 @@ table.table-dark th, table.table-dark td {
 .plus{
   color:#6c757d
 }
-#Capa_1{
-    height: 15px;
-    width: 15px;;
-}
+
 .btnPM{
   border: solid 1px;
   border-color: #dee2e6;
@@ -397,9 +388,9 @@ background-color: #ffe6e6; /* Ou une autre couleur de fond rouge */
     
     .search-input {
       flex: 2;
-      max-width: 400px; /* Adjust max-width as needed */
+      max-width: 400px; /* Ajustez la largeur maximale au besoin */
       margin: 0 auto;
-    }
+  }
     
     .btn {
       flex-shrink: 0;
@@ -432,6 +423,18 @@ background-color: #ffe6e6; /* Ou une autre couleur de fond rouge */
   .filter{
     stroke: black !important;
     color: black !important;
+  }
+  .admin{
+    background-color: rgb(13 202 240) !important; 
+  }
+  .agent{
+    background-color:rgb(25 135 84)!important; 
+  }
+  .coach{
+    background-color:#575f66;
+  }
+  .membre{
+    background-color:#f16a1b;
   }
   .icon-padel{
     color: rgb(13 202 240) !important; 
