@@ -2,6 +2,7 @@ package com.example.demo.service.impliments;
 
 import com.example.demo.persistance.dao.AgentAcceuilRepository;
 import com.example.demo.persistance.entities.AgentAcceuil;
+import com.example.demo.persistance.entities.Club;
 import com.example.demo.service.interfaces.IAgentAcceuil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,8 @@ import java.util.List;
 public class AgentAcceuilService implements IAgentAcceuil {
     @Autowired
     public AgentAcceuilRepository agentAcceuilRepository;
-
+    @Autowired
+    public ClubService clubService;
     @Override
     public AgentAcceuil saveAgentAcceuil(AgentAcceuil agentAcceuil) {
         return agentAcceuilRepository.save(agentAcceuil);
@@ -38,5 +40,11 @@ public class AgentAcceuilService implements IAgentAcceuil {
     @Override
     public AgentAcceuil getAgentAcceuilByIdAgentAcceuil(Long id) {
         return agentAcceuilRepository.findById(id).get();
+    }
+
+    @Override
+    public List<AgentAcceuil> getListAgentAcceuilByClub(Long idClub) {
+        Club club=clubService.getClubByIdClub(idClub);
+        return agentAcceuilRepository.getAllByClub(club);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.service.controller;
 
+import com.example.demo.persistance.entities.AgentAcceuil;
 import com.example.demo.persistance.entities.Banque;
 import com.example.demo.service.interfaces.IBanque;
 import org.springframework.web.bind.annotation.*;
@@ -39,5 +40,10 @@ public class BanqueController {
     boolean delete(@PathVariable Long id) {
         iBanque.deleteBanque(id);
         return true;
+    }
+    @GetMapping("/getAllByClub/{idClub}")
+    List<Banque> getAllBanqueByClub(@PathVariable Long idClub) {
+
+        return iBanque.getListBanqueByClub(idClub);
     }
 }

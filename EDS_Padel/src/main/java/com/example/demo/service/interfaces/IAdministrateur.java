@@ -1,6 +1,7 @@
 package com.example.demo.service.interfaces;
 
 import com.example.demo.persistance.entities.Administrateur;
+import com.example.demo.persistance.entities.Club;
 
 import java.util.List;
 
@@ -10,4 +11,5 @@ public interface IAdministrateur {
     boolean deleteAdminstarteur(Long id);
     List<Administrateur> getListAdminstarteur();
     Administrateur getAdminstarteurByIdAdminstarteur(Long id);
+    List<Administrateur> getListAdminstarteurByClub(Long idClub);
 }

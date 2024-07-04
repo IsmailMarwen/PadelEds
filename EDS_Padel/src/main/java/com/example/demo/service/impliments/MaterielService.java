@@ -1,6 +1,7 @@
 package com.example.demo.service.impliments;
 
 import com.example.demo.persistance.dao.MaterielRepository;
+import com.example.demo.persistance.entities.Club;
 import com.example.demo.persistance.entities.Materiel;
 import com.example.demo.service.interfaces.IMateriel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,8 @@ import java.util.List;
     public class MaterielService implements IMateriel {
         @Autowired
         public MaterielRepository materielRepository;
-
+        @Autowired
+        public ClubService clubService;
     @Override
     public Materiel saveMateriel(Materiel materiel) {
         return materielRepository.save(materiel);
@@ -38,5 +40,11 @@ import java.util.List;
     @Override
     public Materiel getMaterielByIdMateriel(Long id) {
         return materielRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Materiel> getListMaterielByClub(Long idClub) {
+        Club club=clubService.getClubByIdClub(idClub);
+        return materielRepository.getAllByClub(club);
     }
 }

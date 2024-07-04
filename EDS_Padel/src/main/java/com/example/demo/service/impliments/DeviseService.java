@@ -1,6 +1,7 @@
 package com.example.demo.service.impliments;
 
 import com.example.demo.persistance.dao.DeviseRepository;
+import com.example.demo.persistance.entities.Club;
 import com.example.demo.persistance.entities.Devise;
 import com.example.demo.service.interfaces.IDevise;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import java.util.List;
 public class DeviseService implements IDevise {
     @Autowired
     public DeviseRepository deviseRepository;
+    @Autowired
+    public  ClubService clubService;
     @Override
     public Devise saveDevise(Devise devise) {
         return deviseRepository.save(devise);
@@ -35,5 +38,11 @@ public class DeviseService implements IDevise {
     @Override
     public Devise getDeviseByIdDevise(Long id) {
         return deviseRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Devise> getListDeviseByClub(Long idClub) {
+        Club club=clubService.getClubByIdClub(idClub);
+        return deviseRepository.getAllByClub(club);
     }
 }

@@ -40,4 +40,9 @@ public class TypeAbonnementClubController {
         iTypeAbonnementClub.deleteTypeAbonnementClub(id);
         return true;
     }
+    @GetMapping("/getAllByClub/{idClub}")
+    List<TypeAbonnementClub> getAllTypeAbonnementClubByClub(@PathVariable Long idClub) {
+
+        return iTypeAbonnementClub.getListTypeAbonnementClubByClub(idClub);
+    }
 }

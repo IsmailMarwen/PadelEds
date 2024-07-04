@@ -40,4 +40,9 @@ public class DeviseController {
         iDevise.deleteDevise(id);
         return true;
     }
+    @GetMapping("/getAllByClub/{idClub}")
+    List<Devise> getAllDeviseByClub(@PathVariable Long idClub) {
+
+        return iDevise.getListDeviseByClub(idClub);
+    }
 }

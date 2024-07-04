@@ -1,5 +1,6 @@
 package com.example.demo.service.controller;
 
+import com.example.demo.persistance.entities.Administrateur;
 import com.example.demo.persistance.entities.AgentAcceuil;
 import com.example.demo.service.interfaces.IAgentAcceuil;
 import org.springframework.web.bind.annotation.*;
@@ -39,5 +40,10 @@ public class AgentAcceuilController {
     boolean delete(@PathVariable Long id) {
         iAgentAcceuil.deleteAgentAcceuil(id);
         return true;
+    }
+    @GetMapping("/getAllByClub/{idClub}")
+    List<AgentAcceuil> getAllAgentAcceuilByClub(@PathVariable Long idClub) {
+
+        return iAgentAcceuil.getListAgentAcceuilByClub(idClub);
     }
 }

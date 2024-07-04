@@ -1,5 +1,6 @@
 package com.example.demo.service.interfaces;
 
+import com.example.demo.persistance.entities.Banque;
 import com.example.demo.persistance.entities.Club;
 import com.example.demo.persistance.entities.Coach;
 import com.example.demo.persistance.entities.Utilisateur;
@@ -13,4 +14,7 @@ public interface ICoach {
     List<Coach> getListCoach();
     Coach getCoachByIdCoach(Long id);
     public List<Coach> getCoachsByNom(String nom);
+    List<Coach> getListCoachByClub(Long idClub);
+
+
 }

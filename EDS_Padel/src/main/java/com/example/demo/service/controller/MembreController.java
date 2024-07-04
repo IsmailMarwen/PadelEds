@@ -40,4 +40,9 @@ public class MembreController {
         iMembre.deleteMembre(id);
         return true;
     }
+    @GetMapping("/getAllByClub/{idClub}")
+    List<Membre> getAllMembreByClub(@PathVariable Long idClub) {
+
+        return iMembre.getListMembreByClub(idClub);
+    }
 }

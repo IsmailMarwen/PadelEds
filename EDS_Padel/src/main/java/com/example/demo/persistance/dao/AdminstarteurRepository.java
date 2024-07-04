@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 public interface AdminstarteurRepository extends JpaRepository<Administrateur,Long> {
+    List<Administrateur> getAllByClub(Club club);
     Administrateur findByUsernameAndClub(String username, Club club);
     Administrateur findByEmailAndClub(String email, Club club);
     @Modifying

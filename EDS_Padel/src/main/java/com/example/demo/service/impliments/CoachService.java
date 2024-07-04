@@ -13,6 +13,8 @@ import java.util.List;
 public class CoachService implements ICoach {
     @Autowired
     public CoachRepository coachRepository;
+    @Autowired
+    public  ClubService clubService;
 
     @Override
     public Coach saveCoach(Coach coach) {
@@ -43,5 +45,11 @@ public class CoachService implements ICoach {
     @Override
     public List<Coach> getCoachsByNom(String nom) {
         return coachRepository.findByNom(nom);
+    }
+
+    @Override
+    public List<Coach> getListCoachByClub(Long idClub) {
+        Club club=clubService.getClubByIdClub(idClub);
+        return coachRepository.getAllByClub(club);
     }
 }

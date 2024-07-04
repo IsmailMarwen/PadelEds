@@ -20,7 +20,8 @@ public class CategorieAbonnement {
 
     @ManyToOne
     private Activite activite;
-
+    @ManyToOne
+    private  Club club;
     @OneToMany(mappedBy = "categorieAbonnement", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<TypeAbonnementClub> typeAbonnementClubs;

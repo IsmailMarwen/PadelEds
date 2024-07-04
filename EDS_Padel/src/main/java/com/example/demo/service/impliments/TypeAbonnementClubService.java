@@ -1,6 +1,7 @@
 package com.example.demo.service.impliments;
 
 import com.example.demo.persistance.dao.TypeAbonnementClubRepository;
+import com.example.demo.persistance.entities.Club;
 import com.example.demo.persistance.entities.TypeAbonnementClub;
 import com.example.demo.service.interfaces.ITypeAbonnementClub;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import java.util.List;
 public class TypeAbonnementClubService implements ITypeAbonnementClub {
     @Autowired
     public TypeAbonnementClubRepository typeAbonnementClubRepository;
+    @Autowired
+    public ClubService clubService;
     @Override
     public TypeAbonnementClub saveTypeAbonnementClub(TypeAbonnementClub typeAbonnementClub) {
         return typeAbonnementClubRepository.save(typeAbonnementClub);
@@ -36,5 +39,11 @@ public class TypeAbonnementClubService implements ITypeAbonnementClub {
     @Override
     public TypeAbonnementClub getTypeAbonnementClubByIdTypeAbonnementClub(Long id) {
         return typeAbonnementClubRepository.findById(id).get();
+    }
+
+    @Override
+    public List<TypeAbonnementClub> getListTypeAbonnementClubByClub(Long idClub) {
+        Club club=clubService.getClubByIdClub(idClub);
+        return typeAbonnementClubRepository.getAllByClub(club);
     }
 }

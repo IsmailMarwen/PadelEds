@@ -69,7 +69,9 @@ public class Club {
     @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Tournoi> tournois;
-
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<CategorieAbonnement> categorieAbonnements;
     @ManyToMany
     @JoinTable(
             name = "club_activite",
@@ -86,7 +88,9 @@ public class Club {
     @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Devise> devises;
-
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<TypeAbonnementClub> typeAbonnementClubs;
     @ManyToOne
     private TypeAbonnement typeAbonnement;
 }

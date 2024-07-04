@@ -40,4 +40,9 @@ public class RessourceController {
         iRessource.deleteRessource(id);
         return true;
     }
+    @GetMapping("/getAllByClub/{idClub}")
+    List<Ressource> getAllRessourceByClub(@PathVariable Long idClub) {
+
+        return iRessource.getListRessourceByClub(idClub);
+    }
 }

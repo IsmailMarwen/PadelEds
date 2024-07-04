@@ -1,5 +1,6 @@
 package com.example.demo.persistance.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +19,9 @@ public class TypeAbonnementClub {
     private int nbMois;
     private int nbJours;
     private double forfait;
-
+    @ManyToOne
+    @JsonIgnore
+    private  Club club;
     @ManyToOne
     @JoinColumn(name = "categorie_abonnement_id") // Optionnel mais recommandé pour la clarté
     private CategorieAbonnement categorieAbonnement;

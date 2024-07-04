@@ -40,4 +40,9 @@ public class TauxTvaController {
         iTauxTva.deleteTauxTva(id);
         return true;
     }
+    @GetMapping("/getAllByClub/{idClub}")
+    List<TauxTva> getAllTauxTvaByClub(@PathVariable Long idClub) {
+
+        return iTauxTva.getListTauxTvaByClub(idClub);
+    }
 }

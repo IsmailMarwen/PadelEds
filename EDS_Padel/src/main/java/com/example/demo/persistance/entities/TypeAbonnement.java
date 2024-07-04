@@ -22,6 +22,7 @@ public class TypeAbonnement {
     private String tauxTva;
     private String mtttc;
     private String nbMois;
+    private String couelur;
 
     @OneToMany(mappedBy="typeAbonnement",fetch=FetchType.LAZY)
     @JsonIgnore

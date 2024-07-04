@@ -39,4 +39,9 @@ public class TournoiController {
         iTournoi.deleteTournoi(id);
         return true;
     }
+    @GetMapping("/getAllByClub/{idClub}")
+    List<Tournoi> getAllTournoiByClub(@PathVariable Long idClub) {
+
+        return iTournoi.getListTournoiByClub(idClub);
+    }
 }

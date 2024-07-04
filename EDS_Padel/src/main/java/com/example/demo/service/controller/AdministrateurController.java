@@ -29,6 +29,11 @@ public class AdministrateurController {
 
         return iAdministrateur.getListAdminstarteur();
     }
+    @GetMapping("/getAllByClub/{idClub}")
+    List<Administrateur> getAllAdminstrateursByClub(@PathVariable Long idClub) {
+
+        return iAdministrateur.getListAdminstarteurByClub(idClub);
+    }
 
     @GetMapping("/getById/{id}")
     Administrateur getAdminstarteurnById(@PathVariable Long id) {

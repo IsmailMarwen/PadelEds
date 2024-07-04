@@ -1,5 +1,6 @@
 package com.example.demo.service.controller;
 
+import com.example.demo.persistance.entities.AgentAcceuil;
 import com.example.demo.persistance.entities.CategorieAbonnement;
 import com.example.demo.service.interfaces.ICategorieAbonnement;
 
@@ -40,5 +41,10 @@ public class CategorieAbonnementController {
     boolean delete(@PathVariable Long id) {
         iCategorieAbonnement.deleteCategorieAbonnement(id);
         return true;
+    }
+    @GetMapping("/getAllByClub/{idClub}")
+    List<CategorieAbonnement> getAllAgentAcceuilByClub(@PathVariable Long idClub) {
+
+        return iCategorieAbonnement.getListCategorieAbonnementByClub(idClub);
     }
 }

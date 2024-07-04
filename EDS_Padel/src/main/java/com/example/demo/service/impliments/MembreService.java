@@ -1,6 +1,7 @@
 package com.example.demo.service.impliments;
 
 import com.example.demo.persistance.dao.MembreRepository;
+import com.example.demo.persistance.entities.Club;
 import com.example.demo.persistance.entities.Membre;
 import com.example.demo.service.interfaces.IMembre;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,8 @@ import java.util.List;
 public class MembreService implements IMembre {
     @Autowired
     public MembreRepository membreRepository;
-
+    @Autowired
+    public ClubService clubService;
     @Override
     public Membre saveMembre(Membre membre) {
         return membreRepository.save(membre);
@@ -38,5 +40,11 @@ public class MembreService implements IMembre {
     @Override
     public Membre getMembreByIdMembre(Long id) {
         return membreRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Membre> getListMembreByClub(Long idClub) {
+        Club club=clubService.getClubByIdClub(idClub);
+        return membreRepository.getAllByClub(club);
     }
 }

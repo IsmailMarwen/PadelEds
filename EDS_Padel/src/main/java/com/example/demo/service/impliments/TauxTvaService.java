@@ -1,6 +1,7 @@
 package com.example.demo.service.impliments;
 
 import com.example.demo.persistance.dao.TauxTvaRepository;
+import com.example.demo.persistance.entities.Club;
 import com.example.demo.persistance.entities.TauxTva;
 import com.example.demo.service.interfaces.ITauxTva;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import java.util.List;
 public class TauxTvaService implements ITauxTva {
     @Autowired
     public TauxTvaRepository tauxTvaRepository;
+    @Autowired
+    public ClubService clubService;
     @Override
     public TauxTva saveTauxTva(TauxTva tauxTva) {
         return tauxTvaRepository.save(tauxTva);
@@ -36,5 +39,11 @@ public class TauxTvaService implements ITauxTva {
     @Override
     public TauxTva getTauxTvaByIdTauxTva(Long id) {
         return tauxTvaRepository.findById(id).get();
+    }
+
+    @Override
+    public List<TauxTva> getListTauxTvaByClub(Long idClub) {
+        Club club=clubService.getClubByIdClub(idClub);
+        return tauxTvaRepository.getAllByClub(club);
     }
 }

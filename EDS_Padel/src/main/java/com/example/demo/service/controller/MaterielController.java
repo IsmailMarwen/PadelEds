@@ -41,4 +41,9 @@ public class MaterielController {
         iMateriel.deleteMateriel(id);
         return true;
     }
+    @GetMapping("/getAllByClub/{idClub}")
+    List<Materiel> getAllMaterielByClub(@PathVariable Long idClub) {
+
+        return iMateriel.getListMaterielByClub(idClub);
+    }
 }

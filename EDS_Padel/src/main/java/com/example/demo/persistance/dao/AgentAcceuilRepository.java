@@ -1,5 +1,6 @@
 package com.example.demo.persistance.dao;
 
+import com.example.demo.persistance.entities.Administrateur;
 import com.example.demo.persistance.entities.AgentAcceuil;
 import com.example.demo.persistance.entities.Club;
 import com.example.demo.persistance.entities.Membre;
@@ -9,9 +10,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface AgentAcceuilRepository extends JpaRepository<AgentAcceuil,Long> {
     AgentAcceuil findByUsernameAndClub(String username, Club club);
+    List<AgentAcceuil> getAllByClub(Club club);
     AgentAcceuil findByEmailAndClub(String email, Club club);
     @Modifying
     @Transactional

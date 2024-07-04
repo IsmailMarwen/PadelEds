@@ -1,6 +1,7 @@
 package com.example.demo.service.impliments;
 
 import com.example.demo.persistance.dao.TournoiRepository;
+import com.example.demo.persistance.entities.Club;
 import com.example.demo.persistance.entities.Tournoi;
 import com.example.demo.service.interfaces.ITournoi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import java.util.List;
     public class TournoiService implements ITournoi {
     @Autowired
     public TournoiRepository tournoiRepository;
+    @Autowired
+    public ClubService clubService;
     @Override
     public Tournoi saveTournoi(Tournoi tournoi) {
         return tournoiRepository.save(tournoi);
@@ -40,6 +43,12 @@ import java.util.List;
     public Tournoi getTournoiByIdTournoi(Long id) {
         return tournoiRepository.findById(id).get();
 
+    }
+
+    @Override
+    public List<Tournoi> getListTournoiByClub(Long idClub) {
+        Club club=clubService.getClubByIdClub(idClub);
+        return tournoiRepository.getAllByClub(club);
     }
 
 

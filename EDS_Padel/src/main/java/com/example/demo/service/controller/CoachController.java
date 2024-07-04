@@ -1,5 +1,4 @@
 package com.example.demo.service.controller;
-import com.example.demo.persistance.entities.Club;
 import com.example.demo.persistance.entities.Coach;
 import com.example.demo.service.interfaces.ICoach;
 import org.springframework.web.bind.annotation.*;
@@ -43,5 +42,10 @@ public class CoachController {
     @GetMapping("/nom")
     public List<Coach> getCoachsByNom(@RequestParam String nom) {
         return iCoach.getCoachsByNom(nom);
+    }
+    @GetMapping("/getAllByClub/{idClub}")
+    List<Coach> getAllCoachByClub(@PathVariable Long idClub) {
+
+        return iCoach.getListCoachByClub(idClub);
     }
 }

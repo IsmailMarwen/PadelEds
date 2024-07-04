@@ -40,4 +40,9 @@ public class TypeDepenseController {
         iTypeDepense.deleteTypeDepense(id);
         return true;
     }
+    @GetMapping("/getAllByClub/{idClub}")
+    List<TypeDepense> getAllTypeDepenseByClub(@PathVariable Long idClub) {
+
+        return iTypeDepense.getListTypeDepenseByClub(idClub);
+    }
 }
