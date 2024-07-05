@@ -35,5 +35,8 @@ public class Activite {
     @ManyToMany(mappedBy = "activites")
     @JsonIgnoreProperties("activites")
     private List<Club> clubs;
+    @OneToMany(mappedBy="activite",fetch=FetchType.LAZY)
+    @JsonIgnore
+    private List<Materiel> materiels;
 }
 
