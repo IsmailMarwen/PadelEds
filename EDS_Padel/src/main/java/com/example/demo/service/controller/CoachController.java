@@ -45,7 +45,7 @@ public class CoachController {
     }
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestBody Coach coach) {
-        Coach m=iCoach.updateCoach(coach);
+
         if(adminstarteurRepository.findByEmailAndClub(coach.getEmail(),coach.getClub())!=null || agentAcceuilRepository.findByEmailAndClub(coach.getEmail(),coach.getClub())!=null || membreRepository.findByEmailAndClub(coach.getEmail(),coach.getClub())!=null || coachRepository.findByEmailAndClub(coach.getEmail(),coach.getClub())!=null){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà exist");
         }
@@ -55,6 +55,7 @@ public class CoachController {
         if(adminstarteurRepository.findByUsernameAndClub(coach.getUsername(),coach.getClub())!=null || agentAcceuilRepository.findByUsernameAndClub(coach.getUsername(),coach.getClub())!=null || membreRepository.findByUsernameAndClub(coach.getUsername(),coach.getClub())!=null || coachRepository.findByUsernameAndClub(coach.getUsername(),coach.getClub())!=null){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Username déjà exist");
         }
+        Coach m=iCoach.updateCoach(coach);
         return ResponseEntity.status(HttpStatus.CREATED).body(m);
     }
     @GetMapping("/getAll")
