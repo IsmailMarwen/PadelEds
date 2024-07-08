@@ -56,6 +56,7 @@ public class CoachService implements ICoach {
     public Coach saveCoach(Coach coach) {
         String buttonColor = coach.getClub().getAppWeb() != null ? getColorButton(coach.getClub().getAppWeb().getCouleurAppWeb()) : "#000000";
         coach.setUpdated(false);
+        Coach c=coachRepository.save(coach);
         if(coach.isValidation()){
             String subject = "Informations d'authentification pour club";
             String htmlBody = "<html>" +
@@ -96,7 +97,7 @@ public class CoachService implements ICoach {
             notificationService.notifyAdmins(coach.getClub(), notificationMessage,coach,null);
         }
 
-        return coachRepository.save(coach);
+        return c;
     }
 
     @Override
