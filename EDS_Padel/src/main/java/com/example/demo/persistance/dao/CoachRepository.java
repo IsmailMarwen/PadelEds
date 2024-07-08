@@ -17,6 +17,7 @@ public interface CoachRepository extends JpaRepository<Coach,Long> {
     List<Coach> getAllByClub(Club club);
 
     Coach findByEmailAndClub(String email, Club club);
+    Coach findByTelephoneAndClub(String tel,Club club);
     @Modifying
     @Transactional
     @Query("UPDATE Coach m SET m.password = :password, m.updated = true WHERE m.club.idClub = :idClub and m.idUtilisateur= :idUser")

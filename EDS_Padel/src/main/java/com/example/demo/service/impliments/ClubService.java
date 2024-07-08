@@ -39,21 +39,20 @@ public class ClubService implements  IClub {
     @Autowired
     private AppWebService appWebService;
     @Autowired
-    private AdminstarteurRepository administrateurRepository;
+    private AdministrateurService administrateurService;
+
     @Autowired
     private AppWebRepository appWebRepository;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     @Override
     public Club saveClub(ClubAppWebRequest clubAppWebRequest) {
-        // Vérifiez si l'email du club existe déjà
         if (clubRepository.existsByEmail(clubAppWebRequest.getClub().getEmail())) {
-            return null; // Indique un échec
+            return null;
         }
 
-        // Vérifiez si le nom du club existe déjà
         if (clubRepository.existsByNomClub(clubAppWebRequest.getClub().getNomClub())) {
-            return null; // Indique un échec
+            return null;
         }
         System.out.println(appWebRepository.existsByAdresseUrl(clubAppWebRequest.getAppWeb().getAdresseUrl()));
 
@@ -62,60 +61,19 @@ public class ClubService implements  IClub {
         }
 
         String generatedPassword = generateRandomPassword(8);
-
-        // Save the club
         Club savedClub = clubRepository.save(clubAppWebRequest.getClub());
-
-        // Set the club to the AppWeb entity and save it
         clubAppWebRequest.getAppWeb().setClub(savedClub);
         AppWeb savedAppWeb = appWebService.saveAppWeb(clubAppWebRequest.getAppWeb());
-        // Set the AppWeb entity to the Club entity and save the Club again
         savedClub.setAppWeb(savedAppWeb);
         savedClub.setActivites(clubAppWebRequest.getClub().getActivites());
         clubRepository.save(savedClub);
-
-        // Create and save the admin
         Administrateur admin = new Administrateur();
-        admin.setUsername("admin");
+        admin.setUsername("admin" + generateRandomPassword(4));
         admin.setPassword(generatedPassword);
         admin.setRole("admin");
         admin.setClub(savedClub);
         admin.setEmail(savedClub.getEmail());
-        admin.setUpdated(false);
-        administrateurRepository.save(admin);
-
-        // Send email with credentials
-        String subject = "Informations d'authentification pour votre nouveau club";
-        String htmlBody = "<html>" +
-                "<head>" +
-                "<style>" +
-                "body { font-family: Arial, sans-serif; margin: 0; padding: 0; }" +
-                ".container { padding: 20px; }" +
-                "h1 { color: #333; }" +
-                "p { font-size: 16px; color: #555; }" +
-                ".logo { width: 50px; margin-bottom: 20px; }" +
-                "</style>" +
-                "</head>" +
-                "<body>" +
-                "<div class='container'>" +
-                "<img src='https://scontent.ftun14-1.fna.fbcdn.net/v/t39.30808-6/291888548_441109058022997_1842427483752470346_n.png?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=9sCyIIEYrhsQ7kNvgEi0sN5&_nc_ht=scontent.ftun14-1.fna&oh=00_AYDMRgL_D9JXFw_K98l4nzC7mJwGellHAUhm9gCQUWSW-A&oe=667704EF' alt='Logo' class='logo'>" +
-                "<h1>Bonjour,</h1>" +
-                "<p>Votre club a été créé avec succès.</p>" +
-                "<p><strong>Nom d'utilisateur : admin</strong></p>" +
-                "<p><strong>Mot de passe : " + generatedPassword + "</strong></p>" +
-                "<p>Veuillez changer votre mot de passe après la première connexion.</p>" +
-                "<a href='http://localhost:4200/" + savedAppWeb.getAdresseUrl() + "/loginClub' style='display: inline-block; padding: 10px 20px; font-size: 16px; color: #ffff; background-color: #fcbc04; text-decoration: none; border-radius: 5px;'>Connectez-vous</a>" +
-                "<p>Cordialement,<br>Expert Dev Solutions</p>" +
-                "</div>" +
-                "</body>" +
-                "</html>";
-
-        try {
-            emailService.sendHtmlMessage(clubAppWebRequest.getClub().getEmail(), subject, htmlBody);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-
+        administrateurService.saveAdminstrateur(admin);
         return savedClub;
     }
 

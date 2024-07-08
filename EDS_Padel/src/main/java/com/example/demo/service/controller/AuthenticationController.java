@@ -1,4 +1,5 @@
 package com.example.demo.service.controller;
+import com.example.demo.persistance.dao.SuperAdminRepository;
 import com.example.demo.persistance.entities.Club;
 import com.example.demo.persistance.entities.SuperAdmin;
 import com.example.demo.persistance.entities.Utilisateur;
@@ -14,7 +15,8 @@ public class AuthenticationController {
 
     @Autowired
     private AuthenticationService authenticationService;
-
+    @Autowired
+    private SuperAdminRepository superAdminRepository;
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest loginRequest) {
         Club club = loginRequest.getClub();
@@ -43,6 +45,8 @@ public class AuthenticationController {
         if (token != null) {
             LoginSuperAdminResponse loginSuperAdminResponse=new LoginSuperAdminResponse();
             loginSuperAdminResponse.setToken(token);
+            SuperAdmin sA=superAdminRepository.findByEmailAndPassword(email,password);
+            loginSuperAdminResponse.setSuperAdmin(sA);
             return loginSuperAdminResponse;
         } else {
             LoginSuperAdminResponse loginSuperAdminResponse=new LoginSuperAdminResponse();

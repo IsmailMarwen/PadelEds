@@ -16,6 +16,7 @@ import java.util.List;
 public interface MembreRepository extends JpaRepository<Membre,Long> {
     Membre findByUsernameAndClub(String username, Club club);
     Membre findByEmailAndClub(String email, Club club);
+    Membre findByTelephoneAndClub(String tel,Club club);
     @Modifying
     @Transactional
     @Query("UPDATE Membre m SET m.password = :password, m.updated = true WHERE m.club.idClub = :idClub and m.idUtilisateur= :idUser")

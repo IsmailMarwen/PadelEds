@@ -15,6 +15,8 @@ public interface AdminstarteurRepository extends JpaRepository<Administrateur,Lo
     List<Administrateur> getAllByClub(Club club);
     Administrateur findByUsernameAndClub(String username, Club club);
     Administrateur findByEmailAndClub(String email, Club club);
+    Administrateur findByTelephoneAndClub(String tel,Club club);
+
     @Modifying
     @Transactional
     @Query("UPDATE Administrateur m SET m.password = :password, m.updated = true WHERE m.club.idClub = :idClub AND m.idUtilisateur= :idUser")

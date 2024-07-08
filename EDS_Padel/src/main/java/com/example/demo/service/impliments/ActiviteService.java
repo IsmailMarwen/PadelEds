@@ -17,12 +17,24 @@ public class ActiviteService implements IActivite {
     public ActiviteRepository activiteRepository;
     @Override
     public Activite saveActivite(Activite activite) {
+        if(activiteRepository.existsActiviteByCouleur(activite.getCouleur())){
+            return null;
+        }
+        if(activiteRepository.existsActiviteByLibelle(activite.getLibelle())){
+            return null;
+        }
         return activiteRepository.save(activite);
     }
 
     @Override
     public Activite updateActivite(Activite activite) {
 
+        if(activiteRepository.existsActiviteByCouleur(activite.getCouleur())){
+            return null;
+        }
+        if(activiteRepository.existsActiviteByLibelle(activite.getLibelle())){
+            return null;
+        }
         return activiteRepository.saveAndFlush(activite);
     }
     @Override

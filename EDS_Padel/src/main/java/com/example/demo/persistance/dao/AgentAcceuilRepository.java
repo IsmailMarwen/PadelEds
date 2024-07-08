@@ -16,6 +16,7 @@ public interface AgentAcceuilRepository extends JpaRepository<AgentAcceuil,Long>
     AgentAcceuil findByUsernameAndClub(String username, Club club);
     List<AgentAcceuil> getAllByClub(Club club);
     AgentAcceuil findByEmailAndClub(String email, Club club);
+    AgentAcceuil findByTelephoneAndClub (String tel,Club club);
     @Modifying
     @Transactional
     @Query("UPDATE AgentAcceuil m SET m.password = :password, m.updated = true WHERE m.club.idClub = :idClub and m.idUtilisateur= :idUser")

@@ -11,5 +11,6 @@ import java.util.List;
 public interface TournoiRepository extends JpaRepository<Tournoi,Long> {
 
     List<Tournoi> getAllByClub(Club club);
+    Tournoi findByNomTournoiAndClub(String nom,Club club);
 
 }

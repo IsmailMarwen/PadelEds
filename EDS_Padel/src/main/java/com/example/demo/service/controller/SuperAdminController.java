@@ -1,7 +1,11 @@
 package com.example.demo.service.controller;
 
+import com.example.demo.persistance.dao.SuperAdminRepository;
 import com.example.demo.persistance.entities.SuperAdmin;
 import com.example.demo.service.interfaces.ISuperAdmin;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,18 +14,32 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/superAdmin")
 public class SuperAdminController {
+    @Autowired
+    public SuperAdminRepository superAdminRepository;
     private final ISuperAdmin iSuperAdmin;
     public SuperAdminController(ISuperAdmin iSuperAdmin){
         this.iSuperAdmin=iSuperAdmin;}
     @PostMapping("/add")
-    SuperAdmin save(@RequestBody SuperAdmin superAdmin) {
+    public ResponseEntity<?> save(@RequestBody SuperAdmin superAdmin) {
         SuperAdmin a=iSuperAdmin.saveSuperAdmin(superAdmin);
-        return a ;
+        if(superAdminRepository.findByEmail(superAdmin.getEmail())!=null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà existe");
+        }
+        if(superAdminRepository.findByTelephone(superAdmin.getTelephone())!=null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Téléphone déjà existe");
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(a);
     }
     @PutMapping("/update")
-    SuperAdmin update(@RequestBody SuperAdmin superAdmin) {
-
-        return iSuperAdmin.updateSuperAdmin(superAdmin);
+    public ResponseEntity<?> update(@RequestBody SuperAdmin superAdmin) {
+        SuperAdmin a=iSuperAdmin.updateSuperAdmin(superAdmin);
+        if(superAdminRepository.findByEmail(superAdmin.getEmail())!=null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà existe");
+        }
+        if(superAdminRepository.findByTelephone(superAdmin.getTelephone())!=null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Téléphone déjà existe");
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(a);
     }
     @GetMapping("/getAll")
     List<SuperAdmin> getAllSuperAdmins() {

@@ -1,7 +1,11 @@
 package com.example.demo.service.controller;
 
+import com.example.demo.persistance.dao.TournoiRepository;
 import com.example.demo.persistance.entities.Tournoi;
 import com.example.demo.service.interfaces.ITournoi;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -9,18 +13,28 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/Tournoi")
 public class TournoiController {
+    @Autowired
+    private TournoiRepository tournoiRepository;
     private final ITournoi iTournoi;
     public TournoiController(ITournoi iTournoi){
         this.iTournoi=iTournoi;}
     @PostMapping("/add")
-    Tournoi save(@RequestBody Tournoi Tournoi) {
-        Tournoi a=iTournoi.saveTournoi(Tournoi);
-        return a ;
+    public ResponseEntity<?> save(@RequestBody Tournoi tournoi) {
+        Tournoi a=iTournoi.saveTournoi(tournoi);
+        if(tournoiRepository.findByNomTournoiAndClub(tournoi.getNomTournoi(),tournoi.getClub())!=null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Tournoi déjà existe");
+
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(a);
     }
     @PutMapping("/update")
-    Tournoi update(@RequestBody Tournoi Tournoi) {
+    public ResponseEntity<?> update(@RequestBody Tournoi tournoi) {
+        Tournoi a=iTournoi.updateTournoi(tournoi);
+        if(tournoiRepository.findByNomTournoiAndClub(tournoi.getNomTournoi(),tournoi.getClub())!=null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Tournoi déjà existe");
 
-        return iTournoi.updateTournoi(Tournoi);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(a);
     }
     @GetMapping("/getAll")
     List<Tournoi> getAllTournois() {

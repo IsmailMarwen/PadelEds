@@ -4,6 +4,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -12,4 +15,6 @@ import javax.persistence.Entity;
 public class Coach extends Utilisateur {
     private  double salaireHoraire;
     private boolean validation;
+    @OneToMany(mappedBy = "coach", fetch = FetchType.LAZY)
+    private List<Notification> notifications;
 }

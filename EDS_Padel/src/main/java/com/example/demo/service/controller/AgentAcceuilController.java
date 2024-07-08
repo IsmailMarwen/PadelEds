@@ -1,8 +1,15 @@
 package com.example.demo.service.controller;
 
+import com.example.demo.persistance.dao.AdminstarteurRepository;
+import com.example.demo.persistance.dao.AgentAcceuilRepository;
+import com.example.demo.persistance.dao.CoachRepository;
+import com.example.demo.persistance.dao.MembreRepository;
 import com.example.demo.persistance.entities.Administrateur;
 import com.example.demo.persistance.entities.AgentAcceuil;
 import com.example.demo.service.interfaces.IAgentAcceuil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,18 +18,45 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/agentAcceuil")
 public class AgentAcceuilController {
+    @Autowired
+    AdminstarteurRepository adminstarteurRepository;
+    @Autowired
+    AgentAcceuilRepository agentAcceuilRepository;
+    @Autowired
+    MembreRepository membreRepository;
+    @Autowired
+    CoachRepository coachRepository;
     private final IAgentAcceuil iAgentAcceuil;
     public AgentAcceuilController(IAgentAcceuil iAgentAcceuil){
         this.iAgentAcceuil=iAgentAcceuil;}
+
     @PostMapping("/add")
-    AgentAcceuil save(@RequestBody AgentAcceuil agentAcceuil) {
-        AgentAcceuil m=iAgentAcceuil.saveAgentAcceuil(agentAcceuil);
-        return m ;
+    public ResponseEntity<?> save(@RequestBody AgentAcceuil a) {
+        AgentAcceuil m=iAgentAcceuil.saveAgentAcceuil(a);
+        if(adminstarteurRepository.findByEmailAndClub(a.getEmail(),a.getClub())!=null || agentAcceuilRepository.findByEmailAndClub(a.getEmail(),a.getClub())!=null || membreRepository.findByEmailAndClub(a.getEmail(),a.getClub())!=null || coachRepository.findByEmailAndClub(a.getEmail(),a.getClub())!=null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà exist");
+        }
+        if(adminstarteurRepository.findByTelephoneAndClub(a.getTelephone(),a.getClub())!=null || agentAcceuilRepository.findByTelephoneAndClub(a.getTelephone(),a.getClub())!=null || membreRepository.findByTelephoneAndClub(a.getTelephone(),a.getClub())!=null || coachRepository.findByTelephoneAndClub(a.getTelephone(),a.getClub())!=null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Téléphone déjà exist");
+        }
+        if(adminstarteurRepository.findByUsernameAndClub(a.getUsername(),a.getClub())!=null || agentAcceuilRepository.findByUsernameAndClub(a.getUsername(),a.getClub())!=null || membreRepository.findByUsernameAndClub(a.getUsername(),a.getClub())!=null || coachRepository.findByUsernameAndClub(a.getUsername(),a.getClub())!=null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username déjà exist");
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(m);
     }
     @PutMapping("/update")
-    AgentAcceuil update(@RequestBody AgentAcceuil agentAcceuil) {
-
-        return iAgentAcceuil.updateAgentAcceuil(agentAcceuil);
+    public ResponseEntity<?> update(@RequestBody AgentAcceuil a) {
+        AgentAcceuil m=iAgentAcceuil.updateAgentAcceuil(a);
+        if(adminstarteurRepository.findByEmailAndClub(a.getEmail(),a.getClub())!=null || agentAcceuilRepository.findByEmailAndClub(a.getEmail(),a.getClub())!=null || membreRepository.findByEmailAndClub(a.getEmail(),a.getClub())!=null || coachRepository.findByEmailAndClub(a.getEmail(),a.getClub())!=null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà exist");
+        }
+        if(adminstarteurRepository.findByTelephoneAndClub(a.getTelephone(),a.getClub())!=null || agentAcceuilRepository.findByTelephoneAndClub(a.getTelephone(),a.getClub())!=null || membreRepository.findByTelephoneAndClub(a.getTelephone(),a.getClub())!=null || coachRepository.findByTelephoneAndClub(a.getTelephone(),a.getClub())!=null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Téléphone déjà exist");
+        }
+        if(adminstarteurRepository.findByUsernameAndClub(a.getUsername(),a.getClub())!=null || agentAcceuilRepository.findByUsernameAndClub(a.getUsername(),a.getClub())!=null || membreRepository.findByUsernameAndClub(a.getUsername(),a.getClub())!=null || coachRepository.findByUsernameAndClub(a.getUsername(),a.getClub())!=null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username déjà exist");
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(m);
     }
     @GetMapping("/getAll")
     List<AgentAcceuil> getAllAgentAcceuils() {
