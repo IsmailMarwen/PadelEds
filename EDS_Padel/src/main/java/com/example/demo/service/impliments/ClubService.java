@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.service.interfaces.IClub;
 import java.util.List;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +40,7 @@ public class ClubService implements  IClub {
     @Autowired
     private AppWebService appWebService;
     @Autowired
+    @Lazy
     private AdministrateurService administrateurService;
 
     @Autowired

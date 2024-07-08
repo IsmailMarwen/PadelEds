@@ -5,6 +5,7 @@ import com.example.demo.persistance.entities.Administrateur;
 import com.example.demo.persistance.entities.Club;
 import com.example.demo.service.interfaces.IAdministrateur;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -16,6 +17,7 @@ public class AdministrateurService implements IAdministrateur {
     @Autowired
     public AdminstarteurRepository adminstarteurRepository;
     @Autowired
+    @Lazy
     public ClubService clubService;
     @Autowired
     AgentAcceuilRepository agentAcceuilRepository;
