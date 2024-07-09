@@ -34,8 +34,7 @@ public class NotificationService {
             notification.setMembre(membre);
             notificationRepository.save(notification);
 
-            messagingTemplate.convertAndSendToUser(admin.getEmail(), "/queue/notifications", message);
-        }
+            messagingTemplate.convertAndSend("/topic/notifications", message);        }
     }
 
     public List<Notification> getNotificationsForAdmin(Administrateur administrateur) {
