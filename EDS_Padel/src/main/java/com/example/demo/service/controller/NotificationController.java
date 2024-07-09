@@ -7,13 +7,10 @@ import com.example.demo.service.impliments.AdministrateurService;
 import com.example.demo.service.impliments.AgentAcceuilService;
 import com.example.demo.service.impliments.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/notifications")
 public class NotificationController {

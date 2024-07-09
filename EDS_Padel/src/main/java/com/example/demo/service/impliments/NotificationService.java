@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class NotificationService {
@@ -35,8 +34,7 @@ public class NotificationService {
             notification.setCoach(coach);
             notification.setMembre(membre);
             notificationRepository.save(notification);
-
-            messagingTemplate.convertAndSendToUser(admin.getEmail(), "/queue/notifications", message);
+            messagingTemplate.convertAndSend( "/queue/notifications", message);
         }
         for (AgentAcceuil agentAcceuil : agentAcceuils) {
             Notification notification = new Notification();
@@ -47,15 +45,17 @@ public class NotificationService {
             notification.setCoach(coach);
             notification.setMembre(membre);
             notificationRepository.save(notification);
+            messagingTemplate.convertAndSend( "/queue/notifications", message);
 
-            messagingTemplate.convertAndSendToUser(agentAcceuil.getEmail(), "/queue/notifications", message);
         }
     }
-
     public List<Notification> getNotificationsForAdmin(Administrateur administrateur) {
         return notificationRepository.findByAdmin(administrateur);
     }
     public List<Notification> getNotificationsForAgent(AgentAcceuil agentAcceuil) {
         return notificationRepository.findByAgentAcceuil(agentAcceuil);
     }
-}
+    }
+
+
+
