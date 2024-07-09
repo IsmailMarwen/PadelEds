@@ -2,6 +2,7 @@ package com.example.demo.persistance.entities;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,5 +16,6 @@ import java.util.List;
 @Setter
 public class Administrateur extends Utilisateur {
     @OneToMany(mappedBy = "admin", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Notification> notifications;
 }

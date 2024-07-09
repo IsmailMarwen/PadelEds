@@ -21,24 +21,24 @@ public class SuperAdminController {
         this.iSuperAdmin=iSuperAdmin;}
     @PostMapping("/add")
     public ResponseEntity<?> save(@RequestBody SuperAdmin superAdmin) {
-        SuperAdmin a=iSuperAdmin.saveSuperAdmin(superAdmin);
         if(superAdminRepository.findByEmail(superAdmin.getEmail())!=null){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà existe");
         }
         if(superAdminRepository.findByTelephone(superAdmin.getTelephone())!=null){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Téléphone déjà existe");
         }
+        SuperAdmin a=iSuperAdmin.saveSuperAdmin(superAdmin);
         return ResponseEntity.status(HttpStatus.CREATED).body(a);
     }
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestBody SuperAdmin superAdmin) {
-        SuperAdmin a=iSuperAdmin.updateSuperAdmin(superAdmin);
         if(superAdminRepository.findByEmail(superAdmin.getEmail())!=null){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà existe");
         }
         if(superAdminRepository.findByTelephone(superAdmin.getTelephone())!=null){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Téléphone déjà existe");
         }
+        SuperAdmin a=iSuperAdmin.updateSuperAdmin(superAdmin);
         return ResponseEntity.status(HttpStatus.CREATED).body(a);
     }
     @GetMapping("/getAll")
