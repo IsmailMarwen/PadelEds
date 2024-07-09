@@ -23,6 +23,9 @@ public class TypeAbonnement {
     private String mtttc;
     private String nbMois;
     private String couleur;
+    private String nbUtilisateur;
+    private String nbJoursGratuit;
+    private String remise;
 
     @OneToMany(mappedBy="typeAbonnement",fetch=FetchType.LAZY)
     @JsonIgnore

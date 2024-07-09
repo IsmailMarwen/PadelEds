@@ -6,11 +6,14 @@ import com.example.demo.persistance.dao.CoachRepository;
 import com.example.demo.persistance.dao.MembreRepository;
 import com.example.demo.persistance.entities.AgentAcceuil;
 import com.example.demo.persistance.entities.Club;
+import com.example.demo.persistance.entities.Coach;
+import com.example.demo.persistance.entities.Membre;
 import com.example.demo.service.interfaces.IAgentAcceuil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
+import java.security.SecureRandom;
 import java.util.List;
 
 @Service
@@ -174,4 +177,103 @@ public class AgentAcceuilService implements IAgentAcceuil {
         Club club=clubService.getClubByIdClub(idClub);
         return agentAcceuilRepository.getAllByClub(club);
     }
+    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    private static final SecureRandom RANDOM = new SecureRandom();
+    public static String generateRandomPassword(int length) {
+        if (length < 1) throw new IllegalArgumentException("Length must be greater than 0");
+
+        StringBuilder password = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            password.append(CHARACTERS.charAt(RANDOM.nextInt(CHARACTERS.length())));
+        }
+        return password.toString();
+    }
+    public Coach ValidateCompteCoach(Coach coach){
+        String buttonColor = coach.getClub().getAppWeb() != null ? getColorButton(coach.getClub().getAppWeb().getCouleurAppWeb()) : "#000000";
+        String generatedPassword = generateRandomPassword(8);
+        coach.setPassword(generatedPassword);
+        coach.setUsername(coach.getNom() + generateRandomPassword(2));
+        coach.setValidation(true);
+        coach.setUpdated(false);
+        String subject = "Validation du compte";
+        String htmlBody = "<html>" +
+                "<head>" +
+                "<style>" +
+                "body { font-family: Arial, sans-serif; margin: 0; padding: 0; }" +
+                ".container { padding: 20px; }" +
+                "h1 { color: #333; }" +
+                "p { font-size: 16px; color: #555; }" +
+                ".logo { width: 50px; margin-bottom: 20px; vertical-align: middle; }" +
+                ".club-name { display: inline-block; vertical-align: middle; margin-left: 10px; font-size: 24px; color: #333; }" +
+                "</style>" +
+                "</head>" +
+                "<body>" +
+                "<div class='container'>" +
+                "<div>" +
+                "<img src='" + coach.getClub().getAppWeb().getLogoAppWeb() + "' alt='Logo' class='logo'>" +
+                "<h4 class='club-name'>" + coach.getClub().getNomClub() + "</h4>" +
+                "</div>" +
+                "<h1>Bonjour,</h1>" +
+                "<p>Votre Information d'authentification.</p>" +
+                "<p>Username: " + coach.getUsername() + "</p>" +
+                "<p><strong>Mot de passe: " + coach.getPassword() + "</strong></p>" +
+                "<p>Veuillez changer votre mot de passe après la première connexion.</p>" +
+                "<a href='http://localhost:4200/" + coach.getClub().getAppWeb().getAdresseUrl() + "/loginClub' style='display: inline-block; padding: 10px 20px; font-size: 16px; color: #ffffff; background-color:" + buttonColor + "; text-decoration: none; border-radius: 5px;'>Connectez-vous</a>" +
+                "<p>Cordialement,<br>Expert Dev Solutions</p>" +
+                "</div>" +
+                "</body>" +
+                "</html>";
+
+        try {
+            emailService.sendHtmlMessage(coach.getEmail(), subject, htmlBody);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return coachRepository.saveAndFlush(coach);
+    }
+
+    public Membre ValidateCompteMembre(Membre membre){
+        String buttonColor = membre.getClub().getAppWeb() != null ? getColorButton(membre.getClub().getAppWeb().getCouleurAppWeb()) : "#000000";
+        String generatedPassword = generateRandomPassword(8);
+        membre.setPassword(generatedPassword);
+        membre.setUsername(membre.getNom() + generateRandomPassword(2));
+        membre.setValidation(true);
+        membre.setUpdated(false);
+        String subject = "Validation du compte";
+        String htmlBody = "<html>" +
+                "<head>" +
+                "<style>" +
+                "body { font-family: Arial, sans-serif; margin: 0; padding: 0; }" +
+                ".container { padding: 20px; }" +
+                "h1 { color: #333; }" +
+                "p { font-size: 16px; color: #555; }" +
+                ".logo { width: 50px; margin-bottom: 20px; vertical-align: middle; }" +
+                ".club-name { display: inline-block; vertical-align: middle; margin-left: 10px; font-size: 24px; color: #333; }" +
+                "</style>" +
+                "</head>" +
+                "<body>" +
+                "<div class='container'>" +
+                "<div>" +
+                "<img src='" + membre.getClub().getAppWeb().getLogoAppWeb() + "' alt='Logo' class='logo'>" +
+                "<h4 class='club-name'>" + membre.getClub().getNomClub() + "</h4>" +
+                "</div>" +
+                "<h1>Bonjour,</h1>" +
+                "<p>Votre Information d'authentification.</p>" +
+                "<p>Username: " + membre.getUsername() + "</p>" +
+                "<p><strong>Mot de passe: " + membre.getPassword() + "</strong></p>" +
+                "<p>Veuillez changer votre mot de passe après la première connexion.</p>" +
+                "<a href='http://localhost:4200/" + membre.getClub().getAppWeb().getAdresseUrl() + "/loginClub' style='display: inline-block; padding: 10px 20px; font-size: 16px; color: #ffffff; background-color:" + buttonColor + "; text-decoration: none; border-radius: 5px;'>Connectez-vous</a>" +
+                "<p>Cordialement,<br>Expert Dev Solutions</p>" +
+                "</div>" +
+                "</body>" +
+                "</html>";
+
+        try {
+            emailService.sendHtmlMessage(membre.getEmail(), subject, htmlBody);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return membreRepository.saveAndFlush(membre);
+    }
+
 }

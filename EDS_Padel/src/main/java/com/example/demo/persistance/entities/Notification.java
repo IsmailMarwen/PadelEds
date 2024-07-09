@@ -24,7 +24,9 @@ public class Notification {
     @ManyToOne
     @JoinColumn(name = "admin_id")
     private Administrateur admin;
-
+    @ManyToOne
+    @JoinColumn(name = "agent_id")
+    private AgentAcceuil agentAcceuil;
     @ManyToOne
     @JoinColumn(name = "coach_id")
     private Coach coach;

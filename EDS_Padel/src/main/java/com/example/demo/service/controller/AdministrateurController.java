@@ -4,6 +4,8 @@ import com.example.demo.persistance.dao.AgentAcceuilRepository;
 import com.example.demo.persistance.dao.CoachRepository;
 import com.example.demo.persistance.dao.MembreRepository;
 import com.example.demo.persistance.entities.Administrateur;
+import com.example.demo.persistance.entities.Coach;
+import com.example.demo.persistance.entities.Membre;
 import com.example.demo.service.interfaces.IAdministrateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -78,4 +80,16 @@ public class AdministrateurController {
         iAdministrateur.deleteAdminstarteur(id);
         return true;
     }
+    @PutMapping("/validateCoach")
+    public Coach validateCoach(@RequestBody Coach a) {
+        return iAdministrateur.ValidateCompteCoach(a);
+
+    }
+    @PutMapping("/validateMembre")
+    public Membre validateMembre(@RequestBody Membre a) {
+        return iAdministrateur.ValidateCompteMembre(a);
+
+    }
+
+
 }

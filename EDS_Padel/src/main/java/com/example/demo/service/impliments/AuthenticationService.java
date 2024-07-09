@@ -51,7 +51,10 @@ public class AuthenticationService {
     public String authenticateAndGenerateToken(String username, String password, Club club) {
         Membre membre = membreRepository.findByUsernameAndClub(username, club);
         if (membre != null && membre.getPassword().equals(password)) {
-            return generateToken(membre);
+            if(membre.isValidation()){
+                return generateToken(membre);
+
+            }
         }
         AgentAcceuil agentAcceuil = agentAcceuilRepository.findByUsernameAndClub(username, club);
         if (agentAcceuil != null && agentAcceuil.getPassword().equals(password)) {
@@ -60,7 +63,10 @@ public class AuthenticationService {
 
         Coach coach = coachRepository.findByUsernameAndClub(username, club);
         if (coach != null && coach.getPassword().equals(password)) {
-            return generateToken(coach);
+            if(coach.isValidation()){
+                return generateToken(coach);
+
+            }
         }
 
 

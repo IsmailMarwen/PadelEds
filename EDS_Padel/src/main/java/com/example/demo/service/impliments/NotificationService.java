@@ -17,13 +17,15 @@ public class NotificationService {
 
     @Autowired
     private AdministrateurService administrateurService;
+    @Autowired
+    private AgentAcceuilService agentAcceuilService;
 
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
 
     public void notifyAdmins(Club club, String message, Coach coach, Membre membre) {
         List<Administrateur> admins = administrateurService.getListAdminstarteurByClub(club.getIdClub());
-
+        List<AgentAcceuil> agentAcceuils=agentAcceuilService.getListAgentAcceuilByClub(club.getIdClub());
         for (Administrateur admin : admins) {
             Notification notification = new Notification();
             notification.setMessage(message);
@@ -36,9 +38,24 @@ public class NotificationService {
 
             messagingTemplate.convertAndSendToUser(admin.getEmail(), "/queue/notifications", message);
         }
+        for (AgentAcceuil agentAcceuil : agentAcceuils) {
+            Notification notification = new Notification();
+            notification.setMessage(message);
+            notification.setDate(LocalDateTime.now());
+            notification.setRead(false);
+            notification.setAgentAcceuil(agentAcceuil);
+            notification.setCoach(coach);
+            notification.setMembre(membre);
+            notificationRepository.save(notification);
+
+            messagingTemplate.convertAndSendToUser(agentAcceuil.getEmail(), "/queue/notifications", message);
+        }
     }
 
     public List<Notification> getNotificationsForAdmin(Administrateur administrateur) {
         return notificationRepository.findByAdmin(administrateur);
+    }
+    public List<Notification> getNotificationsForAgent(AgentAcceuil agentAcceuil) {
+        return notificationRepository.findByAgentAcceuil(agentAcceuil);
     }
 }

@@ -19,6 +19,8 @@ public class TypeAbonnementClub {
     private int nbMois;
     private int nbJours;
     private double forfait;
+    private double remise;
+
     @ManyToOne
     @JsonIgnore
     private  Club club;

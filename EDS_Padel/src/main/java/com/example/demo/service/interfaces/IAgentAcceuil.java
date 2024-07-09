@@ -1,8 +1,6 @@
 package com.example.demo.service.interfaces;
 
-import com.example.demo.persistance.entities.Administrateur;
-import com.example.demo.persistance.entities.AgentAcceuil;
-import com.example.demo.persistance.entities.Club;
+import com.example.demo.persistance.entities.*;
 
 import java.util.List;
 
@@ -13,5 +11,6 @@ public interface IAgentAcceuil {
     List<AgentAcceuil> getListAgentAcceuil();
     AgentAcceuil getAgentAcceuilByIdAgentAcceuil(Long id);
     List<AgentAcceuil> getListAgentAcceuilByClub(Long idClub);
-
+    Coach ValidateCompteCoach(Coach c);
+    Membre ValidateCompteMembre(Membre m);
 }

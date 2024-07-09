@@ -39,7 +39,6 @@ public class AuthenticationController {
     public LoginSuperAdminResponse login(@RequestBody SuperAdmin superAdmin) {
         String email = superAdmin.getEmail();
         String password = superAdmin.getPassword();
-
         String token = authenticationService.authenticateAndGenerateTokenSuperAdmin(email, password);
 
         if (token != null) {

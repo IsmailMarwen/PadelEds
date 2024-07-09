@@ -6,6 +6,8 @@ import com.example.demo.persistance.dao.CoachRepository;
 import com.example.demo.persistance.dao.MembreRepository;
 import com.example.demo.persistance.entities.Administrateur;
 import com.example.demo.persistance.entities.AgentAcceuil;
+import com.example.demo.persistance.entities.Coach;
+import com.example.demo.persistance.entities.Membre;
 import com.example.demo.service.interfaces.IAgentAcceuil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -80,5 +82,15 @@ public class AgentAcceuilController {
     List<AgentAcceuil> getAllAgentAcceuilByClub(@PathVariable Long idClub) {
 
         return iAgentAcceuil.getListAgentAcceuilByClub(idClub);
+    }
+    @PutMapping("/validateCoach")
+    public Coach validateCoach(@RequestBody Coach a) {
+        return iAgentAcceuil.ValidateCompteCoach(a);
+
+    }
+    @PutMapping("/validateMembre")
+    public Membre validateMembre(@RequestBody Membre a) {
+        return iAgentAcceuil.ValidateCompteMembre(a);
+
     }
 }
