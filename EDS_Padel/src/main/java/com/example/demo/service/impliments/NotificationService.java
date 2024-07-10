@@ -34,7 +34,7 @@ public class NotificationService {
             notification.setCoach(coach);
             notification.setMembre(membre);
             notificationRepository.save(notification);
-            messagingTemplate.convertAndSend( "/queue/notifications", message);
+            messagingTemplate.convertAndSend("/topic/notifications", message);
         }
         for (AgentAcceuil agentAcceuil : agentAcceuils) {
             Notification notification = new Notification();
@@ -45,7 +45,7 @@ public class NotificationService {
             notification.setCoach(coach);
             notification.setMembre(membre);
             notificationRepository.save(notification);
-            messagingTemplate.convertAndSend( "/queue/notifications", message);
+            messagingTemplate.convertAndSend("/topic/notifications", message);
 
         }
     }
