@@ -43,8 +43,15 @@ public class MembreService implements IMembre {
     }
 
     @Override
-    public List<Membre> getListMembreByClub(Long idClub) {
+    public List<Membre> getListMembreValidateByClub(Long idClub) {
         Club club=clubService.getClubByIdClub(idClub);
-        return membreRepository.getAllByClub(club);
+        return membreRepository.getAllByClubAndValidation(club,true);    }
+
+    @Override
+    public List<Membre> getListMembreNotValidateByClub(Long idClub) {
+        Club club=clubService.getClubByIdClub(idClub);
+        return membreRepository.getAllByClubAndValidation(club,false);
     }
+
+
 }

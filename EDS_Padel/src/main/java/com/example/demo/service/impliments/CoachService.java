@@ -127,8 +127,13 @@ public class CoachService implements ICoach {
     }
 
     @Override
-    public List<Coach> getListCoachByClub(Long idClub) {
+    public List<Coach> getListCoachValidateByClub(Long idClub) {
         Club club=clubService.getClubByIdClub(idClub);
-        return coachRepository.getAllByClub(club);
+        return coachRepository.getAllByClubAndValidation(club,true);
+    }
+    @Override
+    public List<Coach> getListCoachNotValidateByClub(Long idClub) {
+        Club club=clubService.getClubByIdClub(idClub);
+        return coachRepository.getAllByClubAndValidation(club,false);
     }
 }

@@ -79,9 +79,14 @@ public class CoachController {
     public List<Coach> getCoachsByNom(@RequestParam String nom) {
         return iCoach.getCoachsByNom(nom);
     }
-    @GetMapping("/getAllByClub/{idClub}")
-    List<Coach> getAllCoachByClub(@PathVariable Long idClub) {
+    @GetMapping("/getAllValidateByClub/{idClub}")
+    List<Coach> getAllCoachValidateByClub(@PathVariable Long idClub) {
 
-        return iCoach.getListCoachByClub(idClub);
+        return iCoach.getListCoachValidateByClub(idClub);
+    }
+    @GetMapping("/getAllNotValidateByClub/{idClub}")
+    List<Coach> getAllCoachNotValidateByClub(@PathVariable Long idClub) {
+
+        return iCoach.getListCoachNotValidateByClub(idClub);
     }
 }

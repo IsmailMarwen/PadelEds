@@ -14,7 +14,7 @@ import java.util.List;
 
 public interface CoachRepository extends JpaRepository<Coach,Long> {
     Coach findByUsernameAndClub(String username, Club club);
-    List<Coach> getAllByClub(Club club);
+    List<Coach> getAllByClubAndValidation(Club club,boolean validation);
 
     Coach findByEmailAndClub(String email, Club club);
     Coach findByTelephoneAndClub(String tel,Club club);

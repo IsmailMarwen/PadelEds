@@ -14,7 +14,7 @@ public interface ICoach {
     List<Coach> getListCoach();
     Coach getCoachByIdCoach(Long id);
     public List<Coach> getCoachsByNom(String nom);
-    List<Coach> getListCoachByClub(Long idClub);
-
+    List<Coach> getListCoachValidateByClub(Long idClub);
+    List<Coach> getListCoachNotValidateByClub(Long idClub);
 
 }

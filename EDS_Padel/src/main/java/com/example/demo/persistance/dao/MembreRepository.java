@@ -21,6 +21,6 @@ public interface MembreRepository extends JpaRepository<Membre,Long> {
     @Transactional
     @Query("UPDATE Membre m SET m.password = :password, m.updated = true WHERE m.club.idClub = :idClub and m.idUtilisateur= :idUser")
     void updatePasswordMembreByIdClub(@Param("password") String password, @Param("idClub") Long idClub, @Param("idUser") Long idUser);
-    List<Membre> getAllByClub(Club club);
+    List<Membre> getAllByClubAndValidation(Club club,boolean validation);
 
 }

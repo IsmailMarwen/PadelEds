@@ -3,6 +3,7 @@ import com.example.demo.persistance.dao.AdminstarteurRepository;
 import com.example.demo.persistance.dao.AgentAcceuilRepository;
 import com.example.demo.persistance.dao.CoachRepository;
 import com.example.demo.persistance.dao.MembreRepository;
+import com.example.demo.persistance.entities.Coach;
 import com.example.demo.persistance.entities.Membre;
 import com.example.demo.service.interfaces.IMembre;
 
@@ -74,9 +75,14 @@ public class MembreController {
         iMembre.deleteMembre(id);
         return true;
     }
-    @GetMapping("/getAllByClub/{idClub}")
-    List<Membre> getAllMembreByClub(@PathVariable Long idClub) {
+    @GetMapping("/getAllValidateByClub/{idClub}")
+    List<Membre> getAllMembreValidateByClub(@PathVariable Long idClub) {
 
-        return iMembre.getListMembreByClub(idClub);
+        return iMembre.getListMembreValidateByClub(idClub);
+    }
+    @GetMapping("/getAllNotValidateByClub/{idClub}")
+    List<Membre> getAllMembreNotValidateByClub(@PathVariable Long idClub) {
+
+        return iMembre.getListMembreNotValidateByClub(idClub);
     }
 }
