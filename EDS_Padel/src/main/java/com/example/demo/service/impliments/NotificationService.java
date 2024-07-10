@@ -34,20 +34,8 @@ public class NotificationService {
             notification.setCoach(coach);
             notification.setMembre(membre);
             notificationRepository.save(notification);
-            messagingTemplate.convertAndSend("/topic/notifications", message);
-        }
-        for (AgentAcceuil agentAcceuil : agentAcceuils) {
-            Notification notification = new Notification();
-            notification.setMessage(message);
-            notification.setDate(LocalDateTime.now());
-            notification.setRead(false);
-            notification.setAgentAcceuil(agentAcceuil);
-            notification.setCoach(coach);
-            notification.setMembre(membre);
-            notificationRepository.save(notification);
-            messagingTemplate.convertAndSend("/topic/notifications", message);
 
-        }
+            messagingTemplate.convertAndSend("/topic/notifications", message);        }
     }
     public List<Notification> getNotificationsForAdmin(Administrateur administrateur) {
         return notificationRepository.findByAdmin(administrateur);
