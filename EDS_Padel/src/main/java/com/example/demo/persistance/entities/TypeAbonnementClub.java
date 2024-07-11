@@ -22,7 +22,6 @@ public class TypeAbonnementClub {
     private double remise;
 
     @ManyToOne
-    @JsonIgnore
     private  Club club;
     @ManyToOne
     @JoinColumn(name = "categorie_abonnement_id") // Optionnel mais recommandé pour la clarté
