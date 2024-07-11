@@ -34,7 +34,7 @@ export class TypAbonnementComponent implements OnInit, AfterViewInit {
   tauxTva: string = '';
   mtttc: string = '';
   nbMois: string = '';
-
+  couleur:string=''
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -235,6 +235,7 @@ initSidebarState(): void {
 
   getAbonnements(): void {
     this.service.getAbonnements().subscribe(superAdmin => {
+      console.log(superAdmin)
       this.abonnements = superAdmin;
       this.originalAbonnements = superAdmin;
     });

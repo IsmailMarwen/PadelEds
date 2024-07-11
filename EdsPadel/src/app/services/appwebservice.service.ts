@@ -1,5 +1,7 @@
 import { Injectable,TemplateRef } from '@angular/core';
-import { BehaviorSubject, Observable, throwError,forkJoin } from 'rxjs';
+import { Client, Message } from '@stomp/stompjs';
+import SockJS from 'sockjs-client';
+import { BehaviorSubject, Observable, throwError, forkJoin } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,16 +9,24 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AppwebserviceService {
+  private socket:any;
+  private stompClient: Client | null = null;
+  private notificationsSubject: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
+  public notifications$ = this.notificationsSubject.asObservable();
+  public mapEndpointSubscription: Map<string, any> = new Map();
+
   toasts: any[] = [];
-  apiUrl="http://localhost:8081/api"
+  apiUrl="http://ip172-18-0-23-cq7pit8l2o9000catl70-8081.direct.labs.play-with-docker.com/api"
   private geocodeUrl = 'https://nominatim.openstreetmap.org/search';
   private nominatimUrl = 'https://nominatim.openstreetmap.org/reverse';
   private meteoApiUrl='https://api.openweathermap.org/data/2.5';
   private apiKey = 'bd5e378503939ddaee76f12ad7a97608';
   private apiUrlGetAdresse = 'https://api.geoapify.com/v1/geocode/search';
   private apiKeyAdresse='0efd67c90bf949df86f3e41ced1d94d9'
-  constructor(private http:HttpClient) { }
-  private bannerImageSource = new BehaviorSubject<string>(localStorage.getItem('banner') || 'https://media.babolat.com//image/upload/f_auto,q_auto,c_crop,w_2000,h_751/Website_content/Padel_News/02092020-Launch/padel-equipment/equipment-banner-2.jpg');
+  constructor(private http:HttpClient) {
+    this.connectWebSocket();
+   }
+  private bannerImageSource = new BehaviorSubject<string>( 'https://media.babolat.com//image/upload/f_auto,q_auto,c_crop,w_2000,h_751/Website_content/Padel_News/02092020-Launch/padel-equipment/equipment-banner-2.jpg');
 
   
 
@@ -24,11 +34,56 @@ export class AppwebserviceService {
   getWeather(city: string): Observable<any> {
     return this.http.get(`${this.meteoApiUrl}/weather?q=${city}&units=metric&appid=${this.apiKey}&lang=fr`);
   }
+
+  
+
+ 
+  connectWebSocket() {
+    const socket = new SockJS('http://ip172-18-0-23-cq7pit8l2o9000catl70-8081.direct.labs.play-with-docker.com/ws');
+    this.stompClient = new Client({
+      webSocketFactory: () => socket,
+      debug: (str) => {
+        console.log(str);
+      }
+    });
+
+    this.stompClient.onConnect = (frame) => {
+      console.log('Connected: ' + frame);
+      this.stompClient?.subscribe('/topic/notifications', (message) => {
+        if (message.body) {
+          this.addNotification(message.body);
+        }
+      });
+    };
+
+    this.stompClient.onDisconnect = (frame) => {
+      console.log('Disconnected: ' + frame);
+    };
+
+    this.stompClient.activate();
+  }
+  
   setBannerImage(image: string) {
     localStorage.setItem('banner', image);
     this.bannerImageSource.next(image);
   }
- 
+  private addNotification(notification: string) {
+    const currentNotifications = this.notificationsSubject.value;
+    this.notificationsSubject.next([...currentNotifications, notification]);
+  }
+  getNotifications(adminId: number): Observable<any> {
+    return this.http.get<Notification[]>(`${this.apiUrl}/notifications/admin/${adminId}`);
+  }
+
+  fetchAndSubscribeNotifications(adminId: number) {
+    this.getNotifications(adminId).subscribe((notifications) => {
+      this.notificationsSubject.next(notifications);
+    });
+    if (!this.stompClient || !this.stompClient.connected) {
+      console.log("hhhhh")
+      this.connectWebSocket();
+    }
+  }
   getClubsProximete(latitude:any,longitude:any,distance:any):Observable<any>{
     return this.http.get(this.apiUrl+"/club/proximite?latitude="+latitude+"&longitude="+longitude+"&distance="+distance)
   }
@@ -66,6 +121,9 @@ export class AppwebserviceService {
   login(data:any):Observable<any>{
     return this.http.post(this.apiUrl+'/authentication/login',data)
   }
+  loginSuperAdmin(data:any):Observable<any>{
+    return this.http.post(this.apiUrl+'/authentication/superadmin/login',data)
+  }
   getInfoClub(id:any):Observable<any>{
     return this.http.get(this.apiUrl+"/club/getById/"+id)
   }
@@ -94,6 +152,12 @@ export class AppwebserviceService {
   }
   resetPassword(data:any):Observable<any>{
     return this.http.put(this.apiUrl+'/authentication/resetPassword',data)
+  }
+  ValidateCoach(data:any):Observable<any>{
+    return this.http.put(this.apiUrl+'/administrateur/validateCoach',data)
+  }
+  ValidateMembre(data:any):Observable<any>{
+    return this.http.put(this.apiUrl+'/administrateur/validateMembre',data)
   }
   updatePassword(data:any):Observable<any>{
     return this.http.put(this.apiUrl+'/authentication/updatePassword',data)
@@ -134,19 +198,25 @@ export class AppwebserviceService {
     return this.http.get(`${this.apiUrl}/administrateur/getAll`);
   }
 
-  
+  getCompteNotValidate(idUser:any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/notifications/admin/${idUser}`);
+  }
   // Methods for Members
   getMembers(): Observable<any> {
     return this.http.get(`${this.apiUrl}/membre/getAll`);
   }
 
- 
+  getMembersNotValidate(idClub:any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/membre/getAllNotValidateByClub/${idClub}`);
+  }
 
   // Methods for Coaches
   getCoaches(): Observable<any> {
     return this.http.get(`${this.apiUrl}/coach/getAll`);
   }
-
+  getCoachesNotValidate(idClub:any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/coach/getAllNotValidateByClub/${idClub}`);
+  }
   
   deleteUser(userId: number, role: string): Observable<any> {
     let endpoint = '';
@@ -356,5 +426,21 @@ export class AppwebserviceService {
   }
   updateTypeAbonnementClub(data:any):Observable<any>{
     return this.http.put(this.apiUrl+"/typeAbonnementClub/update",data)
+  }
+  getAllUsersNotValidate(idClub:any): Observable<any[]> {
+    return new Observable(observer => {
+      forkJoin({
+        members: this.getMembersNotValidate(idClub),
+        coaches: this.getCoachesNotValidate(idClub)
+      }).subscribe({
+        next: ({members, coaches }) => {
+          let users: any[] = [];
+          users = users.concat( members, coaches);
+          observer.next(users);
+          observer.complete();
+        },
+        error: err => observer.error(err)
+      });
+    });
   }
 }

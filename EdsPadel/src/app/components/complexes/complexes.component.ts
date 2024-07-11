@@ -11,6 +11,8 @@ import { filter } from 'rxjs/operators';
 import { NgToastService,ToastType } from 'ng-angular-popup';
 import { CreateUserSuperAdminComponent } from '../create-user-super-admin/create-user-super-admin.component';
 import { UpdateUserSuperAdminComponent } from '../update-user-super-admin/update-user-super-admin.component';
+import { AddComplexeComponent } from '../add-complexe/add-complexe.component';
+import { UpdateComplexeComponent } from '../update-complexe/update-complexe.component';
 declare var window: any;
 declare const Waypoint: any;
 declare const CircleProgress: any;
@@ -37,6 +39,12 @@ export class ComplexesComponent implements OnInit,AfterViewInit  {
  themeDetail1:string="#fcbc04"
  themeDetail2:string="#888"
  private selectedTheme:string='theme1'
+ selectedActivite:string=''
+ selectedAbonnement:string=''
+ filteredClubs:any
+ activites:any
+ abonnements:any
+ originalClubs:any
  users = [
   { profileImage: 'assets/images/shapes/01.png', nom: 'Anna', prenom: 'Sthesia', email: 'annasthesia.com', telephone: '(760) 756 7568' },
   { profileImage: 'assets/images/shapes/02.png', nom: 'Brock', prenom: 'Lee', email: 'brocklee.com', telephone: '+62 5689 458 658' },
@@ -44,13 +52,31 @@ export class ComplexesComponent implements OnInit,AfterViewInit  {
   { profileImage: 'assets/images/shapes/04.png', nom: 'Hans', prenom: 'Olo', email: 'hansolo.com', telephone: '+91 2586 253 125' }
 ];
 clubs:any = [];
+selectedActivites: string[] = []; // Liste des activités sélectionnées
+
  ngAfterViewInit() {
     }
-    
+    searchClubs(event: any): void {
+      const searchTerm = event.target.value.toLowerCase();
+      this.filteredClubs = this.originalClubs.filter((club:any) => {
+        return Object.values(club).some((value: any) => 
+          String(value).toLowerCase().includes(searchTerm)
+        );
+      });
+    }
     ngOnInit() {
       this.service.getAllClub().subscribe(data=>{
         this.clubs=data
-        console.log(this.clubs)
+        this.originalClubs=[...this.clubs]
+        this.applyFilters()
+        this.filteredClubs = [...this.clubs];
+
+      })
+      this.service.getAllActivite().subscribe(res=>{
+        this.activites=res
+      })
+      this.service.getAbonnements().subscribe(res=>{
+        this.abonnements=res
       })
         this.applyTheme('theme1')
         setTimeout(() => {
@@ -512,7 +538,7 @@ customizerMode(custombodyclass: string, detail1: string, detail2: string | null)
   }
 }
 openModal() {
-  const modalRef = this.modalService.open(CreateUserSuperAdminComponent, { size: 'xl', centered: true }); // Utilisez size: 'xl' pour un modal de grande taille
+  const modalRef = this.modalService.open(AddComplexeComponent, { size: 'xl', centered: true }); // Utilisez size: 'xl' pour un modal de grande taille
   modalRef.componentInstance.name = 'World';
   modalRef.result.then((result) => {
     console.log(result);
@@ -520,9 +546,10 @@ openModal() {
     console.log(error);
   });
 }
-EditUser() {
-  const modalRef = this.modalService.open(UpdateUserSuperAdminComponent, { size: 'xl', centered: true }); // Utilisez size: 'xl' pour un modal de grande taille
+EditClub(id:any) {
+  const modalRef = this.modalService.open(UpdateComplexeComponent, { size: 'xl', centered: true }); // Utilisez size: 'xl' pour un modal de grande taille
   modalRef.componentInstance.name = 'World';
+  modalRef.componentInstance.idClub = id; // Passer l'ID du club au composant modal
   modalRef.result.then((result) => {
     console.log(result);
   }).catch((error) => {
@@ -541,8 +568,59 @@ goComplexes(){
 openEnd(content: TemplateRef<any>) {
   this.offcanvasService.open(content, { position: 'end' });
 }
-goToconfig(){
-  this.router.navigate(["/eds/admin/configApp/1"])
+goToconfig(idClub:any){
+  this.router.navigate(["/eds/admin/configApp/"+idClub])
 
 }
+toggleActivite(activite: string): void {
+  const index = this.selectedActivites.indexOf(activite);
+  if (index === -1) {
+    this.selectedActivites.push(activite); // Ajoute l'activité si elle n'est pas déjà sélectionnée
+  } else {
+    this.selectedActivites.splice(index, 1); // Retire l'activité si elle est déjà sélectionnée
+  }
+  this.applyFilters(); // Applique les filtres combinés
+}
+isSelectedActivite(activite: string): boolean {
+  return this.selectedActivites.includes(activite);
+}
+applyFilters(): void {
+  let filteredClubs = [...this.clubs]; // Copie de la liste originale des clubs
+
+  if (this.selectedActivites.length > 0) {
+    // Filtrer les clubs qui incluent toutes les activités sélectionnées
+    filteredClubs = filteredClubs.filter((club: any) =>
+      this.selectedActivites.every((selectedAct: string) =>
+        club.activites.some((act: any) => act.libelle === selectedAct)
+      )
+    );
+  }
+
+  if (this.selectedAbonnement) {
+    filteredClubs = filteredClubs.filter((club: any) =>
+      club.typeAbonnement.libTypeAbonnement === this.selectedAbonnement
+    );
+  }
+
+  this.filteredClubs = filteredClubs; // Met à jour la liste filtrée des clubs
+}
+
+selectOption(activite: string): void {
+  if (this.selectedActivite === activite) {
+    this.selectedActivite = ''; // Réinitialise le filtre d'activité si la même activité est sélectionnée à nouveau
+  } else {
+    this.selectedActivite = activite; // Applique le filtre d'activité
+  }
+  this.applyFilters(); // Applique les filtres combinés
+}
+
+filterAbonnement(abonnement: string): void {
+  if (this.selectedAbonnement === abonnement) {
+    this.selectedAbonnement = ''; // Réinitialise le filtre d'abonnement si le même abonnement est sélectionné à nouveau
+  } else {
+    this.selectedAbonnement = abonnement; // Applique le filtre d'abonnement
+  }
+  this.applyFilters(); // Applique les filtres combinés
+}
+
 }

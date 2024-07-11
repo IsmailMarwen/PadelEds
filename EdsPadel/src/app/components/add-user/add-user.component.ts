@@ -74,7 +74,10 @@ export class AddUserComponent implements OnInit, OnDestroy {
       image:this.imageProfile,
       username:this.username,
       password:this.password,
-      email:this.email
+      email:this.email,
+      club:{
+        idClub:localStorage.getItem("idClub")
+      }
     }
     this.service.addUser(data).subscribe(
       response => {

@@ -217,6 +217,14 @@ export class LoginClubComponent implements OnInit {
     const token = this.getToken();
     return this.jwtHelper.decodeToken(token).clubId;
   }
+  getUserId(): string {
+    const token = this.getToken();
+    return this.jwtHelper.decodeToken(token).userId;
+  }
+  getRole(): string {
+    const token = this.getToken();
+    return this.jwtHelper.decodeToken(token).role;
+  }
   getUpdated(): boolean {
     const token = this.getToken();
     return this.jwtHelper.decodeToken(token).updated;
@@ -266,6 +274,9 @@ export class LoginClubComponent implements OnInit {
             setTimeout(() => {
               this.preloadButton = false;
               this.saveToken(data.token)
+              if(this.getRole()=="admin" || this.getRole()=="agent"){
+                  localStorage.setItem("userId",this.getUserId())
+              }
               if(this.getUpdated()){
                 this.router.navigateByUrl(this.adresseUrl + '/home');
               }else{

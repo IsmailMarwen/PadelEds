@@ -134,16 +134,16 @@
             <div class="d-grid gap-3 grid-cols-2 mb-4">
               
     
-              <div class="btn btn-border d-block " >
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-padel" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Admin  </span>
+              <div class="btn btn-border d-block " (click)="selectOption('admin')"  [ngClass]="{'active':selectedOption=='admin'}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-padel" width="20" viewBox="0 0 24 24" fill="none" >                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Admin  </span>
               </div>
-              <div class="btn btn-border d-block " >
+              <div class="btn btn-border d-block " (click)="selectOption('agent')" [ngClass]="{'active':selectedOption=='agent'}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-football" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Agent  </span>
               </div>
-              <div class="btn btn-border d-block " >
+              <div class="btn btn-border d-block " (click)="selectOption('coach')" [ngClass]="{'active':selectedOption=='coach'}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-silver" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>               <span class="ms-2 "> Coach  </span>
               </div>
-              <div class="btn btn-border d-block " >
+              <div class="btn btn-border d-block " (click)="selectOption('membre')" [ngClass]="{'active':selectedOption=='membre'}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-basket" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Membre  </span>
               </div>
               
@@ -160,10 +160,10 @@
             <div class="d-grid gap-3 grid-cols-2 mb-4">
               
     
-                <div class="btn btn-border d-block " >
+                <div class="btn btn-border d-block " (click)="filterGenre('homme')"  [ngClass]="{'active':selectedGenre=='homme'}" >
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-free" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Homme  </span>
                 </div>
-                <div class="btn btn-border d-block " >
+                <div class="btn btn-border d-block " (click)="filterGenre('femme')"  [ngClass]="{'active':selectedGenre=='femme'}" >
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-volley" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                     <span class="ms-2 "> Femme  </span>
                 </div>
              
@@ -237,7 +237,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active"  data-bs-toggle="collapse" href="#horizontal-menu" role="button" aria-expanded="true" aria-controls="horizontal-menu">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#horizontal-menu" role="button" aria-expanded="false" aria-controls="horizontal-menu">
                         <i class="icon">
                             
                             <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-20">
@@ -281,7 +281,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" >
+                            <a class="nav-link " routerLink="/{{adresseUrl}}/typeDepense">
                                 <i class="icon svg-icon">
                                     <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.7872 10.539C21.6518 10.6706 21.4681 10.7457 21.2747 10.7457C20.559 10.7457 19.9787 11.3095 19.9787 11.9953C19.9787 12.6858 20.5522 13.2467 21.2611 13.2543C21.6605 13.258 22 13.5286 22 13.9166V16.3265C22 18.3549 20.3075 20 18.2186 20H15.0658C14.7398 20 14.4758 19.7435 14.4758 19.4269V17.3975C14.4758 17.0029 14.1567 16.6929 13.7505 16.6929C13.354 16.6929 13.0251 17.0029 13.0251 17.3975V19.4269C13.0251 19.7435 12.7611 20 12.4362 20H5.78143C3.70213 20 2 18.3558 2 16.3265V13.9166C2 13.5286 2.33946 13.258 2.73888 13.2543C3.44874 13.2467 4.02128 12.6858 4.02128 11.9953C4.02128 11.3282 3.46035 10.8209 2.72534 10.8209C2.53191 10.8209 2.34816 10.7457 2.21277 10.6142C2.07737 10.4827 2 10.3042 2 10.1163V7.68291C2 5.65731 3.706 4 5.7911 4H12.4362C12.7611 4 13.0251 4.25649 13.0251 4.57311V6.97827C13.0251 7.36348 13.354 7.68291 13.7505 7.68291C14.1567 7.68291 14.4758 7.36348 14.4758 6.97827V4.57311C14.4758 4.25649 14.7398 4 15.0658 4H18.2186C20.3075 4 22 5.64416 22 7.67352V10.0411C22 10.229 21.9226 10.4075 21.7872 10.539ZM13.7505 14.8702C14.1567 14.8702 14.4758 14.5508 14.4758 14.1656V10.4075C14.4758 10.0223 14.1567 9.70288 13.7505 9.70288C13.354 9.70288 13.0251 10.0223 13.0251 10.4075V14.1656C13.0251 14.5508 13.354 14.8702 13.7505 14.8702Z" fill="currentColor"></path>                            </svg>                        
                                 </i>
@@ -289,7 +289,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " routerLink="/{{adresseUrl}}/tauxTva">
+                            <a class="nav-link ">
                                 <i class="icon">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12 1C6.486 1 2 5.486 2 11C2 15.265 4.894 18.84 9 19.659V22H7C6.447 22 6 22.447 6 23C6 23.553 6.447 24 7 24H17C17.553 24 18 23.553 18 23C18 22.447 17.553 22 17 22H15V19.659C19.106 18.84 22 15.265 22 11C22 5.486 17.514 1 12 1ZM13 19.677V22H11V19.677C7.183 19.052 4.5 15.96 4.5 12C4.5 6.755 8.755 2.5 14 2.5C19.245 2.5 23.5 6.755 23.5 12C23.5 15.96 20.817 19.052 17 19.677ZM13 11.553C13 11.553 15 11.553 15 10C15 8.447 13.5 8 12 8C10.5 8 9.5 8.553 9 9.5C9.5 9.5 11 9.553 11 11.553C11 13.553 9.5 14 8 14C6.5 14 5.5 13.447 5 12.5C5.5 12.5 7 12.553 7 14.553C7 16.553 8.5 17 10 17C11.5 17 13 16.447 13 15.5C13 15.5 11 15.447 11 14C11 12.553 13 12 13 11.553Z" fill="currentColor"/>
@@ -300,17 +300,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link "routerLink="/{{adresseUrl}}/devise" >
+                            <a class="nav-link " routerLink="/{{adresseUrl}}/devise" >
                                 <i class="icon">
                                   <svg fill="currentColor" height="20" width="20" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 381.329 381.329" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g id="Layer_5_65_"> <g> <path d="M78.864,79.423l-24.369-5.431c-2.899-0.646-5.259,0.003-6.382,1.727c-0.967,1.484-0.931,3.59,0.103,5.929l2.945,6.662 c0.667,1.355-0.291,3.057-0.784,3.506c-28.44,25.881-44.752,62.701-44.752,101.019c0,45.394,22.483,87.683,60.144,113.125 c1.577,1.065,3.414,1.629,5.311,1.629c3.165,0,6.11-1.564,7.88-4.183c1.066-1.577,1.629-3.413,1.629-5.311 c0-3.165-1.564-6.11-4.184-7.879c-32.423-21.905-51.78-58.31-51.78-97.382c0-30.858,12.57-61.144,34.487-83.09 c0.568-0.569,0.872-0.613,0.951-0.613c0.146,0,0.358,0.218,0.512,0.486l2.742,6.206c1.146,2.593,2.797,4.021,4.648,4.021 c1.814,0,3.47-1.385,4.661-3.898L84.48,90.919c1.158-2.444,1.206-4.997,0.135-7.188C83.547,81.541,81.504,80.012,78.864,79.423z"></path> <path d="M375.704,188.493c0-45.394-22.483-87.683-60.145-113.125c-1.577-1.065-3.414-1.629-5.311-1.629 c-3.165,0-6.11,1.563-7.879,4.183c-1.066,1.578-1.63,3.414-1.63,5.311c0,3.165,1.564,6.11,4.184,7.879 c32.423,21.904,51.78,58.309,51.78,97.382c0,30.858-12.57,61.144-34.487,83.09c-0.568,0.568-0.872,0.613-0.951,0.613 c-0.146,0-0.358-0.218-0.512-0.486l-2.742-6.206c-1.146-2.593-2.797-4.021-4.648-4.021c-1.814,0-3.47,1.385-4.66,3.898 l-11.857,25.027c-1.158,2.444-1.206,4.996-0.136,7.186s3.113,3.721,5.753,4.31l24.369,5.431c0.754,0.168,1.475,0.253,2.142,0.253 c1.903,0,3.41-0.703,4.241-1.98c0.967-1.484,0.931-3.589-0.103-5.928l-2.945-6.662c-0.667-1.355,0.29-3.057,0.784-3.506 C359.392,263.632,375.704,226.811,375.704,188.493z"></path> <g> <path d="M194.766,79.575c-9.743-3.906-12.559-6.268-12.559-10.534c0-3.414,2.586-7.401,9.874-7.401 c6.447,0,11.392,2.542,11.435,2.565c0.521,0.277,1.104,0.425,1.682,0.425c1.411,0,2.659-0.854,3.177-2.175l1.771-4.528 c0.616-1.649-0.318-3.087-1.512-3.603c-3.97-1.729-11.727-3.065-11.807-3.079c-0.125-0.021-0.56-0.114-0.56-0.623l-0.024-6.567 c0-1.978-1.652-3.588-3.68-3.588h-3.177c-2.025,0-3.677,1.61-3.677,3.59l0.008,6.904c0,0.529-0.573,0.759-0.782,0.809 c-9.792,2.332-15.913,9.505-15.913,18.554c0,11.28,9.324,16.378,19.391,20.204c8.048,3.159,11.331,6.363,11.331,11.063 c0,5.113-4.649,8.685-11.311,8.685c-5.688,0-13.387-3.605-13.463-3.642c-0.492-0.233-1.014-0.352-1.551-0.352 c-1.465,0-2.741,0.886-3.252,2.258l-1.69,4.578c-0.602,1.71,0.324,3.098,1.509,3.715c4.727,2.462,13.876,3.905,14.282,3.968 c0.11,0.016,0.667,0.213,0.667,0.721v6.875c0,1.979,1.651,3.588,3.68,3.588h3.283c2.029,0,3.681-1.609,3.681-3.588v-7.234 c0-0.677,0.499-0.736,0.602-0.761c10.433-2.344,16.859-9.977,16.859-19.561C213.041,90.995,207.574,84.634,194.766,79.575z"></path> <path d="M190.665,0c-47.622,0-86.225,38.604-86.225,86.225c0,47.62,38.603,86.227,86.225,86.227 c47.62,0,86.225-38.606,86.225-86.227S238.285,0,190.665,0z M190.665,152.467c-36.586,0-66.241-29.658-66.241-66.242 s29.655-66.241,66.241-66.241c36.584,0,66.24,29.657,66.24,66.241S227.249,152.467,190.665,152.467z"></path> </g> <g> <path d="M190.666,208.877c-47.623,0-86.226,38.604-86.226,86.225s38.603,86.227,86.226,86.227 c47.62,0,86.224-38.605,86.224-86.227C276.889,247.481,238.286,208.877,190.666,208.877z M190.666,361.345 c-36.586,0-66.242-29.659-66.242-66.243c0-36.583,29.656-66.241,66.242-66.241c36.583,0,66.239,29.658,66.239,66.241 C256.904,331.686,227.249,361.345,190.666,361.345z"></path> <path d="M216.21,314.953c-1.853-2.117-5.072-2.332-7.191-0.477c-4.688,4.105-9.708,6.366-15.948,6.366 c-8.781,0-15.544-4.423-20.191-11.155c-0.196-0.284-0.497-0.865,0.503-0.865h11.654c2.814,0,5.096-2.281,5.096-5.096 s-2.281-5.096-5.096-5.096h-15.613c-0.844,0-0.932-0.666-0.965-1.002c-0.084-0.831-0.129-1.673-0.129-2.526 c0-1.013,0.01-1.509,0.126-2.491c0.02-0.179,0.177-1.036,1.218-1.036h17.715c2.814,0,5.096-2.282,5.096-5.096 s-2.281-5.097-5.096-5.097h-13.381c-1.75,0-0.93-1.166-0.51-1.723c4.7-6.248,11.17-10.298,19.572-10.298 c4.531,0,7.984,1.192,11.877,3.446c2.435,1.41,5.553,0.581,6.964-1.855c1.41-2.435,0.58-5.553-1.855-6.963 c-5.443-3.153-10.662-4.819-16.985-4.819c-14.236,0-25.562,8.324-31.373,20.36c-0.294,0.608-0.606,1.852-1.856,1.852h-6.537 c-2.814,0-5.096,2.282-5.096,5.097c0,2.814,2.281,5.096,5.096,5.096h4.329c0.833,0,0.619,0.719,0.604,0.899 c-0.083,0.985-0.099,1.622-0.099,2.628c0,0.915,0.036,1.822,0.104,2.721c0.021,0.27,0.149,0.808-0.757,0.808h-6.534 c-2.814,0-5.096,2.281-5.096,5.096s2.281,5.096,5.096,5.096h9.097c1.084,0,1.064,0.583,1.193,0.872 c5.604,12.561,17.208,21.34,31.828,21.34c8.712,0,16.115-3.157,22.663-8.891C217.851,320.29,218.063,317.07,216.21,314.953z"></path> </g> </g> </g> </g> </g></svg>
                                 </i>
                                 <i class="sidenav-mini-icon"> B </i>
-                                <span class="item-name">Devise</span>
+                                <span class="item-name">Device</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link "routerLink="/{{adresseUrl}}/banque" >
-                                <i class="icon">
+                            <a class="nav-link " routerLink="/{{adresseUrl}}/banque" >
+                                <i class="icon" >
                                     <svg width="20" height="20" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3 21.0001H21M4 18.0001H20M6 18.0001V13.0001M10 18.0001V13.0001M14 18.0001V13.0001M18 18.0001V13.0001M12 7.00695L12.0074 7.00022M21 10.0001L14.126 3.88986C13.3737 3.2212 12.9976 2.88688 12.5732 2.75991C12.1992 2.64806 11.8008 2.64806 11.4268 2.75991C11.0024 2.88688 10.6263 3.2212 9.87404 3.88986L3 10.0001H21Z"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                                 </i>
                                 <i class="sidenav-mini-icon"> B </i>
@@ -318,7 +318,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link "routerLink="/{{adresseUrl}}/ressource" >
+                            <a class="nav-link " routerLink="/{{adresseUrl}}/ressource" >
                                 <i class="icon">
                                    <svg fill="currentColor" height="20" width="20" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 334.483 334.483" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g id="Layer_5_24_"> <g> <g> <path d="M182.458,31.341h-58.917c-6.659,0-12.107,5.448-12.107,12.107v208.237c0,6.659,5.448,12.107,12.107,12.107h58.917 c6.659,0,12.108-5.447,12.108-12.107V43.449C194.566,36.79,189.117,31.341,182.458,31.341z M152.999,245.1 c-12.94,0-23.469-10.528-23.469-23.469c0-12.94,10.528-23.47,23.469-23.47s23.471,10.529,23.471,23.47 C176.47,234.572,165.94,245.1,152.999,245.1z M183.67,143.532c0,4.44-3.632,8.071-8.071,8.071h-45.197 c-4.439,0-8.071-3.631-8.071-8.071V60.129c0-4.439,3.632-8.071,8.071-8.071h45.197c4.439,0,8.071,3.632,8.071,8.071 L183.67,143.532L183.67,143.532z"></path> <g> <path d="M157.846,77.387h-25.153c-2.229,0-4.036-1.808-4.036-4.035c0-2.229,1.808-4.037,4.036-4.037h25.153 c2.229,0,4.036,1.808,4.036,4.037C161.882,75.58,160.074,77.387,157.846,77.387z"></path> </g> </g> <g> <path d="M84.472,31.341H25.554c-6.659,0-12.107,5.448-12.107,12.107v208.237c0,6.659,5.448,12.107,12.107,12.107h58.918 c6.659,0,12.106-5.447,12.106-12.107V43.449C96.578,36.79,91.131,31.341,84.472,31.341z M55.012,245.1 c-12.94,0-23.47-10.528-23.47-23.469c0-12.94,10.529-23.47,23.47-23.47c12.942,0,23.471,10.529,23.471,23.47 C78.482,234.572,67.954,245.1,55.012,245.1z M85.682,143.532c0,4.44-3.632,8.071-8.072,8.071H32.414 c-4.439,0-8.071-3.631-8.071-8.071V60.129c0-4.439,3.632-8.071,8.071-8.071H77.61c4.44,0,8.072,3.632,8.072,8.071V143.532z"></path> <g> <path d="M59.859,77.387H34.705c-2.229,0-4.036-1.808-4.036-4.035c0-2.229,1.808-4.037,4.036-4.037h25.154 c2.229,0,4.035,1.808,4.035,4.037C63.894,75.58,62.088,77.387,59.859,77.387z"></path> </g> <g> <path d="M59.859,96.589H34.705c-2.229,0-4.036-1.808-4.036-4.036c0-2.23,1.808-4.035,4.036-4.035h25.154 c2.229,0,4.035,1.806,4.035,4.035S62.088,96.589,59.859,96.589z"></path> </g> <g> <path d="M59.859,115.791H34.705c-2.229,0-4.036-1.807-4.036-4.035c0-2.229,1.808-4.037,4.036-4.037h25.154 c2.229,0,4.035,1.808,4.035,4.037C63.894,113.984,62.088,115.791,59.859,115.791z"></path> </g> </g> <g> <path d="M320.897,241.07L289.772,35.172c-0.996-6.584-7.196-11.157-13.78-10.161l-58.259,8.807 c-6.584,0.995-11.155,7.196-10.161,13.78l31.126,205.898c0.996,6.584,7.196,11.157,13.781,10.161l58.256-8.807 C317.319,253.855,321.894,247.654,320.897,241.07z M242.493,151.702c-4.391,0.664-8.523-2.385-9.188-6.774L220.84,62.462 c-0.663-4.39,2.385-8.523,6.775-9.188l44.689-6.756c4.389-0.662,8.522,2.386,9.186,6.775l12.467,82.467 c0.663,4.39-2.385,8.524-6.775,9.187L242.493,151.702z M294.194,231.494c-3.721,5.047-9.184,8.341-15.383,9.278 c-1.168,0.177-2.357,0.266-3.532,0.266c-11.495,0-21.461-8.582-23.181-19.964c-0.938-6.199,0.596-12.392,4.316-17.437 c3.721-5.046,9.184-8.341,15.382-9.277c1.17-0.177,2.357-0.267,3.532-0.267c11.496,0,21.463,8.583,23.182,19.965 C299.448,220.256,297.915,226.449,294.194,231.494z"></path> <g> <path d="M231.645,68.674c-1.962,0-3.683-1.434-3.985-3.433c-0.332-2.204,1.184-4.261,3.387-4.594l24.871-3.76 c2.211-0.336,4.26,1.183,4.594,3.387c0.333,2.204-1.184,4.261-3.387,4.594l-24.871,3.76 C232.048,68.66,231.845,68.674,231.645,68.674z"></path> </g> <g> <path d="M234.459,87.295c-1.963,0-3.683-1.434-3.984-3.434c-0.334-2.204,1.183-4.26,3.386-4.593l38.838-5.871 c2.209-0.338,4.26,1.184,4.593,3.387c0.334,2.204-1.183,4.261-3.387,4.594l-38.837,5.87 C234.863,87.28,234.659,87.295,234.459,87.295z"></path> </g> </g> <path d="M334.483,300.609c0,4.95-4.05,9-9,9H9c-4.95,0-9-4.05-9-9v-7.891c0-4.95,4.05-9,9-9h316.483c4.95,0,9,4.05,9,9V300.609z"></path> </g> </g> </g> </g></svg>
                                 </i>
@@ -327,7 +327,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link "routerLink="/{{adresseUrl}}/typeAbonnementClub" >
+                            <a class="nav-link " routerLink="/{{adresseUrl}}/typeAbonnementClub">
                                 <i class="icon">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 2H6v2h12V2zM4 6h16v2H4V6zm-2 4h20v12H2V10zm18 10v-8H4v8h16z" fill="currentColor"></path> </g></svg>
                                 </i>
@@ -346,7 +346,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "  routerLink="/{{adresseUrl}}/inscriptionEnLigne">
+                    <a class="nav-link  active"  >
                         <i class="icon">
                         <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.9488 14.54C8.49884 14.54 5.58789 15.1038 5.58789 17.2795C5.58789 19.4562 8.51765 20.0001 11.9488 20.0001C15.3988 20.0001 18.3098 19.4364 18.3098 17.2606C18.3098 15.084 15.38 14.54 11.9488 14.54Z" fill="currentColor"></path>
@@ -941,70 +941,85 @@
        <div class="col-md-12 col-lg-12">
         
         <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <div class="header-title" style="display: flex; align-items: center;">
-                    <i class="icon" style="margin-right: 10px;">
-                        <svg class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.7872 10.539C21.6518 10.6706 21.4681 10.7457 21.2747 10.7457C20.559 10.7457 19.9787 11.3095 19.9787 11.9953C19.9787 12.6858 20.5522 13.2467 21.2611 13.2543C21.6605 13.258 22 13.5286 22 13.9166V16.3265C22 18.3549 20.3075 20 18.2186 20H15.0658C14.7398 20 14.4758 19.7435 14.4758 19.4269V17.3975C14.4758 17.0029 14.1567 16.6929 13.7505 16.6929C13.354 16.6929 13.0251 17.0029 13.0251 17.3975V19.4269C13.0251 19.7435 12.7611 20 12.4362 20H5.78143C3.70213 20 2 18.3558 2 16.3265V13.9166C2 13.5286 2.33946 13.258 2.73888 13.2543C3.44874 13.2467 4.02128 12.6858 4.02128 11.9953C4.02128 11.3282 3.46035 10.8209 2.72534 10.8209C2.53191 10.8209 2.34816 10.7457 2.21277 10.6142C2.07737 10.4827 2 10.3042 2 10.1163V7.68291C2 5.65731 3.706 4 5.7911 4H12.4362C12.7611 4 13.0251 4.25649 13.0251 4.57311V6.97827C13.0251 7.36348 13.354 7.68291 13.7505 7.68291C14.1567 7.68291 14.4758 7.36348 14.4758 6.97827V4.57311C14.4758 4.25649 14.7398 4 15.0658 4H18.2186C20.3075 4 22 5.64416 22 7.67352V10.0411C22 10.229 21.9226 10.4075 21.7872 10.539ZM13.7505 14.8702C14.1567 14.8702 14.4758 14.5508 14.4758 14.1656V10.4075C14.4758 10.0223 14.1567 9.70288 13.7505 9.70288C13.354 9.70288 13.0251 10.0223 13.0251 10.4075V14.1656C13.0251 14.5508 13.354 14.8702 13.7505 14.8702Z" fill="currentColor"></path>                            </svg>                        
-
+            <div class="card-header d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div class="header-title d-flex align-items-center mb-2 mb-md-0 order-md-1">
+                    <i class="icon me-2">
+                        <svg class="icon-25" width="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.9488 14.54C8.49884 14.54 5.58789 15.1038 5.58789 17.2795C5.58789 19.4562 8.51765 20.0001 11.9488 20.0001C15.3988 20.0001 18.3098 19.4364 18.3098 17.2606C18.3098 15.084 15.38 14.54 11.9488 14.54Z" fill="currentColor"></path>
+                            <path opacity="0.4" d="M11.949 12.467C14.2851 12.467 16.1583 10.5831 16.1583 8.23351C16.1583 5.88306 14.2851 4 11.949 4C9.61293 4 7.73975 5.88306 7.73975 8.23351C7.73975 10.5831 9.61293 12.467 11.949 12.467Z" fill="currentColor"></path>
+                            <path opacity="0.4" d="M21.0881 9.21923C21.6925 6.84176 19.9205 4.70654 17.664 4.70654C17.4187 4.70654 17.1841 4.73356 16.9549 4.77949C16.9244 4.78669 16.8904 4.802 16.8725 4.82902C16.8519 4.86324 16.8671 4.90917 16.8895 4.93889C17.5673 5.89528 17.9568 7.0597 17.9568 8.30967C17.9568 9.50741 17.5996 10.6241 16.9728 11.5508C16.9083 11.6462 16.9656 11.775 17.0793 11.7948C17.2369 11.8227 17.3981 11.8371 17.5629 11.8416C19.2059 11.8849 20.6807 10.8213 21.0881 9.21923Z" fill="currentColor"></path>
+                            <path d="M22.8094 14.817C22.5086 14.1722 21.7824 13.73 20.6783 13.513C20.1572 13.3851 18.747 13.205 17.4352 13.2293C17.4155 13.232 17.4048 13.2455 17.403 13.2545C17.4003 13.2671 17.4057 13.2887 17.4316 13.3022C18.0378 13.6039 20.3811 14.916 20.0865 17.6834C20.074 17.8032 20.1698 17.9068 20.2888 17.8888C20.8655 17.8059 22.3492 17.4853 22.8094 16.4866C23.0637 15.9589 23.0637 15.3456 22.8094 14.817Z" fill="currentColor"></path>
+                            <path opacity="0.4" d="M7.04459 4.77973C6.81626 4.7329 6.58077 4.70679 6.33543 4.70679C4.07901 4.70679 2.30701 6.84201 2.9123 9.21947C3.31882 10.8216 4.79355 11.8851 6.43661 11.8419C6.60136 11.8374 6.76343 11.8221 6.92013 11.7951C7.03384 11.7753 7.09115 11.6465 7.02668 11.551C6.3999 10.6234 6.04263 9.50765 6.04263 8.30991C6.04263 7.05904 6.43303 5.89462 7.11085 4.93913C7.13234 4.90941 7.14845 4.86348 7.12696 4.82926C7.10906 4.80135 7.07593 4.78694 7.04459 4.77973Z" fill="currentColor"></path>
+                            <path d="M3.32156 13.5127C2.21752 13.7297 1.49225 14.1719 1.19139 14.8167C0.936203 15.3453 0.936203 15.9586 1.19139 16.4872C1.65163 17.4851 3.13531 17.8066 3.71195 17.8885C3.83104 17.9065 3.92595 17.8038 3.91342 17.6832C3.61883 14.9167 5.9621 13.6046 6.56918 13.3029C6.59425 13.2885 6.59962 13.2677 6.59694 13.2542C6.59515 13.2452 6.5853 13.2317 6.5656 13.2299C5.25294 13.2047 3.84358 13.3848 3.32156 13.5127Z" fill="currentColor"></path>
+                        </svg>
                     </i>
-                    <h4 class="card-title" style="margin: 0;">Types Depenses</h4>
-                  </div>
-              
-                <div class="input-group search-input">
-                  <span class="input-group-text" id="search-input">
-                    <svg class="icon-18" width="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="11.7669" cy="11.7666" r="8.98856" stroke="#8a92a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
-                      <path d="M18.0186 18.4851L21.5426 22" stroke="#8a92a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </span>
-                  <input type="search" class="form-control" placeholder="Search..." (input)="searchtypeDepenses($event)">
+                    <h4 class="card-title m-0">Inscription En Ligne</h4>
                 </div>
-              
-                <a class="btn btn-primary" (click)="openLargeModalAdd()">
-                    +             Nouveau
-                </a>
-                
-              </div>
+            
+                <div class="input-group search-input flex-fill mb-2 mb-md-0 order-md-2">
+                    <span class="input-group-text" id="search-input">
+                        <svg class="icon-18" width="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11.7669" cy="11.7666" r="8.98856" stroke="#8a92a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                            <path d="M18.0186 18.4851L21.5426 22" stroke="#8a92a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </span>
+                    <input type="search" class="form-control" placeholder="Search..." (input)="searchUsers($event)">
+                </div>
+            
+                <div class="d-flex flex-column flex-md-row  order-md-3 order-3">
+                  
+            
+                    <a class="btn btn-primary" (click)="openFilter(filter)">
+                        <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.12819 2H19.8718C21.0476 2 22 2.98105 22 4.19225V5.72376C22 6.31133 21.7704 6.87557 21.3627 7.28708L14.8577 13.867C14.7454 13.9816 14.5931 14.0452 14.4355 14.0441L8.98893 14.0272C8.82317 14.0272 8.66564 13.9561 8.55238 13.832L2.57452 7.25738C2.20489 6.85117 2 6.31451 2 5.7577V4.19332C2 2.98211 2.95238 2 4.12819 2ZM9.2801 15.8241L14.1347 15.839C14.4374 15.8401 14.6824 16.0935 14.6824 16.4043V19.1353C14.6824 19.4471 14.5053 19.7293 14.2294 19.8597L9.8227 21.9289C9.71974 21.9767 9.61061 22 9.50147 22C9.35629 22 9.21112 21.9576 9.08448 21.8738C8.86311 21.7274 8.72927 21.475 8.72927 21.2046V16.3894C8.72927 16.0766 8.97637 15.8231 9.2801 15.8241Z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
               <div class="card-body px-0">
               <div class="table-responsive">
                 <table id="user-list-table" class="table table-striped"  >
                    <thead>
                       <tr class="ligth">   
                         
-                        <th>ID</th>
-                          <th>Designation</th>
-                          
+                   
+                          <th>Image</th>
+                          <th>Role</th>
+                          <th>Nom</th>
+                          <th>Prenom</th>
+                          <th>Email</th>
+                          <th>Phone</th>
+                          <th>Gender</th>
                          <th style="min-width: 100px">Action</th>
                       </tr>
                    </thead>
                    <tbody>
-                      <tr *ngFor="let user of typeDepenses">
+                      <tr *ngFor="let user of users">
                          
 
-                        
+                         <td class="text-center">
+                             <img class="bg-soft-primary rounded img-fluid avatar-40 me-3" [src]="user.image" alt="profile">
+                           </td>                     <td><span class="badge"  [ngClass]="{'admin': user.role=='admin' ,'coach':user.role=='coach','agent':user.role=='agent','membre':user.role=='membre'}">{{ user.role }}</span></td>
 
-      <td>{{ user.id }}</td>
-            <td>{{ user.designation }}</td>
-           
+      <td>{{ user.nom }}</td>
+            <td>{{ user.prenom }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.telephone }}</td>
+            <td>{{ user.genre }}</td>
+        
                          
                          <td>
                              <div class="flex align-items-center list-user-action">
-                                 <a class="btn btn-sm btn-icon btn-warning me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" data-original-title="Edit" (click)="openLargeModalEdit(user)">
-                                   <span class="btn-inner">
-                                     <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                       <path d="M11.4925 2.78906H7.75349C4.67849 2.78906 2.75049 4.96606 2.75049 8.04806V16.3621C2.75049 19.4441 4.66949 21.6211 7.75349 21.6211H16.5775C19.6625 21.6211 21.5815 19.4441 21.5815 16.3621V12.3341" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                       <path fill-rule="evenodd" clip-rule="evenodd" d="M8.82812 10.921L16.3011 3.44799C17.2321 2.51799 18.7411 2.51799 19.6721 3.44799L20.8891 4.66499C21.8201 5.59599 21.8201 7.10599 20.8891 8.03599L13.3801 15.545C12.9731 15.952 12.4211 16.181 11.8451 16.181H8.09912L8.19312 12.401C8.20712 11.845 8.43412 11.315 8.82812 10.921Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                       <path d="M15.1655 4.60254L19.7315 9.16854" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                     </svg>
+                                 <a class="btn btn-sm btn-icon btn-success me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" data-original-title="Edit" (click)="openLargeModalEdit(user)">
+                                   <span class="btn-inner ">
+                                     Valider
+
                                    </span>
                                  </a>
-                                 <a class="btn btn-sm btn-icon btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" (click)="deletetypeDepense(user.id)">
+                                 <a class="btn btn-sm btn-icon btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" (click)="deleteUser(user.idUtilisateur, user.role)">
                                    <span class="btn-inner">
-                                     <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
-                                       <path d="M19.3248 9.46826C19.3248 9.46826 18.7818 16.2033 18.4668 19.0403C18.3168 20.3953 17.4798 21.1893 16.1088 21.2143C13.4998 21.2613 10.8878 21.2643 8.27979 21.2093C6.96079 21.1823 6.13779 20.3783 5.99079 19.0473C5.67379 16.1853 5.13379 9.46826 5.13379 9.46826" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                       <path d="M20.708 6.23975H3.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                       <path d="M17.4406 6.23973C16.6556 6.23973 15.9796 5.68473 15.8256 4.91573L15.5826 3.69973C15.4326 3.13873 14.9246 2.75073 14.3456 2.75073H10.1126C9.53358 2.75073 9.02558 3.13873 8.87558 3.69973L8.63258 4.91573C8.47858 5.68473 7.80258 6.23973 7.01758 6.23973" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                     </svg>
+                                     Annuler
                                    </span>
                                  </a>
                                </div>
@@ -1015,7 +1030,7 @@
                       
                    </tbody>
                 </table>
-                <div *ngIf="typeDepenses.length === 0" class="no-users">Aucun depenses</div>
+                <div *ngIf="users.length === 0" class="no-users">Aucun users</div>
 
           </div>
         </div>

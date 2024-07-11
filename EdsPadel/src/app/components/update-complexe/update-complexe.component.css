@@ -1,0 +1,348 @@
+p{
+    color: #8a92a6;
+}
+.mb-0{
+    color: #8a92a6;
+}
+
+
+ 
+table.table-dark {
+    background-color: #222738 !important;
+    color: hsl(0, 0%, 100%);
+  }
+  
+  table.table-dark th, table.table-dark td {
+    border-color: #444444;
+    background-color: #222738 !important;
+
+  }
+  .table-striped.table-dark > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-bg-type: #222738 !important;
+  }
+  
+  .table-striped.table-dark > tbody > tr:nth-of-type(even) > * {
+    --bs-table-accent-bg: #222738 !important;
+    color: var(--bs-table-striped-color);
+  }
+  
+
+  
+  .dark .progress-bar.bg-primary {
+    background-color: #bb86fc;
+  }
+  
+  .dark .progress-bar.bg-success {
+    background-color: #03dac5;
+  }
+  
+  .dark .bg-soft-primary {
+    background-color: rgba(98, 0, 238, 0.1);
+  }
+  
+  .dark .bg-soft-success {
+    background-color: rgba(3, 218, 198, 0.1);
+  }
+  
+  .dark h6 {
+    color: #ffffff;
+  }
+  .form-control.dark {
+    background-color: #222738 !important;
+    color: white; /* Couleur du texte */
+  }
+  
+  .form-control.dark::placeholder {
+    color: rgba(255, 255, 255, 0.5); /* Couleur du texte d'espacement */
+  }
+  
+  .form-control.dark + .input-group-text svg {
+    stroke: white; /* Couleur du trait du SVG */
+  }
+  /* Personnalisez les styles pour le modal */
+.modal-xl {
+    width: 97%;
+    max-width: none; /* Pour enlever la largeur maximale */
+  }
+  
+  /* Pour rendre le modal responsive */
+  @media (max-width: 1200px) {
+    .modal-xl {
+      width: 95%;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .modal-xl {
+      width: 90%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .modal-xl {
+      width: 85%;
+    }
+  }
+  .banner {
+    position: relative;
+    width: 100%;
+    height: 215px; /* ou toute autre hauteur que vous souhaitez */
+    overflow: hidden;
+  }
+  
+  .banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s; /* Transition pour l'effet de flou */
+  }
+  
+  .banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    opacity: 0; /* Rendre le bouton invisible par défaut */
+    transition: opacity 0.3s; /* Transition pour l'apparition du bouton */
+  }
+  
+  .banner:hover .banner-img {
+    filter: blur(5px); /* Appliquer un flou lorsque la souris passe dessus */
+  }
+  
+  .banner:hover .banner-content {
+    opacity: 1; /* Rendre le bouton visible lorsque la souris passe dessus */
+  }
+  .preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    animation: rotate 2s infinite ease-in-out;
+  }
+  
+  
+  
+  .circle2 {
+    animation-delay: 1s;
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: scale(0) translateX(0) rotate(0deg);
+    }
+    50% {
+      transform: scale(1) translateX(100px) rotate(180deg);
+    }
+    100% {
+      transform: scale(0) translateX(0) rotate(360deg);
+    }
+  }
+  @import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+.card-header{
+    background-color: transparent !important;
+}
+.upload-icone{
+    background-color: #fcbc04;
+}
+.imgBanner {
+    border-radius: 6px;
+    box-sizing: border-box;
+    border: 2px solid #eee;
+    cursor: pointer;
+    height: 46.79px;
+}
+.flag {
+    width: 22px !important;
+    height: 22px !important;
+    margin-top: -2px;
+    margin-right: 8px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+}
+.countries-list {
+    position: absolute;
+    z-index: 1000; /* Assure que la liste est au-dessus des autres éléments */
+    background-color: #ffff; /* Fond blanc pour meilleure visibilité */
+    border: 1px solid #ccc; /* Bordure optionnelle pour démarcation */
+    max-height: 300px; /* Hauteur maximale pour la liste déroulante */
+    overflow-y: auto; /* Scroll si la liste est trop longue */
+    width: 95%; 
+  }
+  .scrollable-list {
+    position: relative;
+  }
+  
+  .form-group {
+    position: relative; /* Assure que les éléments du formulaire restent dans le flux du document */
+  }
+  .btndrop{
+    border: solid 1px;
+    border-color: #dee2e6;
+  }
+  .pays{
+    cursor: pointer;
+  }
+
+
+
+  .input-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    top: -7%;
+  }
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+  
+  .input-like {
+   
+  }
+  .btn.btndrop {
+    margin-left: .5rem !important;
+    align-items: center;
+  }
+  @media (max-width: 576px) {
+    .input-group {
+      flex-direction: column;
+    }
+    
+   
+}
+.main-content{
+    overflow-x: hidden !important;
+}
+.obl{
+    color: #8b0000;
+}
+.upload-icone {
+  
+    cursor: pointer !important;
+  }
+  
+  .sticky-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background: white !important;
+    z-index: 10; 
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .searchPays {
+    width: 100%;
+  } 
+  
+  .file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .plus{
+    color:#6c757d
+  }
+
+  .btnPM{
+    border: solid 1px;
+    border-color: #dee2e6;
+    margin-left: .5rem;
+    margin-right: .5rem;
+
+    align-items: center;
+  }
+
+  .btnTermine{
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-weight: 400;
+    height: auto !important;
+    background: #198754;
+    border-color: #198754;
+    color: #fff;
+    display: block;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;  }
+    .url{
+      color: #198754;
+    }
+
+.google-map-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden; /* Ensures the map doesn't overflow its container */
+}
+
+.google-map {
+  width: 100%;
+  height: 100%; /* The map fills the entire container */
+}
+.error {
+  border: 1px solid red;
+  background-color: #ffe6e6; /* Ou une autre couleur de fond rouge */
+}
+.icon-padel{
+    color: rgb(13 202 240) !important; 
+  }
+  .icon-football{
+    color: rgb(25 135 84)!important; 
+  }
+  .icon-volley{
+    color: rgb(192 50 33);
+  }
+  .icon-basket{
+    color: #f16a1b;
+  }
+  .icon-tennis{
+    color:#f1d81b
+  }
+  .icon-ping{
+    color: #3b8aff;
+  }
+  .icon-handball{
+    color: #a1590c !important;
+  }
+  .active{
+    border: #f1d81b !important;
+    background-color: #f1d81b !important;
+  }
+  .d-block:not(.active):hover {
+    border-color: #f1d81b !important;
+    color: #f1d81b !important;
+  }

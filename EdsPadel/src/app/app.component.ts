@@ -1,6 +1,9 @@
 import { Component, OnInit ,TemplateRef, Renderer2, Inject, PLATFORM_ID,NgZone,inject,AfterViewInit } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { AppwebserviceService } from './services/appwebservice.service';
+import { NgToastService, ToastType } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +11,32 @@ import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit ,AfterViewInit {
+  private jwtHelper: JwtHelperService = new JwtHelperService();
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
     private ngZone: NgZone,
-    private offcanvasService: NgbOffcanvas
+    private offcanvasService: NgbOffcanvas,
+    private service:AppwebserviceService,
+    private toast: NgToastService
+
   ) {}
-  ngOnInit() {
+  ngOnInit() { 
+    if (localStorage.getItem("jwt_token") !== null) {
+      const token = localStorage.getItem("jwt_token");
+      if (token) {
+        const role = this.jwtHelper.decodeToken(token).role;
+        if(role=="admin" || role=="agent"){
+          this.service.notifications$.subscribe(notifications => {
+            console.log("heelllllo")
+            if (notifications != null) {
+              this.toast.toast('Nouveau Notification : ' + notifications, ToastType.INFO, 'Notification', 200000000);
+            }
+          });
+        }
+      }
+    }
+   
   }
   ngAfterViewInit(): void {
     this.initSidebarToggle()

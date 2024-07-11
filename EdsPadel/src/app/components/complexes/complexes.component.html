@@ -15,30 +15,15 @@
         <div class="row">
           <div class="col-lg-12">
              <h5 class="mb-3">Activité</h5>
-            <div class="d-grid gap-3 grid-cols-2 mb-4">
+            <div class="d-grid gap-3 grid-cols-2 mb-4" >
               
-    
-              <div class="btn btn-border d-block " >
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-padel" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Padel  </span>
+              <div class="btn btn-border d-block" *ngFor="let act of activites" (click)="toggleActivite(act.libelle)" [ngClass]="{'active': isSelectedActivite(act.libelle)}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20" [ngStyle]="{'color': act.couleur}" width="20" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                </svg>
+                <span class="ms-2">{{act.libelle}}</span>
               </div>
-              <div class="btn btn-border d-block " >
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-football" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Football  </span>
-              </div>
-              <div class="btn btn-border d-block " >
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-volley" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Volleyball  </span>
-              </div>
-              <div class="btn btn-border d-block " >
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-basket" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Basketball  </span>
-              </div>
-              <div class="btn btn-border d-block " >
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-tennis" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Tennis  </span>
-              </div>
-              <div class="btn btn-border d-block " >
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-ping" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Ping-Pong  </span>
-              </div>
-              <div class="btn btn-border d-block " >
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-handball" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Handball  </span>
-              </div>
+              
             </div>
             <hr class="hr-horizontal">
  
@@ -50,15 +35,10 @@
             <div class="d-grid gap-3 grid-cols-2 mb-4">
               
     
-                <div class="btn btn-border d-block " >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-free" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Free  </span>
+                <div class="btn btn-border d-block " (click)="filterAbonnement(ab.libTypeAbonnement)" [ngClass]="{'active':selectedAbonnement===ab.libTypeAbonnement}" *ngFor="let ab of abonnements" >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-20" width="20" viewBox="0 0 24 24" fill="none"  [ngStyle]="{'color':ab.couleur}">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> {{ab.libTypeAbonnement}}  </span>
                 </div>
-                <div class="btn btn-border d-block " >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-silver" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Silver  </span>
-                </div>
-                <div class="btn btn-border d-block " >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-gold" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Gold  </span>
-                </div>
+               
                
               </div>
            
@@ -112,13 +92,13 @@
             <!-- Sidebar Menu Start -->
             <ul class="navbar-nav iq-main-menu" id="sidebar-menu">
                 <li class="nav-item static-item">
-                    <a class="nav-link static-item disabled" href="#" tabindex="-1">
+                    <a class="nav-link static-item disabled"  tabindex="-1">
                         <span class="default-icon">Home</span>
                         <span class="mini-icon">-</span>
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link " aria-current="page" (click)="goHome()">
+                    <a class="nav-link " aria-current="page" routerLink="/eds/admin/home">
                         <i class="icon">
                             <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-20">
                                 <path opacity="0.4" d="M16.0756 2H19.4616C20.8639 2 22.0001 3.14585 22.0001 4.55996V7.97452C22.0001 9.38864 20.8639 10.5345 19.4616 10.5345H16.0756C14.6734 10.5345 13.5371 9.38864 13.5371 7.97452V4.55996C13.5371 3.14585 14.6734 2 16.0756 2Z" fill="currentColor"></path>
@@ -138,7 +118,7 @@
                 </li>
             
                 <li class="nav-item">
-                    <a class="nav-link  " (click)="goToUsers()"  >
+                    <a class="nav-link  " routerLink="/eds/admin/users"  >
                         <i class="icon">
                             <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.2124 7.76241C14.2124 10.4062 12.0489 12.5248 9.34933 12.5248C6.6507 12.5248 4.48631 10.4062 4.48631 7.76241C4.48631 5.11865 6.6507 3 9.34933 3C12.0489 3 14.2124 5.11865 14.2124 7.76241ZM2 17.9174C2 15.47 5.38553 14.8577 9.34933 14.8577C13.3347 14.8577 16.6987 15.4911 16.6987 17.9404C16.6987 20.3877 13.3131 21 9.34933 21C5.364 21 2 20.3666 2 17.9174ZM16.1734 7.84875C16.1734 9.19506 15.7605 10.4513 15.0364 11.4948C14.9611 11.6021 15.0276 11.7468 15.1587 11.7698C15.3407 11.7995 15.5276 11.8177 15.7184 11.8216C17.6167 11.8704 19.3202 10.6736 19.7908 8.87118C20.4885 6.19676 18.4415 3.79543 15.8339 3.79543C15.5511 3.79543 15.2801 3.82418 15.0159 3.87688C14.9797 3.88454 14.9405 3.90179 14.921 3.93246C14.8955 3.97174 14.9141 4.02253 14.9396 4.05607C15.7233 5.13216 16.1734 6.44206 16.1734 7.84875ZM19.3173 13.7023C20.5932 13.9466 21.4317 14.444 21.7791 15.1694C22.0736 15.7635 22.0736 16.4534 21.7791 17.0475C21.2478 18.1705 19.5335 18.5318 18.8672 18.6247C18.7292 18.6439 18.6186 18.5289 18.6333 18.3928C18.9738 15.2805 16.2664 13.8048 15.5658 13.4656C15.5364 13.4493 15.5296 13.4263 15.5325 13.411C15.5345 13.4014 15.5472 13.3861 15.5697 13.3832C17.0854 13.3545 18.7155 13.5586 19.3173 13.7023Z" fill="currentColor"></path>                            </svg>                        
                         </i>
@@ -146,14 +126,14 @@
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link active"  >
+                    <a class="nav-link active" routerLink="/eds/admin/complexes"  >
                         <i class="icon">
                             <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.7044 3.51898C10.034 3.51898 9.46373 3.9848 9.30365 4.61265H14.6863C14.5263 3.9848 13.956 3.51898 13.2856 3.51898H10.7044ZM16.2071 4.61264H18.1881C20.2891 4.61264 22 6.34428 22 8.47085C22 8.47085 21.94 9.3711 21.92 10.6248C21.918 10.724 21.8699 10.8212 21.7909 10.88C21.3097 11.2354 20.8694 11.5291 20.8294 11.5493C19.1686 12.6632 17.2386 13.447 15.1826 13.8369C15.0485 13.8632 14.9165 13.7934 14.8484 13.6739C14.2721 12.6754 13.1956 12.0253 11.995 12.0253C10.8024 12.0253 9.71586 12.6683 9.12256 13.6678C9.05353 13.7853 8.92346 13.8531 8.7904 13.8278C6.75138 13.4369 4.82141 12.6541 3.17059 11.5594L2.21011 10.8911C2.13007 10.8405 2.08004 10.7493 2.08004 10.6481C2.05003 10.1316 2 8.47085 2 8.47085C2 6.34428 3.71086 4.61264 5.81191 4.61264H7.78289C7.97299 3.1443 9.2036 2 10.7044 2H13.2856C14.7864 2 16.017 3.1443 16.2071 4.61264ZM21.6598 12.8152L21.6198 12.8355C19.5988 14.1924 17.1676 15.0937 14.6163 15.4684C14.2561 15.519 13.8959 15.2861 13.7959 14.9216C13.5758 14.0912 12.8654 13.5443 12.015 13.5443H12.005H11.985C11.1346 13.5443 10.4242 14.0912 10.2041 14.9216C10.1041 15.2861 9.74387 15.519 9.38369 15.4684C6.83242 15.0937 4.4012 14.1924 2.38019 12.8355C2.37019 12.8254 2.27014 12.7646 2.1901 12.8152C2.10005 12.8659 2.10005 12.9874 2.10005 12.9874L2.17009 18.1519C2.17009 20.2785 3.87094 22 5.97199 22H18.018C20.1191 22 21.8199 20.2785 21.8199 18.1519L21.9 12.9874C21.9 12.9874 21.9 12.8659 21.8099 12.8152C21.7599 12.7849 21.6999 12.795 21.6598 12.8152ZM12.7454 17.0583C12.7454 17.4836 12.4152 17.8177 11.995 17.8177C11.5848 17.8177 11.2446 17.4836 11.2446 17.0583V15.7519C11.2446 15.3367 11.5848 14.9924 11.995 14.9924C12.4152 14.9924 12.7454 15.3367 12.7454 15.7519V17.0583Z" fill="currentColor"></path>                            </svg>                                                </i>
                         <span class="item-name">Complexes</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "  >
+                    <a class="nav-link "  routerLink="/eds/admin/abonnements">
                         <i class="icon">
                             <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.761 12.001C19.761 12.8145 20.429 13.4764 21.25 13.4764C21.664 13.4764 22 13.8093 22 14.2195V16.8958C22 19.159 20.142 21 17.858 21H6.143C3.859 21 2 19.159 2 16.8958V14.2195C2 13.8093 2.336 13.4764 2.75 13.4764C3.572 13.4764 4.24 12.8145 4.24 12.001C4.24 11.2083 3.599 10.6118 2.75 10.6118C2.551 10.6118 2.361 10.5335 2.22 10.3938C2.079 10.2541 2 10.0648 2 9.86866L2.002 7.10514C2.002 4.84201 3.86 3 6.144 3H17.856C20.14 3 21.999 4.84201 21.999 7.10514L22 9.78245C22 9.97864 21.921 10.1689 21.781 10.3076C21.64 10.4473 21.45 10.5256 21.25 10.5256C20.429 10.5256 19.761 11.1875 19.761 12.001ZM14.252 12.648L15.431 11.5105C15.636 11.3143 15.707 11.025 15.618 10.7575C15.53 10.4899 15.3 10.2997 15.022 10.261L13.393 10.0252L12.664 8.5627C12.539 8.31102 12.285 8.15446 12.002 8.15347H12C11.718 8.15347 11.464 8.31003 11.337 8.56171L10.608 10.0252L8.982 10.26C8.701 10.2997 8.471 10.4899 8.382 10.7575C8.294 11.025 8.365 11.3143 8.569 11.5105L9.748 12.648L9.47 14.2562C9.422 14.5336 9.535 14.8091 9.765 14.9746C9.895 15.0667 10.046 15.1143 10.199 15.1143C10.316 15.1143 10.434 15.0855 10.542 15.0291L12 14.2701L13.455 15.0271C13.707 15.1608 14.006 15.14 14.235 14.9736C14.466 14.8091 14.579 14.5336 14.531 14.2562L14.252 12.648Z" fill="currentColor"></path>                            </svg>                                                              </i>
                         <span class="item-name">Abonnements</span>
@@ -167,7 +147,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "  >
+                    <a class="nav-link " routerLink="/eds/admin/activites" >
                         <i class="icon">
                             <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.164 6.08252C15.4791 6.08684 15.7949 6.09117 16.1119 6.09441C19.5172 6.09441 22 8.52216 22 11.8748V16.1811C22 19.5337 19.5172 21.9615 16.1119 21.9615C14.7478 21.9904 13.3837 22 12.0098 22C10.6359 22 9.25221 21.9904 7.88813 21.9615C4.48283 21.9615 2 19.5337 2 16.1811V11.8748C2 8.52216 4.48283 6.09441 7.89794 6.09441C9.18351 6.07514 10.4985 6.05588 11.8332 6.05588V5.8921C11.8332 5.22736 11.2738 4.68786 10.6065 4.68786H9.63494C8.52601 4.68786 7.62316 3.80154 7.62316 2.72254C7.62316 2.32755 7.95682 2 8.35918 2C8.77134 2 9.09519 2.32755 9.09519 2.72254C9.09519 3.01156 9.34053 3.24277 9.63494 3.24277H10.6065C12.0883 3.25241 13.2954 4.43738 13.3052 5.88247V6.06551C13.9239 6.06551 14.5425 6.074 15.164 6.08252ZM10.8518 14.7457H9.82139V15.7669C9.82139 16.1618 9.48773 16.4894 9.08538 16.4894C8.67321 16.4894 8.34936 16.1618 8.34936 15.7669V14.7457H7.30913C6.90677 14.7457 6.57311 14.4277 6.57311 14.0231C6.57311 13.6281 6.90677 13.3006 7.30913 13.3006H8.34936V12.289C8.34936 11.894 8.67321 11.5665 9.08538 11.5665C9.48773 11.5665 9.82139 11.894 9.82139 12.289V13.3006H10.8518C11.2542 13.3006 11.5878 13.6281 11.5878 14.0231C11.5878 14.4277 11.2542 14.7457 10.8518 14.7457ZM15.0226 13.1175H15.1207C15.5231 13.1175 15.8567 12.7996 15.8567 12.395C15.8567 12 15.5231 11.6724 15.1207 11.6724H15.0226C14.6104 11.6724 14.2866 12 14.2866 12.395C14.2866 12.7996 14.6104 13.1175 15.0226 13.1175ZM16.7007 16.4316H16.7988C17.2012 16.4316 17.5348 16.1137 17.5348 15.7091C17.5348 15.3141 17.2012 14.9865 16.7988 14.9865H16.7007C16.2875 14.9865 15.9647 15.3141 15.9647 15.7091C15.9647 16.1137 16.2875 16.4316 16.7007 16.4316Z" fill="currentColor"></path>                            </svg>                            </i>
                         <span class="item-name">Activités</span>
@@ -226,25 +206,7 @@
                 Logout
               </a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="search-toggle nav-link" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="../../../assets/images/Flag/flag001.png" class="img-fluid rounded-circle" alt="user" style="height: 30px; min-width: 30px; width: 30px;">
-                <span class="bg-primary"></span>
-                </a>
-                <div class="p-0 sub-drop dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
-                    <div class="m-0 border-0 shadow-none card">
-                        <div class="p-0 ">
-                            <ul class="p-0 list-group list-group-flush">
-                                <li class="iq-sub-card list-group-item"><a class="p-0" href="#"><img src="../../../assets/images/Flag/flag-03.png" alt="img-flaf" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;"/>Spanish</a></li>
-                                <li class="iq-sub-card list-group-item"><a class="p-0" href="#"><img src="../../../assets/images/Flag/flag-04.png" alt="img-flaf" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;"/>Italian</a></li>
-                                <li class="iq-sub-card list-group-item"><a class="p-0" href="#"><img src="../../../assets/images/Flag/flag-02.png" alt="img-flaf" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;"/>French</a></li>
-                                <li class="iq-sub-card list-group-item"><a class="p-0" href="#"><img src="../../../assets/images/Flag/flag-05.png" alt="img-flaf" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;"/>German</a></li>
-                                <li class="iq-sub-card list-group-item"><a class="p-0" href="#"><img src="../../../assets/images/Flag/flag-06.png" alt="img-flaf" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;"/>Japanese</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </li>
+           
             <li class="nav-item dropdown">
               <a href="#"  class="nav-link" id="notification-drop" data-bs-toggle="dropdown" >
                   <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -443,12 +405,13 @@
         <div class="col-sm-12">
            <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <div class="header-title">
-                  <h4 class="card-title">
-                    <i class="icon">
-                        <svg class="icon-25" width="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.7044 3.51898C10.034 3.51898 9.46373 3.9848 9.30365 4.61265H14.6863C14.5263 3.9848 13.956 3.51898 13.2856 3.51898H10.7044ZM16.2071 4.61264H18.1881C20.2891 4.61264 22 6.34428 22 8.47085C22 8.47085 21.94 9.3711 21.92 10.6248C21.918 10.724 21.8699 10.8212 21.7909 10.88C21.3097 11.2354 20.8694 11.5291 20.8294 11.5493C19.1686 12.6632 17.2386 13.447 15.1826 13.8369C15.0485 13.8632 14.9165 13.7934 14.8484 13.6739C14.2721 12.6754 13.1956 12.0253 11.995 12.0253C10.8024 12.0253 9.71586 12.6683 9.12256 13.6678C9.05353 13.7853 8.92346 13.8531 8.7904 13.8278C6.75138 13.4369 4.82141 12.6541 3.17059 11.5594L2.21011 10.8911C2.13007 10.8405 2.08004 10.7493 2.08004 10.6481C2.05003 10.1316 2 8.47085 2 8.47085C2 6.34428 3.71086 4.61264 5.81191 4.61264H7.78289C7.97299 3.1443 9.2036 2 10.7044 2H13.2856C14.7864 2 16.017 3.1443 16.2071 4.61264ZM21.6598 12.8152L21.6198 12.8355C19.5988 14.1924 17.1676 15.0937 14.6163 15.4684C14.2561 15.519 13.8959 15.2861 13.7959 14.9216C13.5758 14.0912 12.8654 13.5443 12.015 13.5443H12.005H11.985C11.1346 13.5443 10.4242 14.0912 10.2041 14.9216C10.1041 15.2861 9.74387 15.519 9.38369 15.4684C6.83242 15.0937 4.4012 14.1924 2.38019 12.8355C2.37019 12.8254 2.27014 12.7646 2.1901 12.8152C2.10005 12.8659 2.10005 12.9874 2.10005 12.9874L2.17009 18.1519C2.17009 20.2785 3.87094 22 5.97199 22H18.018C20.1191 22 21.8199 20.2785 21.8199 18.1519L21.9 12.9874C21.9 12.9874 21.9 12.8659 21.8099 12.8152C21.7599 12.7849 21.6999 12.795 21.6598 12.8152ZM12.7454 17.0583C12.7454 17.4836 12.4152 17.8177 11.995 17.8177C11.5848 17.8177 11.2446 17.4836 11.2446 17.0583V15.7519C11.2446 15.3367 11.5848 14.9924 11.995 14.9924C12.4152 14.9924 12.7454 15.3367 12.7454 15.7519V17.0583Z" fill="currentColor"></path>                            </svg>                        
-                    </i>Complexes
-                  </h4>
+              
+                <div class="header-title d-flex align-items-center mb-2 mb-md-0">
+                  <i class="icon me-2">
+                    <svg class="icon-25" width="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.7044 3.51898C10.034 3.51898 9.46373 3.9848 9.30365 4.61265H14.6863C14.5263 3.9848 13.956 3.51898 13.2856 3.51898H10.7044ZM16.2071 4.61264H18.1881C20.2891 4.61264 22 6.34428 22 8.47085C22 8.47085 21.94 9.3711 21.92 10.6248C21.918 10.724 21.8699 10.8212 21.7909 10.88C21.3097 11.2354 20.8694 11.5291 20.8294 11.5493C19.1686 12.6632 17.2386 13.447 15.1826 13.8369C15.0485 13.8632 14.9165 13.7934 14.8484 13.6739C14.2721 12.6754 13.1956 12.0253 11.995 12.0253C10.8024 12.0253 9.71586 12.6683 9.12256 13.6678C9.05353 13.7853 8.92346 13.8531 8.7904 13.8278C6.75138 13.4369 4.82141 12.6541 3.17059 11.5594L2.21011 10.8911C2.13007 10.8405 2.08004 10.7493 2.08004 10.6481C2.05003 10.1316 2 8.47085 2 8.47085C2 6.34428 3.71086 4.61264 5.81191 4.61264H7.78289C7.97299 3.1443 9.2036 2 10.7044 2H13.2856C14.7864 2 16.017 3.1443 16.2071 4.61264ZM21.6598 12.8152L21.6198 12.8355C19.5988 14.1924 17.1676 15.0937 14.6163 15.4684C14.2561 15.519 13.8959 15.2861 13.7959 14.9216C13.5758 14.0912 12.8654 13.5443 12.015 13.5443H12.005H11.985C11.1346 13.5443 10.4242 14.0912 10.2041 14.9216C10.1041 15.2861 9.74387 15.519 9.38369 15.4684C6.83242 15.0937 4.4012 14.1924 2.38019 12.8355C2.37019 12.8254 2.27014 12.7646 2.1901 12.8152C2.10005 12.8659 2.10005 12.9874 2.10005 12.9874L2.17009 18.1519C2.17009 20.2785 3.87094 22 5.97199 22H18.018C20.1191 22 21.8199 20.2785 21.8199 18.1519L21.9 12.9874C21.9 12.9874 21.9 12.8659 21.8099 12.8152C21.7599 12.7849 21.6999 12.795 21.6598 12.8152ZM12.7454 17.0583C12.7454 17.4836 12.4152 17.8177 11.995 17.8177C11.5848 17.8177 11.2446 17.4836 11.2446 17.0583V15.7519C11.2446 15.3367 11.5848 14.9924 11.995 14.9924C12.4152 14.9924 12.7454 15.3367 12.7454 15.7519V17.0583Z" fill="currentColor"></path>                            </svg>                        
+
+                  </i>
+                  <h4 class="card-title m-0">Complexes</h4>
                 </div>
               
                 <div class="input-group search-input">
@@ -458,7 +421,7 @@
                       <path d="M18.0186 18.4851L21.5426 22" stroke="#8a92a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                   </span>
-                  <input type="search" class="form-control" placeholder="Search...">
+                  <input type="search" class="form-control" placeholder="Search..." (input)="searchClubs($event)">
                 </div>
               
                 <button class="btn btnn" (click)="openModal()">
@@ -486,7 +449,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let club of clubs; let i = index">
+                            <tr *ngFor="let club of filteredClubs; let i = index">
                                 <td class="text-center">
                                     <img class="bg-soft-primary rounded img-fluid avatar-40 me-3" [src]="club.appWeb.logoAppWeb" alt="profile">
                                 </td>
@@ -495,22 +458,22 @@
                                 <td>{{ club.adresse }}</td>
                                 <td>{{ club.telPrincipal}}</td>
                                 <td>
-                                    <span class="badge bg-info" *ngFor="let act of club.activites">{{ act.libelle }}</span>&nbsp;
-                                </td>
+                                  <span 
+                                  class="badge me-1" 
+                                  *ngFor="let act of club.activites" 
+                                  [ngStyle]="{'background-color': act.couleur}">
+                                  {{ act.libelle }}
+                                </span>                                </td>
                                 <td>
-                                    <span 
+                                    <span  
                                         class="badge" 
-                                        [ngClass]="{
-                                            'bg-free': club.typeAbonnement.libTypeAbonnement=== 'free',
-                                            'bg-silver': club.typeAbonnement.libTypeAbonnement === 'silver',
-                                            'bg-gold': club.typeAbonnement.libTypeAbonnement=== 'gold'
-                                        }">
+                                        [ngStyle]="{'background-color':club.typeAbonnement.couleur}">
                                         {{ club.typeAbonnement.libTypeAbonnement }}
                                     </span>
                                 </td>
                                 <td>
                                     <div class="flex align-items-center list-user-action">
-                                        <a class="btn btn-sm btn-icon btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" (click)="EditUser()">
+                                        <a class="btn btn-sm btn-icon btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" (click)="EditClub(club.idClub)">
                                             <span class="btn-inner">
                                                 <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M11.4925 2.78906H7.75349C4.67849 2.78906 2.75049 4.96606 2.75049 8.04806V16.3621C2.75049 19.4441 4.66949 21.6211 7.75349 21.6211H16.5775C19.6625 21.6211 21.5815 19.4441 21.5815 16.3621V12.3341" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -530,7 +493,7 @@
                                         </a>
                                     </div>
                                 </td>
-                                <td> <a class="btn btn-sm btn-icon btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" (click)="goToconfig()">
+                                <td> <a class="btn btn-sm btn-icon btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" (click)="goToconfig(club.idClub)">
                                     <span class="btn-inner">
                                         <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M11.4925 2.78906H7.75349C4.67849 2.78906 2.75049 4.96606 2.75049 8.04806V16.3621C2.75049 19.4441 4.66949 21.6211 7.75349 21.6211H16.5775C19.6625 21.6211 21.5815 19.4441 21.5815 16.3621V12.3341" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>

@@ -27,8 +27,11 @@ import { DeviceComponent } from './components/device/device.component';
 import { RessourceComponent } from './components/ressource/ressource.component';
 import { BanqueComponent } from './components/banque/banque.component';
 import { TypeAbonnementClubComponent } from './components/type-abonnement-club/type-abonnement-club.component';
+import { LoginSuperAdminComponent } from './components/login-super-admin/login-super-admin.component';
+import { InscriptionEnLigneComponent } from './components/inscription-en-ligne/inscription-en-ligne.component';
 const routes: Routes = [
   {path:'eds/admin/home',component:SuperAdminComponent},
+  {path:'eds/admin/login',component:LoginSuperAdminComponent},
   {path:'eds/admin/users',component:UsersSuperAdminComponent},
   {path:'eds/admin/complexes',component:ComplexesComponent},
   {path:'eds/admin/activites',component:ActiviteComponent},
@@ -54,6 +57,8 @@ const routes: Routes = [
 {path:':url/ressource',component:RessourceComponent,canActivate:[authGuard]},
 {path:':url/banque',component:BanqueComponent,canActivate:[authGuard]},
 {path:':url/typeAbonnementClub',component:TypeAbonnementClubComponent,canActivate:[authGuard]},
+{path:':url/inscriptionEnLigne',component:InscriptionEnLigneComponent,canActivate:[authGuard]},
+
 
 ];
 

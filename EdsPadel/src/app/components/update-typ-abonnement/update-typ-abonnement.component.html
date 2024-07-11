@@ -37,19 +37,19 @@
                     <label class="form-label" for="mthtTypeAbonnement">Montant HT Type Abonnement <span
                         class="obl">*</span></label>
                     <input type="text" class="form-control" id="mthtTypeAbonnement"
-                      placeholder="Montant HT Type Abonnement" name="mthtTypeAbonnement" [(ngModel)]="abonnement.mthtTypeAbonnement">
+                      placeholder="Montant HT Type Abonnement" name="mthtTypeAbonnement" [(ngModel)]="abonnement.mthtTypeAbonnement" (input)="changeMttc()">
                     <div id="mthtTypeAbonnement-error" class="error-message"></div>
                   </div>
                   <div class="form-group">
                     <label class="form-label" for="tauxTva">Taux TVA <span class="obl">*</span></label>
                     <input type="text" class="form-control" id="tauxTva" placeholder="Taux TVA" name="tauxTva"
-                      [(ngModel)]="abonnement.tauxTva">
+                      [(ngModel)]="abonnement.tauxTva" (input)="changeMttc()">
                     <div id="tauxTva-error" class="error-message"></div>
                   </div>
                   <div class="form-group">
                     <label class="form-label" for="mtttc">Montant TTC <span class="obl">*</span></label>
                     <input type="text" class="form-control" id="mtttc" placeholder="Montant TTC" name="mtttc"
-                      [(ngModel)]="abonnement.mtttc">
+                      [(ngModel)]="abonnement.mtttc" disabled="true">
                     <div id="mtttc-error" class="error-message"></div>
                   </div>
                   <div class="form-group">
@@ -58,7 +58,11 @@
                       [(ngModel)]="abonnement.nbMois">
                     <div id="nbMois-error" class="error-message"></div>
                   </div>
-  
+                  <div class="form-group">
+                    <label class="form-label" for="couleur">Couleur <span class="obl">*</span></label>
+                    <input [(colorPicker)]="abonnement.couleur" [style.background]="abonnement.couleur" class="form-control" id="couleur" name="couelur">
+                    <div id="couleur-error" class="error-message"></div>
+                  </div>
                   <div class="row justify-content-center">
                     <div class="col-xl-6 col-lg-6" (click)="updateAbonnement()">
                       <button class="btn btnTermine" *ngIf="!preload">

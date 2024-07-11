@@ -44,6 +44,7 @@
              "src/assets/vendor/fullcalendar/timegrid/main.css",
              "src/assets/vendor/fullcalendar/list/main.css"
 
+
             ],
             "scripts": [
               "src/assets/js/core/libs.min.js",

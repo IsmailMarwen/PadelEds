@@ -177,3 +177,14 @@
     max-width: 100%;
     height: 80%;
 }
+.me-1 {
+  margin-right: 0.25rem;
+}
+.active{
+  border: #f1d81b !important;
+  background-color: #f1d81b !important;
+}
+.d-block:not(.active):hover {
+  border-color: #f1d81b !important;
+  color: #f1d81b !important;
+}

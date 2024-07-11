@@ -23,7 +23,11 @@ export class UpdateTypAbonnementComponent {
   closeModal() {
     this.activeModal.dismiss('Cross click');
   }
-
+  changeMttc() {
+    const mthtTypeAbonnement = Number(this.abonnement.mthtTypeAbonnement);
+    const tauxTva = Number(this.abonnement.tauxTva);
+    this.abonnement.mtttc = mthtTypeAbonnement + (mthtTypeAbonnement * tauxTva)/100;
+}
   updateAbonnement() {
     this.preload = true;
     let formValid = true;

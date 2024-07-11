@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; 
 import { AppRoutingModule } from './app-routing.module';
@@ -67,7 +67,14 @@ import { UpdateTypeAbonnementClubComponent } from './components/update-type-abon
 import { UpdateTypeDepenseComponent } from './components/update-type-depense/update-type-depense.component';
 import { TypeAbonnementClubComponent } from './components/type-abonnement-club/type-abonnement-club.component';
 import { RessourceComponent } from './components/ressource/ressource.component';
+import { UpdateComplexeComponent } from './components/update-complexe/update-complexe.component';
+import { AddComplexeComponent } from './components/add-complexe/add-complexe.component';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { LoginSuperAdminComponent } from './components/login-super-admin/login-super-admin.component';
+import { InscriptionEnLigneComponent } from './components/inscription-en-ligne/inscription-en-ligne.component';
+
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -120,7 +127,11 @@ import { RessourceComponent } from './components/ressource/ressource.component';
     UpdateTypeDepenseComponent,
     TypeAbonnementClubComponent,
     UpdateRessourceComponent,
-    RessourceComponent
+    RessourceComponent,
+    UpdateComplexeComponent,
+    AddComplexeComponent,
+    LoginSuperAdminComponent,
+    InscriptionEnLigneComponent
   ],
   imports: [
     BrowserModule,
@@ -138,7 +149,8 @@ import { RessourceComponent } from './components/ressource/ressource.component';
     RippleModule,
     ProgressBarModule,
     BrowserAnimationsModule,
-    NgToastModule
+    NgToastModule,
+    ColorPickerModule
   ],
   providers: [
     provideClientHydration(),

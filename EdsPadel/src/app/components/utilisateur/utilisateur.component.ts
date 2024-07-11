@@ -83,6 +83,7 @@ this.initAll()
     this.router.navigate([this.adresseUrl+"/loginClub"])
   }
   ngOnInit() {
+
     this.getUsers();
     this.applyTheme('theme1')//important
     this.idClub=localStorage.getItem("idClub")

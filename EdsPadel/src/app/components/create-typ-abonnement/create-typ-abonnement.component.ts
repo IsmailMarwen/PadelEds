@@ -15,6 +15,7 @@ export class CreateTypAbonnementComponent {
   tauxTva:any
   mtttc:any
   nbMois:any
+  couleur:any
   preload:boolean=false
   abonnement: any = {
     codeTypeAbonnement: '',
@@ -22,7 +23,8 @@ export class CreateTypAbonnementComponent {
     mthtTypeAbonnement: '',
     tauxTva: '',
     mtttc: '',
-    nbMois: ''
+    nbMois: '',
+    couleur:''
   };
   constructor(private activeModel:NgbActiveModal, private service:AppwebserviceService,private messageService: MessageService,private toast:NgToastService){}
   closeModal() {
@@ -88,7 +90,12 @@ export class CreateTypAbonnementComponent {
       }
     );
   }
-  
+  changeMttc() {
+    const mthtTypeAbonnement = Number(this.abonnement.mthtTypeAbonnement);
+    const tauxTva = Number(this.abonnement.tauxTva);
+    this.abonnement.mtttc = mthtTypeAbonnement + (mthtTypeAbonnement * tauxTva)/100;
+}
+
   // Helper methods to show and hide error messages
   showErrorMessage(fieldId: string, message: string) {
     const element = document.getElementById(`${fieldId}-error`) as HTMLElement;

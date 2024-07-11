@@ -8,22 +8,19 @@ import { ImageBannerComponent } from '../image-banner/image-banner.component';
 import { AppwebserviceService } from '../../services/appwebservice.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
 import { NgToastService,ToastType } from 'ng-angular-popup';
-
+import { AddUserComponent } from '../add-user/add-user.component';
+import { EditUserComponent } from '../edit-user/edit-user.component';
 declare var window: any;
 declare const Waypoint: any;
 declare const CircleProgress: any;
 declare const ApexCharts: any;
-
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-inscription-en-ligne',
+  templateUrl: './inscription-en-ligne.component.html',
+  styleUrl: './inscription-en-ligne.component.css'
 })
-export class HomeComponent implements OnInit,AfterViewInit  {
- 
+export class InscriptionEnLigneComponent implements OnInit,AfterViewInit  {
   selectedTheme: string = ''
   currentMode: string = '';
  currentSidebarColor: string = ''
@@ -37,8 +34,31 @@ export class HomeComponent implements OnInit,AfterViewInit  {
  themeDetail2:any
  idAppWeb:any
  adresseUrl:any
- notifications: string[] = [];
+ id:string='';
+  image:string='';
+  role: string = '';
+  nom: string = '';
+  prenom: string = '';
+  email: string = '';
+  phone: string = '';
+  gender: string = '';
+  username: string = '';
+  password: string = '';
+  confirmPassword: string = '';
+  isModalVisible: boolean = false;
+  searchQuery: string = '';
+  users: any[] = [];
+  originalUsers: any[] = []; // Array to store original users before filtering
+  selectedOption: string = '0';
+  selectedGenre:string='';  
+  options = [
+    { value: '0', label: 'All Users' },
+    { value: '1', label: 'Admin' },
+    { value: '2', label: 'Membre' },
+    { value: '3', label: 'Coach' },
+    { value: '4', label: 'Agent' }
 
+  ];
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -60,8 +80,11 @@ this.initAll()
     this.router.navigate([this.adresseUrl+"/loginClub"])
   }
   ngOnInit() {
- 
-  
+    this.idClub=localStorage.getItem("idClub")
+   this.service.getCompteNotValidate(localStorage.getItem("userId")).subscribe(res=>{
+    console.log(res)
+   })
+    this.getUsers();
     this.applyTheme('theme1')//important
     this.idClub=localStorage.getItem("idClub")
     this.service.getInfoClub(this.idClub).subscribe(data=>{
@@ -749,4 +772,173 @@ applyThemeUpdate(theme: string): void {
 
   })
   }
+  get selectedOptionLabel(): string {
+    const selected = this.options.find(option => option.value === this.selectedOption);
+    return selected ? selected.label : 'Select an option';
+  }
+  applyFilters(): void {
+    let filteredUsers = this.originalUsers;
+  
+    if (this.selectedGenre) {
+      filteredUsers = filteredUsers.filter(user => user.genre === this.selectedGenre);
+    }
+  
+    if (this.selectedOption) {
+      switch (this.selectedOption) {
+        case 'admin':
+          filteredUsers = filteredUsers.filter(user => user.role === 'admin');
+          break;
+        case 'membre':
+          filteredUsers = filteredUsers.filter(user => user.role === 'membre');
+          break;
+        case 'coach':
+          filteredUsers = filteredUsers.filter(user => user.role === 'coach');
+          break;
+        case 'agent':
+          filteredUsers = filteredUsers.filter(user => user.role === 'agent');
+          break;
+        default:
+          break;
+      }
+    }
+  
+    this.users = filteredUsers; // Met à jour la liste des utilisateurs filtrés
+  }
+  selectOption(role: string): void {
+    if (this.selectedOption === role) {
+      this.selectedOption = ''; // Réinitialise le filtre de rôle si le même rôle est sélectionné à nouveau
+    } else {
+      this.selectedOption = role; // Applique le filtre de rôle
+    }
+    this.applyFilters(); // Applique les filtres combinés
+  }
+  
+  getAdmins(): void {
+    this.service.getAdmins().subscribe(admins => {
+      this.users = admins;
+    });
+  }
+  
+  getMembers(): void {
+    this.service.getMembers().subscribe(members => {
+      this.users = members;
+    });
+  }
+  
+  getCoaches(): void {
+    this.service.getCoaches().subscribe(coaches => {
+      this.users = coaches;
+    });
+  }
+  
+  getAgents(): void {
+    this.service.getAgents().subscribe(res => {
+      this.users = res;
+    });
+  }
+
+  getUsers(): void {
+    this.service.getAllUsersNotValidate(this.idClub).subscribe(users => {
+      this.originalUsers = users;
+      this.applyFilters(); // Applique les filtres lors de la récupération initiale des utilisateurs
+    });
+  }
+
+  searchUsers(event: any): void {
+    const searchTerm = event.target.value.toLowerCase();
+    this.users = this.originalUsers.filter(user => {
+      return Object.values(user).some((value: any) => 
+        String(value).toLowerCase().includes(searchTerm)
+      );
+    });
+  }
+  filterGenre(genre: string): void {
+    if (this.selectedGenre === genre) {
+      this.selectedGenre = ''; // Réinitialise le filtre de genre si le même genre est sélectionné à nouveau
+    } else {
+      this.selectedGenre = genre; // Applique le filtre de genre
+    }
+    this.applyFilters(); // Applique les filtres combinés
+  }
+  deleteUser(userId: number, role: string): void {
+    console.log(role)
+    console.log(userId)
+    this.service.deleteUser(userId, role).subscribe(() => {
+      // Remove the deleted user from the users array
+      this.users = this.users.filter(user => user.id !== userId);
+  
+      this.getUsers();
+    }, error => {
+      console.error('Error deleting user:', error);
+    });
+  }
+  
+
+  showUserFormModal() {
+    this.isModalVisible = true;
+  }
+
+  hideUserFormModal() {
+    this.isModalVisible = false;
+  }
+
+  submitForm() {
+    // Perform form submission logic here
+    console.log({
+      id:this.id,
+      image:this.image,
+      role: this.role,
+      nom: this.nom,
+      prenom: this.prenom,
+      email: this.email,
+      phone: this.phone,
+      gender: this.gender,
+      username: this.username,
+      password: this.password,
+      confirmPassword: this.confirmPassword
+    });
+    this.hideUserFormModal();
+  }
+
+  resetForm() {
+    this.id='';
+    this.image='';
+    this.role = '';
+    this.nom = '';
+    this.prenom = '';
+    this.email = '';
+    this.phone = '';
+    this.gender = '';
+    this.username = '';
+    this.password = '';
+    this.confirmPassword = '';
+  }
+
+  openLargeModalAdd() {
+    const modalRef = this.modalService.open(AddUserComponent, { size: 'xl', centered: true });
+    modalRef.componentInstance.name = 'World';
+    modalRef.result.then((result) => {
+      if (result === 'saved') {
+        this.getUsers();
+      }
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+  openFilter(filter: TemplateRef<any>) {
+    this.offcanvasService.open(filter, { position: 'end' });
+  }
+  openLargeModalEdit(user: any) {
+    if(user.role=="coach"){
+      this.service.ValidateCoach(user).subscribe(res=>{
+        this.getUsers();
+      })
+    }
+    if(user.role=="membre"){
+      this.service.ValidateMembre(user).subscribe(res=>{
+        this.getUsers();
+      })
+    }
+  }
+  
 }

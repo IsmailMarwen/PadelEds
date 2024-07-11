@@ -81,7 +81,7 @@
     
     .search-input {
       flex: 2;
-      max-width: 400px; /* Adjust max-width as needed */
+      max-width: 400px;
       margin: 0 auto;
     }
     

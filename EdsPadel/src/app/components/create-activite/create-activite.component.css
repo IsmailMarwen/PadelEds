@@ -35,3 +35,17 @@
         font-size: 0.8em;
         margin-top: 4px;
       }
+     /* Styles globaux ou dans le CSS du composant */
+.color-picker {
+  width: 100%;
+  height: auto;
+}
+
+.color-picker-input {
+  width: 100% !important;
+  height: 40px !important;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  box-sizing: border-box;
+}
