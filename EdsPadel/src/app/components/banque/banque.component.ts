@@ -466,10 +466,15 @@ applyThemeUpdate(theme: string): void {
   
   
   getbanques(): void {
-    this.service.getBanque().subscribe(banques => {
+    const clubId = localStorage.getItem("idClub");
+    if(clubId)
+    this.service.getBanque(clubId).subscribe(banques => {
       this.banques = banques;
       this.originalbanques = banques;
     });
+    else {
+      console.error('No club ID found in local storage');
+    }
   }
 
   searchbanques(event: any): void {

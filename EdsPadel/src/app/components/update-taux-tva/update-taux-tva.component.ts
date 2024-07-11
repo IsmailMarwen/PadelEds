@@ -26,6 +26,13 @@ export class UpdateTauxTvaComponent {
   updatetauxTva() {
     this.preload = true;
     let formValid = true;
+    var data ={
+      id:this.tauxTva.id,
+      taux:this.tauxTva.taux,
+      club:{
+        idClub:localStorage.getItem("idClub")
+      }
+    }
 
     // Clear previous error messages
     this.clearErrorMessages();
@@ -43,7 +50,7 @@ export class UpdateTauxTvaComponent {
       return;
     }
 
-    this.service.updateAbonnemet(this.tauxTva).subscribe(
+    this.service.updateAbonnemet(data).subscribe(
       response => {
         console.log('tauxTva updated successfully:', response);
         this.preload = false;

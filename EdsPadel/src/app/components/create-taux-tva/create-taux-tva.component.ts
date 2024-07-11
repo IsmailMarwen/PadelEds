@@ -12,11 +12,7 @@ export class CreateTauxTvaComponent {
   id:any
   taux:any
   preload:boolean=false
-  tauxTva: any = {
-    id: '',
-    taux: '',
-   
-  };
+  
   constructor(private activeModel:NgbActiveModal, private service:AppwebserviceService,private messageService: MessageService,private toast:NgToastService){}
   closeModal() {
     this.activeModel.dismiss('Cross click');
@@ -25,12 +21,18 @@ export class CreateTauxTvaComponent {
   addtauxTva() {
     this.preload = true;
     let formValid = true;
+    var data ={
+      taux:this.taux,
+      club:{
+        idClub:localStorage.getItem("idClub")
+      }
+    }
   
     // Clear previous error messages
     this.clearErrorMessages();
   
     // Vérifiez si les champs obligatoires sont vides
-    if (!this.tauxTva.taux) {
+    if (!this.taux) {
       formValid = false;
       this.showErrorMessage('taux', 'taux est obligatoire');
     }
@@ -42,7 +44,7 @@ export class CreateTauxTvaComponent {
       return;
     }
   
-    this.service.addtauxTva(this.tauxTva).subscribe(
+    this.service.addtauxTva(data).subscribe(
       response => {
         console.log('tauxTva added successfully:', response);
         this.preload = false;

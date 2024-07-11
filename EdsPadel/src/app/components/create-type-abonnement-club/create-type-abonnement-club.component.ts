@@ -19,13 +19,7 @@ export class CreateTypeAbonnementClubComponent {
 
 
     preload:boolean=false
-    typeAbonnementClub: any = {
-      id: '',
-      libType: '',
-      nbMois:'',
-    nbJours:'',
-    forfait:'',
-    };
+   
     constructor(private activeModel:NgbActiveModal, private service:AppwebserviceService,private messageService: MessageService,private toast:NgToastService){}
     closeModal() {
       this.activeModel.dismiss('Cross click');
@@ -34,24 +28,34 @@ export class CreateTypeAbonnementClubComponent {
     addtypeAbonnementClub() {
       this.preload = true;
       let formValid = true;
+      var data={
+        libType: this.libType,
+        nbMois:this.nbMois,
+      nbJours:this.nbJours,
+      forfait:this.forfait,
+      club:{
+        idClub:localStorage.getItem("idClub")
+      }
+
+      }
     
       // Clear previous error messages
       this.clearErrorMessages();
     
       // Vérifiez si les champs obligatoires sont vides
-      if (!this.typeAbonnementClub.libType) {
+      if (!this.libType) {
         formValid = false;
         this.showErrorMessage('libType', 'libType est obligatoire');
       }
-      if (!this.typeAbonnementClub.nbMois) {
+      if (!this.nbMois) {
         formValid = false;
         this.showErrorMessage('nbMois', 'nbMois est obligatoire');
       }
-      if (!this.typeAbonnementClub.nbJours) {
+      if (!this.nbJours) {
         formValid = false;
         this.showErrorMessage('nbJours', 'nbJours est obligatoire');
       }
-      if (!this.typeAbonnementClub.forfait) {
+      if (!this.forfait) {
         formValid = false;
         this.showErrorMessage('forfait', 'forfait est obligatoire');
       }
@@ -63,7 +67,7 @@ export class CreateTypeAbonnementClubComponent {
         return;
       }
     
-      this.service.addTypeAbonnementClub(this.typeAbonnementClub).subscribe(
+      this.service.addTypeAbonnementClub(data).subscribe(
         response => {
           console.log('typeAbonnementClub added successfully:', response);
           this.preload = false;

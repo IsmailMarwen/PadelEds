@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+  import { Component, Input } from '@angular/core';
   import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   import { AppwebserviceService } from '../../services/appwebservice.service';
   import { MessageService } from 'primeng/api';
@@ -27,6 +27,17 @@ export class UpdateTypeAbonnementClubComponent {
     updatetypeAbonnementClub() {
       this.preload = true;
       let formValid = true;
+      var data={
+        id:this.typeAbonnementClub.id,
+        libType: this.typeAbonnementClub.libType,
+        nbMois:this.typeAbonnementClub.nbMois,
+      nbJours:this.typeAbonnementClub.nbJours,
+      forfait:this.typeAbonnementClub.forfait,
+      club:{
+        idClub:localStorage.getItem("idClub")
+      }
+
+      }
   
       // Clear previous error messages
       this.clearErrorMessages();
@@ -56,7 +67,7 @@ export class UpdateTypeAbonnementClubComponent {
         return;
       }
   
-      this.service.updateTypeAbonnementClub(this.typeAbonnementClub).subscribe(
+      this.service.updateTypeAbonnementClub(data).subscribe(
         response => {
           console.log('typeAbonnementClub updated successfully:', response);
           this.preload = false;

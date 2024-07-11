@@ -20,7 +20,7 @@
                 <div class="form-group">
                   <label class="form-label" for="codeTypeAbonnement">Code Type Abonnement <span class="obl">*</span></label>
                   <input type="text" class="form-control" id="codeTypeAbonnement" placeholder="Code Type Abonnement"
-                    name="codeTypeAbonnement" [(ngModel)]="abonnement.codeTypeAbonnement">
+                    name="codeTypeAbonnement" [(ngModel)]="codeTypeAbonnement">
                   <div id="codeTypeAbonnement-error" class="error-message"></div>
                 </div>
   
@@ -28,7 +28,7 @@
                 <div class="form-group">
                   <label class="form-label" for="libTypeAbonnement">Libellé Type Abonnement <span class="obl">*</span></label>
                   <input type="text" class="form-control" id="libTypeAbonnement" placeholder="Libellé Type Abonnement"
-                    name="libTypeAbonnement" [(ngModel)]="abonnement.libTypeAbonnement">
+                    name="libTypeAbonnement" [(ngModel)]="libTypeAbonnement">
                   <div id="libTypeAbonnement-error" class="error-message"></div>
                 </div>
   
@@ -36,28 +36,28 @@
                 <div class="form-group">
                   <label class="form-label" for="mthtTypeAbonnement">Montant HT Type Abonnement <span class="obl">*</span></label>
                   <input type="text" class="form-control" id="mthtTypeAbonnement"
-                    placeholder="Montant HT Type Abonnement" name="mthtTypeAbonnement" [(ngModel)]="abonnement.mthtTypeAbonnement">
+                    placeholder="Montant HT Type Abonnement" name="mthtTypeAbonnement" [(ngModel)]="mthtTypeAbonnement">
                   <div id="mthtTypeAbonnement-error" class="error-message"></div>
                 </div>
   
                 <!-- Taux TVA -->
                 <div class="form-group">
                   <label class="form-label" for="tauxTva">Taux TVA <span class="obl">*</span></label>
-                  <input type="text" class="form-control" id="tauxTva" placeholder="Taux TVA" name="tauxTva" [(ngModel)]="abonnement.tauxTva">
+                  <input type="text" class="form-control" id="tauxTva" placeholder="Taux TVA" name="tauxTva" [(ngModel)]="tauxTva">
                   <div id="tauxTva-error" class="error-message"></div>
                 </div>
   
                 <!-- Montant TTC -->
                 <div class="form-group">
                   <label class="form-label" for="mtttc">Montant TTC <span class="obl">*</span></label>
-                  <input type="text" class="form-control" id="mtttc" placeholder="Montant TTC" name="mtttc" [(ngModel)]="abonnement.mtttc">
+                  <input type="text" class="form-control" id="mtttc" placeholder="Montant TTC" name="mtttc" [(ngModel)]="mtttc">
                   <div id="mtttc-error" class="error-message"></div>
                 </div>
   
                 <!-- Nombre de Mois -->
                 <div class="form-group">
                   <label class="form-label" for="nbMois">Nombre de Mois <span class="obl">*</span></label>
-                  <input type="text" class="form-control" id="nbMois" placeholder="Nombre de Mois" name="nbMois" [(ngModel)]="abonnement.nbMois">
+                  <input type="text" class="form-control" id="nbMois" placeholder="Nombre de Mois" name="nbMois" [(ngModel)]="nbMois">
                   <div id="nbMois-error" class="error-message"></div>
                 </div>
                 <div class="row justify-content-center">

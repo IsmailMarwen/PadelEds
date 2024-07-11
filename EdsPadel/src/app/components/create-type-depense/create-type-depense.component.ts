@@ -39,7 +39,11 @@ export class CreateTypeDepenseComponent {
       return;
     }
     var data={
-      "designation":this.designation
+      designation:this.designation,
+      club:{
+        idClub:localStorage.getItem("idClub")
+      }
+
     }
     this.service.addtypeDepense(data).subscribe(
       response => {

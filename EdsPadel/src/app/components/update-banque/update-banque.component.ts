@@ -27,6 +27,15 @@ export class UpdateBanqueComponent {
       updatebanque() {
         this.preload = true;
         let formValid = true;
+        var data ={
+          id:this.banque.id,
+          libelle:this.banque.libelle,
+          club:{
+            idClub:localStorage.getItem("idClub")
+          }
+  
+  
+        }
     
         // Clear previous error messages
         this.clearErrorMessages();
@@ -44,7 +53,7 @@ export class UpdateBanqueComponent {
           return;
         }
     
-        this.service.updateAbonnemet(this.banque).subscribe(
+        this.service.updateBanque(data).subscribe(
           response => {
             console.log('banque updated successfully:', response);
             this.preload = false;

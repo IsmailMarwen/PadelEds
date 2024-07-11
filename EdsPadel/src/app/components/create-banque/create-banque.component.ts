@@ -12,11 +12,7 @@ export class CreateBanqueComponent {
     id:any
     libelle:any
     preload:boolean=false
-    banque: any = {
-      id: '',
-      libelle: '',
-     
-    };
+   
     constructor(private activeModel:NgbActiveModal, private service:AppwebserviceService,private messageService: MessageService,private toast:NgToastService){}
     closeModal() {
       this.activeModel.dismiss('Cross click');
@@ -25,12 +21,21 @@ export class CreateBanqueComponent {
     addbanque() {
       this.preload = true;
       let formValid = true;
+
+      var data ={
+        libelle:this.libelle,
+        club:{
+          idClub:localStorage.getItem("idClub")
+        }
+
+
+      }
     
       // Clear previous error messages
       this.clearErrorMessages();
     
       // Vérifiez si les champs obligatoires sont vides
-      if (!this.banque.libelle) {
+      if (!this.libelle) {
         formValid = false;
         this.showErrorMessage('libelle', 'libelle est obligatoire');
       }
@@ -42,7 +47,7 @@ export class CreateBanqueComponent {
         return;
       }
     
-      this.service.addBanque(this.banque).subscribe(
+      this.service.addBanque(data).subscribe(
         response => {
           console.log('banque added successfully:', response);
           this.preload = false;

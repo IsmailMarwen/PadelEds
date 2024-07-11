@@ -10,15 +10,10 @@ import { NgToastService,ToastType } from 'ng-angular-popup';
 })
 export class CreateDeviceComponent {
   id:any
-  libelle:any
+  lib:any
   centieme:any
   preload:boolean=false
-  device: any = {
-    id: '',
-    libelle: '',
-    centieme:'',
-   
-  };
+  
   constructor(private activeModel:NgbActiveModal, private service:AppwebserviceService,private messageService: MessageService,private toast:NgToastService){}
   closeModal() {
     this.activeModel.dismiss('Cross click');
@@ -27,16 +22,24 @@ export class CreateDeviceComponent {
   addDevise() {
     this.preload = true;
     let formValid = true;
+    var data={
+      lib:this.lib,
+      centieme:this.centieme,
+      club:{
+        idClub:localStorage.getItem("idClub")
+      }
+
+    }
   
     // Clear previous error messages
     this.clearErrorMessages();
   
     // Vérifiez si les champs obligatoires sont vides
-    if (!this.device.lib) {
+    if (!this.lib) {
       formValid = false;
       this.showErrorMessage('libelle', 'libelle est obligatoire');
     }
-    if (!this.device.centieme) {
+    if (!this.centieme) {
       formValid = false;
       this.showErrorMessage('centieme', 'centieme est obligatoire');
     }
@@ -48,7 +51,7 @@ export class CreateDeviceComponent {
       return;
     }
   
-    this.service.addDevise(this.device).subscribe(
+    this.service.addDevise(data).subscribe(
       response => {
         console.log('device added successfully:', response);
         this.preload = false;

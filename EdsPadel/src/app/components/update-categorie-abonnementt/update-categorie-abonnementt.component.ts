@@ -1,17 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppwebserviceService } from '../../services/appwebservice.service';
 import { MessageService } from 'primeng/api';
 import { NgToastService, ToastType } from 'ng-angular-popup';
-
 @Component({
-  selector: 'app-update-device',
-  templateUrl: './update-device.component.html',
-  styleUrl: './update-device.component.css'
+  selector: 'app-update-categorie-abonnement',
+  templateUrl: './update-categorie-abonnementt.component.html',
+  styleUrl: './update-categorie-abonnementt.component.css'
 })
-export class UpdateDeviceComponent {
-  @Input() devise: any; // Assuming this receives existing subscription details
+export class UpdateCategorieAbonnementtComponent {
 
+  @Input() categorieAbonnement: any; // Assuming this receives existing subscription details
   preload: boolean = false;
 
   constructor(
@@ -25,31 +24,24 @@ export class UpdateDeviceComponent {
     this.activeModal.dismiss('Cross click');
   }
 
-  updatedevise() {
+  updatecategorieAbonnement() {
     this.preload = true;
     let formValid = true;
-    var data={
-      id:this.devise.id,
-      lib:this.devise.lib,
-      centieme:this.devise.centieme,
+    var data ={
+      idCategorie:this.categorieAbonnement.idCategorie,
+      designation:this.categorieAbonnement.designation,
       club:{
         idClub:localStorage.getItem("idClub")
       }
-
     }
-  
 
     // Clear previous error messages
     this.clearErrorMessages();
 
     // Check if mandatory fields are empty
-    if (!this.devise.lib) {
+    if (!this.categorieAbonnement.designation) {
       formValid = false;
-      this.showErrorMessage('libelle', 'libelle est obligatoire');
-    }
-    if (!this.devise.centieme) {
-      formValid = false;
-      this.showErrorMessage('centieme', 'centieme est obligatoire');
+      this.showErrorMessage('designation', 'designation est obligatoire');
     }
     
 
@@ -59,22 +51,22 @@ export class UpdateDeviceComponent {
       return;
     }
 
-    this.service.updateDevise(data).subscribe(
+    this.service.updatecategorieAbonnement(data).subscribe(
       response => {
-        console.log('devise updated successfully:', response);
+        console.log('categorieAbonnement updated successfully:', response);
         this.preload = false;
         this.activeModal.close('updated');
       },
       error => {
-        console.error('Error updating devise:', error);
+        console.error('Error updating categorieAbonnement:', error);
         this.preload = false;
 
         // Handle specific errors if needed
-        if (error.error === "Le code du type d'devise existe déjà") {
-          this.showErrorMessage('codeTypedevise', "Le code du type d'devise existe déjà");
+        if (error.error === "Le code du type d'categorieAbonnement existe déjà") {
+          this.showErrorMessage('codeTypecategorieAbonnement', "Le code du type d'categorieAbonnement existe déjà");
         }
 
-        this.toast.toast('Une erreur s\'est produite lors de la mise à jour de l\'devise.', ToastType.DANGER, 'Erreur', 5000);
+        this.toast.toast('Une erreur s\'est produite lors de la mise à jour de l\'categorieAbonnement.', ToastType.DANGER, 'Erreur', 5000);
       }
     );
   }

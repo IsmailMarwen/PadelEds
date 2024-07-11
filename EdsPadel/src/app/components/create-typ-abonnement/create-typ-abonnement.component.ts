@@ -16,14 +16,7 @@ export class CreateTypAbonnementComponent {
   mtttc:any
   nbMois:any
   preload:boolean=false
-  abonnement: any = {
-    codeTypeAbonnement: '',
-    libTypeAbonnement: '',
-    mthtTypeAbonnement: '',
-    tauxTva: '',
-    mtttc: '',
-    nbMois: ''
-  };
+  
   constructor(private activeModel:NgbActiveModal, private service:AppwebserviceService,private messageService: MessageService,private toast:NgToastService){}
   closeModal() {
     this.activeModel.dismiss('Cross click');
@@ -32,32 +25,41 @@ export class CreateTypAbonnementComponent {
   addabonnement() {
     this.preload = true;
     let formValid = true;
+    var data ={
+      codeTypeAbonnement: this.codeTypeAbonnement,
+      libTypeAbonnement: this.libTypeAbonnement,
+      mthtTypeAbonnement:this.mthtTypeAbonnement,
+      tauxTva:this.tauxTva,
+      mtttc:this.mtttc,
+      nbMois: this.nbMois,
+     
+    }
   
     // Clear previous error messages
     this.clearErrorMessages();
   
     // Vérifiez si les champs obligatoires sont vides
-    if (!this.abonnement.codeTypeAbonnement) {
+    if (!this.codeTypeAbonnement) {
       formValid = false;
       this.showErrorMessage('codeTypeAbonnement', 'codeTypeAbonnement est obligatoire');
     }
-    if (!this.abonnement.libTypeAbonnement) {
+    if (!this.libTypeAbonnement) {
       formValid = false;
       this.showErrorMessage('libTypeAbonnement', 'libTypeAbonnement est obligatoire');
     }
-    if (!this.abonnement.mthtTypeAbonnement) {
+    if (!this.mthtTypeAbonnement) {
       formValid = false;
       this.showErrorMessage('mthtTypeAbonnement', 'mthtTypeAbonnement est obligatoire');
     }
-    if (!this.abonnement.tauxTva) {
+    if (!this.tauxTva) {
       formValid = false;
       this.showErrorMessage('tauxTva', 'tauxTva est obligatoire');
     }
-    if (!this.abonnement.mtttc) {
+    if (!this.mtttc) {
       formValid = false;
       this.showErrorMessage('mtttc', 'mtttc est obligatoire');
     }
-    if (!this.abonnement.nbMois) {
+    if (!this.nbMois) {
       formValid = false;
       this.showErrorMessage('nbMois', 'nbMois est obligatoire');
     }
@@ -68,7 +70,7 @@ export class CreateTypAbonnementComponent {
       return;
     }
   
-    this.service.addabonnement(this.abonnement).subscribe(
+    this.service.addabonnement(data).subscribe(
       response => {
         console.log('abonnement added successfully:', response);
         this.preload = false;

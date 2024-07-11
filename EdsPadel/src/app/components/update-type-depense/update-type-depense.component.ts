@@ -26,7 +26,13 @@ export class UpdateTypeDepenseComponent {
   updatetypeDepense() {
     this.preload = true;
     let formValid = true;
-
+    var data={
+      id:this.typeDepense.id,
+      designation:this.typeDepense.designation,
+      club:{
+        idClub:localStorage.getItem("idClub")
+      }
+    }
     // Clear previous error messages
     this.clearErrorMessages();
 
@@ -43,7 +49,7 @@ export class UpdateTypeDepenseComponent {
       return;
     }
 
-    this.service.updateDepense(this.typeDepense).subscribe(
+    this.service.updateDepense(data).subscribe(
       response => {
         console.log('typeDepense updated successfully:', response);
         this.preload = false;

@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppwebserviceService {
   toasts: any[] = [];
-  apiUrl="http://localhost:8081/api"
+  apiUrl="http://ip172-18-0-23-cq7pit8l2o9000catl70-8081.direct.labs.play-with-docker.com/api"
   private geocodeUrl = 'https://nominatim.openstreetmap.org/search';
   private nominatimUrl = 'https://nominatim.openstreetmap.org/reverse';
   private meteoApiUrl='https://api.openweathermap.org/data/2.5';
@@ -112,13 +112,14 @@ export class AppwebserviceService {
   contactClub(data:any):Observable<any>{
     return this.http.post(this.apiUrl+'/authentication/contact',data)
   }
-  getAllUsers(): Observable<any[]> {
+ 
+  getAllUsersByClub(clubId: string): Observable<any[]> {
     return new Observable(observer => {
       forkJoin({
-        admins: this.getAdmins(),
-        members: this.getMembers(),
-        coaches: this.getCoaches(),
-        agents: this.getAgents()
+        admins: this.getAdminsByClub(clubId),
+        members: this.getMembersByClub(clubId),
+        coaches: this.getCoachesByClub(clubId),
+        agents: this.getAgentsByClub(clubId)
       }).subscribe({
         next: ({ admins, members, coaches, agents }) => {
           let users: any[] = [];
@@ -130,23 +131,23 @@ export class AppwebserviceService {
       });
     });
   }
-  getAdmins(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/administrateur/getAll`);
+  getAdminsByClub(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/administrateur/getAllByClub/${clubId}`);
   }
-
   
-  // Methods for Members
-  getMembers(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/membre/getAll`);
+  getMembersByClub(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/membre/getAllByClub/${clubId}`);
   }
-
+  
+  getCoachesByClub(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/coach/getAllByClub/${clubId}`);
+  }
+  
+  getAgentsByClub(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/agentAcceuil/getAllByClub/${clubId}`);
+  }
+  
  
-
-  // Methods for Coaches
-  getCoaches(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/coach/getAll`);
-  }
-
   
   deleteUser(userId: number, role: string): Observable<any> {
     let endpoint = '';
@@ -219,9 +220,7 @@ export class AppwebserviceService {
   updateClub(data:any):Observable<any>{
     return this.http.put(this.apiUrl+"/club/update",data)
   }
-  getAgents():Observable<any>{
-    return this.http.get(this.apiUrl+"/agentAcceuil/getAll")
-  }
+  
   getAbonnements():Observable<any>{
     return this.http.get(this.apiUrl+"/TypeAbonnement/getAll")
   }
@@ -265,6 +264,7 @@ export class AppwebserviceService {
   updateDepense(depense:any):Observable<any>{
     return this.http.put(this.apiUrl+'/typeDepense/update',depense)
   }
+  
   updateActivite(activite:any):Observable<any>{
     return this.http.put(this.apiUrl+'/activite/update',activite)
   }
@@ -286,9 +286,16 @@ export class AppwebserviceService {
   addTypeAbonnementClub(data:any):Observable<any>{
     return this.http.post(this.apiUrl+"/typeAbonnementClub/add",data);
   }
-  getTauxTva(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/tauxTva/getAll`);
+  addcategorieAbonnement(data:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/CategorieAbonnement/add",data);
   }
+  getTauxTva(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/tauxTva/getAllByClub/${clubId}`);
+  }
+  getcategorieAbonnement(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/CategorieAbonnement/getAllByClub/${clubId}`);
+  }
+ 
   getAllClub(): Observable<any> {
     return this.http.get(`${this.apiUrl}/club/getAll`);
   }
@@ -299,6 +306,12 @@ export class AppwebserviceService {
   }
   deletetauxTva(tauxTvaId: number): Observable<any> {
     const url = `${this.apiUrl}/tauxTva/delete/${tauxTvaId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+    
+  }
+  deletecategorieAbonnement(tauxTvaId: number): Observable<any> {
+    const url = `${this.apiUrl}/CategorieAbonnement/delete/${tauxTvaId}`;
     console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
     return this.http.delete(url);
     
@@ -327,23 +340,31 @@ export class AppwebserviceService {
     return this.http.delete(url);
     
   }
-  getAlltypeDepenses():Observable<any>{
-    return this.http.get(this.apiUrl+"/typeDepense/getAll")
+  getAlltypeDepenses(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/typeDepense/getAllByClub/${clubId}`);
   }
-  getAllDevise():Observable<any>{
-    return this.http.get(this.apiUrl+"/devise/getAll")
+  
+  getAllDevise(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/devise/getAllByClub/${clubId}`);
   }
-  getRessource():Observable<any>{
-    return this.http.get(this.apiUrl+"/ressource/getAll")
+  
+  getRessource(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/ressource/getAllByClub/${clubId}`);
   }
-  getBanque():Observable<any>{
-    return this.http.get(this.apiUrl+"/banque/getAll")
+  
+  getBanque(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/banque/getAllByClub/${clubId}`);
   }
-  getTypeAbonnementClub():Observable<any>{
-    return this.http.get(this.apiUrl+"/typeAbonnementClub/getAll")
+  
+  getTypeAbonnementClub(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/typeAbonnementClub/getAllByClub/${clubId}`);
   }
+  
   updatetauxTva(data:any):Observable<any>{
     return this.http.put(this.apiUrl+"/tauxTva/update",data)
+  }
+  updatecategorieAbonnement(data:any):Observable<any>{
+    return this.http.put(this.apiUrl+"/CategorieAbonnement/update",data)
   }
   updateDevise(data:any):Observable<any>{
     return this.http.put(this.apiUrl+"/devise/update",data)

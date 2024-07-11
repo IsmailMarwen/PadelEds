@@ -209,3 +209,12 @@
     background-color: #a4801c;
     color: white;
 }
+.error {
+  border: 1px solid red;
+  background-color: #ffe6e6; /* Ou une autre couleur de fond rouge */
+}
+.error-message {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 4px;
+}

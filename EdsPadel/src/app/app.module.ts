@@ -67,7 +67,11 @@ import { UpdateTypeAbonnementClubComponent } from './components/update-type-abon
 import { UpdateTypeDepenseComponent } from './components/update-type-depense/update-type-depense.component';
 import { TypeAbonnementClubComponent } from './components/type-abonnement-club/type-abonnement-club.component';
 import { RessourceComponent } from './components/ressource/ressource.component';
-@NgModule({
+
+import { CategorieAbonnementtComponent } from './components/categorie-abonnementt/categorie-abonnementt.component';
+import { CreateCategorieAbonnementtComponent } from './components/create-categorie-abonnementt/create-categorie-abonnementt.component';
+import { UpdateCategorieAbonnementtComponent } from './components/update-categorie-abonnementt/update-categorie-abonnementt.component';
+@NgModule({ 
   declarations: [
     AppComponent,
     HomeComponent,
@@ -120,7 +124,11 @@ import { RessourceComponent } from './components/ressource/ressource.component';
     UpdateTypeDepenseComponent,
     TypeAbonnementClubComponent,
     UpdateRessourceComponent,
-    RessourceComponent
+    RessourceComponent,
+
+    CategorieAbonnementtComponent,
+    CreateCategorieAbonnementtComponent,
+    UpdateCategorieAbonnementtComponent
   ],
   imports: [
     BrowserModule,
