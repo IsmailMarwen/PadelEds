@@ -16,5 +16,5 @@ public interface ICoach {
     public List<Coach> getCoachsByNom(String nom);
     List<Coach> getListCoachValidateByClub(Long idClub);
     List<Coach> getListCoachNotValidateByClub(Long idClub);
-
+    boolean AnnulerCompteCoach(Coach coach);
 }

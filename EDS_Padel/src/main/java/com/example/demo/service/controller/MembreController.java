@@ -3,7 +3,6 @@ import com.example.demo.persistance.dao.AdminstarteurRepository;
 import com.example.demo.persistance.dao.AgentAcceuilRepository;
 import com.example.demo.persistance.dao.CoachRepository;
 import com.example.demo.persistance.dao.MembreRepository;
-import com.example.demo.persistance.entities.Coach;
 import com.example.demo.persistance.entities.Membre;
 import com.example.demo.service.interfaces.IMembre;
 
@@ -84,5 +83,10 @@ public class MembreController {
     List<Membre> getAllMembreNotValidateByClub(@PathVariable Long idClub) {
 
         return iMembre.getListMembreNotValidateByClub(idClub);
+    }
+    @PostMapping ("/annulerCompte")
+    boolean AnnulerCompte(@RequestBody Membre membre) {
+        iMembre.AnnulerCompte(membre);
+        return true;
     }
 }

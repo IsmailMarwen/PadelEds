@@ -75,6 +75,11 @@ public class CoachController {
         iCoach.deleteCoach(id);
         return true;
     }
+    @PostMapping ("/annulerCompte")
+    boolean AnnulerCompte(@RequestBody Coach coach) {
+        iCoach.AnnulerCompteCoach(coach);
+        return true;
+    }
     @GetMapping("/nom")
     public List<Coach> getCoachsByNom(@RequestParam String nom) {
         return iCoach.getCoachsByNom(nom);

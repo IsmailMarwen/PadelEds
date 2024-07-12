@@ -16,5 +16,5 @@ public interface IMembre {
     Membre getMembreByIdMembre(Long id);
     List<Membre> getListMembreValidateByClub(Long idClub);
     List<Membre> getListMembreNotValidateByClub(Long idClub);
-
+    boolean AnnulerCompte(Membre membre);
 }
