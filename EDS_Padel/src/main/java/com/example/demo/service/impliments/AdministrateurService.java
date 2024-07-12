@@ -180,6 +180,7 @@ public class AdministrateurService implements IAdministrateur {
         coach.setUsername(coach.getNom() + generateRandomPassword(2));
         coach.setValidation(true);
         coach.setUpdated(false);
+        Coach c=coachRepository.saveAndFlush(coach);
         String subject = "Validation du compte";
         String htmlBody = "<html>" +
                 "<head>" +
@@ -214,7 +215,7 @@ public class AdministrateurService implements IAdministrateur {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-        return coachRepository.saveAndFlush(coach);
+        return c;
     }
     public Membre ValidateCompteMembre(Membre membre){
         String buttonColor = membre.getClub().getAppWeb() != null ? getColorButton(membre.getClub().getAppWeb().getCouleurAppWeb()) : "#000000";
