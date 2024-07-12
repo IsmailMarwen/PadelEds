@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 
 public class AgentAcceuil extends Utilisateur{
-    @OneToMany(mappedBy = "agentAcceuil", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "agentAcceuil", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Notification> notifications;
 }
