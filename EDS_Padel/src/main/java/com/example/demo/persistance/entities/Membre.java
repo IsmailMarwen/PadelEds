@@ -16,7 +16,7 @@ import java.util.List;
 public class Membre extends Utilisateur {
 
     private boolean validation;
-    @OneToMany(mappedBy = "membre", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "membre", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Notification> notifications;
 }
