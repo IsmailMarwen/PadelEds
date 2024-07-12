@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Administrateur extends Utilisateur {
-    @OneToMany(mappedBy = "admin", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "admin", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Notification> notifications;
 }
