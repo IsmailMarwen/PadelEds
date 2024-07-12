@@ -21,16 +21,16 @@ public class Notification {
 
     private boolean isRead;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "admin_id")
     private Administrateur admin;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "agent_id")
     private AgentAcceuil agentAcceuil;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "coach_id")
     private Coach coach;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "membre_id")
     private Membre membre;
 }
