@@ -16,7 +16,7 @@ import java.util.List;
 public class Coach extends Utilisateur {
     private  double salaireHoraire;
     private boolean validation;
-    @OneToMany(mappedBy = "coach", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "coach", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Notification> notifications;
 }
