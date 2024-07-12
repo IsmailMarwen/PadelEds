@@ -224,6 +224,7 @@ public class AdministrateurService implements IAdministrateur {
         membre.setUsername(membre.getNom() + generateRandomPassword(2));
         membre.setValidation(true);
         membre.setUpdated(false);
+        Membre m=membreRepository.saveAndFlush(membre);
         String subject = "Validation du compte";
         String htmlBody = "<html>" +
                 "<head>" +
@@ -258,7 +259,7 @@ public class AdministrateurService implements IAdministrateur {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-        return membreRepository.saveAndFlush(membre);
+        return m;
     }
 
 
