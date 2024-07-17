@@ -1,5 +1,6 @@
 package com.example.demo.persistance.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ public class Ressource {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String libelle;
+    private String capacite;
     @ManyToOne
     private Club club;
     @ManyToMany
@@ -25,4 +27,9 @@ public class Ressource {
             inverseJoinColumns = @JoinColumn(name = "activite_id")
     )
     private List<Activite> activites;
+    @OneToMany(mappedBy="ressource",fetch=FetchType.LAZY)
+    @JsonIgnore
+    private List<Reservation> reservations;
+    @ManyToOne
+    private PlageHoraire plageHoraire;
 }

@@ -1,6 +1,6 @@
 package com.example.demo.persistance.dao;
 
-import com.example.demo.persistance.entities.CategorieAbonnement;
+
 import com.example.demo.persistance.entities.Club;
 import com.example.demo.persistance.entities.Materiel;
 import org.springframework.data.jpa.repository.JpaRepository;
