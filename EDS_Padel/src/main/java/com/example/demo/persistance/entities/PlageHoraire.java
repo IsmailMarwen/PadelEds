@@ -23,4 +23,6 @@ public class PlageHoraire {
     @OneToMany(mappedBy="plageHoraire",fetch=FetchType.LAZY)
     @JsonIgnore
     private List<Ressource> ressources;
+    @ManyToOne
+    private Club club;
 }

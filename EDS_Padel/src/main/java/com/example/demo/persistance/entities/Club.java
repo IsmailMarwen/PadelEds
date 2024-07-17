@@ -65,6 +65,9 @@ public class Club {
     @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Materiel> materiels;
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<PlageHoraire> plageHoraires;
 
     @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
     @JsonIgnore
