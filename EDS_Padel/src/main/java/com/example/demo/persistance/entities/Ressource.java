@@ -28,7 +28,6 @@ public class Ressource {
     )
     private List<Activite> activites;
     @OneToMany(mappedBy="ressource",fetch=FetchType.LAZY)
-    @JsonIgnore
     private List<Reservation> reservations;
     @ManyToOne
     private PlageHoraire plageHoraire;

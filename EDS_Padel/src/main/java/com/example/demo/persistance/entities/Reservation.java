@@ -21,6 +21,7 @@ public class Reservation {
     private String heureFin;
 
     @ManyToOne
-    private Ressource IDRessource;
-
+    private Ressource ressource;
+    @ManyToOne
+    private Club club;
 }
