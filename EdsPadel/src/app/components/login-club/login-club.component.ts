@@ -386,4 +386,7 @@ export class LoginClubComponent implements OnInit {
       }
     );
   }
+  goToSignUp(){
+    this.router.navigate(["/"+this.adresseUrl+"/signUp"])
+  }
 }

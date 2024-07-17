@@ -11,6 +11,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { NgToastService,ToastType } from 'ng-angular-popup';
 import { CreateTypeDepenseComponent } from '../create-type-depense/create-type-depense.component';
 import { UpdateTypeDepenseComponent } from '../update-type-depense/update-type-depense.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 declare var window: any;
 declare const Waypoint: any;
 declare const CircleProgress: any;
@@ -42,7 +44,8 @@ export class typeDepenseeComponent {
   searchQuery: string = '';
   typeDepenses: any[] = [];
   originaltypeDepenses: any[] = []; // Array to store original typeDepenses before filtering
-  
+  notificationCount: number = 0;
+private jwtHelper = new JwtHelperService();
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -64,6 +67,17 @@ this.initAll()
     this.router.navigate([this.adresseUrl+"/loginClub"])
   }
   ngOnInit() {
+    const token = localStorage.getItem("jwt_token");
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      const role = decodedToken?.role;
+      const idClub=localStorage.getItem("idClub")
+      if (role === 'admin' || role === 'agent') {
+        this.service.getAllUsersNotValidate(idClub).subscribe(notifications => {
+          this.notificationCount = notifications.length;
+        });
+      }
+    }
     this.gettypeDepenses();
     this.applyTheme('theme1')//important
     this.idClub=localStorage.getItem("idClub")

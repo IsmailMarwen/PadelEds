@@ -72,6 +72,11 @@ import { AddComplexeComponent } from './components/add-complexe/add-complexe.com
 import { ColorPickerModule } from 'ngx-color-picker';
 import { LoginSuperAdminComponent } from './components/login-super-admin/login-super-admin.component';
 import { InscriptionEnLigneComponent } from './components/inscription-en-ligne/inscription-en-ligne.component';
+import dayGridPlugin from '@fullcalendar/daygrid'; // Import the DayGrid plugin
+import interactionPlugin from '@fullcalendar/interaction';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { GoogleCalendarComponent } from './google-calendar/google-calendar.component';
+import { PliageHoraireComponent } from './components/pliage-horaire/pliage-horaire.component'; // the main connector module
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -131,7 +136,9 @@ import { InscriptionEnLigneComponent } from './components/inscription-en-ligne/i
     UpdateComplexeComponent,
     AddComplexeComponent,
     LoginSuperAdminComponent,
-    InscriptionEnLigneComponent
+    InscriptionEnLigneComponent,
+    GoogleCalendarComponent,
+    PliageHoraireComponent
   ],
   imports: [
     BrowserModule,
@@ -150,7 +157,9 @@ import { InscriptionEnLigneComponent } from './components/inscription-en-ligne/i
     ProgressBarModule,
     BrowserAnimationsModule,
     NgToastModule,
-    ColorPickerModule
+    ColorPickerModule,
+    FullCalendarModule // import the FullCalendar module
+
   ],
   providers: [
     provideClientHydration(),

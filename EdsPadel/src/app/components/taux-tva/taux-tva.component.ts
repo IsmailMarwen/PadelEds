@@ -11,6 +11,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { NgToastService,ToastType } from 'ng-angular-popup';
 import { UpdateTauxTvaComponent } from '../update-taux-tva/update-taux-tva.component';
 import { CreateTauxTvaComponent } from '../create-taux-tva/create-taux-tva.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 declare var window: any;
 declare const Waypoint: any;
 
@@ -40,7 +42,8 @@ export class TauxTvaComponent {
   searchQuery: string = '';
   tauxTvas: any[] = [];
   originaltauxTvas: any[] = []; // Array to store original tauxTvas before filtering
-  
+  notificationCount: number = 0;
+  private jwtHelper = new JwtHelperService();
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -62,6 +65,17 @@ this.initAll()
     this.router.navigate([this.adresseUrl+"/loginClub"])
   }
   ngOnInit() {
+    const token = localStorage.getItem("jwt_token");
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      const role = decodedToken?.role;
+      const idClub=localStorage.getItem("idClub")
+      if (role === 'admin' || role === 'agent') {
+        this.service.getAllUsersNotValidate(idClub).subscribe(notifications => {
+          this.notificationCount = notifications.length;
+        });
+      }
+    }
     this.gettauxTvas();
     this.applyTheme('theme1')//important
     this.idClub=localStorage.getItem("idClub")

@@ -42,7 +42,8 @@
              "src/assets/vendor/fullcalendar/core/main.css",
              "src/assets/vendor/fullcalendar/daygrid/main.css",
              "src/assets/vendor/fullcalendar/timegrid/main.css",
-             "src/assets/vendor/fullcalendar/list/main.css"
+             "src/assets/vendor/fullcalendar/list/main.css",
+             "node_modules/@bryntum/calendar/calendar.stockholm.css"
 
 
             ],

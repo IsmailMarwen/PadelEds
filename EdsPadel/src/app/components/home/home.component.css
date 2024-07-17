@@ -152,4 +152,22 @@ table.table-dark {
       transform: scale(0) translateX(0) rotate(360deg);
     }
   }
+  .badge-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 8px; /* Adjust the space as needed */
+  }
   
+  .badge-container .bdg {
+    border-radius: 50%;
+    font-size: 0.80em;
+    min-width: 1.5em;
+    min-height: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -10px; /* Adjust the position as needed */
+    right: -10px; /* Adjust the position as needed */
+    color: #ffffff;
+  }

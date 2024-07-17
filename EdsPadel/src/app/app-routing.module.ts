@@ -29,6 +29,7 @@ import { BanqueComponent } from './components/banque/banque.component';
 import { TypeAbonnementClubComponent } from './components/type-abonnement-club/type-abonnement-club.component';
 import { LoginSuperAdminComponent } from './components/login-super-admin/login-super-admin.component';
 import { InscriptionEnLigneComponent } from './components/inscription-en-ligne/inscription-en-ligne.component';
+import { GoogleCalendarComponent } from './google-calendar/google-calendar.component';
 const routes: Routes = [
   {path:'eds/admin/home',component:SuperAdminComponent},
   {path:'eds/admin/login',component:LoginSuperAdminComponent},
@@ -50,7 +51,7 @@ const routes: Routes = [
   {path:':url/contact',component:ContactComponent},
   {path:':url/utilisateur',component:UtilisateurComponent},
   {path:'terrain',component:TerrainComponent},
-  {path:'calander',component:CalanderComponent,canActivate:[authGuard]},
+  {path:'calander',component:CalanderComponent},
   {path:':url/typeDepense',component:typeDepenseeComponent,canActivate:[authGuard]},
 {path:':url/tauxTva',component:TauxTvaComponent,canActivate:[authGuard]},
 {path:':url/devise',component:DeviceComponent,canActivate:[authGuard]},
@@ -58,7 +59,7 @@ const routes: Routes = [
 {path:':url/banque',component:BanqueComponent,canActivate:[authGuard]},
 {path:':url/typeAbonnementClub',component:TypeAbonnementClubComponent,canActivate:[authGuard]},
 {path:':url/inscriptionEnLigne',component:InscriptionEnLigneComponent,canActivate:[authGuard]},
-
+{path:'google',component:GoogleCalendarComponent}
 
 ];
 

@@ -1,0 +1,45 @@
+{
+    "success": true,
+    "events": {
+      "rows": [
+        {
+          "id": 1,
+          "name": "Updated Meeting",
+          "startDate": "2024-07-21T10:00:00",
+          "endDate": "2024-07-21T12:30:00"
+        },
+        {
+          "id": 2,
+          "name": "Conference",
+          "startDate": "2024-07-22T09:00:00",
+          "endDate": "2024-07-22T17:00:00"
+        },
+        {
+          "id": 3,
+          "name": "New Event",
+          "startDate": "2024-07-23T08:00:00",
+          "endDate": "2024-07-23T10:00:00"
+        }
+      ]
+    },
+    "resources": {
+      "rows": [
+        {
+          "id": 1,
+          "name": "Resource 1",
+          "image": "resource1.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Resource 2",
+          "image": "resource2.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Resource 3",
+          "image": "resource3.jpg"
+        }
+      ]
+    }
+  }
+  

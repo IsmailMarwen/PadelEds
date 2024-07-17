@@ -16,7 +16,7 @@ export class AppwebserviceService {
   public mapEndpointSubscription: Map<string, any> = new Map();
 
   toasts: any[] = [];
-  apiUrl="http://ip172-18-0-23-cq7pit8l2o9000catl70-8081.direct.labs.play-with-docker.com/api"
+  apiUrl="http://ip172-18-0-72-cqbnjq8l2o9000bfhidg-8081.direct.labs.play-with-docker.com/api"
   private geocodeUrl = 'https://nominatim.openstreetmap.org/search';
   private nominatimUrl = 'https://nominatim.openstreetmap.org/reverse';
   private meteoApiUrl='https://api.openweathermap.org/data/2.5';
@@ -39,7 +39,7 @@ export class AppwebserviceService {
 
  
   connectWebSocket() {
-    const socket = new SockJS('http://ip172-18-0-23-cq7pit8l2o9000catl70-8081.direct.labs.play-with-docker.com/ws');
+    const socket = new SockJS('http://ip172-18-0-72-cqbnjq8l2o9000bfhidg-8081.direct.labs.play-with-docker.com/ws');
     this.stompClient = new Client({
       webSocketFactory: () => socket,
       debug: (str) => {
@@ -262,6 +262,22 @@ export class AppwebserviceService {
     }
     return this.http.post(`${this.apiUrl}${endpoint}/add`, user);
   }
+  annulerCompte(user: any): Observable<any> {
+    let endpoint = '';
+   
+    switch (user.role) {
+  
+      case 'coach':
+        endpoint = '/coach';
+        break;
+      case 'membre':
+        endpoint = '/membre';
+        break;
+      default:
+        break;
+    }
+    return this.http.post(`${this.apiUrl}${endpoint}/annulerCompte`, user);
+  }
   updateUser(user: any): Observable<any> {
     let endpoint = '';
     switch (user.role) {
@@ -443,4 +459,5 @@ export class AppwebserviceService {
       });
     });
   }
+
 }

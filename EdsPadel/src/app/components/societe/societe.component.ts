@@ -10,6 +10,8 @@ import { ChangeDetectorRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { NgToastService,ToastType } from 'ng-angular-popup';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 interface Country {
   name: string;
   flagUrl: string;
@@ -257,6 +259,8 @@ raisonSociale:any
 latitude:any
 longitude:any
 preloader:boolean=false
+notificationCount: number = 0;
+private jwtHelper = new JwtHelperService();
 getCountryByName(countryName: string): Country | undefined {
   return this.countries.find(country => country.name === countryName);
 }
@@ -305,6 +309,17 @@ this.initAll()
     this.router.navigate([this.adresseUrl+"/loginClub"])
   }
   ngOnInit() {
+    const token = localStorage.getItem("jwt_token");
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      const role = decodedToken?.role;
+      const idClub=localStorage.getItem("idClub")
+      if (role === 'admin' || role === 'agent') {
+        this.service.getAllUsersNotValidate(idClub).subscribe(notifications => {
+          this.notificationCount = notifications.length;
+        });
+      }
+    }
     this.service.getAllActivite().subscribe(res => {
       this.allActivites = res;
     });

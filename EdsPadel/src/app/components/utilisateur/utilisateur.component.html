@@ -358,6 +358,9 @@
                         </svg>
                         </i>
                         <span class="item-name" >Inscription En Ligne</span>
+                        <span class="badge-container">
+                            <span *ngIf="notificationCount > 0" class="bdg bg-danger">{{ notificationCount }}</span>
+                          </span> 
                     </a>
                 </li>
                 <li class="nav-item">

@@ -1,1 +1,236 @@
-<p>signup works!</p>
+   <!-- loader Start -->
+   <div class="preloader" id="loading" *ngIf="preload">
+    <div class="circle circle1" [ngStyle]="{ 'background-color': themeDetail1 }"></div>
+    <div class="circle circle2" [ngStyle]="{ 'background-color': themeDetail2 }"></div>
+  </div>
+
+  <!-- loader END -->
+  <main class="main-content">
+    <div class="position-relative iq-banner">
+      <!--Nav Start-->
+      <nav class="nav navbar navbar-expand-lg navbar-light iq-navbar">
+        <div class="container-fluid navbar-inner">
+          <a href="" class="navbar-brand">
+              <!--Logo start-->
+              <!--logo End-->
+              
+              <!--Logo start-->
+              <div class="logo-main">
+                  <div class="logo-normal">
+                      <img [src]="logoApp" height="50px">
+  
+                  </div>
+                  <div class="logo-mini">
+                      <img [src]="logoApp" height="50px">
+  
+                  </div>
+              </div>
+              <!--logo End-->
+              
+              
+              
+              
+              <h4 class="logo-title">{{nomClub}}</h4>
+          </a>
+          <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
+              <i class="icon">
+               <svg  width="20px" class="icon-20" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+              </svg>
+              </i>
+          </div>
+      
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                <span class="mt-2 navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="mb-2 navbar-nav ms-auto align-items-center navbar-list mb-lg-0">
+              <li class="me-0 me-xl-2">
+                <a (click)="goToContact()" class="btn btn-primary btn-sm d-flex gap-2 align-items-center" aria-current="page"  target="_blank">
+                  <svg class="icon-16" width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5317 12.4724C15.5208 16.4604 16.4258 11.8467 18.9656 14.3848C21.4143 16.8328 22.8216 17.3232 19.7192 20.4247C19.3306 20.737 16.8616 24.4943 8.1846 15.8197C-0.493478 7.144 3.26158 4.67244 3.57397 4.28395C6.68387 1.17385 7.16586 2.58938 9.61449 5.03733C12.1544 7.5765 7.54266 8.48441 11.5317 12.4724Z" fill="currentColor"></path>
+                  </svg>
+                  Contact
+                </a>
+              </li>
+              <li class="me-0 me-xl-2">
+                <a class="btn btn-primary btn-sm d-flex gap-2 align-items-center" aria-current="page"  target="_blank">
+                  <svg class="icon-16" width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.66618 22H16.3328C19.7231 22 22 19.6219 22 16.0833V7.91672C22 4.37811 19.7231 2 16.3338 2H7.66618C4.2769 2 2 4.37811 2 7.91672V16.0833C2 19.6219 4.2769 22 7.66618 22ZM8.49886 11C7.12021 11 6 9.87827 6 8.5C6 7.12173 7.12021 6 8.49886 6C9.8765 6 10.9977 7.12173 10.9977 8.5C10.9977 9.87827 9.8765 11 8.49886 11ZM19.8208 14.934C20.1557 15.7926 19.9817 16.8246 19.6237 17.6749C19.1994 18.6863 18.3869 19.452 17.3632 19.7864C16.9087 19.935 16.432 20 15.9564 20H7.52864C6.68999 20 5.94788 19.7988 5.3395 19.4241C4.95839 19.1889 4.89102 18.646 5.17358 18.2941C5.6462 17.7059 6.11279 17.1156 6.5834 16.5201C7.48038 15.3808 8.08473 15.0506 8.75645 15.3406C9.02896 15.4603 9.30248 15.6398 9.58404 15.8297C10.3342 16.3395 11.377 17.0402 12.7506 16.2797C13.6906 15.7532 14.2358 14.8501 14.7106 14.0637L14.7185 14.0506C14.7522 13.9954 14.7855 13.9402 14.8187 13.8852C14.9783 13.6212 15.1357 13.3607 15.3138 13.1207C15.5371 12.8204 16.3646 11.8813 17.4366 12.5501C18.1194 12.9711 18.6936 13.5408 19.308 14.1507C19.5423 14.3839 19.7092 14.6491 19.8208 14.934Z" fill="currentColor"></path>                   </svg>
+                  Photos
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                  <a class="search-toggle nav-link" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img src="../../../assets/images/Flag/flag001.png" class="img-fluid rounded-circle" alt="user" style="height: 30px; min-width: 30px; width: 30px;">
+                  <span class="bg-primary"></span>
+                  </a>
+                  <div class="p-0 sub-drop dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
+                      <div class="m-0 border-0 shadow-none card">
+                          <div class="p-0 ">
+                              <ul class="p-0 list-group list-group-flush">
+                                  <li class="iq-sub-card list-group-item"><a class="p-0" href="#"><img src="../../../assets/images/Flag/flag-03.png" alt="img-flaf" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;"/>Spanish</a></li>
+                                  <li class="iq-sub-card list-group-item"><a class="p-0" href="#"><img src="../../../assets/images/Flag/flag-04.png" alt="img-flaf" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;"/>Italian</a></li>
+                                  <li class="iq-sub-card list-group-item"><a class="p-0" href="#"><img src="../../../assets/images/Flag/flag-02.png" alt="img-flaf" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;"/>French</a></li>
+                                  <li class="iq-sub-card list-group-item"><a class="p-0" href="#"><img src="../../../assets/images/Flag/flag-05.png" alt="img-flaf" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;"/>German</a></li>
+                                  <li class="iq-sub-card list-group-item"><a class="p-0" href="#"><img src="../../../assets/images/Flag/flag-06.png" alt="img-flaf" class="img-fluid me-2" style="width: 15px;height: 15px;min-width: 15px;"/>Japanese</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </li>
+            
+          
+            </ul>
+          </div>
+        </div>
+      </nav>        <!-- Nav Header Component Start -->
+        <div class="iq-navbar-header" style="height: 215px;">
+            <div class="container-fluid iq-container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="flex-wrap d-flex justify-content-between align-items-center">
+                            <div>
+                               
+                            </div>
+                  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="iq-header-img">
+                <img [src]="bannerImage" alt="header" class="img-fluid w-100 h-100 animated-scaleX">
+
+            </div>
+        </div>          <!-- Nav Header Component End -->
+      <!--Nav End-->
+    </div>
+    <div class="conatiner-fluid content-inner mt-n5 py-0">
+    <div>
+       <div class="row">
+        
+       
+        
+          <div class="col-xl-12 col-lg-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="header-title">
+                        <h5 class="card-title mb-0">                                           <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.87651 15.2063C6.03251 15.2063 2.74951 15.7873 2.74951 18.1153C2.74951 20.4433 6.01251 21.0453 9.87651 21.0453C13.7215 21.0453 17.0035 20.4633 17.0035 18.1363C17.0035 15.8093 13.7415 15.2063 9.87651 15.2063Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.8766 11.886C12.3996 11.886 14.4446 9.841 14.4446 7.318C14.4446 4.795 12.3996 2.75 9.8766 2.75C7.3546 2.75 5.3096 4.795 5.3096 7.318C5.3006 9.832 7.3306 11.877 9.8456 11.886H9.8766Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path d="M19.2036 8.66919V12.6792" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path d="M21.2497 10.6741H17.1597" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                                                               Inscription</h5>
+                      </div>
+                </div>
+                <div class="card-body">
+
+                   <form>
+                      <div class="form-group">
+                         <div class="profile-img-edit position-relative">
+                            <img [src]="imageProfile" alt="profile-pic" class=" profile-pic rounded avatar-100">
+                            
+                            <div class="upload-icone bg-primary">
+                               <svg class="upload-button icon-14" width="14"  viewBox="0 0 24 24">
+                                  <path fill="#ffffff" d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" />
+                               </svg>
+                               <input (change)="changeLogo($event)" type="file" name="qqfile" class="file-input">
+                            </div>
+                         </div>
+                     
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label" for="fname">Role <span class="obl">*</span></label>
+                        <div class="d-grid gap-3 grid-cols-2 mb-4">
+            
+  
+                       
+                          <div class="btn btn-border d-block " [ngClass]="{'active': role=='coach'}" (click)="setRoleCoach()" >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-silver" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>               <span class="ms-2 "> Coach  </span>
+                          </div>
+                          <div class="btn btn-border d-block " [ngClass]="{'active': role=='membre'}" (click)="setRoleMembre()" >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-basket" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Membre  </span>
+                          </div>
+                          
+                     
+                         
+                        </div>                       </div>
+                      <div class="form-group">
+                         <label class="form-label" for="fname">Nom <span class="obl">*</span></label>
+                         <input type="text" class="form-control" id="fname" placeholder="Nom" name="nom" [(ngModel)]="nom">
+                      </div>
+                      <div class="form-group">
+                         <label class="form-label" for="lname">Prénom <span class="obl">*</span></label>
+                         <input type="text" class="form-control" id="lname" placeholder="Prénom" name="prenom" [(ngModel)]="prenom">
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label" for="lname">Genre <span class="obl">*</span></label>
+                        <div class="d-grid gap-3 grid-cols-2 mb-4">
+            
+  
+                          <div class="btn btn-border d-block "  [ngClass]="{'active': gender=='homme'}" (click)="setGenderMale()">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-free" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Homme  </span>
+                          </div>
+                          <div class="btn btn-border d-block " [ngClass]="{'active': gender=='femme'}" (click)="setGenderFMale()" >
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-volley" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                     <span class="ms-2 "> Femme  </span>
+                          </div>
+                       
+                         
+                        </div>
+                     </div>
+                      <div class="form-group">
+                         <label class="form-label" for="email">Email <span class="obl">*</span></label>
+                         <input type="text" class="form-control" id="email" placeholder="Email" name="email" [(ngModel)]="email">
+                      </div>
+                      <div class="form-group">
+                         <label class="form-label" for="tel">Téléphone <span class="obl">*</span></label>
+                         <input type="text" class="form-control" id="tel" placeholder="+216 " [(ngModel)]="phone" name="telephone">
+                      </div>
+                     
+                     <div class="row justify-content-center">
+
+                     <div class="col-xl-6 col-lg-6">
+                        <button class="btn btnTermine btn-primary" *ngIf="!preloadButton" (click)="addUser()" >                                          <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                                                    
+                          Terminer Inscription </button>
+                          <button class="btn btnTermine btn-primary" *ngIf="preloadButton"><img src="../../../assets/images/preload.gif" height="25px"></button>
+              
+              
+                        
+                        </div></div>
+                   </form>
+                </div>
+             </div>
+           
+         </div>
+          
+       </div>
+       
+  
+    </div>
+    </div>
+    <div class="btn-download">
+        <a class="btn btn-success px-3 py-2" href="https://iqonic.design/product/admin-templates/hope-ui-admin-free-open-source-bootstrap-admin-template/" target="_blank" >
+            <svg class="icon-24"  width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.4" d="M17.554 7.29614C20.005 7.29614 22 9.35594 22 11.8876V16.9199C22 19.4453 20.01 21.5 17.564 21.5L6.448 21.5C3.996 21.5 2 19.4412 2 16.9096V11.8773C2 9.35181 3.991 7.29614 6.438 7.29614H7.378L17.554 7.29614Z" fill="currentColor"></path>
+                <path d="M12.5464 16.0374L15.4554 13.0695C15.7554 12.7627 15.7554 12.2691 15.4534 11.9634C15.1514 11.6587 14.6644 11.6597 14.3644 11.9654L12.7714 13.5905L12.7714 3.2821C12.7714 2.85042 12.4264 2.5 12.0004 2.5C11.5754 2.5 11.2314 2.85042 11.2314 3.2821L11.2314 13.5905L9.63742 11.9654C9.33742 11.6597 8.85043 11.6587 8.54843 11.9634C8.39743 12.1168 8.32142 12.3168 8.32142 12.518C8.32142 12.717 8.39743 12.9171 8.54643 13.0695L11.4554 16.0374C11.6004 16.1847 11.7964 16.268 12.0004 16.268C12.2054 16.268 12.4014 16.1847 12.5464 16.0374Z" fill="currentColor"></path>
+            </svg>
+        </a>
+    </div>
+    <!-- Footer Section Start -->
+    <footer class="footer">
+        <div class="footer-body">
+            <ul class="left-panel list-inline mb-0 p-0">
+                <li class="list-inline-item"><a href="../../dashboard/extra/privacy-policy.html">Privacy Policy</a></li>
+                <li class="list-inline-item"><a href="../../dashboard/extra/terms-of-service.html">Terms of Use</a></li>
+            </ul>
+            <div class="right-panel">
+                ©<script>document.write(new Date().getFullYear())</script> Hope UI, Made with
+                <span class="">
+                    <svg class="icon-15" width="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.85 2.50065C16.481 2.50065 17.111 2.58965 17.71 2.79065C21.401 3.99065 22.731 8.04065 21.62 11.5806C20.99 13.3896 19.96 15.0406 18.611 16.3896C16.68 18.2596 14.561 19.9196 12.28 21.3496L12.03 21.5006L11.77 21.3396C9.48102 19.9196 7.35002 18.2596 5.40102 16.3796C4.06102 15.0306 3.03002 13.3896 2.39002 11.5806C1.26002 8.04065 2.59002 3.99065 6.32102 2.76965C6.61102 2.66965 6.91002 2.59965 7.21002 2.56065H7.33002C7.61102 2.51965 7.89002 2.50065 8.17002 2.50065H8.28002C8.91002 2.51965 9.52002 2.62965 10.111 2.83065H10.17C10.21 2.84965 10.24 2.87065 10.26 2.88965C10.481 2.96065 10.69 3.04065 10.89 3.15065L11.27 3.32065C11.3618 3.36962 11.4649 3.44445 11.554 3.50912C11.6104 3.55009 11.6612 3.58699 11.7 3.61065C11.7163 3.62028 11.7329 3.62996 11.7496 3.63972C11.8354 3.68977 11.9247 3.74191 12 3.79965C13.111 2.95065 14.46 2.49065 15.85 2.50065ZM18.51 9.70065C18.92 9.68965 19.27 9.36065 19.3 8.93965V8.82065C19.33 7.41965 18.481 6.15065 17.19 5.66065C16.78 5.51965 16.33 5.74065 16.18 6.16065C16.04 6.58065 16.26 7.04065 16.68 7.18965C17.321 7.42965 17.75 8.06065 17.75 8.75965V8.79065C17.731 9.01965 17.8 9.24065 17.94 9.41065C18.08 9.58065 18.29 9.67965 18.51 9.70065Z" fill="currentColor"></path>
+                    </svg>
+                </span> by <a href="https://iqonic.design/">IQONIC Design</a>.
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->    </main>
+  

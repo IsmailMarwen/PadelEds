@@ -134,12 +134,8 @@
             <div class="d-grid gap-3 grid-cols-2 mb-4">
               
     
-              <div class="btn btn-border d-block " (click)="selectOption('admin')"  [ngClass]="{'active':selectedOption=='admin'}">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-padel" width="20" viewBox="0 0 24 24" fill="none" >                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Admin  </span>
-              </div>
-              <div class="btn btn-border d-block " (click)="selectOption('agent')" [ngClass]="{'active':selectedOption=='agent'}">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-football" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Agent  </span>
-              </div>
+          
+            
               <div class="btn btn-border d-block " (click)="selectOption('coach')" [ngClass]="{'active':selectedOption=='coach'}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-silver" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>               <span class="ms-2 "> Coach  </span>
               </div>
@@ -1017,7 +1013,7 @@
 
                                    </span>
                                  </a>
-                                 <a class="btn btn-sm btn-icon btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" (click)="deleteUser(user.idUtilisateur, user.role)">
+                                 <a class="btn btn-sm btn-icon btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" (click)="annulerCompte(user)">
                                    <span class="btn-inner">
                                      Annuler
                                    </span>

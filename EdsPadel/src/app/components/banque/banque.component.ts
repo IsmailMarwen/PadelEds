@@ -11,6 +11,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { NgToastService,ToastType } from 'ng-angular-popup';
 import { CreateBanqueComponent } from '../create-banque/create-banque.component';
 import { UpdateBanqueComponent } from '../update-banque/update-banque.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 declare var window: any;
 declare const Waypoint: any;
@@ -43,7 +44,8 @@ export class BanqueComponent {
   searchQuery: string = '';
   banques: any[] = [];
   originalbanques: any[] = []; // Array to store original banques before filtering
-  
+  notificationCount: number = 0;
+  private jwtHelper = new JwtHelperService();
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -65,6 +67,17 @@ this.initAll()
     this.router.navigate([this.adresseUrl+"/loginClub"])
   }
   ngOnInit() {
+    const token = localStorage.getItem("jwt_token");
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      const role = decodedToken?.role;
+      const idClub=localStorage.getItem("idClub")
+      if (role === 'admin' || role === 'agent') {
+        this.service.getAllUsersNotValidate(idClub).subscribe(notifications => {
+          this.notificationCount = notifications.length;
+        });
+      }
+    }
     this.getbanques();
     this.applyTheme('theme1')//important
     this.idClub=localStorage.getItem("idClub")

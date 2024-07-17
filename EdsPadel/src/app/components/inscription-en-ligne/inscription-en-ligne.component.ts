@@ -940,5 +940,9 @@ applyThemeUpdate(theme: string): void {
       })
     }
   }
-  
+  annulerCompte(user:any){
+      this.service.annulerCompte(user).subscribe(res=>{
+        this.getUsers();
+      })
+  }
 }

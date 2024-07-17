@@ -10,6 +10,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { NgToastService,ToastType } from 'ng-angular-popup';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 declare var window: any;
 declare const Waypoint: any;
@@ -38,7 +39,8 @@ export class HomeComponent implements OnInit,AfterViewInit  {
  idAppWeb:any
  adresseUrl:any
  notifications: string[] = [];
-
+ notificationCount: number = 0;
+ private jwtHelper = new JwtHelperService();
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -60,7 +62,17 @@ this.initAll()
     this.router.navigate([this.adresseUrl+"/loginClub"])
   }
   ngOnInit() {
- 
+    const token = localStorage.getItem("jwt_token");
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      const role = decodedToken?.role;
+      const idClub=localStorage.getItem("idClub")
+      if (role === 'admin' || role === 'agent') {
+        this.service.getAllUsersNotValidate(idClub).subscribe(notifications => {
+          this.notificationCount = notifications.length;
+        });
+      }
+    }
   
     this.applyTheme('theme1')//important
     this.idClub=localStorage.getItem("idClub")

@@ -499,3 +499,8 @@ p{
   .btnValidate{
    background-color: #198754 !important;
   }
+  .no-users {
+    text-align: center;
+    font-size: 1.2em;
+    margin: 20px 0;
+  }
