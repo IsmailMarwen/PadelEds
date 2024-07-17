@@ -483,10 +483,15 @@ applyThemeUpdate(theme: string): void {
   
   
   gettypeAbonnementClubs(): void {
-    this.service.getTypeAbonnementClub().subscribe(typeAbonnementClubs => {
+    const clubId=localStorage.getItem("idClub")
+    if(clubId)
+    this.service.getTypeAbonnementClub(clubId).subscribe(typeAbonnementClubs => {
       this.typeAbonnementClubs = typeAbonnementClubs;
       this.originaltypeAbonnementClubs = typeAbonnementClubs;
+      console.log(this.originaltypeAbonnementClubs)
     });
+    else
+       console.error("il n' ya pas de club id")
   }
 
   searchtypeAbonnementClubs(event: any): void {

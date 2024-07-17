@@ -1,37 +1,37 @@
 .upload-icone{
-    background-color:#fcbc04 !important ;
+  background-color:#fcbc04 !important ;
 }
 .file-input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.btnTermine{
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-weight: 400;
+  height: auto !important;
+  background: #198754;
+  border-color: #198754;
+  color: #fff;
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;  }
+  .obl{
+      color: #8b0000;
   }
-  .btnTermine{
-    padding-top: 14px;
-    padding-bottom: 14px;
-    font-weight: 400;
-    height: auto !important;
-    background: #198754;
-    border-color: #198754;
-    color: #fff;
-    display: block;
-    width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-    box-sizing: border-box;  }
-    .obl{
-        color: #8b0000;
+  .error {
+      border: 1px solid red;
+      background-color: #ffe6e6; /* Ou une autre couleur de fond rouge */
     }
-    .error {
-        border: 1px solid red;
-        background-color: #ffe6e6; /* Ou une autre couleur de fond rouge */
-      }
-      .error-message {
-        color: red;
-        font-size: 0.8em;
-        margin-top: 4px;
-      }
+    .error-message {
+      color: red;
+      font-size: 0.8em;
+      margin-top: 4px;
+    }

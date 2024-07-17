@@ -1,66 +1,79 @@
 <div class="modal-content custom-modal-content">
-    <div class="modal-header">
-      <h4 class="modal-title">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 2H6v2h12V2zM4 6h16v2H4V6zm-2 4h20v12H2V10zm18 10v-8H4v8h16z" fill="currentColor"></path> </g></svg>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 2H6v2h12V2zM4 6h16v2H4V6zm-2 4h20v12H2V10zm18 10v-8H4v8h16z" fill="currentColor"></path> </g></svg>
 
-        Ajouter Un  Abonnement
-      </h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
-    </div>
-    <div class="modal-body">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="">
-            <div class="card-body">
-              <form>
-                <!-- Profile Image Upload -->
+      Ajouter Un  Abonnement
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="">
+          <div class="card-body">
+            <form>
+              <!-- Profile Image Upload -->
+            
+
+              <!-- Code Type  TypeAbonnementClub -->
               
-  
-                <!-- Code Type  TypeAbonnementClub -->
-                
-  
-                <!-- libType TVA -->
-                <div class="form-group">
-                  <label class="form-label" for="libType"> libelle <span class="obl">*</span></label>
-                  <input type="text" class="form-control" id="libType" placeholder="libType" name="libType" [(ngModel)]=" typeAbonnementClub.libType">
-                  <div id="libType-error" class="error-message"></div>
+
+              <!-- libType TVA -->
+              <div class="form-group">
+                <label class="form-label" for="libType"> libelle <span class="obl">*</span></label>
+                <input type="text" class="form-control" id="libType" placeholder="libType" name="libType" [(ngModel)]=" libType">
+                <div id="libType-error" class="error-message"></div>
+              </div>
+              <div class="form-group">
+                  <label class="form-label" for="nbMois"> Nombre de Mois <span class="obl">*</span></label>
+                  <input type="text" class="form-control" id="nbMois" placeholder="nbMois" name="nbMois" [(ngModel)]=" nbMois">
+                  <div id="nbMois-error" class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="nbMois"> Nombre de Mois <span class="obl">*</span></label>
-                    <input type="text" class="form-control" id="nbMois" placeholder="nbMois" name="nbMois" [(ngModel)]=" typeAbonnementClub.nbMois">
-                    <div id="nbMois-error" class="error-message"></div>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="nbJours"> Nombre de Jours <span class="obl">*</span></label>
-                    <input type="text" class="form-control" id="nbJours" placeholder="nbJours" name="nbJours" [(ngModel)]=" typeAbonnementClub.nbJours">
-                    <div id="nbJours-error" class="error-message"></div>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="forfait"> Forfait <span class="obl">*</span></label>
-                    <input type="text" class="form-control" id="forfait" placeholder="forfait" name="forfait" [(ngModel)]=" typeAbonnementClub.forfait">
-                    <div id="forfait-error" class="error-message"></div>
-                  </div>
-  
+                  <label class="form-label" for="nbJours"> Nombre de Jours <span class="obl">*</span></label>
+                  <input type="text" class="form-control" id="nbJours" placeholder="nbJours" name="nbJours" [(ngModel)]=" nbJours">
+                  <div id="nbJours-error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="forfait"> Forfait <span class="obl">*</span></label>
+                  <input type="text" class="form-control" id="forfait" placeholder="forfait" name="forfait" [(ngModel)]="forfait">
+                  <div id="forfait-error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="remise"> remise <span class="obl">*</span></label>
+                  <input type="text" class="form-control" id="remise" placeholder="remise" name="remise" [(ngModel)]="remise">
+                  <div id="remise-error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="categorieAbonnement">Catégorie <span class="obl">*</span></label>
+                  <select class="form-control" id="categorieAbonnement" name="categorieAbonnement" [(ngModel)]="categorieAbonnement">
+                    <option *ngFor="let categorie of categories" [value]="categorie.idCategorie">{{ categorie.designation }}</option>
+                  </select>
+                  <div id="categorie-error" class="error-message"></div>
+                </div>
                 
-                <div class="row justify-content-center">
 
-                    <div class="col-xl-6 col-lg-6" (click)="addtypeAbonnementClub() ">
-                       <button class="btn btnTermine"  *ngIf="!preload">                                          <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                                                    
-                         Ajouter </button>
-                         <button class="btn btnTermine" *ngIf="preload"><img src="../../../assets/images/preload.gif" height="25px"></button>
-             
-             
-                       
-                       </div></div>
-                  </form>
-               </div>
-            </div>
-            
-                 
-               
+              
+              <div class="row justify-content-center">
+
+                  <div class="col-xl-6 col-lg-6" (click)="addtypeAbonnementClub()">
+                     <button class="btn btnTermine"  *ngIf="!preload">                                          <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                                                    
+                       Ajouter </button>
+                       <button class="btn btnTermine" *ngIf="preload"><img src="../../../assets/images/preload.gif" height="25px"></button>
+           
+           
+                     
+                     </div></div>
+                </form>
              </div>
+          </div>
+          
+               
              
-     </div>
+           </div>
+           
+   </div>
 </div>
 
 </div>

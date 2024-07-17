@@ -4,109 +4,122 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
   </div>
   <div class="modal-body">
-    <div class="conatiner-fluid ">
-        <div>
-            <div class="row">
-              <div >
-                  <div class="card-header d-flex justify-content-between">
-                     <div class="header-title">
-                     </div>
+    <div class="container-fluid">
+      <div>
+        <div class="row">
+          <div>
+            <div class="card-header d-flex justify-content-between">
+              <div class="header-title"></div>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <div class="profile-img-edit position-relative">
+                    <img [src]="user.image" alt="profile-pic" class="profile-pic rounded avatar-100">
+                    <div class="upload-icone bg-primary">
+                      <svg class="upload-button icon-14" width="14" viewBox="0 0 24 24">
+                        <path fill="#ffffff" d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" />
+                      </svg>
+                      <input (change)="changeLogo($event)" type="file" name="image" class="file-input">
+                    </div>
+                    <div id="image-error" class="error-message"></div>
                   </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-group">
-                         <div class="profile-img-edit position-relative">
-                            <img [src]="user.image" alt="profile-pic" class=" profile-pic rounded avatar-100">
-                            
-                            <div class="upload-icone bg-primary">
-                               <svg class="upload-button icon-14" width="14"  viewBox="0 0 24 24">
-                                  <path fill="#ffffff" d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" />
-                               </svg>
-                               <input (change)="changeLogo($event)" type="file" name="qqfile" class="file-input">
-                            </div>
-                         </div>
-                     
-                      </div>
-                      <div class="form-group">
-                        <label class="form-label" for="fname">Role <span class="obl">*</span></label>
-                        <div class="d-grid gap-3 grid-cols-2 mb-4">
-              
-              
-                          <div class="btn btn-border d-block " [ngClass]="{'active': user.role=='admin'}" disabled  >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-padel" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Admin  </span>
-                          </div>
-                          <div class="btn btn-border d-block " [ngClass]="{'active': user.role=='agent'}"  disabled>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-football" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Agent  </span>
-                          </div>
-                          <div class="btn btn-border d-block " [ngClass]="{'active': user.role=='coach'}" disabled >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-silver" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>               <span class="ms-2 "> Coach  </span>
-                          </div>
-                          <div class="btn btn-border d-block " [ngClass]="{'active': user.role=='membre'}" disabled >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-basket" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Membre  </span>
-                          </div>
-                          
-                     
-                         
-                        </div>                       </div>
-                      <div class="form-group">
-                         <label class="form-label" for="fname">Nom <span class="obl">*</span></label>
-                         <input type="text" class="form-control" id="fname" placeholder="Nom" name="nom" [(ngModel)]="user.nom">
-                      </div>
-                      <div class="form-group">
-                         <label class="form-label" for="lname">Prénom <span class="obl">*</span></label>
-                         <input type="text" class="form-control" id="lname" placeholder="Prénom" name="prenom" [(ngModel)]="user.prenom">
-                      </div>
-                      <div class="form-group">
-                        <label class="form-label" for="lname">Genre <span class="obl">*</span></label>
-                        <div class="d-grid gap-3 grid-cols-2 mb-4">
-              
-              
-                          <div class="btn btn-border d-block "  [ngClass]="{'active': user.genre=='homme'}" (click)="setGenderMale()">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-free" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                    <span class="ms-2 "> Homme  </span>
-                          </div>
-                          <div class="btn btn-border d-block " [ngClass]="{'active': user.genre=='femme'}" (click)="setGenderFMale()" >
-                              <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-volley" width="20" viewBox="0 0 24 24" fill="none">                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>                            </svg>                                     <span class="ms-2 "> Femme  </span>
-                          </div>
-                       
-                         
-                        </div>
-                     </div>
-                      <div class="form-group">
-                         <label class="form-label" for="email">Email <span class="obl">*</span></label>
-                         <input type="text" class="form-control" id="email" placeholder="Email" name="email" [(ngModel)]="user.email">
-                      </div>
-                      <div class="form-group">
-                         <label class="form-label" for="tel">Téléphone <span class="obl">*</span></label>
-                         <input type="text" class="form-control" id="tel" placeholder="+216 " [(ngModel)]="user.telephone" name="telephone">
-                      </div>
-                      <div class="form-group">
-                        <label class="form-label" for="tel">Username <span class="obl">*</span></label>
-                        <input type="text" class="form-control" id="tel" placeholder="username" [(ngModel)]="user.username" name="username">
-                     </div>
-                      <div class="form-group">
-                        <label class="form-label" for="pass">Password <span class="obl">*</span></label>
-                        <input type="password" class="form-control" id="pass" placeholder="password" [(ngModel)]="user.password" name="password">
-                     </div>
-                     <div class="row justify-content-center">
-              
-                     <div class="col-xl-6 col-lg-6">
-                        <button class="btn btnTermine"  *ngIf="!preload" (click)="updateUser()" >                                          <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                                                    
-                          Modifier </button>
-                          <button class="btn btnTermine" *ngIf="preload"><img src="../../../assets/images/preload.gif" height="25px"></button>
-              
-              
-                        
-                        </div></div>
-                   </form>
-                  </div>
-               </div>
-               
-                    
-                  
                 </div>
-                
-        </div>
-  </div>
+                <div class="form-group">
+                  <label class="form-label" for="role">Role <span class="obl">*</span></label>
+                  <div class="d-grid gap-3 grid-cols-2 mb-4">
+                    <div class="btn btn-border d-block" [ngClass]="{'active': user.role=='admin'}" disabled>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-padel" width="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                      </svg>
+                      <span class="ms-2"> Admin </span>
+                    </div>
+                    <div class="btn btn-border d-block" [ngClass]="{'active': user.role=='agent'}" disabled>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-football" width="20" viewBox="
+                      0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                    </svg>
+                    <span class="ms-2"> Agent </span>
+                  </div>
+                  <div class="btn btn-border d-block" [ngClass]="{'active': user.role=='coach'}" disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-football" width="20" viewBox="
+                    0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                  </svg>
+                  <span class="ms-2"> Coach </span>
+                </div>
+                <div class="btn btn-border d-block" [ngClass]="{'active': user.role=='membre'}" disabled>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 icon-football" width="20" viewBox="
+                  0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                </svg>
+                <span class="ms-2"> Membre </span>
+              </div>
+                </div>
+                <div id="role-error" class="error-message"></div>
+              </div>
 
+              <div class="form-group">
+                <label class="form-label" for="nom">Nom <span class="obl">*</span></label>
+                <input type="text" class="form-control" id="nom" [(ngModel)]="user.nom" name="nom" placeholder="Nom">
+                <div id="nom-error" class="error-message"></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="prenom">Prénom <span class="obl">*</span></label>
+                <input type="text" class="form-control" id="prenom" [(ngModel)]="user.prenom" name="prenom" placeholder="Prénom">
+                <div id="prenom-error" class="error-message"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="genre">Genre <span class="obl">*</span></label>
+                <div class="d-grid gap-3 grid-cols-2 mb-4">
+                  <button type="button" class="btn btn-border d-block" [ngClass]="{'active': user.genre=='homme'}" (click)="setGenderMale()">Homme</button>
+                  <button type="button" class="btn btn-border d-block" [ngClass]="{'active': user.genre=='femme'}" (click)="setGenderFMale()">Femme</button>
+                </div>
+                <div id="genre-error" class="error-message"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="telephone">Téléphone <span class="obl">*</span></label>
+                <input type="text" class="form-control" id="telephone" [(ngModel)]="user.telephone" name="telephone" placeholder="Téléphone">
+                <div id="telephone-error" class="error-message"></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="email">Email <span class="obl">*</span></label>
+                <input type="email" class="form-control" id="email" [(ngModel)]="user.email" name="email" placeholder="Email">
+                <div id="email-error" class="error-message"></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="username">Username <span class="obl">*</span></label>
+                <input type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username" placeholder="Username">
+                <div id="username-error" class="error-message"></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="password">Password <span class="obl">*</span></label>
+                <input type="password" class="form-control" id="password" [(ngModel)]="user.password" name="password" placeholder="Password">
+                <div id="password-error" class="error-message"></div>
+              </div>
+
+             
+
+              <div class="row justify-content-center">
+
+                <div class="col-xl-6 col-lg-6">
+                   <button class="btn btnTermine"  *ngIf="!preload" (click)="updateUser()">                                          <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    <path d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                </svg>                                                    
+                     Ajouter </button>
+                     <button class="btn btnTermine" *ngIf="preload"><img src="../../../assets/images/preload.gif" height="25px"></button>
+         
+         
+                   
+                   </div></div>
+            </form>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </div>

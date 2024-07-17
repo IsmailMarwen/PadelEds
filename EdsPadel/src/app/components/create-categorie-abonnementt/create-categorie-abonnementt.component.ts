@@ -4,43 +4,40 @@ import { AppwebserviceService } from '../../services/appwebservice.service';
 import { MessageService } from 'primeng/api';
 import { NgToastService,ToastType } from 'ng-angular-popup';
 @Component({
-  selector: 'app-create-device',
-  templateUrl: './create-device.component.html',
-  styleUrl: './create-device.component.css'
+  selector: 'app-create-categorie-abonnement',
+  templateUrl: './create-categorie-abonnementt.component.html',
+  styleUrl: './create-categorie-abonnementt.component.css'
 })
-export class CreateDeviceComponent {
-  
+export class CreateCategorieAbonnementtComponent {
+
+
   id:any
-  lib:any
-  centieme:any
+  designation:any
   preload:boolean=false
+  
   constructor(private activeModel:NgbActiveModal, private service:AppwebserviceService,private messageService: MessageService,private toast:NgToastService){}
   closeModal() {
     this.activeModel.dismiss('Cross click');
   }
   
-  addDevise() {
+  addcategorieAbonnement() {
     this.preload = true;
     let formValid = true;
-    var data={
-      lib:this.lib,
-      centieme:this.centieme,
+    var data ={
+      
+      designation:this.designation,
       club:{
         idClub:localStorage.getItem("idClub")
       }
-
     }
+  
     // Clear previous error messages
     this.clearErrorMessages();
   
     // Vérifiez si les champs obligatoires sont vides
-    if (!this.lib) {
+    if (!this.designation) {
       formValid = false;
-      this.showErrorMessage('libelle', 'libelle est obligatoire');
-    }
-    if (!this.centieme) {
-      formValid = false;
-      this.showErrorMessage('centieme', 'centieme est obligatoire');
+      this.showErrorMessage('designation', 'designation est obligatoire');
     }
    
   
@@ -50,19 +47,19 @@ export class CreateDeviceComponent {
       return;
     }
   
-    this.service.addDevise(data).subscribe(
+    this.service.addcategorieAbonnement(data).subscribe(
       response => {
-        console.log('device added successfully:', response);
+        console.log('categorieAbonnement added successfully:', response);
         this.preload = false;
         this.activeModel.close('saved');
       },
       (error) => {
-        console.error('Error adding device:', error);
+        console.error('Error adding categorieAbonnement:', error);
         this.preload = false;
   
         // Handle specific errors
-        if (error.error === "L'codeTypedevice du club existe déjà") {
-          this.showErrorMessage('codeTypedevice', 'L\'email du club existe déjà');
+        if (error.error === "L'codeTypecategorieAbonnement du club existe déjà") {
+          this.showErrorMessage('codeTypecategorieAbonnement', 'L\'email du club existe déjà');
         }
         
   

@@ -13,11 +13,7 @@ export class CreateRessourceComponent {
     id:any
     libelle:any
     preload:boolean=false
-    ressource: any = {
-      id: '',
-      libelle: '',
-     
-    };
+    
     constructor(private activeModel:NgbActiveModal, private service:AppwebserviceService,private messageService: MessageService,private toast:NgToastService){}
     closeModal() {
       this.activeModel.dismiss('Cross click');
@@ -26,12 +22,17 @@ export class CreateRessourceComponent {
     addressource() {
       this.preload = true;
       let formValid = true;
-    
+      var data ={
+        libelle:this.libelle,
+        club:{
+          idClub:localStorage.getItem("idClub")
+        }
+      }
       // Clear previous error messages
       this.clearErrorMessages();
     
       // Vérifiez si les champs obligatoires sont vides
-      if (!this.ressource.libelle) {
+      if (!this.libelle) {
         formValid = false;
         this.showErrorMessage('libelle', 'libelle est obligatoire');
       }
@@ -43,7 +44,7 @@ export class CreateRessourceComponent {
         return;
       }
     
-      this.service.addRessource(this.ressource).subscribe(
+      this.service.addRessource(data).subscribe(
         response => {
           console.log('ressource added successfully:', response);
           this.preload = false;

@@ -28,6 +28,15 @@ export class UpdateDeviceComponent {
   updatedevise() {
     this.preload = true;
     let formValid = true;
+    var data={
+      id:this.devise.id,
+      lib:this.devise.lib,
+      centieme:this.devise.centieme,
+      club:{
+        idClub:localStorage.getItem("idClub")
+      }
+
+    }
 
     // Clear previous error messages
     this.clearErrorMessages();
@@ -49,7 +58,7 @@ export class UpdateDeviceComponent {
       return;
     }
 
-    this.service.updateDevise(this.devise).subscribe(
+    this.service.updateDevise(data).subscribe(
       response => {
         console.log('devise updated successfully:', response);
         this.preload = false;

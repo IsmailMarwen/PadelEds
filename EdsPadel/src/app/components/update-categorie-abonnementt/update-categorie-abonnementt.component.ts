@@ -1,15 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppwebserviceService } from '../../services/appwebservice.service';
 import { MessageService } from 'primeng/api';
 import { NgToastService, ToastType } from 'ng-angular-popup';
 @Component({
-  selector: 'app-update-type-depense',
-  templateUrl: './update-type-depense.component.html',
-  styleUrl: './update-type-depense.component.css'
+  selector: 'app-update-categorie-abonnement',
+  templateUrl: './update-categorie-abonnementt.component.html',
+  styleUrl: './update-categorie-abonnementt.component.css'
 })
-export class UpdateTypeDepenseComponent {
-  @Input() typeDepense: any; // Assuming this receives existing subscription details
+export class UpdateCategorieAbonnementtComponent {
+
+  @Input() categorieAbonnement: any; // Assuming this receives existing subscription details
   preload: boolean = false;
 
   constructor(
@@ -23,21 +24,22 @@ export class UpdateTypeDepenseComponent {
     this.activeModal.dismiss('Cross click');
   }
 
-  updatetypeDepense() {
+  updatecategorieAbonnement() {
     this.preload = true;
     let formValid = true;
-    var data={
-      id:this.typeDepense.id,
-      designation:this.typeDepense.designation,
+    var data ={
+      idCategorie:this.categorieAbonnement.idCategorie,
+      designation:this.categorieAbonnement.designation,
       club:{
         idClub:localStorage.getItem("idClub")
       }
     }
+
     // Clear previous error messages
     this.clearErrorMessages();
 
     // Check if mandatory fields are empty
-    if (!this.typeDepense.designation) {
+    if (!this.categorieAbonnement.designation) {
       formValid = false;
       this.showErrorMessage('designation', 'designation est obligatoire');
     }
@@ -49,22 +51,22 @@ export class UpdateTypeDepenseComponent {
       return;
     }
 
-    this.service.updateDepense(data).subscribe(
+    this.service.updatecategorieAbonnement(data).subscribe(
       response => {
-        console.log('typeDepense updated successfully:', response);
+        console.log('categorieAbonnement updated successfully:', response);
         this.preload = false;
         this.activeModal.close('updated');
       },
       error => {
-        console.error('Error updating typeDepense:', error);
+        console.error('Error updating categorieAbonnement:', error);
         this.preload = false;
 
         // Handle specific errors if needed
-        if (error.error === "Le code du type d'typeDepense existe déjà") {
-          this.showErrorMessage('codeTypetypeDepense', "Le code du type d'typeDepense existe déjà");
+        if (error.error === "Le code du type d'categorieAbonnement existe déjà") {
+          this.showErrorMessage('codeTypecategorieAbonnement', "Le code du type d'categorieAbonnement existe déjà");
         }
 
-        this.toast.toast('Une erreur s\'est produite lors de la mise à jour de l\'typeDepense.', ToastType.DANGER, 'Erreur', 5000);
+        this.toast.toast('Une erreur s\'est produite lors de la mise à jour de l\'categorieAbonnement.', ToastType.DANGER, 'Erreur', 5000);
       }
     );
   }

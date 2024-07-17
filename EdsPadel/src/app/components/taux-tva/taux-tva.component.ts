@@ -477,10 +477,15 @@ applyThemeUpdate(theme: string): void {
   
   
   gettauxTvas(): void {
-    this.service.getTauxTva().subscribe(tauxTvas => {
+    const clubId = localStorage.getItem("idClub");
+    if(clubId)
+    this.service.getTauxTva(clubId).subscribe(tauxTvas => {
       this.tauxTvas = tauxTvas;
       this.originaltauxTvas = tauxTvas;
     });
+    else {
+      console.error('No club ID found in local storage');
+    }
   }
 
   searchtauxTvas(event: any): void {

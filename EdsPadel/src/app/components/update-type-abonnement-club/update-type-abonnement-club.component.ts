@@ -12,7 +12,7 @@ export class UpdateTypeAbonnementClubComponent {
 
     @Input() typeAbonnementClub: any; // Assuming this receives existing subscription details
     preload: boolean = false;
-  
+    categories: any[] = [];
     constructor(
       private activeModal: NgbActiveModal,
       private service: AppwebserviceService,
@@ -23,11 +23,38 @@ export class UpdateTypeAbonnementClubComponent {
     closeModal() {
       this.activeModal.dismiss('Cross click');
     }
+    ngOnInit() {
+      // Fetch the list of categories when the component initializes
+      const clubId = localStorage.getItem("idClub");
+      if(clubId)
+      this.service.getcategorieAbonnement(clubId).subscribe(
+        (data) => {
+          this.categories = data;
+        },
+        (error) => {
+          console.error('Error fetching categories:', error);
+        }
+      );
+    }
   
     updatetypeAbonnementClub() {
       this.preload = true;
       let formValid = true;
-  
+      var data={
+        id:this.typeAbonnementClub.id,
+        libType: this.typeAbonnementClub.libType,
+        nbMois:this.typeAbonnementClub.nbMois,
+      nbJours:this.typeAbonnementClub.nbJours,
+      forfait:this.typeAbonnementClub.forfait,
+      remise:this.typeAbonnementClub.remise,
+      categorieAbonnement:{
+        idCategorie:this.typeAbonnementClub.categorieAbonnement.idCategorie,
+        },
+      club:{
+        idClub:localStorage.getItem("idClub")
+      }
+      }      
+
       // Clear previous error messages
       this.clearErrorMessages();
   
@@ -56,7 +83,7 @@ export class UpdateTypeAbonnementClubComponent {
         return;
       }
   
-      this.service.updateTypeAbonnementClub(this.typeAbonnementClub).subscribe(
+      this.service.updateTypeAbonnementClub(data).subscribe(
         response => {
           console.log('typeAbonnementClub updated successfully:', response);
           this.preload = false;
@@ -99,5 +126,6 @@ export class UpdateTypeAbonnementClubComponent {
         inputElement.classList.remove('error');
       });
     }
+    
   }
   

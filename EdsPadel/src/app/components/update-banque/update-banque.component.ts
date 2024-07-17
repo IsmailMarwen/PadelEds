@@ -44,7 +44,7 @@ export class UpdateBanqueComponent {
           return;
         }
     
-        this.service.updateAbonnemet(this.banque).subscribe(
+        this.service.updateBanque(this.banque).subscribe(
           response => {
             console.log('banque updated successfully:', response);
             this.preload = false;

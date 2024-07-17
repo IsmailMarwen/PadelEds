@@ -16,7 +16,7 @@ export class AppwebserviceService {
   public mapEndpointSubscription: Map<string, any> = new Map();
 
   toasts: any[] = [];
-  apiUrl="http://ip172-18-0-72-cqbnjq8l2o9000bfhidg-8081.direct.labs.play-with-docker.com/api"
+  apiUrl="http://ip172-18-0-26-cqbqklq91nsg00afk180-8081.direct.labs.play-with-docker.com/api"
   private geocodeUrl = 'https://nominatim.openstreetmap.org/search';
   private nominatimUrl = 'https://nominatim.openstreetmap.org/reverse';
   private meteoApiUrl='https://api.openweathermap.org/data/2.5';
@@ -39,7 +39,7 @@ export class AppwebserviceService {
 
  
   connectWebSocket() {
-    const socket = new SockJS('http://ip172-18-0-72-cqbnjq8l2o9000bfhidg-8081.direct.labs.play-with-docker.com/ws');
+    const socket = new SockJS('http://ip172-18-0-26-cqbqklq91nsg00afk180-8081.direct.labs.play-with-docker.com/ws');
     this.stompClient = new Client({
       webSocketFactory: () => socket,
       debug: (str) => {
@@ -176,15 +176,16 @@ export class AppwebserviceService {
   contactClub(data:any):Observable<any>{
     return this.http.post(this.apiUrl+'/authentication/contact',data)
   }
-  getAllUsers(): Observable<any[]> {
+  getAllUsers(clubId: string): Observable<any[]> {
     return new Observable(observer => {
       forkJoin({
-        admins: this.getAdmins(),
-        members: this.getMembers(),
-        coaches: this.getCoaches(),
-        agents: this.getAgents()
+        admins: this.getAdmins(clubId),
+        members: this.getMembers(clubId),
+        coaches: this.getCoaches(clubId),
+        agents: this.getAgents(clubId)
       }).subscribe({
         next: ({ admins, members, coaches, agents }) => {
+          console.log(coaches)
           let users: any[] = [];
           users = users.concat(admins, members, coaches, agents);
           observer.next(users);
@@ -194,16 +195,24 @@ export class AppwebserviceService {
       });
     });
   }
-  getAdmins(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/administrateur/getAll`);
+  getAdmins(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/administrateur/getAllByClub/${clubId}`);
   }
 
   getCompteNotValidate(idUser:any): Observable<any> {
     return this.http.get(`${this.apiUrl}/notifications/admin/${idUser}`);
   }
   // Methods for Members
-  getMembers(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/membre/getAll`);
+  getMembers(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/membre/getAllValidateByClub/${clubId}`);
+  }
+  
+  getCoaches(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/coach/getAllValidateByClub/${clubId}`);
+  }
+  
+  getAgents(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/agentAcceuil/getAllByClub/${clubId}`);
   }
 
   getMembersNotValidate(idClub:any): Observable<any> {
@@ -211,9 +220,7 @@ export class AppwebserviceService {
   }
 
   // Methods for Coaches
-  getCoaches(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/coach/getAll`);
-  }
+  
   getCoachesNotValidate(idClub:any): Observable<any> {
     return this.http.get(`${this.apiUrl}/coach/getAllNotValidateByClub/${idClub}`);
   }
@@ -305,9 +312,7 @@ export class AppwebserviceService {
   updateClub(data:any):Observable<any>{
     return this.http.put(this.apiUrl+"/club/update",data)
   }
-  getAgents():Observable<any>{
-    return this.http.get(this.apiUrl+"/agentAcceuil/getAll")
-  }
+  
   getAbonnements():Observable<any>{
     return this.http.get(this.apiUrl+"/TypeAbonnement/getAll")
   }
@@ -372,8 +377,8 @@ export class AppwebserviceService {
   addTypeAbonnementClub(data:any):Observable<any>{
     return this.http.post(this.apiUrl+"/typeAbonnementClub/add",data);
   }
-  getTauxTva(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/tauxTva/getAll`);
+  getTauxTva(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/tauxTva/getAllByClub/${clubId}`);
   }
   getAllClub(): Observable<any> {
     return this.http.get(`${this.apiUrl}/club/getAll`);
@@ -413,20 +418,20 @@ export class AppwebserviceService {
     return this.http.delete(url);
     
   }
-  getAlltypeDepenses():Observable<any>{
-    return this.http.get(this.apiUrl+"/typeDepense/getAll")
+  getAlltypeDepenses(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/typeDepense/getAllByClub/${clubId}`);
   }
-  getAllDevise():Observable<any>{
-    return this.http.get(this.apiUrl+"/devise/getAll")
+  getAllDevise(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/devise/getAllByClub/${clubId}`);
   }
-  getRessource():Observable<any>{
-    return this.http.get(this.apiUrl+"/ressource/getAll")
+  getRessource(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/ressource/getAllByClub/${clubId}`);
   }
-  getBanque():Observable<any>{
-    return this.http.get(this.apiUrl+"/banque/getAll")
+  getBanque(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/banque/getAllByClub/${clubId}`);
   }
-  getTypeAbonnementClub():Observable<any>{
-    return this.http.get(this.apiUrl+"/typeAbonnementClub/getAll")
+  getTypeAbonnementClub(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/typeAbonnementClub/getAllByClub/${clubId}`);
   }
   updatetauxTva(data:any):Observable<any>{
     return this.http.put(this.apiUrl+"/tauxTva/update",data)
@@ -459,5 +464,20 @@ export class AppwebserviceService {
       });
     });
   }
+  addcategorieAbonnement(data:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/CategorieAbonnement/add",data);
+  }
 
+  getcategorieAbonnement(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/CategorieAbonnement/getAllByClub/${clubId}`);
+  }
+deletecategorieAbonnement(tauxTvaId: number): Observable<any> {
+    const url = `${this.apiUrl}/CategorieAbonnement/delete/${tauxTvaId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+    
+  }
+updatecategorieAbonnement(data:any):Observable<any>{
+    return this.http.put(this.apiUrl+"/CategorieAbonnement/update",data)
+  }
 }

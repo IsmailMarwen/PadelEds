@@ -74,10 +74,10 @@ import { LoginSuperAdminComponent } from './components/login-super-admin/login-s
 import { InscriptionEnLigneComponent } from './components/inscription-en-ligne/inscription-en-ligne.component';
 import dayGridPlugin from '@fullcalendar/daygrid'; // Import the DayGrid plugin
 import interactionPlugin from '@fullcalendar/interaction';
-import { FullCalendarModule } from '@fullcalendar/angular';
-import { GoogleCalendarComponent } from './google-calendar/google-calendar.component';
-import { PliageHoraireComponent } from './components/pliage-horaire/pliage-horaire.component'; // the main connector module
-
+import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector module
+import { CategorieAbonnementtComponent } from './components/categorie-abonnementt/categorie-abonnementt.component';
+import { UpdateCategorieAbonnementtComponent } from './components/update-categorie-abonnementt/update-categorie-abonnementt.component';
+import { CreateCategorieAbonnementtComponent } from './components/create-categorie-abonnementt/create-categorie-abonnementt.component';
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
@@ -137,8 +137,9 @@ import { PliageHoraireComponent } from './components/pliage-horaire/pliage-horai
     AddComplexeComponent,
     LoginSuperAdminComponent,
     InscriptionEnLigneComponent,
-    GoogleCalendarComponent,
-    PliageHoraireComponent
+    CategorieAbonnementtComponent,
+    UpdateCategorieAbonnementtComponent,
+    CreateCategorieAbonnementtComponent
   ],
   imports: [
     BrowserModule,
@@ -158,8 +159,7 @@ import { PliageHoraireComponent } from './components/pliage-horaire/pliage-horai
     BrowserAnimationsModule,
     NgToastModule,
     ColorPickerModule,
-    FullCalendarModule // import the FullCalendar module
-
+    FullCalendarModule
   ],
   providers: [
     provideClientHydration(),

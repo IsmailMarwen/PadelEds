@@ -916,36 +916,7 @@ export class CalanderComponent implements OnInit,AfterViewInit {
       this.applyFilters(); // Applique les filtres combinés
     }
     
-    getAdmins(): void {
-      this.service.getAdmins().subscribe(admins => {
-        this.users = admins;
-      });
-    }
     
-    getMembers(): void {
-      this.service.getMembers().subscribe(members => {
-        this.users = members;
-      });
-    }
-    
-    getCoaches(): void {
-      this.service.getCoaches().subscribe(coaches => {
-        this.users = coaches;
-      });
-    }
-    
-    getAgents(): void {
-      this.service.getAgents().subscribe(res => {
-        this.users = res;
-      });
-    }
-  
-    getUsers(): void {
-      this.service.getAllUsers().subscribe(users => {
-        this.originalUsers = users;
-        this.applyFilters(); // Applique les filtres lors de la récupération initiale des utilisateurs
-      });
-    }
   
     searchUsers(event: any): void {
       const searchTerm = event.target.value.toLowerCase();
@@ -963,19 +934,7 @@ export class CalanderComponent implements OnInit,AfterViewInit {
       }
       this.applyFilters(); // Applique les filtres combinés
     }
-    deleteUser(userId: number, role: string): void {
-      console.log(role)
-      console.log(userId)
-      this.service.deleteUser(userId, role).subscribe(() => {
-        // Remove the deleted user from the users array
-        this.users = this.users.filter(user => user.id !== userId);
-    
-        this.getUsers();
-      }, error => {
-        console.error('Error deleting user:', error);
-      });
-    }
-    
+     
   
     showUserFormModal() {
       this.isModalVisible = true;
@@ -1016,32 +975,9 @@ export class CalanderComponent implements OnInit,AfterViewInit {
       this.password = '';
       this.confirmPassword = '';
     }
-  
-    openLargeModalAdd() {
-      const modalRef = this.modalService.open(AddUserComponent, { size: 'xl', centered: true });
-      modalRef.componentInstance.name = 'World';
-      modalRef.result.then((result) => {
-        if (result === 'saved') {
-          this.getUsers();
-        }
-      }).catch((error) => {
-        console.log(error);
-      });
-    }
+
     openFilter(filter: TemplateRef<any>) {
       this.offcanvasService.open(filter, { position: 'end' });
     }
-    openLargeModalEdit(user: any) {
-      const modalRef = this.modalService.open(EditUserComponent, { size: 'xl', centered: true });
-      modalRef.componentInstance.user = { ...user }; // Pass a copy of the user object
-    
-      modalRef.result.then((result) => {
-        if (result === 'saved') {
-          // Handle success, e.g., refresh the user list
-          this.getUsers();
-        }
-      }).catch((error) => {
-        console.log(error);
-      });
-    }
+  
 }

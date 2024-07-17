@@ -814,29 +814,48 @@ applyThemeUpdate(theme: string): void {
   }
   
   getAdmins(): void {
-    this.service.getAdmins().subscribe(admins => {
+    const clubId = localStorage.getItem("idClub");
+    if (clubId)
+    this.service.getAdmins(clubId).subscribe(admins => {
       this.users = admins;
     });
+   else {
+    console.error('No club ID found in local storage');
+  }
   }
   
   getMembers(): void {
-    this.service.getMembers().subscribe(members => {
-      this.users = members;
+    const clubId = localStorage.getItem("idClub");
+    if (clubId)
+    this.service.getMembers(clubId).subscribe(admins => {
+      this.users = admins;
     });
+   else {
+    console.error('No club ID found in local storage');
+  }
   }
   
   getCoaches(): void {
-    this.service.getCoaches().subscribe(coaches => {
-      this.users = coaches;
+    const clubId = localStorage.getItem("idClub");
+    if (clubId)
+    this.service.getCoaches(clubId).subscribe(admins => {
+      this.users = admins;
     });
+   else {
+    console.error('No club ID found in local storage');
+  }
   }
   
   getAgents(): void {
-    this.service.getAgents().subscribe(res => {
-      this.users = res;
+    const clubId = localStorage.getItem("idClub");
+    if (clubId)
+    this.service.getAgents(clubId).subscribe(admins => {
+      this.users = admins;
     });
+   else {
+    console.error('No club ID found in local storage');
   }
-
+  }
   getUsers(): void {
     this.service.getAllUsersNotValidate(this.idClub).subscribe(users => {
       this.originalUsers = users;

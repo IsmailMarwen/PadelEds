@@ -477,10 +477,15 @@ applyThemeUpdate(theme: string): void {
   
   
   getressources(): void {
-    this.service.getRessource().subscribe(ressources => {
+    const clubId = localStorage.getItem("idClub");
+    if(clubId)
+    this.service.getRessource(clubId).subscribe(ressources => {
       this.ressources = ressources;
       this.originalressources = ressources;
     });
+    else {
+      console.error('No club ID found in local storage');
+    }
   }
 
   searchressources(event: any): void {
