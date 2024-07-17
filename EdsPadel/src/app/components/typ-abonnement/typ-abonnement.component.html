@@ -410,7 +410,12 @@
                                 <th>TauxTva</th>
                                 <th>MtTTC</th>
                                 <th>NbMois</th>
+                                <th>NbUtilisateur</th>
+                                <th>NbJoursGratuit</th>
+                                <th>Remise</th>
                                 <th>Couleur</th>
+                               
+
                                 <th style="min-width: 100px">Action</th>
                             </tr>
                         </thead>
@@ -423,6 +428,10 @@
 
                                 <td>{{ abonnements.mtttc }}</td>
                                 <td>{{ abonnements.nbMois }}</td>
+                                <td>{{ abonnements.nbUtilisateur }}</td>
+                                <td>{{ abonnements.nbJoursGratuit }}</td>
+                                <td>{{ abonnements.remise }}</td>
+
                                 <td>                           <svg class="icon-32" width="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                   <path fill-rule="evenodd" clip-rule="evenodd" 
                                         [style.fill]="abonnements.couleur" 

@@ -757,14 +757,17 @@ applyThemeUpdate(theme: string): void {
   }
   
   
-  
   getdevises(): void {
-    this.service.getAllDevise().subscribe(devises => {
+    const clubId = localStorage.getItem("idClub");
+    if(clubId)
+    this.service.getAllDevise(clubId).subscribe(devises => {
       this.devises = devises;
       this.originaldevises = devises;
     });
+    else {
+      console.error('No club ID found in local storage');
+    }
   }
-
   searchdevises(event: any): void {
     const searchTerm = event.target.value.toLowerCase();
     this.devises = this.originaldevises.filter(devise => {

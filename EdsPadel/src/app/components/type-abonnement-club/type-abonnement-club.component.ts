@@ -37,11 +37,9 @@ export class TypeAbonnementClubComponent {
   nbMois:string='';
   nbJour:string='';
   forfait:string='';
+  remise:string='';
+  categorieAbonnement:string='';
 
-
-
-
-  
   isModalVisible: boolean = false;
   searchQuery: string = '';
   typeAbonnementClubs: any[] = [];
@@ -469,10 +467,15 @@ applyThemeUpdate(theme: string): void {
   
   
   gettypeAbonnementClubs(): void {
-    this.service.getTypeAbonnementClub().subscribe(typeAbonnementClubs => {
+    const clubId=localStorage.getItem("idClub")
+    if(clubId)
+    this.service.getTypeAbonnementClub(clubId).subscribe(typeAbonnementClubs => {
       this.typeAbonnementClubs = typeAbonnementClubs;
       this.originaltypeAbonnementClubs = typeAbonnementClubs;
+      console.log(this.originaltypeAbonnementClubs)
     });
+    else
+       console.error("il n' ya pas de club id")
   }
 
   searchtypeAbonnementClubs(event: any): void {

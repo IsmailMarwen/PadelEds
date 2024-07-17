@@ -16,7 +16,7 @@ export class AppwebserviceService {
   public mapEndpointSubscription: Map<string, any> = new Map();
 
   toasts: any[] = [];
-  apiUrl="http://ip172-18-0-23-cq7pit8l2o9000catl70-8081.direct.labs.play-with-docker.com/api"
+  apiUrl="http://ip172-18-0-67-cqajibaim2rg00e39jtg-8081.direct.labs.play-with-docker.com/api"
   private geocodeUrl = 'https://nominatim.openstreetmap.org/search';
   private nominatimUrl = 'https://nominatim.openstreetmap.org/reverse';
   private meteoApiUrl='https://api.openweathermap.org/data/2.5';
@@ -39,7 +39,7 @@ export class AppwebserviceService {
 
  
   connectWebSocket() {
-    const socket = new SockJS('http://ip172-18-0-23-cq7pit8l2o9000catl70-8081.direct.labs.play-with-docker.com/ws');
+    const socket = new SockJS('http://ip172-18-0-67-cqajibaim2rg00e39jtg-8081.direct.labs.play-with-docker.com/ws');
     this.stompClient = new Client({
       webSocketFactory: () => socket,
       debug: (str) => {
@@ -176,48 +176,28 @@ export class AppwebserviceService {
   contactClub(data:any):Observable<any>{
     return this.http.post(this.apiUrl+'/authentication/contact',data)
   }
-  getAllUsers(): Observable<any[]> {
-    return new Observable(observer => {
-      forkJoin({
-        admins: this.getAdmins(),
-        members: this.getMembers(),
-        coaches: this.getCoaches(),
-        agents: this.getAgents()
-      }).subscribe({
-        next: ({ admins, members, coaches, agents }) => {
-          let users: any[] = [];
-          users = users.concat(admins, members, coaches, agents);
-          observer.next(users);
-          observer.complete();
-        },
-        error: err => observer.error(err)
-      });
-    });
-  }
-  getAdmins(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/administrateur/getAll`);
-  }
+ 
 
   getCompteNotValidate(idUser:any): Observable<any> {
     return this.http.get(`${this.apiUrl}/notifications/admin/${idUser}`);
   }
   // Methods for Members
-  getMembers(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/membre/getAll`);
-  }
+  
 
   getMembersNotValidate(idClub:any): Observable<any> {
     return this.http.get(`${this.apiUrl}/membre/getAllNotValidateByClub/${idClub}`);
   }
-
-  // Methods for Coaches
-  getCoaches(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/coach/getAll`);
+  getMemberstValidate(idClub:any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/membre/getAllValidateByClub/${idClub}`);
   }
+  // Methods for Coaches
+  
   getCoachesNotValidate(idClub:any): Observable<any> {
     return this.http.get(`${this.apiUrl}/coach/getAllNotValidateByClub/${idClub}`);
   }
-  
+  getCoachesValidate(idClub:any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/coach/getAllValidateByClub/${idClub}`);
+  }
   deleteUser(userId: number, role: string): Observable<any> {
     let endpoint = '';
     switch (role) {
@@ -289,9 +269,7 @@ export class AppwebserviceService {
   updateClub(data:any):Observable<any>{
     return this.http.put(this.apiUrl+"/club/update",data)
   }
-  getAgents():Observable<any>{
-    return this.http.get(this.apiUrl+"/agentAcceuil/getAll")
-  }
+  
   getAbonnements():Observable<any>{
     return this.http.get(this.apiUrl+"/TypeAbonnement/getAll")
   }
@@ -356,8 +334,8 @@ export class AppwebserviceService {
   addTypeAbonnementClub(data:any):Observable<any>{
     return this.http.post(this.apiUrl+"/typeAbonnementClub/add",data);
   }
-  getTauxTva(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/tauxTva/getAll`);
+  getTauxTva(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/tauxTva/getAllByClub/${clubId}`);
   }
   getAllClub(): Observable<any> {
     return this.http.get(`${this.apiUrl}/club/getAll`);
@@ -397,21 +375,7 @@ export class AppwebserviceService {
     return this.http.delete(url);
     
   }
-  getAlltypeDepenses():Observable<any>{
-    return this.http.get(this.apiUrl+"/typeDepense/getAll")
-  }
-  getAllDevise():Observable<any>{
-    return this.http.get(this.apiUrl+"/devise/getAll")
-  }
-  getRessource():Observable<any>{
-    return this.http.get(this.apiUrl+"/ressource/getAll")
-  }
-  getBanque():Observable<any>{
-    return this.http.get(this.apiUrl+"/banque/getAll")
-  }
-  getTypeAbonnementClub():Observable<any>{
-    return this.http.get(this.apiUrl+"/typeAbonnementClub/getAll")
-  }
+  
   updatetauxTva(data:any):Observable<any>{
     return this.http.put(this.apiUrl+"/tauxTva/update",data)
   }
@@ -425,6 +389,7 @@ export class AppwebserviceService {
     return this.http.put(this.apiUrl+"/banque/update",data)
   }
   updateTypeAbonnementClub(data:any):Observable<any>{
+    console.log(data)
     return this.http.put(this.apiUrl+"/typeAbonnementClub/update",data)
   }
   getAllUsersNotValidate(idClub:any): Observable<any[]> {
@@ -442,5 +407,74 @@ export class AppwebserviceService {
         error: err => observer.error(err)
       });
     });
+  }
+  addcategorieAbonnement(data:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/CategorieAbonnement/add",data);
+  }
+
+  getcategorieAbonnement(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/CategorieAbonnement/getAllByClub/${clubId}`);
+  }
+deletecategorieAbonnement(tauxTvaId: number): Observable<any> {
+    const url = `${this.apiUrl}/CategorieAbonnement/delete/${tauxTvaId}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+    
+  }
+updatecategorieAbonnement(data:any):Observable<any>{
+    return this.http.put(this.apiUrl+"/CategorieAbonnement/update",data)
+  }
+  getAllUsers(clubId: string): Observable<any[]> {
+    return new Observable(observer => {
+      forkJoin({
+        admins: this.getAdmins(clubId),
+        members: this.getMembers(clubId),
+        coaches: this.getCoaches(clubId),
+        agents: this.getAgents(clubId)
+      }).subscribe({
+        next: ({ admins, members, coaches, agents }) => {
+          console.log(coaches)
+          let users: any[] = [];
+          users = users.concat(admins, members, coaches, agents);
+          observer.next(users);
+          observer.complete();
+        },
+        error: err => observer.error(err)
+      });
+    });
+  }
+  getAdmins(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/administrateur/getAllByClub/${clubId}`);
+  }
+  
+  getMembers(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/membre/getAllValidateByClub/${clubId}`);
+  }
+  
+  getCoaches(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/coach/getAllValidateByClub/${clubId}`);
+  }
+  
+  getAgents(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/agentAcceuil/getAllByClub/${clubId}`);
+  }
+getAlltypeDepenses(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/typeDepense/getAllByClub/${clubId}`);
+  }
+  
+  getAllDevise(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/devise/getAllByClub/${clubId}`);
+  }
+  
+  getRessource(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/ressource/getAllByClub/${clubId}`);
+  }
+  
+  getBanque(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/banque/getAllByClub/${clubId}`);
+  }
+  
+  getTypeAbonnementClub(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/typeAbonnementClub/getAllByClub/${clubId}`);
   }
 }

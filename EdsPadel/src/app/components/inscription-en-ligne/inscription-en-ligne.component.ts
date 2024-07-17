@@ -84,7 +84,7 @@ this.initAll()
    this.service.getCompteNotValidate(localStorage.getItem("userId")).subscribe(res=>{
     console.log(res)
    })
-    this.getUsers();
+    this.getAllUsersByClub();
     this.applyTheme('theme1')//important
     this.idClub=localStorage.getItem("idClub")
     this.service.getInfoClub(this.idClub).subscribe(data=>{
@@ -814,35 +814,67 @@ applyThemeUpdate(theme: string): void {
   }
   
   getAdmins(): void {
-    this.service.getAdmins().subscribe(admins => {
+    const clubId = localStorage.getItem("idClub");
+    if (clubId)
+    this.service.getAdmins(clubId).subscribe(admins => {
       this.users = admins;
     });
+   else {
+    console.error('No club ID found in local storage');
+  }
   }
   
   getMembers(): void {
-    this.service.getMembers().subscribe(members => {
-      this.users = members;
+    const clubId = localStorage.getItem("idClub");
+    if (clubId)
+    this.service.getMembers(clubId).subscribe(admins => {
+      this.users = admins;
     });
+   else {
+    console.error('No club ID found in local storage');
+  }
   }
   
   getCoaches(): void {
-    this.service.getCoaches().subscribe(coaches => {
-      this.users = coaches;
+    const clubId = localStorage.getItem("idClub");
+    if (clubId)
+    this.service.getCoaches(clubId).subscribe(admins => {
+      this.users = admins;
     });
+   else {
+    console.error('No club ID found in local storage');
+  }
   }
   
   getAgents(): void {
-    this.service.getAgents().subscribe(res => {
-      this.users = res;
+    const clubId = localStorage.getItem("idClub");
+    if (clubId)
+    this.service.getAgents(clubId).subscribe(admins => {
+      this.users = admins;
     });
+   else {
+    console.error('No club ID found in local storage');
+  }
+  }
+  getAllUsersByClub(): void {
+    const clubId = localStorage.getItem("idClub");
+    if (clubId) {
+      this.service.getAllUsersNotValidate(clubId).subscribe(
+        users => {
+          console.log('Users by club:', users);
+          this.originalUsers = users;
+          this.applyFilters();
+        },
+        error => {
+          console.error('Error fetching users by club:', error);
+        }
+      );
+    } else {
+      console.error('No club ID found in local storage');
+    }
   }
 
-  getUsers(): void {
-    this.service.getAllUsersNotValidate(this.idClub).subscribe(users => {
-      this.originalUsers = users;
-      this.applyFilters(); // Applique les filtres lors de la récupération initiale des utilisateurs
-    });
-  }
+ 
 
   searchUsers(event: any): void {
     const searchTerm = event.target.value.toLowerCase();
@@ -867,7 +899,7 @@ applyThemeUpdate(theme: string): void {
       // Remove the deleted user from the users array
       this.users = this.users.filter(user => user.id !== userId);
   
-      this.getUsers();
+      this.getAllUsersByClub();
     }, error => {
       console.error('Error deleting user:', error);
     });
@@ -919,7 +951,7 @@ applyThemeUpdate(theme: string): void {
     modalRef.componentInstance.name = 'World';
     modalRef.result.then((result) => {
       if (result === 'saved') {
-        this.getUsers();
+        this.getAllUsersByClub();
       }
     }).catch((error) => {
       console.log(error);
@@ -931,12 +963,12 @@ applyThemeUpdate(theme: string): void {
   openLargeModalEdit(user: any) {
     if(user.role=="coach"){
       this.service.ValidateCoach(user).subscribe(res=>{
-        this.getUsers();
+        this.getAllUsersByClub();
       })
     }
     if(user.role=="membre"){
       this.service.ValidateMembre(user).subscribe(res=>{
-        this.getUsers();
+        this.getAllUsersByClub();
       })
     }
   }

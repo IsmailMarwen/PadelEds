@@ -60,6 +60,18 @@ export class UpdateTypAbonnementComponent {
       formValid = false;
       this.showErrorMessage('nbMois', 'Nombre de Mois est obligatoire');
     }
+    if (!this.abonnement.nbUtilisateur) {
+      formValid = false;
+      this.showErrorMessage('nbUtilisateur', 'nbUtilisateur est obligatoire');
+    }
+    if (!this.abonnement.nbJoursGratuit) {
+      formValid = false;
+      this.showErrorMessage('nbJoursGratuit', 'nbJoursGratuit est obligatoire');
+    }
+    if (!this.abonnement.remise) {
+      formValid = false;
+      this.showErrorMessage('remise', 'remise est obligatoire');
+    }
 
     if (!formValid) {
       this.toast.toast('Veuillez remplir tous les champs obligatoires.', ToastType.DANGER, 'Erreur', 5000);

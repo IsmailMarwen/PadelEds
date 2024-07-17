@@ -35,26 +35,3 @@
         font-size: 0.8em;
         margin-top: 4px;
       }
-      .select-wrapper {
-        position: relative;
-      }
-      
-      .select-wrapper select {
-        width: 100%;
-        padding-right: 40px; /* Adjust padding to make room for the icon */
-        appearance: none; /* Remove default dropdown arrow in some browsers */
-      }
-      
-      .select-wrapper .select-icon {
-        position: absolute;
-        top: 50%;
-        right: 10px; /* Adjust as necessary */
-        transform: translateY(-50%);
-        pointer-events: none; /* Ensure the icon does not block clicks */
-      }
-      
-      .select-wrapper .icon-32 {
-        width: 32px;
-        height: 32px;
-      }
-      

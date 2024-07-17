@@ -28,7 +28,14 @@ export class UpdateRessourceComponent {
     updateressource() {
       this.preload = true;
       let formValid = true;
-  
+      var data ={
+        id: this.ressource.id,  // Include the ID of the existing resource
+    
+        libelle: this.ressource.libelle,
+         club:{
+            idClub:localStorage.getItem("idClub")
+          }
+      }
       // Clear previous error messages
       this.clearErrorMessages();
   
@@ -45,7 +52,7 @@ export class UpdateRessourceComponent {
         return;
       }
   
-      this.service.updateRessource(this.ressource).subscribe(
+      this.service.updateRessource(data).subscribe(
         response => {
           console.log('ressource updated successfully:', response);
           this.preload = false;

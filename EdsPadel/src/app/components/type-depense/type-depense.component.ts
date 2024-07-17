@@ -754,14 +754,17 @@ applyThemeUpdate(theme: string): void {
   }
   
   
-  
   gettypeDepenses(): void {
-    this.service.getAlltypeDepenses().subscribe(typeDepenses => {
+    const clubId = localStorage.getItem("idClub");
+    if(clubId)
+    this.service.getAlltypeDepenses(clubId).subscribe(typeDepenses => {
       this.typeDepenses = typeDepenses;
       this.originaltypeDepenses = typeDepenses;
     });
+    else {
+      console.error('No club ID found in local storage');
+    }
   }
-
   searchtypeDepenses(event: any): void {
     const searchTerm = event.target.value.toLowerCase();
     this.typeDepenses = this.originaltypeDepenses.filter(typeDepense => {

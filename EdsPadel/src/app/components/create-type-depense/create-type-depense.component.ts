@@ -22,7 +22,13 @@ export class CreateTypeDepenseComponent {
   addtypeDepense() {
     this.preload = true;
     let formValid = true;
-  
+    var data={
+      designation:this.designation,
+      club:{
+        idClub:localStorage.getItem("idClub")
+      }
+
+    }
     // Clear previous error messages
     this.clearErrorMessages();
   
@@ -38,9 +44,7 @@ export class CreateTypeDepenseComponent {
       this.preload = false;
       return;
     }
-    var data={
-      "designation":this.designation
-    }
+    
     this.service.addtypeDepense(data).subscribe(
       response => {
         console.log('typeDepense added successfully:', response);

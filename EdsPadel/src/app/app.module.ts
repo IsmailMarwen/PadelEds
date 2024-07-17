@@ -72,6 +72,9 @@ import { AddComplexeComponent } from './components/add-complexe/add-complexe.com
 import { ColorPickerModule } from 'ngx-color-picker';
 import { LoginSuperAdminComponent } from './components/login-super-admin/login-super-admin.component';
 import { InscriptionEnLigneComponent } from './components/inscription-en-ligne/inscription-en-ligne.component';
+import { CategorieAbonnementtComponent } from './components/categorie-abonnementt/categorie-abonnementt.component';
+import { CreateCategorieAbonnementtComponent } from './components/create-categorie-abonnementt/create-categorie-abonnementt.component';
+import { UpdateCategorieAbonnementtComponent } from './components/update-categorie-abonnementt/update-categorie-abonnementt.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -131,7 +134,10 @@ import { InscriptionEnLigneComponent } from './components/inscription-en-ligne/i
     UpdateComplexeComponent,
     AddComplexeComponent,
     LoginSuperAdminComponent,
-    InscriptionEnLigneComponent
+    InscriptionEnLigneComponent,
+    CategorieAbonnementtComponent,
+    CreateCategorieAbonnementtComponent,
+    UpdateCategorieAbonnementtComponent
   ],
   imports: [
     BrowserModule,

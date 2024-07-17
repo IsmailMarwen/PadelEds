@@ -34,7 +34,12 @@ export class TypAbonnementComponent implements OnInit, AfterViewInit {
   tauxTva: string = '';
   mtttc: string = '';
   nbMois: string = '';
-  couleur:string=''
+  couleur:string='';
+  nbUtilisateur:string='';
+  nbJoursGratuit:string='';
+  remise:string='';
+  
+
   constructor(
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,

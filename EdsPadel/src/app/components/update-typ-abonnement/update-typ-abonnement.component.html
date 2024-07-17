@@ -59,6 +59,24 @@
                     <div id="nbMois-error" class="error-message"></div>
                   </div>
                   <div class="form-group">
+                    <label class="form-label" for="nbUtilisateur">Nombre Utilisateurs <span class="obl">*</span></label>
+                    <input type="text" class="form-control" id="nbUtilisateur" placeholder="Nombre de Mois" name="nbUtilisateur"
+                      [(ngModel)]="abonnement.nbUtilisateur">
+                    <div id="nbUtilisateur-error" class="error-message"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="nbJoursGratuit">Nombre de jours gratuit <span class="obl">*</span></label>
+                    <input type="text" class="form-control" id="nbJoursGratuit" placeholder="Nombre de Mois" name="nbJoursGratuit"
+                      [(ngModel)]="abonnement.nbJoursGratuit">
+                    <div id="nbJoursGratuit-error" class="error-message"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="remise">Remise <span class="obl">*</span></label>
+                    <input type="text" class="form-control" id="remise" placeholder="Nombre de Mois" name="remise"
+                      [(ngModel)]="abonnement.remise">
+                    <div id="remise-error" class="error-message"></div>
+                  </div>
+                  <div class="form-group">
                     <label class="form-label" for="couleur">Couleur <span class="obl">*</span></label>
                     <input [(colorPicker)]="abonnement.couleur" [style.background]="abonnement.couleur" class="form-control" id="couleur" name="couelur">
                     <div id="couleur-error" class="error-message"></div>

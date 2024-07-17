@@ -16,6 +16,9 @@ export class CreateTypAbonnementComponent {
   mtttc:any
   nbMois:any
   couleur:any
+  nbUtilisateur:any
+  nbJoursGratuit:any
+  remise:any
   preload:boolean=false
   abonnement: any = {
     codeTypeAbonnement: '',
@@ -62,6 +65,18 @@ export class CreateTypAbonnementComponent {
     if (!this.abonnement.nbMois) {
       formValid = false;
       this.showErrorMessage('nbMois', 'nbMois est obligatoire');
+    }
+    if (!this.abonnement.nbUtilisateur) {
+      formValid = false;
+      this.showErrorMessage('nbUtilisateur', 'nbUtilisateur est obligatoire');
+    }
+    if (!this.abonnement.nbJoursGratuit) {
+      formValid = false;
+      this.showErrorMessage('nbJoursGratuit', 'nbJoursGratuit est obligatoire');
+    }
+    if (!this.abonnement.remise) {
+      formValid = false;
+      this.showErrorMessage('remise', 'remise est obligatoire');
     }
   
     if (!formValid) {
