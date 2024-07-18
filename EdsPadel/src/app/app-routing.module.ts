@@ -30,6 +30,7 @@ import { TypeAbonnementClubComponent } from './components/type-abonnement-club/t
 import { LoginSuperAdminComponent } from './components/login-super-admin/login-super-admin.component';
 import { InscriptionEnLigneComponent } from './components/inscription-en-ligne/inscription-en-ligne.component';
 import { CategorieAbonnementtComponent } from './components/categorie-abonnementt/categorie-abonnementt.component';
+import { PlageHoraireComponent } from './components/plage-horaire/plage-horaire.component';
 const routes: Routes = [
   {path:'eds/admin/home',component:SuperAdminComponent},
   {path:'eds/admin/login',component:LoginSuperAdminComponent},
@@ -60,6 +61,7 @@ const routes: Routes = [
 {path:':url/typeAbonnement',component:TypeAbonnementClubComponent,canActivate:[authGuard]},
 {path:':url/inscriptionEnLigne',component:InscriptionEnLigneComponent,canActivate:[authGuard]},
 {path:':url/CategorieAbonnement',component:CategorieAbonnementtComponent,canActivate:[authGuard]},
+{path:':url/plageHoraire',component:PlageHoraireComponent,canActivate:[authGuard]},
 
 ];
 

@@ -1,0 +1,77 @@
+<div class="modal-content custom-modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">
+        <svg class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                <path opacity="0.4" d="M22 12C22 17.524 17.523 22 12 22C6.477 22 2 17.524 2 12C2 6.478 6.477 2 12 2C17.523 2 22 6.478 22 12Z" fill="currentColor"></path>                                <path d="M15.5739 15.8145C15.4429 15.8145 15.3109 15.7805 15.1899 15.7095L11.2639 13.3675C11.0379 13.2315 10.8989 12.9865 10.8989 12.7225V7.67554C10.8989 7.26154 11.2349 6.92554 11.6489 6.92554C12.0629 6.92554 12.3989 7.26154 12.3989 7.67554V12.2965L15.9589 14.4195C16.3139 14.6325 16.4309 15.0925 16.2189 15.4485C16.0779 15.6835 15.8289 15.8145 15.5739 15.8145Z" fill="currentColor"></path>                                </svg>                            
+        Modifier Plage Horaire
+      </h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    </div>
+    <div class="modal-body">
+      <div class="container-fluid">
+        <div>
+          <div class="row">
+            <div>
+              <div class="card-header d-flex justify-content-between">
+                <div class="header-title">
+                </div>
+              </div>
+              <div class="card-body">
+                <form>
+                 
+                  <div class="form-group">
+                    <label class="form-label" for="libelle">Libelle <span
+                        class="obl">*</span></label>
+                    <input type="text" class="form-control" id="libelle"
+                      placeholder="libelle" name="libelle" [(ngModel)]="plageHoraire.libelle">
+                    <div id="libelle-error" class="error-message"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="debutAct">Debut <span
+                        class="obl">*</span></label>
+                    <input type="time" class="form-control" id="debutAct"
+                      placeholder="debutAct" name="debutAct" [(ngModel)]="plageHoraire.debutAct">
+                    <div id="debutAct-error" class="error-message"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="finAct">Fin <span
+                        class="obl">*</span></label>
+                    <input type="time" class="form-control" id="finAct"
+                      placeholder="finAct" name="finAct" [(ngModel)]="plageHoraire.finAct">
+                    <div id="finAct-error" class="error-message"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="dureeAct">Durée (par minute)<span
+                        class="obl">*</span></label>
+                    <input type="text" class="form-control" id="dureeAct"
+                      placeholder="dureeAct" name="dureeAct" [(ngModel)]="plageHoraire.dureeAct">
+                    <div id="dureeAct-error" class="error-message"></div>
+                  </div>
+                  
+        
+  
+                  <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-6" (click)="updateplageHoraire()">
+                      <button class="btn btnTermine" *ngIf="!preload">
+                        <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z"
+                          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                      Modifier
+                    </button>
+                    <button class="btn btnTermine" *ngIf="preload">
+                      <img src="../../../assets/images/preload.gif" height="25px">
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

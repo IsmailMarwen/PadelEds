@@ -16,7 +16,7 @@ export class AppwebserviceService {
   public mapEndpointSubscription: Map<string, any> = new Map();
 
   toasts: any[] = [];
-  apiUrl="http://ip172-18-0-67-cqajibaim2rg00e39jtg-8081.direct.labs.play-with-docker.com/api"
+  apiUrl="http://ip172-18-0-73-cqc1q6291nsg00afknc0-8081.direct.labs.play-with-docker.com/api"
   private geocodeUrl = 'https://nominatim.openstreetmap.org/search';
   private nominatimUrl = 'https://nominatim.openstreetmap.org/reverse';
   private meteoApiUrl='https://api.openweathermap.org/data/2.5';
@@ -39,7 +39,7 @@ export class AppwebserviceService {
 
  
   connectWebSocket() {
-    const socket = new SockJS('http://ip172-18-0-67-cqajibaim2rg00e39jtg-8081.direct.labs.play-with-docker.com/ws');
+    const socket = new SockJS('http://ip172-18-0-73-cqc1q6291nsg00afknc0-8081.direct.labs.play-with-docker.com/ws');
     this.stompClient = new Client({
       webSocketFactory: () => socket,
       debug: (str) => {
@@ -476,5 +476,22 @@ getAlltypeDepenses(clubId: string): Observable<any[]> {
   
   getTypeAbonnementClub(clubId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/typeAbonnementClub/getAllByClub/${clubId}`);
+  }
+  getPlageHoraire(clubId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/plageHoraire/getAllByClub/${clubId}`);
+  }
+  updatePlageHoraire(data:any):Observable<any>{
+    return this.http.put(this.apiUrl+"/plageHoraire/update",data)
+  }
+  addPlageHoraire(data:any):Observable<any>{
+    return this.http.post(this.apiUrl+"/plageHoraire/add",data);
+  }
+
+  
+deletePlageHoraire(Id: number): Observable<any> {
+    const url = `${this.apiUrl}/plageHoraire/delete/${Id}`;
+    console.log('Delete URL:', url); // Optional: Log the generated URL for debugging
+    return this.http.delete(url);
+    
   }
 }

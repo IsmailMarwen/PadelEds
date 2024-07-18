@@ -75,6 +75,9 @@ import { InscriptionEnLigneComponent } from './components/inscription-en-ligne/i
 import { CategorieAbonnementtComponent } from './components/categorie-abonnementt/categorie-abonnementt.component';
 import { CreateCategorieAbonnementtComponent } from './components/create-categorie-abonnementt/create-categorie-abonnementt.component';
 import { UpdateCategorieAbonnementtComponent } from './components/update-categorie-abonnementt/update-categorie-abonnementt.component';
+import { PlageHoraireComponent } from './components/plage-horaire/plage-horaire.component';
+import { CreatePlageHoraireComponent } from './components/create-plage-horaire/create-plage-horaire.component';
+import { UpdatePlageHoraireComponent } from './components/update-plage-horaire/update-plage-horaire.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -137,7 +140,10 @@ import { UpdateCategorieAbonnementtComponent } from './components/update-categor
     InscriptionEnLigneComponent,
     CategorieAbonnementtComponent,
     CreateCategorieAbonnementtComponent,
-    UpdateCategorieAbonnementtComponent
+    UpdateCategorieAbonnementtComponent,
+    PlageHoraireComponent,
+    CreatePlageHoraireComponent,
+    UpdatePlageHoraireComponent
   ],
   imports: [
     BrowserModule,
