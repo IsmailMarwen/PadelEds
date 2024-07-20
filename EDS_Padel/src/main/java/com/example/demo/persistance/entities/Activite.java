@@ -23,14 +23,10 @@ public class Activite {
     @JsonIgnore
     private List<CategorieAbonnement> categorieAbonnements;
 
-    @ManyToMany
-    @JoinTable(
-            name = "ressource_activite",
-            joinColumns = @JoinColumn(name = "activite_id"),
-            inverseJoinColumns = @JoinColumn(name = "ressource_id")
-    )
+    @OneToMany(mappedBy="activite",fetch=FetchType.LAZY)
     @JsonIgnore
     private List<Ressource> ressources;
+   
 
     @ManyToMany(mappedBy = "activites")
     @JsonIgnoreProperties("activites")
