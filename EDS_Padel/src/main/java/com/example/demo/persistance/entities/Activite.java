@@ -24,7 +24,6 @@ public class Activite {
     private List<CategorieAbonnement> categorieAbonnements;
 
     @OneToMany(mappedBy="activite",fetch=FetchType.LAZY)
-    @JsonIgnore
     private List<Ressource> ressources;
    
 
