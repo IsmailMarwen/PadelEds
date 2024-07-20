@@ -20,12 +20,8 @@ public class Ressource {
     private String capacite;
     @ManyToOne
     private Club club;
-    @ManyToMany
-    @JoinTable(
-            name = "ressource_activite",
-            joinColumns = @JoinColumn(name = "ressource_id"),
-            inverseJoinColumns = @JoinColumn(name = "activite_id")
-    )
+    @ManyToOne
+    private Avtivite activite;
     private List<Activite> activites;
     @OneToMany(mappedBy="ressource",fetch=FetchType.LAZY)
     private List<Reservation> reservations;
