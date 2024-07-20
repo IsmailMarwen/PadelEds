@@ -22,7 +22,6 @@ public class Ressource {
     private Club club;
     @ManyToOne
     private Avtivite activite;
-    private List<Activite> activites;
     @OneToMany(mappedBy="ressource",fetch=FetchType.LAZY)
     private List<Reservation> reservations;
     @ManyToOne
