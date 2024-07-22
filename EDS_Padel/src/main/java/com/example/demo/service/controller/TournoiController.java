@@ -20,20 +20,21 @@ public class TournoiController {
         this.iTournoi=iTournoi;}
     @PostMapping("/add")
     public ResponseEntity<?> save(@RequestBody Tournoi tournoi) {
-        Tournoi a=iTournoi.saveTournoi(tournoi);
         if(tournoiRepository.findByNomTournoiAndClub(tournoi.getNomTournoi(),tournoi.getClub())!=null){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Tournoi déjà existe");
 
         }
+        Tournoi a=iTournoi.saveTournoi(tournoi);
         return ResponseEntity.status(HttpStatus.CREATED).body(a);
     }
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestBody Tournoi tournoi) {
-        Tournoi a=iTournoi.updateTournoi(tournoi);
+        
         if(tournoiRepository.findByNomTournoiAndClub(tournoi.getNomTournoi(),tournoi.getClub())!=null){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Tournoi déjà existe");
 
         }
+        Tournoi a=iTournoi.updateTournoi(tournoi);
         return ResponseEntity.status(HttpStatus.CREATED).body(a);
     }
     @GetMapping("/getAll")
