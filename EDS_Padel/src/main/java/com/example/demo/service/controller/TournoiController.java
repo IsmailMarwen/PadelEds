@@ -18,25 +18,32 @@ public class TournoiController {
     private final ITournoi iTournoi;
     public TournoiController(ITournoi iTournoi){
         this.iTournoi=iTournoi;}
-    @PostMapping("/add")
-    public ResponseEntity<?> save(@RequestBody Tournoi tournoi) {
-        if(tournoiRepository.findByNomTournoiAndClub(tournoi.getNomTournoi(),tournoi.getClub())!=null){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Tournoi déjà existe");
-
-        }
-        Tournoi a=iTournoi.saveTournoi(tournoi);
-        return ResponseEntity.status(HttpStatus.CREATED).body(a);
+   @PostMapping("/save")
+public ResponseEntity<?> save(@RequestBody Tournoi tournoi) {
+    if (tournoiRepository.findByNomTournoiAndClub(tournoi.getNomTournoi(), tournoi.getClub()) != null) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Tournoi déjà existe");
     }
-    @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestBody Tournoi tournoi) {
-        
-        if(tournoiRepository.findByNomTournoiAndClub(tournoi.getNomTournoi(),tournoi.getClub())!=null){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Tournoi déjà existe");
+    Tournoi savedTournoi = iTournoi.saveTournoi(tournoi);
+    return ResponseEntity.status(HttpStatus.CREATED).body(savedTournoi);
+}
 
-        }
-        Tournoi a=iTournoi.updateTournoi(tournoi);
-        return ResponseEntity.status(HttpStatus.CREATED).body(a);
+@PutMapping("/update")
+public ResponseEntity<?> update(@RequestBody Tournoi tournoi) {
+    Tournoi existingTournoi = tournoiRepository.findById(tournoi.getId()).orElse(null);
+    
+    if (existingTournoi == null) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tournoi non trouvé");
     }
+
+    Tournoi tournoiWithSameName = tournoiRepository.findByNomTournoiAndClub(tournoi.getNomTournoi(), tournoi.getClub());
+    if (tournoiWithSameName != null && !tournoiWithSameName.getId().equals(tournoi.getId())) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Tournoi déjà existe avec le même nom et club");
+    }
+
+    Tournoi updatedTournoi = iTournoi.updateTournoi(tournoi);
+    return ResponseEntity.status(HttpStatus.OK).body(updatedTournoi);
+}
+
     @GetMapping("/getAll")
     List<Tournoi> getAllTournois() {
 
