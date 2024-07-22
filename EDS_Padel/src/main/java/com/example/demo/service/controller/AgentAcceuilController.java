@@ -32,7 +32,7 @@ public class AgentAcceuilController {
     public AgentAcceuilController(IAgentAcceuil iAgentAcceuil){
         this.iAgentAcceuil=iAgentAcceuil;}
 
-    @PostMapping("/add")
+     @PostMapping("/add")
     public ResponseEntity<?> save(@RequestBody AgentAcceuil a) {
         if(adminstarteurRepository.findByEmailAndClub(a.getEmail(),a.getClub())!=null || agentAcceuilRepository.findByEmailAndClub(a.getEmail(),a.getClub())!=null || membreRepository.findByEmailAndClub(a.getEmail(),a.getClub())!=null || coachRepository.findByEmailAndClub(a.getEmail(),a.getClub())!=null){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà exist");
