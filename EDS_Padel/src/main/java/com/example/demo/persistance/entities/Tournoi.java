@@ -17,12 +17,14 @@ public class Tournoi {
         private Long idTournoi;
         private String nomTournoi;
         private String typeTournoi;
-        private Date dateDebut;
-        private Date dateFin;
+        private String dateDebut;
+        private String dateFin;
         private int prixParticipation;
+        private int nbreParticipant
         @ManyToOne
         private Club club;
-
+        @ManyToOne
+        private Activite activite;
 
 
 
