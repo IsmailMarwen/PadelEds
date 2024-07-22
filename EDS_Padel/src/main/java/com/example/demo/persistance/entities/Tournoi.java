@@ -20,7 +20,7 @@ public class Tournoi {
         private String dateDebut;
         private String dateFin;
         private int prixParticipation;
-        private int nbreParticipant
+        private int nbreParticipant;
         @ManyToOne
         private Club club;
         @ManyToOne
