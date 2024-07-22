@@ -26,7 +26,9 @@ public class Activite {
     @OneToMany(mappedBy="activite",fetch=FetchType.LAZY)
     @JsonIgnore
     private List<Ressource> ressources;
-   
+   @OneToMany(mappedBy="activite",fetch=FetchType.LAZY)
+    @JsonIgnore
+    private List<Tournoi> tournois;
 
     @ManyToMany(mappedBy = "activites")
     @JsonIgnoreProperties("activites")
