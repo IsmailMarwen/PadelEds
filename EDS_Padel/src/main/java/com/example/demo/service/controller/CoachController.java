@@ -44,20 +44,38 @@ public class CoachController {
         return ResponseEntity.status(HttpStatus.CREATED).body(m);
     }
     @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestBody Coach coach) {
+public ResponseEntity<?> update(@RequestBody Coach coach) {
+    Coach existingCoach = coachRepository.findById(coach.getIdUtilisateur()).orElse(null);
 
-        if(adminstarteurRepository.findByEmailAndClub(coach.getEmail(),coach.getClub())!=null || agentAcceuilRepository.findByEmailAndClub(coach.getEmail(),coach.getClub())!=null || membreRepository.findByEmailAndClub(coach.getEmail(),coach.getClub())!=null || coachRepository.findByEmailAndClub(coach.getEmail(),coach.getClub())!=null){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà exist");
-        }
-        if(adminstarteurRepository.findByTelephoneAndClub(coach.getTelephone(),coach.getClub())!=null || agentAcceuilRepository.findByTelephoneAndClub(coach.getTelephone(),coach.getClub())!=null || membreRepository.findByTelephoneAndClub(coach.getTelephone(),coach.getClub())!=null || coachRepository.findByTelephoneAndClub(coach.getTelephone(),coach.getClub())!=null){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Téléphone déjà exist");
-        }
-        if(adminstarteurRepository.findByUsernameAndClub(coach.getUsername(),coach.getClub())!=null || agentAcceuilRepository.findByUsernameAndClub(coach.getUsername(),coach.getClub())!=null || membreRepository.findByUsernameAndClub(coach.getUsername(),coach.getClub())!=null || coachRepository.findByUsernameAndClub(coach.getUsername(),coach.getClub())!=null){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username déjà exist");
-        }
-        Coach m=iCoach.updateCoach(coach);
-        return ResponseEntity.status(HttpStatus.CREATED).body(m);
+    if (existingCoach == null) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Coach non trouvé");
     }
+
+    if ((adminstarteurRepository.findByEmailAndClub(coach.getEmail(), coach.getClub()) != null && !adminstarteurRepository.findByEmailAndClub(coach.getEmail(), coach.getClub()).getIdUtilisateur().equals(coach.getIdUtilisateur())) || 
+        (agentAcceuilRepository.findByEmailAndClub(coach.getEmail(), coach.getClub()) != null && !agentAcceuilRepository.findByEmailAndClub(coach.getEmail(), coach.getClub()).getIdUtilisateur().equals(coach.getIdUtilisateur())) || 
+        (membreRepository.findByEmailAndClub(coach.getEmail(), coach.getClub()) != null && !membreRepository.findByEmailAndClub(coach.getEmail(), coach.getClub()).getIdUtilisateur().equals(coach.getIdUtilisateur())) || 
+        (coachRepository.findByEmailAndClub(coach.getEmail(), coach.getClub()) != null && !coachRepository.findByEmailAndClub(coach.getEmail(), coach.getClub()).getIdUtilisateur().equals(coach.getIdUtilisateur()))) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà exist");
+    }
+
+    if ((adminstarteurRepository.findByTelephoneAndClub(coach.getTelephone(), coach.getClub()) != null && !adminstarteurRepository.findByTelephoneAndClub(coach.getTelephone(), coach.getClub()).getIdUtilisateur().equals(coach.getIdUtilisateur())) || 
+        (agentAcceuilRepository.findByTelephoneAndClub(coach.getTelephone(), coach.getClub()) != null && !agentAcceuilRepository.findByTelephoneAndClub(coach.getTelephone(), coach.getClub()).getIdUtilisateur().equals(coach.getIdUtilisateur())) || 
+        (membreRepository.findByTelephoneAndClub(coach.getTelephone(), coach.getClub()) != null && !membreRepository.findByTelephoneAndClub(coach.getTelephone(), coach.getClub()).getIdUtilisateur().equals(coach.getIdUtilisateur())) || 
+        (coachRepository.findByTelephoneAndClub(coach.getTelephone(), coach.getClub()) != null && !coachRepository.findByTelephoneAndClub(coach.getTelephone(), coach.getClub()).getIdUtilisateur().equals(coach.getIdUtilisateur()))) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Téléphone déjà exist");
+    }
+
+    if ((adminstarteurRepository.findByUsernameAndClub(coach.getUsername(), coach.getClub()) != null && !adminstarteurRepository.findByUsernameAndClub(coach.getUsername(), coach.getClub()).getIdUtilisateur().equals(coach.getIdUtilisateur())) || 
+        (agentAcceuilRepository.findByUsernameAndClub(coach.getUsername(), coach.getClub()) != null && !agentAcceuilRepository.findByUsernameAndClub(coach.getUsername(), coach.getClub()).getIdUtilisateur().equals(coach.getIdUtilisateur())) || 
+        (membreRepository.findByUsernameAndClub(coach.getUsername(), coach.getClub()) != null && !membreRepository.findByUsernameAndClub(coach.getUsername(), coach.getClub()).getIdUtilisateur().equals(coach.getIdUtilisateur())) || 
+        (coachRepository.findByUsernameAndClub(coach.getUsername(), coach.getClub()) != null && !coachRepository.findByUsernameAndClub(coach.getUsername(), coach.getClub()).getIdUtilisateur().equals(coach.getIdUtilisateur()))) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Username déjà exist");
+    }
+
+    Coach updatedCoach = iCoach.updateCoach(coach);
+    return ResponseEntity.status(HttpStatus.OK).body(updatedCoach);
+}
+
     @GetMapping("/getAll")
     List<Coach> getAllCoachs() {
 
