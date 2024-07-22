@@ -29,14 +29,14 @@ public ResponseEntity<?> save(@RequestBody Tournoi tournoi) {
 
 @PutMapping("/update")
 public ResponseEntity<?> update(@RequestBody Tournoi tournoi) {
-    Tournoi existingTournoi = tournoiRepository.findById(tournoi.getId()).orElse(null);
+    Tournoi existingTournoi = tournoiRepository.findById(tournoi.getIdTournoi()).orElse(null);
     
     if (existingTournoi == null) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tournoi non trouvé");
     }
 
     Tournoi tournoiWithSameName = tournoiRepository.findByNomTournoiAndClub(tournoi.getNomTournoi(), tournoi.getClub());
-    if (tournoiWithSameName != null && !tournoiWithSameName.getId().equals(tournoi.getId())) {
+    if (tournoiWithSameName != null && !tournoiWithSameName.getIdTournoi().equals(tournoi.getIdTournoi())) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Tournoi déjà existe avec le même nom et club");
     }
 
