@@ -20,27 +20,39 @@ public class SuperAdminController {
     public SuperAdminController(ISuperAdmin iSuperAdmin){
         this.iSuperAdmin=iSuperAdmin;}
     @PostMapping("/add")
-    public ResponseEntity<?> save(@RequestBody SuperAdmin superAdmin) {
-        if(superAdminRepository.findByEmail(superAdmin.getEmail())!=null){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà existe");
-        }
-        if(superAdminRepository.findByTelephone(superAdmin.getTelephone())!=null){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Téléphone déjà existe");
-        }
-        SuperAdmin a=iSuperAdmin.saveSuperAdmin(superAdmin);
-        return ResponseEntity.status(HttpStatus.CREATED).body(a);
+public ResponseEntity<?> save(@RequestBody SuperAdmin superAdmin) {
+    if (superAdminRepository.findByEmail(superAdmin.getEmail()) != null) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà existe");
     }
-    @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestBody SuperAdmin superAdmin) {
-        if(superAdminRepository.findByEmail(superAdmin.getEmail())!=null){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà existe");
-        }
-        if(superAdminRepository.findByTelephone(superAdmin.getTelephone())!=null){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Téléphone déjà existe");
-        }
-        SuperAdmin a=iSuperAdmin.updateSuperAdmin(superAdmin);
-        return ResponseEntity.status(HttpStatus.CREATED).body(a);
+    if (superAdminRepository.findByTelephone(superAdmin.getTelephone()) != null) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Téléphone déjà existe");
     }
+    SuperAdmin savedSuperAdmin = iSuperAdmin.saveSuperAdmin(superAdmin);
+    return ResponseEntity.status(HttpStatus.CREATED).body(savedSuperAdmin);
+}
+
+@PutMapping("/update")
+public ResponseEntity<?> update(@RequestBody SuperAdmin superAdmin) {
+    SuperAdmin existingSuperAdmin = superAdminRepository.findById(superAdmin.getId()).orElse(null);
+    
+    if (existingSuperAdmin == null) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("SuperAdmin non trouvé");
+    }
+
+    SuperAdmin superAdminWithSameEmail = superAdminRepository.findByEmail(superAdmin.getEmail());
+    if (superAdminWithSameEmail != null && !superAdminWithSameEmail.getId().equals(superAdmin.getId())) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà existe");
+    }
+
+    SuperAdmin superAdminWithSameTelephone = superAdminRepository.findByTelephone(superAdmin.getTelephone());
+    if (superAdminWithSameTelephone != null && !superAdminWithSameTelephone.getId().equals(superAdmin.getId())) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Téléphone déjà existe");
+    }
+
+    SuperAdmin updatedSuperAdmin = iSuperAdmin.updateSuperAdmin(superAdmin);
+    return ResponseEntity.status(HttpStatus.OK).body(updatedSuperAdmin);
+}
+
     @GetMapping("/getAll")
     List<SuperAdmin> getAllSuperAdmins() {
 
