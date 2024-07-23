@@ -11,14 +11,14 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api/Tournoi")
+@RequestMapping("/api/tournoi")
 public class TournoiController {
     @Autowired
     private TournoiRepository tournoiRepository;
     private final ITournoi iTournoi;
     public TournoiController(ITournoi iTournoi){
         this.iTournoi=iTournoi;}
-   @PostMapping("/save")
+   @PostMapping("/add")
 public ResponseEntity<?> save(@RequestBody Tournoi tournoi) {
     if (tournoiRepository.findByNomTournoiAndClub(tournoi.getNomTournoi(), tournoi.getClub()) != null) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Tournoi déjà existe");
