@@ -11,5 +11,5 @@ public interface IReservation {
     List<Reservation> getListReservation();
     Reservation getReservationByIdReservation(Long id);
     List<Reservation> getListReservationByClub(Long idClub);
-
+    List<Reservation> getListReservationByRessource(Long idRessource);
 }
