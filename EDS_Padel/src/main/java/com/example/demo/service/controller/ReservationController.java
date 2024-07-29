@@ -45,4 +45,9 @@ public class ReservationController {
 
         return iReservation.getListReservationByClub(idClub);
     }
+    @GetMapping("/getAllByClub/{idRessource}/{date}")
+    List<Reservation> getAllReservationByRessourceAndDate(@PathVariable Long idRessource,@PathVariable String date) {
+
+        return iReservation.getListByRessourceAndDate(idRessource,date);
+    }
 }

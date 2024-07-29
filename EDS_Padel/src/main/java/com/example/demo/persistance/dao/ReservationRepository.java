@@ -10,4 +10,5 @@ import java.util.List;
 public interface ReservationRepository extends JpaRepository<Reservation,Long> {
     List<Reservation> getAllByClub(Club club);
     List<Reservation> getAllByRessource(Ressource ressource);
+    List<Reservation> getAllByRessourceAndDateDernierRes(Ressource ressource,String dateDernierRes);
 }

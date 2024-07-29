@@ -12,4 +12,5 @@ public interface IReservation {
     Reservation getReservationByIdReservation(Long id);
     List<Reservation> getListReservationByClub(Long idClub);
     List<Reservation> getListReservationByRessource(Long idRessource);
+    List<Reservation> getListByRessourceAndDate(Long idRessource,String date);
 }

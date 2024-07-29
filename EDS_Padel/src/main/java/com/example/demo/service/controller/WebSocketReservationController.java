@@ -4,6 +4,7 @@ import com.example.demo.persistance.entities.Reservation;
 import com.example.demo.service.impliments.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -18,21 +19,23 @@ public class WebSocketReservationController {
 
     @MessageMapping("/addReservation")
     @SendTo("/topic/reservations")
-    public Reservation addReservation(Reservation reservation) {
-        return reservationService.saveReservation(reservation);
+    public List<Reservation> addReservation(Reservation reservation, @Header("idRessource") Long idRessource, @Header("date") String date) {
+        reservationService.saveReservation(reservation);
+        return reservationService.getListByRessourceAndDate(idRessource, date);
     }
 
     @MessageMapping("/updateReservation")
     @SendTo("/topic/reservations")
-    public Reservation updateReservation(Reservation reservation) {
-        return reservationService.updateReservation(reservation);
+    public List<Reservation> updateReservation(Reservation reservation, @Header("idRessource") Long idRessource, @Header("date") String date) {
+        reservationService.updateReservation(reservation);
+        return reservationService.getListByRessourceAndDate(idRessource, date);
     }
 
     @MessageMapping("/deleteReservation")
     @SendTo("/topic/reservations")
-    public Long deleteReservation(Long id) {
+    public List<Reservation>  deleteReservation(Long id, @Header("idRessource") Long idRessource, @Header("date") String date) {
         reservationService.deleteReservation(id);
-        return id;
+        return reservationService.getListByRessourceAndDate(idRessource, date);
     }
 
     @MessageMapping("/getReservationsByRessource/{idRessource}")
