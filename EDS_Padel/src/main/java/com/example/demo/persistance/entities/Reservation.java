@@ -21,10 +21,13 @@ public class Reservation {
     private String heureFin;
 
     @ManyToOne
+    @JsonIgnore
     private Ressource ressource;
     @ManyToOne
+    @JsonIgnore
     private Club club;
     @ManyToOne
+    @JsonIgnore
     private PlageHoraire plageHoraire;
 
 }
