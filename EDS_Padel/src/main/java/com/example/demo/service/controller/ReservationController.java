@@ -47,7 +47,6 @@ public class ReservationController {
     }
     @GetMapping("/getAllByClub/{idRessource}/{date}")
     List<Reservation> getAllReservationByRessourceAndDate(@PathVariable Long idRessource,@PathVariable String date) {
-
         return iReservation.getListByRessourceAndDate(idRessource,date);
     }
 }
