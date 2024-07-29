@@ -24,4 +24,7 @@ public class Reservation {
     private Ressource ressource;
     @ManyToOne
     private Club club;
+    @ManyToOne
+    private PlageHoraire plageHoraire;
+
 }

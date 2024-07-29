@@ -44,19 +44,38 @@ public class MembreController {
         return ResponseEntity.status(HttpStatus.CREATED).body(m);
     }
     @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestBody Membre membre) {
-        if(adminstarteurRepository.findByEmailAndClub(membre.getEmail(),membre.getClub())!=null || agentAcceuilRepository.findByEmailAndClub(membre.getEmail(),membre.getClub())!=null || membreRepository.findByEmailAndClub(membre.getEmail(),membre.getClub())!=null || membreRepository.findByEmailAndClub(membre.getEmail(),membre.getClub())!=null){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà exist");
-        }
-        if(adminstarteurRepository.findByTelephoneAndClub(membre.getTelephone(),membre.getClub())!=null || agentAcceuilRepository.findByTelephoneAndClub(membre.getTelephone(),membre.getClub())!=null || membreRepository.findByTelephoneAndClub(membre.getTelephone(),membre.getClub())!=null || membreRepository.findByTelephoneAndClub(membre.getTelephone(),membre.getClub())!=null){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Téléphone déjà exist");
-        }
-        if(adminstarteurRepository.findByUsernameAndClub(membre.getUsername(),membre.getClub())!=null || agentAcceuilRepository.findByUsernameAndClub(membre.getUsername(),membre.getClub())!=null || membreRepository.findByUsernameAndClub(membre.getUsername(),membre.getClub())!=null || coachRepository.findByUsernameAndClub(membre.getUsername(),membre.getClub())!=null){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username déjà exist");
-        }
-        Membre m=iMembre.updateMembre(membre);
-        return ResponseEntity.status(HttpStatus.CREATED).body(m);
+public ResponseEntity<?> update(@RequestBody Membre membre) {
+    Membre existingMembre = membreRepository.findById(membre.getIdUtilisateur()).orElse(null);
+
+    if (existingMembre == null) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Membre non trouvé");
     }
+
+    if ((adminstarteurRepository.findByEmailAndClub(membre.getEmail(), membre.getClub()) != null && !adminstarteurRepository.findByEmailAndClub(membre.getEmail(), membre.getClub()).getIdUtilisateur().equals(membre.getIdUtilisateur())) || 
+        (agentAcceuilRepository.findByEmailAndClub(membre.getEmail(), membre.getClub()) != null && !agentAcceuilRepository.findByEmailAndClub(membre.getEmail(), membre.getClub()).getIdUtilisateur().equals(membre.getIdUtilisateur())) || 
+        (membreRepository.findByEmailAndClub(membre.getEmail(), membre.getClub()) != null && !membreRepository.findByEmailAndClub(membre.getEmail(), membre.getClub()).getIdUtilisateur().equals(membre.getIdUtilisateur())) || 
+        (coachRepository.findByEmailAndClub(membre.getEmail(), membre.getClub()) != null && !coachRepository.findByEmailAndClub(membre.getEmail(), membre.getClub()).getIdUtilisateur().equals(membre.getIdUtilisateur()))) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Email déjà exist");
+    }
+
+    if ((adminstarteurRepository.findByTelephoneAndClub(membre.getTelephone(), membre.getClub()) != null && !adminstarteurRepository.findByTelephoneAndClub(membre.getTelephone(), membre.getClub()).getIdUtilisateur().equals(membre.getIdUtilisateur())) || 
+        (agentAcceuilRepository.findByTelephoneAndClub(membre.getTelephone(), membre.getClub()) != null && !agentAcceuilRepository.findByTelephoneAndClub(membre.getTelephone(), membre.getClub()).getIdUtilisateur().equals(membre.getIdUtilisateur())) || 
+        (membreRepository.findByTelephoneAndClub(membre.getTelephone(), membre.getClub()) != null && !membreRepository.findByTelephoneAndClub(membre.getTelephone(), membre.getClub()).getIdUtilisateur().equals(membre.getIdUtilisateur())) || 
+        (coachRepository.findByTelephoneAndClub(membre.getTelephone(), membre.getClub()) != null && !coachRepository.findByTelephoneAndClub(membre.getTelephone(), membre.getClub()).getIdUtilisateur().equals(membre.getIdUtilisateur()))) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Téléphone déjà exist");
+    }
+
+    if ((adminstarteurRepository.findByUsernameAndClub(membre.getUsername(), membre.getClub()) != null && !adminstarteurRepository.findByUsernameAndClub(membre.getUsername(), membre.getClub()).getIdUtilisateur().equals(membre.getIdUtilisateur())) || 
+        (agentAcceuilRepository.findByUsernameAndClub(membre.getUsername(), membre.getClub()) != null && !agentAcceuilRepository.findByUsernameAndClub(membre.getUsername(), membre.getClub()).getIdUtilisateur().equals(membre.getIdUtilisateur())) || 
+        (membreRepository.findByUsernameAndClub(membre.getUsername(), membre.getClub()) != null && !membreRepository.findByUsernameAndClub(membre.getUsername(), membre.getClub()).getIdUtilisateur().equals(membre.getIdUtilisateur())) || 
+        (coachRepository.findByUsernameAndClub(membre.getUsername(), membre.getClub()) != null && !coachRepository.findByUsernameAndClub(membre.getUsername(), membre.getClub()).getIdUtilisateur().equals(membre.getIdUtilisateur()))) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Username déjà exist");
+    }
+
+    Membre updatedMembre = iMembre.updateMembre(membre);
+    return ResponseEntity.status(HttpStatus.OK).body(updatedMembre);
+}
+
     @GetMapping("/getAll")
     List<Membre> getAllMembres() {
 

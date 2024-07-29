@@ -3,6 +3,7 @@ package com.example.demo.service.impliments;
 import com.example.demo.persistance.dao.ReservationRepository;
 import com.example.demo.persistance.entities.Club;
 import com.example.demo.persistance.entities.Reservation;
+import com.example.demo.persistance.entities.Ressource;
 import com.example.demo.service.interfaces.IReservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ public class ReservationService implements IReservation {
         public ReservationRepository reservationRepository;
         @Autowired
         public ClubService clubService;
+        @Autowired
+        public RessourceService ressourceService;
         @Override
         public Reservation saveReservation(Reservation reservation) {
             return reservationRepository.save(reservation);
@@ -46,4 +49,10 @@ public class ReservationService implements IReservation {
             Club club=clubService.getClubByIdClub(idClub);
             return reservationRepository.getAllByClub(club);
         }
+
+    @Override
+    public List<Reservation> getListReservationByRessource(Long idRessource) {
+        Ressource ressource=ressourceService.getRessourceByIdRessource(idRessource);
+        return reservationRepository.getAllByRessource(ressource);
+    }
 }
