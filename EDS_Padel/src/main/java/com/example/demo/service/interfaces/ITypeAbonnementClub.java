@@ -13,5 +13,5 @@ public interface ITypeAbonnementClub {
     List<TypeAbonnementClub> getListTypeAbonnementClub();
     TypeAbonnementClub getTypeAbonnementClubByIdTypeAbonnementClub(Long id);
     List<TypeAbonnementClub> getListTypeAbonnementClubByClub(Long idClub);
-
+List<TypeAbonnementClub> getListTypeAbonnementClubByClubAndCoach(Long idClub,Long idCoach);
 }

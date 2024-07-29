@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -26,4 +27,9 @@ public class TypeAbonnementClub {
     @ManyToOne
     @JoinColumn(name = "categorie_abonnement_id") // Optionnel mais recommandé pour la clarté
     private CategorieAbonnement categorieAbonnement;
+    @ManyToMany(mappedBy = "typeAbonnements")
+    private List<Coach> coaches ;
+
+    @ManyToMany(mappedBy = "typeAbonnements")
+    private List<Membre> membres ;
 }

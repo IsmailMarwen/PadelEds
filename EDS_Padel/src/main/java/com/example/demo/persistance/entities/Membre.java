@@ -2,11 +2,9 @@ package com.example.demo.persistance.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import javax.persistence.CascadeType;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+
 import java.util.List;
 
 @Entity
@@ -19,4 +17,11 @@ public class Membre extends Utilisateur {
     @OneToMany(mappedBy = "membre", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Notification> notifications;
+    @ManyToMany
+    @JoinTable(
+            name = "membre_type_abonnement",
+            joinColumns = @JoinColumn(name = "membre_id"),
+            inverseJoinColumns = @JoinColumn(name = "type_abonnement_id")
+    )
+    private List<TypeAbonnementClub> typeAbonnements;
 }

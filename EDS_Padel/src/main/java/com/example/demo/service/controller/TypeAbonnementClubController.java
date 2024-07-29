@@ -45,4 +45,7 @@ public class TypeAbonnementClubController {
 
         return iTypeAbonnementClub.getListTypeAbonnementClubByClub(idClub);
     }
-}
+    @GetMapping("/club/{clubId}/coach/{coachId}")
+    public List<TypeAbonnementClub> getAllTypeAbonnementByClubAndCoach(@PathVariable Long idClub, @PathVariable Long idCoach) {
+        return iTypeAbonnementClub.getListTypeAbonnementClubByClubAndCoach(idClub, idCoach);
+    }}
