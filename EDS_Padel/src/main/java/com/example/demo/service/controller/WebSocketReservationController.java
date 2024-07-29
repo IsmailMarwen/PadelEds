@@ -3,6 +3,7 @@ import com.example.demo.persistance.entities.Reservation;
 
 import com.example.demo.service.impliments.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -36,7 +37,7 @@ public class WebSocketReservationController {
 
     @MessageMapping("/getReservationsByRessource/{idRessource}")
     @SendTo("/topic/reservations")
-    public List<Reservation> getAllReservations(Long idRessource) {
+    public List<Reservation> getAllReservations(@DestinationVariable("idRessource") Long idRessource) {
         return reservationService.getListReservationByRessource(idRessource);
     }
 }
