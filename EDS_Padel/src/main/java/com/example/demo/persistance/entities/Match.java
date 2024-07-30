@@ -16,7 +16,7 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idReservation")
+    @JoinColumn(name = "idReservation", referencedColumnName = "id")
     @JsonIgnore
     private Reservation reservation;
     @ManyToMany
