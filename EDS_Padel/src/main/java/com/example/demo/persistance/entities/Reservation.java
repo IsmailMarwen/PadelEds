@@ -29,13 +29,13 @@ public class Reservation {
     @ManyToOne
     @JsonIgnore
     private PlageHoraire plageHoraire;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Coach coach;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Membre membre;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Administrateur admin;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private AgentAcceuil agentAcceuil;
     @OneToOne(mappedBy = "reservation")
     @JsonIgnoreProperties("reservation")
