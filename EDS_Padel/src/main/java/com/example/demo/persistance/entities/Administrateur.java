@@ -20,5 +20,7 @@ public class Administrateur extends Utilisateur {
     @JsonIgnore
     private List<Notification> notifications;
     @OneToMany(mappedBy = "admin", fetch = FetchType.LAZY)
+    @JsonIgnore
+
     private List<Reservation> reservations;
 }
