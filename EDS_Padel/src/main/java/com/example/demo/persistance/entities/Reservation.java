@@ -31,16 +31,16 @@ public class Reservation {
     @JsonIgnore
     private PlageHoraire plageHoraire;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"reservations"})
+    @JsonIgnoreProperties("reservation")
     private Coach coach;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"reservations"})
+    @JsonIgnoreProperties("reservation")
     private Membre membre;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"reservations"})
+    @JsonIgnoreProperties("reservation")
     private Administrateur admin;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"reservations"})
+    @JsonIgnoreProperties("reservation")
     private AgentAcceuil agentAcceuil;
     @OneToOne(mappedBy = "reservation")
     @JsonIgnoreProperties("reservation")
