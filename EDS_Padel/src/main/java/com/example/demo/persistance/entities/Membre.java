@@ -33,5 +33,5 @@ public class Membre extends Utilisateur {
             inverseJoinColumns = @JoinColumn(name = "match_id")
     )
     @JsonIgnore
-    private List<Match> matchs;
+    private List<MatchDetail> matchs;
 }

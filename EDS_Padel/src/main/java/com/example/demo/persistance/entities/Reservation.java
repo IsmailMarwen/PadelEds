@@ -40,5 +40,5 @@ public class Reservation {
     private AgentAcceuil agentAcceuil;
     @OneToOne(mappedBy = "reservation")
     @JsonIgnoreProperties("reservation")
-    private Match match;
+    private MatchDetail match;
 }

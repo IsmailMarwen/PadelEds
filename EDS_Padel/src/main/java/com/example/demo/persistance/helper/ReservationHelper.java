@@ -1,17 +1,17 @@
 package com.example.demo.persistance.helper;
 
-import com.example.demo.persistance.entities.Match;
+import com.example.demo.persistance.entities.MatchDetail;
 import com.example.demo.persistance.entities.Reservation;
 
 public class ReservationHelper {
-    private Match match;
+    private MatchDetail match;
     private Reservation reservation;
 
-    public Match getMatch() {
+    public MatchDetail getMatch() {
         return match;
     }
 
-    public void setMatch(Match match) {
+    public void setMatch(MatchDetail match) {
         this.match = match;
     }
 

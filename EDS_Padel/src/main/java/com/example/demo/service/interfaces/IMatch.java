@@ -1,12 +1,10 @@
 package com.example.demo.service.interfaces;
 
-import com.example.demo.persistance.entities.Match;
-
-import java.util.List;
+import com.example.demo.persistance.entities.MatchDetail;
 
 public interface IMatch {
-    Match saveMatch(Match match);
-    Match updateMatch(Match match);
+    MatchDetail saveMatch(MatchDetail match);
+    MatchDetail updateMatch(MatchDetail match);
     boolean deleteMatch(Long id);
     
 }
