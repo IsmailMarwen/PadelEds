@@ -25,22 +25,17 @@ public class Reservation {
     @ManyToOne
     private Ressource ressource;
     @ManyToOne
-    @JsonIgnore
     private Club club;
     @ManyToOne
     @JsonIgnore
     private PlageHoraire plageHoraire;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("reservation")
     private Coach coach;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("reservation")
     private Membre membre;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("reservation")
     private Administrateur admin;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("reservation")
     private AgentAcceuil agentAcceuil;
     @OneToOne(mappedBy = "reservation")
     @JsonIgnoreProperties("reservation")
