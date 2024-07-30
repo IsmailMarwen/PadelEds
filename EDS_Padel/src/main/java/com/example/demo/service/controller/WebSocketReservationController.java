@@ -1,4 +1,5 @@
 package com.example.demo.service.controller;
+import com.example.demo.persistance.entities.MatchDetail;
 import com.example.demo.persistance.entities.Reservation;
 
 import com.example.demo.persistance.helper.ReservationHelper;
@@ -23,10 +24,11 @@ public class WebSocketReservationController {
     @MessageMapping("/addReservation")
     @SendTo("/topic/reservations")
     public List<Reservation> addReservation(ReservationHelper reservation, @Header("idRessource") Long idRessource, @Header("date") String date) {
-        matchService.saveMatch(reservation.getMatch());
-        Reservation res=reservation.getReservation();
-        res.setMatch(reservation.getMatch());
-        reservationService.saveReservation(res);
+        Reservation savedRes=reservationService.saveReservation(reservation.getReservation());
+         reservation.getMatch().setReservation(savedRes);
+        MatchDetail savedMatch= matchService.saveMatch( reservation.getMatch());
+        savedRes.setMatch(savedMatch);
+        reservationService.saveReservation(savedRes);
         return reservationService.getListByRessourceAndDate(idRessource, date);
     }
 
