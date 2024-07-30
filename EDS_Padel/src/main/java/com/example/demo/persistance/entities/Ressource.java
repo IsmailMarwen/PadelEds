@@ -21,6 +21,7 @@ public class Ressource {
     @ManyToOne
     private Club club;
     @ManyToOne
+    @JsonIgnore
     private Activite activite;
     @OneToMany(mappedBy="ressource",fetch=FetchType.LAZY)
     @JsonIgnore
