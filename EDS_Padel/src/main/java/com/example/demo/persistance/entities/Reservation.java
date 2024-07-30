@@ -1,6 +1,7 @@
 package com.example.demo.persistance.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,5 +30,15 @@ public class Reservation {
     @ManyToOne
     @JsonIgnore
     private PlageHoraire plageHoraire;
-
+    @ManyToOne
+    private Coach coach;
+    @ManyToOne
+    private Membre membre;
+    @ManyToOne
+    private Administrateur admin;
+    @ManyToOne
+    private AgentAcceuil agentAcceuil;
+    @OneToOne(mappedBy = "reservation")
+    @JsonIgnoreProperties("reservation")
+    private Match match;
 }

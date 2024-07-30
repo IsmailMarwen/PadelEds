@@ -14,4 +14,6 @@ public class AgentAcceuil extends Utilisateur{
     @OneToMany(mappedBy = "agentAcceuil", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Notification> notifications;
+    @OneToMany(mappedBy = "agentAcceuil", fetch = FetchType.LAZY)
+    private List<Reservation> reservations;
 }

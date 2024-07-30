@@ -24,4 +24,14 @@ public class Membre extends Utilisateur {
             inverseJoinColumns = @JoinColumn(name = "type_abonnement_id")
     )
     private List<TypeAbonnementClub> typeAbonnements;
+    @OneToMany(mappedBy = "membre", fetch = FetchType.LAZY)
+    private List<Reservation> reservations;
+    @ManyToMany
+    @JoinTable(
+            name = "membre_match",
+            joinColumns = @JoinColumn(name = "membre_id"),
+            inverseJoinColumns = @JoinColumn(name = "match_id")
+    )
+    @JsonIgnore
+    private List<Match> matchs;
 }
