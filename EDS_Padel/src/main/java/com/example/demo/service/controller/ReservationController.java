@@ -1,6 +1,8 @@
 package com.example.demo.service.controller;
 
+import com.example.demo.persistance.entities.MatchDetail;
 import com.example.demo.persistance.entities.Reservation;
+import com.example.demo.service.interfaces.IMatch;
 import com.example.demo.service.interfaces.IReservation;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,8 +13,11 @@ import java.util.List;
 @RequestMapping("/api/reservation")
 public class ReservationController {
     private final IReservation iReservation;
-    public ReservationController(IReservation iReservation){
-        this.iReservation=iReservation;}
+    private  final IMatch iMatch;
+    public ReservationController(IReservation iReservation,IMatch iMatch){
+        this.iReservation=iReservation;
+        this.iMatch=iMatch;
+    }
     @PostMapping("/add")
     Reservation save(@RequestBody Reservation reservation) {
         Reservation a=iReservation.saveReservation(reservation);
@@ -28,7 +33,11 @@ public class ReservationController {
 
         return iReservation.getListReservation();
     }
+    @GetMapping("/getAllMatches")
+    List<MatchDetail> getAllMatches() {
 
+        return iMatch.getAll();
+    }
     @GetMapping("/getById/{id}")
     Reservation getAdminstarteurnById(@PathVariable Long id) {
 

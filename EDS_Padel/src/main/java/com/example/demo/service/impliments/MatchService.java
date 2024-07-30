@@ -6,6 +6,8 @@ import com.example.demo.service.interfaces.IMatch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MatchService implements IMatch {
     @Autowired
@@ -24,5 +26,10 @@ public class MatchService implements IMatch {
     public boolean deleteMatch(Long id) {
         matchRepository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public List<MatchDetail> getAll() {
+        return matchRepository.findAll();
     }
 }
