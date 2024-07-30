@@ -2,6 +2,7 @@ package com.example.demo.persistance.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -25,6 +26,7 @@ public class Utilisateur {
     private String role;
     private Boolean updated;
     @ManyToOne
+    @JsonIgnore
     private Club club;
 
 }
