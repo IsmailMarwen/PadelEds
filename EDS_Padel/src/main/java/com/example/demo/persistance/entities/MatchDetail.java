@@ -16,7 +16,6 @@ public class MatchDetail {
     private Long id;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idReservation", referencedColumnName = "id")
-    @JsonIgnore
     private Reservation reservation;
     @ManyToMany
     @JoinTable(
