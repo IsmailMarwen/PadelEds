@@ -19,10 +19,8 @@ public class Ressource {
     private String libelle;
     private String capacite;
     @ManyToOne
-    @JsonIgnore
     private Club club;
     @ManyToOne
-    @JsonIgnore
     private Activite activite;
     @OneToMany(mappedBy="ressource",fetch=FetchType.LAZY)
     @JsonIgnore
