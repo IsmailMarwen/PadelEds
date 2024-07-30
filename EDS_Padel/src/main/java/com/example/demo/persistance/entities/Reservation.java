@@ -22,7 +22,6 @@ public class Reservation {
     private String heureFin;
 
     @ManyToOne
-    @JsonIgnore
     private Ressource ressource;
     @ManyToOne
     @JsonIgnore
