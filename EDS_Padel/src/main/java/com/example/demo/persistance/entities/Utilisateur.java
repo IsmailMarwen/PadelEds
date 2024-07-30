@@ -26,7 +26,6 @@ public class Utilisateur {
     private String role;
     private Boolean updated;
     @ManyToOne
-    @JsonIgnore
     private Club club;
 
 }
