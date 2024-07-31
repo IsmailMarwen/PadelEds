@@ -26,11 +26,10 @@ public class WebSocketReservationController {
     @SendTo("/topic/reservations")
     @Transactional
     public List<Reservation> addReservation(ReservationHelper reservationHelper, @Header("idRessource") Long idRessource, @Header("date") String date) {
-        Reservation savedRes = reservationService.saveReservation(reservationHelper.getReservation());
-        reservationHelper.getMatch().setReservation(savedRes);
-        MatchDetail savedMatch = matchService.saveMatch(reservationHelper.getMatch());
-        savedRes.setMatch(savedMatch);
-        reservationService.saveReservation(savedRes);
+        matchService.saveMatch(reservationHelper.getMatch());
+        Reservation res=reservationHelper.getReservation();
+        res.setMatch(reservationHelper.getMatch());
+        reservationService.saveReservation(res);
 
         List<Reservation> reservations = reservationService.getListByRessourceAndDate(idRessource, date);
         // Force initialization of lazy-loaded collections
