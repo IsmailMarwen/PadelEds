@@ -11,6 +11,7 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,12 +24,23 @@ public class WebSocketReservationController {
     private MatchService matchService;
     @MessageMapping("/addReservation")
     @SendTo("/topic/reservations")
-    public List<Reservation> addReservation(ReservationHelper reservation, @Header("idRessource") Long idRessource, @Header("date") String date) {
-        matchService.saveMatch(reservation.getMatch());
-        Reservation res=reservation.getReservation();
-        res.setMatch(reservation.getMatch());
-        reservationService.saveReservation(res);
-        return reservationService.getListByRessourceAndDate(idRessource, date);
+    @Transactional
+    public List<Reservation> addReservation(ReservationHelper reservationHelper, @Header("idRessource") Long idRessource, @Header("date") String date) {
+        Reservation savedRes = reservationService.saveReservation(reservationHelper.getReservation());
+        reservationHelper.getMatch().setReservation(savedRes);
+        MatchDetail savedMatch = matchService.saveMatch(reservationHelper.getMatch());
+        savedRes.setMatch(savedMatch);
+        reservationService.saveReservation(savedRes);
+
+        List<Reservation> reservations = reservationService.getListByRessourceAndDate(idRessource, date);
+        // Force initialization of lazy-loaded collections
+        reservations.forEach(reservation -> {
+            reservation.getRessource().getClub().getActivites().size();
+            reservation.getMatch().getMembres().size();
+            reservation.getMatch().getCoaches().size();
+        });
+
+        return reservations;
     }
 
     @MessageMapping("/updateReservation")
