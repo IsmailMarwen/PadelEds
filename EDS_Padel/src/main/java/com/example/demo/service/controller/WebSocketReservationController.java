@@ -44,11 +44,7 @@ public class WebSocketReservationController {
         List<Reservation> reservations = reservationService.getListByRessourceAndDate(idRessource, date);
 
         // Force initialization of lazy-loaded collections
-        reservations.forEach(reservation -> {
-            reservation.getRessource().getClub().getActivites().size();
-            reservation.getMatch().getMembres().size();
-            reservation.getMatch().getCoaches().size();
-        });
+
 
         return reservations;
     }

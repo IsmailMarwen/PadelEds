@@ -31,4 +31,14 @@ public class MatchDetail {
             inverseJoinColumns = @JoinColumn(name = "membre_id")
     )
     private List<Membre> membres;
+
+    @Override
+    public String toString() {
+        return "MatchDetail{" +
+                "id=" + id +
+                ", reservation=" + reservation +
+                ", coaches=" + coaches +
+                ", membres=" + membres +
+                '}';
+    }
 }
