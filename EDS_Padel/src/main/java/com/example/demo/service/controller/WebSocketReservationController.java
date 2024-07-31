@@ -18,20 +18,31 @@ import java.util.List;
 @Controller
 public class WebSocketReservationController {
 
-    @Autowired
-    private ReservationService reservationService;
-    @Autowired
-    private MatchService matchService;
+    private final MatchService matchService;
+    private final ReservationService reservationService;
+    public WebSocketReservationController(MatchService matchService, ReservationService reservationService) {
+        this.matchService = matchService;
+        this.reservationService = reservationService;
+    }
     @MessageMapping("/addReservation")
     @SendTo("/topic/reservations")
     @Transactional
     public List<Reservation> addReservation(ReservationHelper reservationHelper, @Header("idRessource") Long idRessource, @Header("date") String date) {
-        matchService.saveMatch(reservationHelper.getMatch());
-        Reservation res=reservationHelper.getReservation();
-        res.setMatch(reservationHelper.getMatch());
-        reservationService.saveReservation(res);
+        // Save the match first to ensure it's available
+        MatchDetail savedMatch = matchService.saveMatch(reservationHelper.getMatch());
 
+        // Set the match in the reservation and then save the reservation
+        Reservation res = reservationHelper.getReservation();
+        res.setMatch(savedMatch);
+        Reservation savedRes = reservationService.saveReservation(res);
+
+        // Ensure that the match is set correctly in the saved reservation
+        savedRes.setMatch(savedMatch);
+        reservationService.saveReservation(savedRes);
+
+        // Retrieve the list of reservations
         List<Reservation> reservations = reservationService.getListByRessourceAndDate(idRessource, date);
+
         // Force initialization of lazy-loaded collections
         reservations.forEach(reservation -> {
             reservation.getRessource().getClub().getActivites().size();
@@ -41,7 +52,6 @@ public class WebSocketReservationController {
 
         return reservations;
     }
-
     @MessageMapping("/updateReservation")
     @SendTo("/topic/reservations")
     public List<Reservation> updateReservation(Reservation reservation, @Header("idRessource") Long idRessource, @Header("date") String date) {
