@@ -30,7 +30,7 @@ public class WebSocketReservationController {
     public List<Reservation> addReservation(ReservationHelper reservationHelper, @Header("idRessource") Long idRessource, @Header("date") String date) {
         // Save the match first to ensure it's available
         MatchDetail savedMatch = matchService.saveMatch(reservationHelper.getMatch());
-
+        System.out.println(savedMatch.toString());
         // Set the match in the reservation and then save the reservation
         Reservation res = reservationHelper.getReservation();
         res.setMatch(savedMatch);
