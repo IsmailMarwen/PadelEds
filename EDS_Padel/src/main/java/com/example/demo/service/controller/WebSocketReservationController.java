@@ -23,7 +23,7 @@ public class WebSocketReservationController {
     private MatchService matchService;
     @MessageMapping("/addReservation")
     @SendTo("/topic/reservations")
-    public List<Reservation> addReservation(ReservationHelper reservation, @Header("idRessource") Long idRessource, @Header("date") String date) {
+    public List<Reservation> addReservation(ReservationHelper reservationHelper, @Header("idRessource") Long idRessource, @Header("date") String date) {
     Reservation reservation = reservationHelper.getReservation();
     reservation = reservationService.saveReservation(reservation);
     MatchDetail matchDetail = reservationHelper.getMatch();
