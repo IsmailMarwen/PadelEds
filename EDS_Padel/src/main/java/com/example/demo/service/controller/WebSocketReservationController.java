@@ -37,12 +37,16 @@ public class WebSocketReservationController {
         List<Membre> membres=new ArrayList<>();
         List<Coach> coaches=new ArrayList<>();
         MatchDetail matchDetail =reservationHelper.getMatch();
-        matchDetail.getMembres().forEach(membre -> {
-            membres.add(membreService.getMembreByIdMembre(membre.getIdUtilisateur()));
-        });
-        matchDetail.getCoaches().forEach(coach -> {
-            coaches.add(coachService.getCoachByIdCoach(coach.getIdUtilisateur()));
-        });
+        if(matchDetail.getMembres()!=null){
+            matchDetail.getMembres().forEach(membre -> {
+                membres.add(membreService.getMembreByIdMembre(membre.getIdUtilisateur()));
+            });
+        }
+        if(matchDetail.getCoaches()!=null){
+            matchDetail.getCoaches().forEach(coach -> {
+                coaches.add(coachService.getCoachByIdCoach(coach.getIdUtilisateur()));
+            });
+        }
         matchDetail.setMembres(membres);
         matchDetail.setCoaches(coaches);
         MatchDetail savedMatch = matchService.saveMatch(matchDetail);
