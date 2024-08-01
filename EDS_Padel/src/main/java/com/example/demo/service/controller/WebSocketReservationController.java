@@ -2,9 +2,11 @@ package com.example.demo.service.controller;
 import com.example.demo.persistance.entities.MatchDetail;
 import com.example.demo.persistance.entities.Reservation;
 
+import com.example.demo.persistance.entities.Ressource;
 import com.example.demo.persistance.helper.ReservationHelper;
 import com.example.demo.service.impliments.MatchService;
 import com.example.demo.service.impliments.ReservationService;
+import com.example.demo.service.impliments.RessourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.Header;
@@ -20,6 +22,8 @@ public class WebSocketReservationController {
 
     private final MatchService matchService;
     private final ReservationService reservationService;
+    @Autowired
+    public RessourceService ressourceService;
     public WebSocketReservationController(MatchService matchService, ReservationService reservationService) {
         this.matchService = matchService;
         this.reservationService = reservationService;
@@ -28,12 +32,13 @@ public class WebSocketReservationController {
     @SendTo("/topic/reservations")
     @Transactional
     public List<Reservation> addReservation(ReservationHelper reservationHelper, @Header("idRessource") Long idRessource, @Header("date") String date) {
-        // Save the match first to ensure it's available
+        Ressource ressource=ressourceService.getRessourceByIdRessource(reservationHelper.getReservation().getRessource().getId());
         MatchDetail savedMatch = matchService.saveMatch(reservationHelper.getMatch());
         System.out.println(savedMatch.toString());
         // Set the match in the reservation and then save the reservation
         Reservation res = reservationHelper.getReservation();
         res.setMatch(savedMatch);
+        res.setRessource(ressource);
         Reservation savedRes = reservationService.saveReservation(res);
 
         // Ensure that the match is set correctly in the saved reservation
