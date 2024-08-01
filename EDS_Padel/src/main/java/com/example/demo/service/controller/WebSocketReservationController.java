@@ -11,6 +11,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -33,8 +34,8 @@ public class WebSocketReservationController {
     @Transactional
     public List<Reservation> addReservation(ReservationHelper reservationHelper, @Header("idRessource") Long idRessource, @Header("date") String date) {
         Ressource ressource=ressourceService.getRessourceByIdRessource(reservationHelper.getReservation().getRessource().getId());
-        List<Membre> membres=null;
-        List<Coach> coaches=null;
+        List<Membre> membres=new ArrayList<>();
+        List<Coach> coaches=new ArrayList<>();
         MatchDetail matchDetail =reservationHelper.getMatch();
         matchDetail.getMembres().forEach(membre -> {
             membres.add(membreService.getMembreByIdMembre(membre.getIdUtilisateur()));
