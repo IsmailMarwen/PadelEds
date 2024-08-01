@@ -34,21 +34,7 @@ public class WebSocketReservationController {
     @Transactional
     public List<Reservation> addReservation(ReservationHelper reservationHelper, @Header("idRessource") Long idRessource, @Header("date") String date) {
         Ressource ressource=ressourceService.getRessourceByIdRessource(reservationHelper.getReservation().getRessource().getId());
-        List<Membre> membres=new ArrayList<>();
-        List<Coach> coaches=new ArrayList<>();
         MatchDetail matchDetail =reservationHelper.getMatch();
-        if(matchDetail.getMembres()!=null){
-            matchDetail.getMembres().forEach(membre -> {
-                membres.add(membreService.getMembreByIdMembre(membre.getIdUtilisateur()));
-            });
-        }
-        if(matchDetail.getCoaches()!=null){
-            matchDetail.getCoaches().forEach(coach -> {
-                coaches.add(coachService.getCoachByIdCoach(coach.getIdUtilisateur()));
-            });
-        }
-        matchDetail.setMembres(membres);
-        matchDetail.setCoaches(coaches);
         MatchDetail savedMatch = matchService.saveMatch(matchDetail);
         Reservation res = reservationHelper.getReservation();
         res.setMatch(savedMatch);
@@ -58,10 +44,9 @@ public class WebSocketReservationController {
         reservationService.saveReservation(savedRes);
         List<Reservation> reservations = reservationService.getListByRessourceAndDate(idRessource, date);
                  reservations.forEach(reservation -> {
-              System.out.println(reservation.toString());
-
               reservation.getRessource().getClub().getActivites().size();
-           
+              reservation.getMatch().getMembres().size();
+              reservation.getMatch().getCoaches().size();
         });
 
         return reservations;
