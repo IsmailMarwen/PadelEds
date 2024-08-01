@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class WebSocketReservationController {
@@ -33,20 +34,41 @@ public class WebSocketReservationController {
     @SendTo("/topic/reservations")
     @Transactional
     public List<Reservation> addReservation(ReservationHelper reservationHelper, @Header("idRessource") Long idRessource, @Header("date") String date) {
-        Ressource ressource=ressourceService.getRessourceByIdRessource(reservationHelper.getReservation().getRessource().getId());
-        MatchDetail matchDetail =reservationHelper.getMatch();
+        Ressource ressource = ressourceService.getRessourceByIdRessource(reservationHelper.getReservation().getRessource().getId());
+
+        MatchDetail matchDetail = reservationHelper.getMatch();
+
+        // Initialize members and coaches lists if they are null
+        List<Membre> membres = matchDetail.getMembres() != null
+                ? matchDetail.getMembres().stream()
+                .map(membre -> membreService.getMembreByIdMembre(membre.getIdUtilisateur()))
+                .collect(Collectors.toList())
+                : new ArrayList<>();
+
+        List<Coach> coaches = matchDetail.getCoaches() != null
+                ? matchDetail.getCoaches().stream()
+                .map(coach -> coachService.getCoachByIdCoach(coach.getIdUtilisateur()))
+                .collect(Collectors.toList())
+                : new ArrayList<>();
+
+        matchDetail.setMembres(membres);
+        matchDetail.setCoaches(coaches);
+
         MatchDetail savedMatch = matchService.saveMatch(matchDetail);
+
         Reservation res = reservationHelper.getReservation();
         res.setMatch(savedMatch);
         res.setRessource(ressource);
+
         Reservation savedRes = reservationService.saveReservation(res);
-        savedRes.setMatch(savedMatch);
-        reservationService.saveReservation(savedRes);
+
         List<Reservation> reservations = reservationService.getListByRessourceAndDate(idRessource, date);
-                 reservations.forEach(reservation -> {
-              reservation.getRessource().getClub().getActivites().size();
-              reservation.getMatch().getMembres().size();
-              reservation.getMatch().getCoaches().size();
+        reservations.forEach(reservation -> {
+            reservation.getRessource().getClub().getActivites().size();
+            if (reservation.getMatch() != null) {
+                reservation.getMatch().getMembres().size();
+                reservation.getMatch().getCoaches().size();
+            }
         });
 
         return reservations;
