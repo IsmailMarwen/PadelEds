@@ -1,12 +1,8 @@
 package com.example.demo.service.controller;
-import com.example.demo.persistance.entities.MatchDetail;
-import com.example.demo.persistance.entities.Reservation;
+import com.example.demo.persistance.entities.*;
 
-import com.example.demo.persistance.entities.Ressource;
 import com.example.demo.persistance.helper.ReservationHelper;
-import com.example.demo.service.impliments.MatchService;
-import com.example.demo.service.impliments.ReservationService;
-import com.example.demo.service.impliments.RessourceService;
+import com.example.demo.service.impliments.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.Header;
@@ -24,6 +20,10 @@ public class WebSocketReservationController {
     private final ReservationService reservationService;
     @Autowired
     public RessourceService ressourceService;
+    @Autowired
+    public MembreService membreService;
+    @Autowired
+    public CoachService coachService;
     public WebSocketReservationController(MatchService matchService, ReservationService reservationService) {
         this.matchService = matchService;
         this.reservationService = reservationService;
@@ -33,23 +33,26 @@ public class WebSocketReservationController {
     @Transactional
     public List<Reservation> addReservation(ReservationHelper reservationHelper, @Header("idRessource") Long idRessource, @Header("date") String date) {
         Ressource ressource=ressourceService.getRessourceByIdRessource(reservationHelper.getReservation().getRessource().getId());
-        MatchDetail savedMatch = matchService.saveMatch(reservationHelper.getMatch());
-        System.out.println(savedMatch.toString());
-        // Set the match in the reservation and then save the reservation
+        List<Membre> membres=null;
+        List<Coach> coaches=null;
+        MatchDetail matchDetail =reservationHelper.getMatch();
+        matchDetail.getMembres().forEach(membre -> {
+            membres.add(membreService.getMembreByIdMembre(membre.getIdUtilisateur()));
+        });
+        matchDetail.getCoaches().forEach(coach -> {
+            coaches.add(coachService.getCoachByIdCoach(coach.getIdUtilisateur()));
+        });
+        matchDetail.setMembres(membres);
+        matchDetail.setCoaches(coaches);
+        MatchDetail savedMatch = matchService.saveMatch(matchDetail);
         Reservation res = reservationHelper.getReservation();
         res.setMatch(savedMatch);
         res.setRessource(ressource);
         Reservation savedRes = reservationService.saveReservation(res);
-
-        // Ensure that the match is set correctly in the saved reservation
         savedRes.setMatch(savedMatch);
         reservationService.saveReservation(savedRes);
-
-        // Retrieve the list of reservations
         List<Reservation> reservations = reservationService.getListByRessourceAndDate(idRessource, date);
-        
-        // Force initialization of lazy-loaded collections
-          reservations.forEach(reservation -> {
+                 reservations.forEach(reservation -> {
               System.out.println(reservation.toString());
 
               reservation.getRessource().getClub().getActivites().size();
