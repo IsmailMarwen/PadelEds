@@ -38,7 +38,6 @@ public class WebSocketReservationController {
 
         MatchDetail matchDetail = reservationHelper.getMatch();
 
-        // Initialize members and coaches lists if they are null
 
 
         MatchDetail savedMatch = matchService.saveMatch(matchDetail);
@@ -53,8 +52,14 @@ public class WebSocketReservationController {
         reservations.forEach(reservation -> {
             reservation.getRessource().getClub().getActivites().size();
             if (reservation.getMatch() != null) {
-                reservation.getMatch().getMembres().size();
-                reservation.getMatch().getCoaches().size();
+                if(reservation.getMatch().getMembres()!=null){
+                    reservation.getMatch().getMembres().size();
+
+                }
+                if(reservation.getMatch().getCoaches()!=null){
+                    reservation.getMatch().getCoaches().size();
+
+                }
             }
         });
 
