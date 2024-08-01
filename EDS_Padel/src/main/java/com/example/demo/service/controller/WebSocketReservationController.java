@@ -45,7 +45,9 @@ public class WebSocketReservationController {
         
         // Force initialization of lazy-loaded collections
           reservations.forEach(reservation -> {
-            reservation.getRessource().getClub().getActivites().size();
+              System.out.println(reservation.toString());
+
+              reservation.getRessource().getClub().getActivites().size();
            
         });
 

@@ -40,4 +40,24 @@ public class Reservation {
     @OneToOne(mappedBy = "reservation")
     @JsonIgnoreProperties("reservation")
     private MatchDetail match;
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", dateRes='" + dateRes + '\'' +
+                ", heureRes='" + heureRes + '\'' +
+                ", dateDernierRes='" + dateDernierRes + '\'' +
+                ", heureDebut='" + heureDebut + '\'' +
+                ", heureFin='" + heureFin + '\'' +
+                ", ressource=" + ressource +
+                ", club=" + club +
+                ", plageHoraire=" + plageHoraire +
+                ", coach=" + coach +
+                ", membre=" + membre +
+                ", admin=" + admin +
+                ", agentAcceuil=" + agentAcceuil +
+                ", match=" + match +
+                '}';
+    }
 }
