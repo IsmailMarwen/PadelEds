@@ -75,6 +75,11 @@ public class ClubService implements  IClub {
         admin.setRole("admin");
         admin.setClub(savedClub);
         admin.setEmail(savedClub.getEmail());
+        admin.setTelephone(savedClub.getTelPrincipal());
+        admin.setNom(clubAppWebRequest.getNom());
+        admin.setPrenom(clubAppWebRequest.getPrenom());
+        admin.setGenre(clubAppWebRequest.getGenre());
+        admin.setImage(clubAppWebRequest.getImage());
         administrateurService.saveAdminstrateur(admin);
         return savedClub;
     }
