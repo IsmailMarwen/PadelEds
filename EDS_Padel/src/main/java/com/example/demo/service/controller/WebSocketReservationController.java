@@ -39,20 +39,7 @@ public class WebSocketReservationController {
         MatchDetail matchDetail = reservationHelper.getMatch();
 
         // Initialize members and coaches lists if they are null
-        List<Membre> membres = matchDetail.getMembres() != null
-                ? matchDetail.getMembres().stream()
-                .map(membre -> membreService.getMembreByIdMembre(membre.getIdUtilisateur()))
-                .collect(Collectors.toList())
-                : new ArrayList<>();
 
-        List<Coach> coaches = matchDetail.getCoaches() != null
-                ? matchDetail.getCoaches().stream()
-                .map(coach -> coachService.getCoachByIdCoach(coach.getIdUtilisateur()))
-                .collect(Collectors.toList())
-                : new ArrayList<>();
-
-        matchDetail.setMembres(membres);
-        matchDetail.setCoaches(coaches);
 
         MatchDetail savedMatch = matchService.saveMatch(matchDetail);
 
