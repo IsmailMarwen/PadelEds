@@ -35,32 +35,16 @@ public class WebSocketReservationController {
     @Transactional
     public List<Reservation> addReservation(ReservationHelper reservationHelper, @Header("idRessource") Long idRessource, @Header("date") String date) {
         Ressource ressource = ressourceService.getRessourceByIdRessource(reservationHelper.getReservation().getRessource().getId());
-
         MatchDetail matchDetail = reservationHelper.getMatch();
-
-
-
         MatchDetail savedMatch = matchService.saveMatch(matchDetail);
-
         Reservation res = reservationHelper.getReservation();
         res.setMatch(savedMatch);
         res.setRessource(ressource);
-
         Reservation savedRes = reservationService.saveReservation(res);
-
         List<Reservation> reservations = reservationService.getListByRessourceAndDate(idRessource, date);
         reservations.forEach(reservation -> {
             reservation.getRessource().getClub().getActivites().size();
-            if (reservation.getMatch() != null) {
-                if(reservation.getMatch().getMembres()!=null){
-                    reservation.getMatch().getMembres().size();
 
-                }
-                if(reservation.getMatch().getCoaches()!=null){
-                    reservation.getMatch().getCoaches().size();
-
-                }
-            }
         });
 
         return reservations;
