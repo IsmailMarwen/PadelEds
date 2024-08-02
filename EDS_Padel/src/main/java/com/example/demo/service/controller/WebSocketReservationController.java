@@ -42,11 +42,6 @@ public class WebSocketReservationController {
         res.setRessource(ressource);
         Reservation savedRes = reservationService.saveReservation(res);
         List<Reservation> reservations = reservationService.getListByRessourceAndDate(idRessource, date);
-        reservations.forEach(reservation -> {
-            reservation.getRessource().getClub().getActivites().size();
-
-        });
-
         return reservations;
     }
     @MessageMapping("/updateReservation")
