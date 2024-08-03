@@ -27,11 +27,11 @@ public class Activite {
     @JsonIgnore
     private List<Ressource> ressources;
    @OneToMany(mappedBy="activite",fetch=FetchType.LAZY)
-    @JsonIgnore
-    private List<Tournoi> tournois;
+   @JsonIgnore
+   private List<Tournoi> tournois;
 
     @ManyToMany(mappedBy = "activites")
-    @JsonIgnoreProperties("activites")
+    @JsonIgnore
     private List<Club> clubs;
     @OneToMany(mappedBy="activite",fetch=FetchType.LAZY)
     @JsonIgnore
