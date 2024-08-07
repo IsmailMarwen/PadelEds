@@ -1,7 +1,7 @@
 import { Injectable,TemplateRef } from '@angular/core';
 import { Client, Message } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
-import { BehaviorSubject, Observable, throwError, forkJoin } from 'rxjs';
+import { BehaviorSubject, Observable, throwError, forkJoin ,Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
@@ -11,18 +11,22 @@ import { HttpClient } from '@angular/common/http';
 export class AppwebserviceService {
   private socket:any;
   private stompClient: Client | null = null;
+  private reservationSubject = new Subject<any>();
+
   private notificationsSubject: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
   public notifications$ = this.notificationsSubject.asObservable();
   public mapEndpointSubscription: Map<string, any> = new Map();
 
   toasts: any[] = [];
-  apiUrl="http://ip172-18-0-26-cqbqklq91nsg00afk180-8081.direct.labs.play-with-docker.com/api"
+  apiUrl="http://localhost:8081/api"
   private geocodeUrl = 'https://nominatim.openstreetmap.org/search';
   private nominatimUrl = 'https://nominatim.openstreetmap.org/reverse';
   private meteoApiUrl='https://api.openweathermap.org/data/2.5';
   private apiKey = 'bd5e378503939ddaee76f12ad7a97608';
   private apiUrlGetAdresse = 'https://api.geoapify.com/v1/geocode/search';
   private apiKeyAdresse='0efd67c90bf949df86f3e41ced1d94d9'
+  private reservations: any[] = []; 
+
   constructor(private http:HttpClient) {
     this.connectWebSocket();
    }
@@ -38,8 +42,9 @@ export class AppwebserviceService {
   
 
  
+
   connectWebSocket() {
-    const socket = new SockJS('http://ip172-18-0-26-cqbqklq91nsg00afk180-8081.direct.labs.play-with-docker.com/ws');
+    const socket = new SockJS('http://localhost:8081/ws');
     this.stompClient = new Client({
       webSocketFactory: () => socket,
       debug: (str) => {
@@ -54,6 +59,18 @@ export class AppwebserviceService {
           this.addNotification(message.body);
         }
       });
+
+      this.stompClient?.subscribe('/topic/reservations', message => {
+        console.log('Received message:', message.body);
+        if (message.body) {
+          try {
+            const reservations = JSON.parse(message.body);
+            this.updateReservations(reservations); 
+          } catch (e) {
+            console.error('Error parsing message body:', e);
+          }
+        }
+      });
     };
 
     this.stompClient.onDisconnect = (frame) => {
@@ -62,7 +79,63 @@ export class AppwebserviceService {
 
     this.stompClient.activate();
   }
-  
+  private updateReservations(reservations: any[]) {
+    this.reservationSubject.next(reservations); 
+}
+  getReservationUpdates(): Observable<any[]> {
+    return this.reservationSubject.asObservable();
+  }
+  addReservation(reservation: any, idRessource: number, date: string) {
+    if (this.stompClient) {
+        this.stompClient.publish({
+            destination: '/app/addReservation',
+            headers: {
+                'idRessource': idRessource.toString(),
+                'date': date
+            },
+            body: JSON.stringify(reservation)
+        });
+    }
+}
+
+  updateReservation(reservation: any, idRessource: number, date: string) {
+    if (this.stompClient) {
+      this.stompClient.publish({
+        destination: '/app/updateReservation',
+         headers: {
+                'idRessource': idRessource.toString(),
+                'date': date
+            },
+        body: JSON.stringify(reservation)
+      });
+    }
+  }
+
+  deleteReservation(id: number,idRessource: number, date: string) {
+    if (this.stompClient) {
+      this.stompClient.publish({
+        destination: '/app/deleteReservation',
+         headers: {
+                'idRessource': idRessource.toString(),
+                'date': date
+            },
+        body: JSON.stringify(id)
+      });
+    }
+  }
+
+  getReservationsByRessource(idRessource: number) {
+    if (this.stompClient) {
+      this.stompClient.publish({
+        destination: `/app/getReservationsByRessource`,
+        body: JSON.stringify(idRessource)
+      });
+    }
+  }
+
+  getReservationsUpdates(): Observable<any> {
+    return this.reservationSubject.asObservable();
+  }
   setBannerImage(image: string) {
     localStorage.setItem('banner', image);
     this.bannerImageSource.next(image);
@@ -74,7 +147,12 @@ export class AppwebserviceService {
   getNotifications(adminId: number): Observable<any> {
     return this.http.get<Notification[]>(`${this.apiUrl}/notifications/admin/${adminId}`);
   }
-
+  getReservations(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/reservation/getAll`);
+  }
+  getReservationsByCourt(idCourt:any,date:any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/reservation/getAllByClub/${idCourt}/${date}`);
+  }
   fetchAndSubscribeNotifications(adminId: number) {
     this.getNotifications(adminId).subscribe((notifications) => {
       this.notificationsSubject.next(notifications);
@@ -198,15 +276,18 @@ export class AppwebserviceService {
   getAdmins(clubId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/administrateur/getAllByClub/${clubId}`);
   }
-
+  getReservationByRessourceAndDate(ressourceId: string,date:string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/reservation/getAllByClub/${ressourceId}/${date}`);
+  }
   getCompteNotValidate(idUser:any): Observable<any> {
     return this.http.get(`${this.apiUrl}/notifications/admin/${idUser}`);
   }
-  // Methods for Members
   getMembers(clubId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/membre/getAllValidateByClub/${clubId}`);
   }
-  
+  getMembersNonParticipe(clubId: any,heureDebut:any,date:any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/membre/getMembresNotParticipe/${heureDebut}/${date}/${clubId}`);
+  }
   getCoaches(clubId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/coach/getAllValidateByClub/${clubId}`);
   }
@@ -479,5 +560,9 @@ deletecategorieAbonnement(tauxTvaId: number): Observable<any> {
   }
 updatecategorieAbonnement(data:any):Observable<any>{
     return this.http.put(this.apiUrl+"/CategorieAbonnement/update",data)
+  }
+  getReservationByID(idReservation:any):Observable<any>{
+    return this.http.get(`${this.apiUrl}/reservation/getById/${idReservation}`);
+
   }
 }

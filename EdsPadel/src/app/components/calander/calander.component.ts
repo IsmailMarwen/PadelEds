@@ -16,6 +16,7 @@ import { NgToastService,ToastType } from 'ng-angular-popup';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
+
 declare var window: any;
 declare const Waypoint: any;
 declare const CircleProgress: any;

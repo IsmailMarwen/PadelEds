@@ -1,0 +1,820 @@
+p{
+  color: #8a92a6;
+}
+.mb-0{
+  color: #8a92a6;
+}
+
+
+
+table.table-dark {
+  background-color: #222738 !important;
+  color: hsl(0, 0%, 100%);
+}
+
+table.table-dark th, table.table-dark td {
+  border-color: #444444;
+  background-color: #222738 !important;
+
+}
+.table-striped.table-dark > tbody > tr:nth-of-type(odd) > * {
+  --bs-table-bg-type: #222738 !important;
+}
+
+.table-striped.table-dark > tbody > tr:nth-of-type(even) > * {
+  --bs-table-accent-bg: #222738 !important;
+  color: var(--bs-table-striped-color);
+}
+
+
+
+.dark .progress-bar.bg-primary {
+  background-color: #bb86fc;
+}
+
+.dark .progress-bar.bg-success {
+  background-color: #03dac5;
+}
+
+.dark .bg-soft-primary {
+  background-color: rgba(98, 0, 238, 0.1);
+}
+
+.dark .bg-soft-success {
+  background-color: rgba(3, 218, 198, 0.1);
+}
+
+.dark h6 {
+  color: #ffffff;
+}
+.form-control.dark {
+  background-color: #222738 !important;
+  color: white; /* Couleur du texte */
+}
+
+.form-control.dark::placeholder {
+  color: rgba(255, 255, 255, 0.5); /* Couleur du texte d'espacement */
+}
+
+.form-control.dark + .input-group-text svg {
+  stroke: white; /* Couleur du trait du SVG */
+}
+/* Personnalisez les styles pour le modal */
+.modal-xl {
+  width: 97%;
+  max-width: none; /* Pour enlever la largeur maximale */
+}
+
+/* Pour rendre le modal responsive */
+@media (max-width: 1200px) {
+  .modal-xl {
+    width: 95%;
+  }
+}
+
+@media (max-width: 992px) {
+  .modal-xl {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-xl {
+    width: 85%;
+  }
+}
+.banner {
+  position: relative;
+  width: 100%;
+  height: 215px; /* ou toute autre hauteur que vous souhaitez */
+  overflow: hidden;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.3s; /* Transition pour l'effet de flou */
+}
+
+.banner-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  opacity: 0; /* Rendre le bouton invisible par défaut */
+  transition: opacity 0.3s; /* Transition pour l'apparition du bouton */
+}
+
+.banner:hover .banner-img {
+  filter: blur(5px); /* Appliquer un flou lorsque la souris passe dessus */
+}
+
+.banner:hover .banner-content {
+  opacity: 1; /* Rendre le bouton visible lorsque la souris passe dessus */
+}
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  animation: rotate 2s infinite ease-in-out;
+}
+
+
+
+.circle2 {
+  animation-delay: 1s;
+}
+
+@keyframes rotate {
+  0% {
+    transform: scale(0) translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: scale(1) translateX(100px) rotate(180deg);
+  }
+  100% {
+    transform: scale(0) translateX(0) rotate(360deg);
+  }
+}
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+.card-header{
+  background-color: transparent !important;
+}
+
+.imgBanner {
+  border-radius: 6px;
+  box-sizing: border-box;
+  border: 2px solid #eee;
+  cursor: pointer;
+  height: 46.79px;
+}
+.flag {
+  width: 22px !important;
+  height: 22px !important;
+  margin-top: -2px;
+  margin-right: 8px;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+}
+.countries-list {
+  position: absolute;
+  z-index: 1000; /* Assure que la liste est au-dessus des autres éléments */
+  background-color: #ffff; /* Fond blanc pour meilleure visibilité */
+  border: 1px solid #ccc; /* Bordure optionnelle pour démarcation */
+  max-height: 300px; /* Hauteur maximale pour la liste déroulante */
+  overflow-y: auto; /* Scroll si la liste est trop longue */
+  width: 95%; 
+}
+.scrollable-list {
+  position: relative;
+}
+
+.form-group {
+  position: relative; /* Assure que les éléments du formulaire restent dans le flux du document */
+}
+.btndrop{
+  border: solid 1px;
+  border-color: #dee2e6;
+}
+.pays{
+  cursor: pointer;
+}
+
+
+
+.input-group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  background-clip: padding-box;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  top: -7%;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.input-like {
+ 
+}
+.btn.btndrop {
+  margin-left: .5rem !important;
+  align-items: center;
+}
+
+.main-content{
+  overflow-x: hidden !important;
+}
+.obl{
+  color: #8b0000;
+}
+.upload-icone {
+
+  cursor: pointer !important;
+}
+
+.sticky-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: white !important;
+  z-index: 10; 
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+}
+
+.searchPays {
+  width: 100%;
+} 
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.plus{
+  color:#6c757d
+}
+
+.btnPM{
+  border: solid 1px;
+  border-color: #dee2e6;
+  margin-left: .5rem;
+  margin-right: .5rem;
+
+  align-items: center;
+}
+
+.btnTermine{
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-weight: 400;
+  height: auto !important;
+  background: #198754;
+  border-color: #198754;
+  color: #fff;
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  
+  box-sizing: border-box;  }
+  .btnSupprime{
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-weight: 400;
+    height: auto !important;
+    background: #db0318;
+    border-color: #c9061a;
+    color: #fff;
+    display: block;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;  }
+  .url{
+    color: #198754;
+  }
+
+.google-map-container {
+width: 100%;
+position: relative;
+overflow: hidden; /* Ensures the map doesn't overflow its container */
+}
+
+.google-map {
+width: 100%;
+height: 100%; /* The map fills the entire container */
+}
+.error {
+border: 1px solid red;
+background-color: #ffe6e6; /* Ou une autre couleur de fond rouge */
+}
+.icon-padel{
+  color: rgb(13 202 240) !important; 
+}
+.icon-football{
+  color: rgb(25 135 84)!important; 
+}
+.icon-volley{
+  color: rgb(192 50 33);
+}
+.icon-basket{
+  color: #f16a1b;
+}
+.icon-tennis{
+  color:#f1d81b
+}
+.icon-ping{
+  color: #3b8aff;
+}
+.icon-handball{
+  color: #a1590c !important;
+}
+
+
+
+
+
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    
+    .circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      position: absolute;
+      animation: rotate 2s infinite ease-in-out;
+    }
+    
+    
+    
+    .circle2 {
+      animation-delay: 1s;
+    }
+    
+    @keyframes rotate {
+      0% {
+        transform: scale(0) translateX(0) rotate(0deg);
+      }
+      50% {
+        transform: scale(1) translateX(100px) rotate(180deg);
+      }
+      100% {
+        transform: scale(0) translateX(0) rotate(360deg);
+      }
+    }
+    .card-header{
+      background-color: transparent !important;
+    }
+    .card-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem; /* Adjust gap as needed */
+    }
+    
+    .header-title {
+    }
+    
+    .search-input {
+      flex: 2;
+      max-width: 400px; /* Ajustez la largeur maximale au besoin */
+      margin: 0 auto;
+  }
+    
+    .btn {
+      flex-shrink: 0;
+    }
+    
+    @media (max-width: 768px) {
+      .search-input {
+        order: 3;
+        flex: 1 1 100%;
+      }
+      .header-title, .btn {
+        order: 1;
+        flex: 1 1 100%;
+        text-align: center;
+      }
+    }
+    .list-user-action {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Adjust gap size as needed */
+    }
+    
+    .table-striped>tbody>tr:nth-of-type(even)>* {
+      --bs-table-accent-bg: #fff !important;
+  }
+
+  .bg-soft-primary{
+      background-color: #fff0c1 !important;
+  } 
+  .filter{
+    stroke: black !important;
+    color: black !important;
+  }
+  .admin{
+    background-color: rgb(13 202 240) !important; 
+  }
+  .agent{
+    background-color:rgb(25 135 84)!important; 
+  }
+  .coach{
+    background-color:#575f66;
+  }
+  .membre{
+    background-color:#f16a1b;
+  }
+  .icon-padel{
+    color: rgb(13 202 240) !important; 
+  }
+  .icon-football{
+    color: rgb(25 135 84)!important; 
+  }
+  .icon-volley{
+    color: rgb(192 50 33);
+  }
+  .icon-basket{
+    color: #f16a1b;
+  }
+  .icon-tennis{
+    color:#f1d81b
+  }
+  .icon-ping{
+    color: #3b8aff;
+  }
+  .icon-handball{
+    color: #a1590c !important;
+  }
+  .icon-free{
+    color: #1671c1;
+  }
+  .icon-silver{
+    color: #575f66;
+  }
+  .icon-gold{
+    color: #a4801c;
+  }
+  .bg-free {
+    background-color: #1671c1;
+    color: white;
+}
+
+.bg-silver {
+    background-color: #575f66;
+    color: white;
+}
+
+.bg-gold {
+    background-color: #a4801c;
+    color: white;
+}
+.table-responsive{
+  max-height: 400px !important; /* Adjust this value as needed */
+
+  overflow-y: auto !important;
+}
+.empty-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px; /* Same height as the container */
+}
+
+.empty-table img {
+  max-width: 100%;
+  height: 80%;
+}
+.badge-container {
+  position: relative;
+  display: inline-block;
+  margin-left: 8px; /* Adjust the space as needed */
+}
+
+.badge-container .bdg {
+  border-radius: 50%;
+  font-size: 0.80em;
+  min-width: 1.5em;
+  min-height: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -10px; /* Adjust the position as needed */
+  right: -10px; /* Adjust the position as needed */
+  color: #ffffff;
+}
+.no-users {
+  text-align: center;
+  font-size: 1.2em;
+  margin: 20px 0;
+}
+/* Styling for the horizontal navigation bar */
+.navbar-nav {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.nav-link {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.nav-link.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.nav-link:hover {
+  background-color: #e9ecef;
+}
+
+.content {
+}
+.calendar-wrapper {
+  overflow-x: auto; /* Allows horizontal scrolling if needed, but we aim to avoid this */
+  white-space: nowrap; /* Prevents wrapping */
+}
+
+.daypilot-calendar-container {
+  display: inline-block; /* Ensures calendars sit side by side if needed */
+  width: 100%; /* Full width of the container */
+  box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+}
+
+.daypilot-calendar, .daypilot-month {
+  width: 100%; /* Make sure each calendar component takes the full width */
+}
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.schedule-header-name .color-sticker {
+  vertical-align: inherit;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  margin-right: 7px !important;
+}
+.color-sticker, .color.mColorPickerTrigger {
+  padding: 0 4px;
+  margin-right: 4px;
+  margin-top: 2px;
+  margin-left: 1px;
+  line-height: 12px;
+  border-radius: 20px !important;
+}
+.pull-left {
+  float: left;
+}
+table {
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* Style global pour card-body */
+.card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ajuster selon votre mise en page */
+}
+
+/* Conteneur principal pour les réservations */
+#reservation-schedules {
+  display: flex;
+  flex-wrap: nowrap; /* Ne pas passer à la ligne */
+  overflow-x: auto; /* Permet le défilement horizontal si nécessaire */
+  padding: 10px; /* Ajouter un peu de padding */
+  margin: 0 auto; /* Centrer horizontalement */
+}
+
+/* Conteneur individuel pour chaque court */
+.schedule-container {
+  background: #f9f9f9; /* Fond clair pour chaque court */
+  border: 1px solid #ddd; /* Bordure pour la séparation */
+  border-radius: 8px; /* Coins arrondis */
+  margin-right: 15px; /* Espace entre les courts */
+  padding: 10px; /* Padding à l'intérieur du court */
+  width: 300px; /* Largeur fixe pour chaque court */
+  flex: 0 0 auto; /* Empêche la flexibilité pour maintenir la largeur définie */
+}
+
+/* En-tête pour chaque court */
+.schedule-header {
+  color: white; /* Couleur du texte dans l'en-tête */
+  padding: 10px; /* Padding à l'intérieur de l'en-tête */
+  border-radius: 8px; /* Coins arrondis pour l'en-tête */
+  font-weight: bold; /* Texte en gras */
+}
+
+/* Table pour les créneaux horaires */
+.schedule-table-slots {
+  width: 100%;
+  border-collapse: collapse; /* Fusionner les bordures de la table */
+}
+
+.sts-td {
+  padding: 8px; /* Padding à l'intérieur des cellules */
+  vertical-align: top; /* Alignement du texte en haut */
+}
+
+.slot {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd; /* Bordure pour les créneaux */
+  margin: 5px 0; /* Marge entre les créneaux */
+}
+
+.slot-time-open {
+  font-size: 14px; /* Taille de la police pour l'heure */
+}
+
+/* Ajustements réactifs */
+@media (max-width: 768px) {
+  #reservation-schedules {
+    flex-direction: column; /* Empiler les courts verticalement sur les petits écrans */
+    overflow-x: visible; /* Désactiver le défilement horizontal */
+  }
+
+  .schedule-container {
+    width: 100%; /* Largeur pleine pour chaque court */
+    margin-right: 0; /* Retirer la marge sur les petits écrans */
+  }
+}
+
+/* Style pour un seul calendrier affiché */
+.single-court #reservation-schedules {
+  justify-content: center; /* Centrer horizontalement le seul court */
+}
+
+.single-court .schedule-container {
+  width: 100%; /* Largeur pleine pour un seul court */
+  max-width: 100%; /* Assurez-vous que la largeur ne dépasse pas 100% */
+}
+
+/* Style pour les slots libres en survol */
+.slot-free-full:hover {
+  background-color: rgb(160, 228, 160) !important;
+  position: relative !important;
+}
+
+.slot-free-full::after {
+  content: ' + réserver';
+  position: absolute;
+  top: 0;
+  right: -70px; /* Ajuster selon besoin */
+  color: white;
+  background-color: rgb(160, 228, 160);
+  padding: 2px 5px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.pointer-cursor {
+  cursor: pointer;
+}
+.offcanvas-center .offcanvas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  top: 0;
+  transform: none;
+  z-index: 1050;
+}
+
+.offcanvas-center .offcanvas-body {
+  width: auto;
+  max-width: 600px; /* Adjust as needed */
+  background-color: white;
+  border-radius: 8px; /* Optional: Add rounded corners */
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+  padding: 1rem;
+  margin: 0 auto; /* Center the content */
+}
+
+.tessst{
+  top: 0 !important;
+  left: 0!important;
+  width: 100%!important;
+  border-right: var(--bs-offcanvas-border-width) solid var(--bs-offcanvas-border-color)!important;
+  -webkit-transform: translateX(-100%)!important;
+  -ms-transform: translateX(-100%)!important;
+  transform: translateX(-100%)!important;
+}
+.timepicker {
+  font-size: 18px;
+  font-weight: 1000;
+  width: 85px !important;
+  padding-right: 0;
+  text-align: center;
+  vertical-align: baseline;
+  cursor: pointer !important;
+  border-radius: 8px !important;
+  color: #8a92a6;
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  margin: 20;
+}
+.member-list, .selected-members {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.member-list div, .selected-members div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-i {
+  padding-left: 40px; /* Adjust based on the size of the SVG icon */
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px; /* Adjust based on your design */
+  pointer-events: none;
+}
+.member-info {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Ajustez l'espacement selon vos besoins */
+}
+
+.member-img {
+  width: 30px; /* Ajustez la taille selon vos besoins */
+  height: 30px; /* Ajustez la taille selon vos besoins */
+  border-radius: 50% !important;
+}
+
+.member-name {
+  font-size: 14px; /* Ajustez la taille de la police selon vos besoins */
+  color: #333; /* Ajustez la couleur selon vos besoins */
+}
+
+
+
+.btn-delete {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  height: 100%;
+  padding: 0 10px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  box-sizing: border-box;
+}
+
+
+.slot:hover .btn-delete {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}

@@ -1,0 +1,288 @@
+
+<ng-template #content let-offcanvas class="tessst">
+  <div class="offcanvas-header">
+    <div class="d-flex align-items-center">
+      <h3 class="offcanvas-title me-3" id="offcanvasExampleLabel">Réservation</h3>
+    </div>
+    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+  </div>
+  <div class="offcanvas-body data-scrollbar">
+    <div class="card">
+      <div class="card-header d-flex flex-column align-items-center">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <h4 class="mb-0">{{ nameCourt }}</h4>
+          <div class="weather-info d-flex align-items-center">
+            <img [src]="'http://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'" 
+                 alt="weather icon" height="50" 
+                 class="me-2 weather-icon">
+            <div>
+              <h5 class="mb-0">{{ weatherData.main.temp }}°C</h5>
+            </div>
+          </div>
+        </div>
+        <div class="mt-2 text-center w-100">
+          <h5 class="mb-0">{{ formatDateInFrench(convertToJSDate(date)) }}</h5>
+        </div>
+        <div class="d-flex align-items-center">
+          <input type="text" id="form-timestart" name="custom_timestart" class="timepicker" style="width: 85px;" [(ngModel)]="heureDebut" disabled>
+          <input type="text" id="form-timeend" name="custom_timeend" class="timepicker ms-2" style="width: 85px;" [(ngModel)]="heureFin" disabled>
+        </div>
+      </div>
+      <hr class="hr-horizontal">
+      <div class="card-body">
+        <div class="member-list">
+          <!-- Display selected members first -->
+          <div *ngFor="let membre of selectedMembers">
+            <input type="checkbox" [value]="membre" (change)="onMemberSelect($event, membre)" checked>
+            <img [src]="membre.image" alt="{{ membre.nom }}" class="member-img">
+            <span>{{ membre.prenom }} {{ membre.nom }}</span>
+          </div>
+          <hr class="hr-horizontal" *ngIf="selectedMembers.length>0">
+      
+          <!-- Display non-selected members -->
+          <div class="search-container">
+            <input type="search" class="form-control search-i" placeholder="Rechercher" [(ngModel)]="searchText" (input)="filteredMembers()">
+            <svg class="icon-18 search-icon" width="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11.7669" cy="11.7666" r="8.98856" stroke="#8a92a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+              <path d="M18.0186 18.4851L21.5426 22" stroke="#8a92a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+          <hr class="hr-horizontal">
+      
+          <div *ngFor="let membre of filteredMembers()">
+            <input type="checkbox" [value]="membre" (change)="onMemberSelect($event, membre)" [disabled]="selectedMembers.length >= selectedCourtCapacity && !isMemberSelected(membre)">
+            <img [src]="membre.image" alt="{{ membre.nom }}" class="member-img">
+            <span>{{ membre.prenom }} {{ membre.nom }}</span>
+          </div>
+        </div>
+
+        
+      </div>
+      <hr class="hr-horizontal">
+
+      <div class="row ">
+        <div class="col-lg-12">
+          <button class="btn btnTermine" *ngIf="!preload" (click)="addReservation()">
+            <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            Réserver
+          </button>
+          <button class="btn btnTermine" *ngIf="preload">
+            <img src="../../../assets/images/preload.gif" height="25px">
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</ng-template>
+          <!-- update Reservation -->
+
+<ng-template #contentUpdate let-offcanvas class="tessst">
+  <div class="offcanvas-header">
+    <div class="d-flex align-items-center">
+      <h3 class="offcanvas-title me-3" id="offcanvasExampleLabel">Réservation</h3>
+    </div>
+    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+  </div>
+  <div class="offcanvas-body data-scrollbar">
+    <div class="card">
+      <div class="card-header d-flex flex-column align-items-center">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <h4 class="mb-0">{{ nameCourt }}</h4>
+          <div class="weather-info d-flex align-items-center">
+            <img [src]="'http://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'" 
+                 alt="weather icon" height="50" 
+                 class="me-2 weather-icon">
+            <div>
+              <h5 class="mb-0">{{ weatherData.main.temp }}°C</h5>
+            </div>
+          </div>
+        </div>
+        <div class="mt-2 text-center w-100">
+          <h5 class="mb-0">{{ formatDateInFrench(convertToJSDate(date)) }}</h5>
+        </div>
+        <div class="d-flex align-items-center">
+          <input type="text" id="form-timestart" name="custom_timestart" class="timepicker" style="width: 85px;" [(ngModel)]="heureDebut" disabled>
+          <input type="text" id="form-timeend" name="custom_timeend" class="timepicker ms-2" style="width: 85px;" [(ngModel)]="heureFin" disabled>
+        </div>
+      </div>
+      <hr class="hr-horizontal">
+      <div class="card-body">
+        <div class="member-list">
+          <!-- Display selected members first -->
+          <div *ngFor="let membre of selectedMembers">
+            <input type="checkbox" [value]="membre" (change)="onMemberSelect($event, membre)" checked>
+            <img [src]="membre.image" alt="{{ membre.nom }}" class="member-img">
+            <span>{{ membre.prenom }} {{ membre.nom }}</span>
+          </div>
+          <hr class="hr-horizontal" *ngIf="selectedMembers.length>0">
+      
+          <!-- Display non-selected members -->
+          <div class="search-container">
+            <input type="search" class="form-control search-i" placeholder="Rechercher" [(ngModel)]="searchText" (input)="filteredMembers()">
+            <svg class="icon-18 search-icon" width="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11.7669" cy="11.7666" r="8.98856" stroke="#8a92a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+              <path d="M18.0186 18.4851L21.5426 22" stroke="#8a92a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+          <hr class="hr-horizontal">
+      
+          <div *ngFor="let membre of filteredMembers()">
+            <input type="checkbox" [value]="membre" (change)="onMemberSelect($event, membre)" [disabled]="selectedMembers.length >= selectedCourtCapacity && !isMemberSelected(membre)">
+            <img [src]="membre.image" alt="{{ membre.nom }}" class="member-img">
+            <span>{{ membre.prenom }} {{ membre.nom }}</span>
+          </div>
+        </div>
+
+        
+      </div>
+      <hr class="hr-horizontal">
+
+      <div class="row ">
+        <div class="col-md-6">
+          <button class="btn btnTermine" *ngIf="!preload" (click)="updateReservation()">
+            <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.9028 8.85107L13.4596 12.4641C12.6201 13.1301 11.4389 13.1301 10.5994 12.4641L6.11865 8.85107" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9089 21C19.9502 21.0084 22 18.5095 22 15.4384V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            Modifier
+          </button>
+          <button class="btn btnTermine" *ngIf="preload">
+            <img src="../../../assets/images/preload.gif" height="25px">
+          </button>
+        </div>
+        <div class="col-md-6">
+          <button class="btn btnSupprime" *ngIf="!preload" >
+            <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M20.2871 5.24297C20.6761 5.24297 21 5.56596 21 5.97696V6.35696C21 6.75795 20.6761 7.09095 20.2871 7.09095H3.71385C3.32386 7.09095 3 6.75795 3 6.35696V5.97696C3 5.56596 3.32386 5.24297 3.71385 5.24297H6.62957C7.22185 5.24297 7.7373 4.82197 7.87054 4.22798L8.02323 3.54598C8.26054 2.61699 9.0415 2 9.93527 2H14.0647C14.9488 2 15.7385 2.61699 15.967 3.49699L16.1304 4.22698C16.2627 4.82197 16.7781 5.24297 17.3714 5.24297H20.2871ZM18.8058 19.134C19.1102 16.2971 19.6432 9.55712 19.6432 9.48913C19.6626 9.28313 19.5955 9.08813 19.4623 8.93113C19.3193 8.78413 19.1384 8.69713 18.9391 8.69713H5.06852C4.86818 8.69713 4.67756 8.78413 4.54529 8.93113C4.41108 9.08813 4.34494 9.28313 4.35467 9.48913C4.35646 9.50162 4.37558 9.73903 4.40755 10.1359C4.54958 11.8992 4.94517 16.8102 5.20079 19.134C5.38168 20.846 6.50498 21.922 8.13206 21.961C9.38763 21.99 10.6811 22 12.0038 22C13.2496 22 14.5149 21.99 15.8094 21.961C17.4929 21.932 18.6152 20.875 18.8058 19.134Z" fill="currentColor"></path>
+            </svg>
+            Supprimer
+          </button>
+          <button class="btn btnSupprime" *ngIf="preload">
+            <img src="../../../assets/images/preload.gif" height="25px">
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</ng-template>
+
+
+<div class="card">
+  <div class="card-header d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <div class="header-title d-flex align-items-center mb-2 mb-md-0 order-md-1">
+      <i class="icon me-2">
+            <svg class="icon-25" width="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4109 2.76862L16.4119 3.51824C19.1665 3.73413 20.9862 5.61119 20.9891 8.48975L21 16.9155C21.0039 20.054 19.0322 21.985 15.8718 21.99L8.15188 22C5.01119 22.004 3.01482 20.027 3.01087 16.8795L3.00001 8.55272C2.99606 5.65517 4.75153 3.78311 7.50617 3.53024L7.50518 2.78061C7.5042 2.34083 7.83001 2.01 8.26444 2.01C8.69886 2.009 9.02468 2.33883 9.02567 2.77861L9.02666 3.47826L14.8914 3.47027L14.8904 2.77062C14.8894 2.33084 15.2152 2.001 15.6497 2C16.0742 1.999 16.4099 2.32884 16.4109 2.76862ZM4.52148 8.86157L19.4696 8.84158V8.49175C19.4272 6.34283 18.349 5.21539 16.4138 5.04748L16.4148 5.81709C16.4148 6.24688 16.0801 6.5877 15.6556 6.5877C15.2212 6.5887 14.8943 6.24887 14.8943 5.81909L14.8934 5.0095L9.02863 5.01749L9.02962 5.82609C9.02962 6.25687 8.70479 6.5967 8.27036 6.5967C7.83594 6.5977 7.50913 6.25887 7.50913 5.82809L7.50815 5.05847C5.58286 5.25137 4.51753 6.38281 4.52049 8.55072L4.52148 8.86157ZM15.2399 13.4043V13.4153C15.2498 13.8751 15.625 14.2239 16.0801 14.2139C16.5244 14.2029 16.8789 13.8221 16.869 13.3623C16.8483 12.9225 16.4918 12.5637 16.0485 12.5647C15.5944 12.5747 15.2389 12.9445 15.2399 13.4043ZM16.0554 17.892C15.6013 17.882 15.235 17.5032 15.234 17.0435C15.2241 16.5837 15.5884 16.2029 16.0426 16.1919H16.0525C16.5165 16.1919 16.8927 16.5707 16.8927 17.0405C16.8937 17.5102 16.5185 17.891 16.0554 17.892ZM11.1721 13.4203C11.1919 13.8801 11.568 14.2389 12.0222 14.2189C12.4665 14.1979 12.821 13.8181 12.8012 13.3583C12.7903 12.9085 12.425 12.5587 11.9807 12.5597C11.5266 12.5797 11.1711 12.9605 11.1721 13.4203ZM12.0262 17.8471C11.572 17.8671 11.1968 17.5082 11.1761 17.0485C11.1761 16.5887 11.5305 16.2089 11.9847 16.1879C12.429 16.1869 12.7953 16.5367 12.8052 16.9855C12.8259 17.4463 12.4705 17.8261 12.0262 17.8471ZM7.10433 13.4553C7.12408 13.915 7.50025 14.2749 7.95442 14.2539C8.39872 14.2339 8.75317 13.8531 8.73243 13.3933C8.72256 12.9435 8.35725 12.5937 7.91196 12.5947C7.45779 12.6147 7.10334 12.9955 7.10433 13.4553ZM7.95837 17.8521C7.5042 17.8731 7.12901 17.5132 7.10828 17.0535C7.10729 16.5937 7.46273 16.2129 7.9169 16.1929C8.3612 16.1919 8.7275 16.5417 8.73737 16.9915C8.7581 17.4513 8.40365 17.8321 7.95837 17.8521Z" fill="currentColor"></path>                     
+            </svg>
+        </i>
+        <h4 class="card-title m-0">Calendrier par jour</h4>
+    </div>
+    <div class="input-group search-input flex-fill mb-2 mb-md-0 order-md-2 d-flex justify-content-center">
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" type="button" id="calendarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <span>{{ formatDateInFrench(convertToJSDate(date)) }}</span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="calendarDropdown">
+          <li>
+            <daypilot-navigator 
+              [config]="configNavigator" 
+              [events]="events" 
+              [(date)]="date" 
+              (dateChange)="updateViewDate($event)" 
+              #navigator>
+            </daypilot-navigator>
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="d-flex flex-column flex-md-row order-md-3 order-3">
+      <button type="button" class="btn btn-primary me-2" aria-label="Previous" (click)="changeDate('prev')">
+        <span class="fc-icon fc-icon-chevron-left"></span>
+      </button>
+      <button type="button" class="btn btn-primary" aria-label="Next" (click)="changeDate('next')">
+        <span class="fc-icon fc-icon-chevron-right"></span>
+      </button>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <div id="main-container" class="main-container">
+      <div id="reservation-actions" style="display: none;"></div>
+      <div id="reservation-container" class="user-select-none">
+        <div class="reservation-container-wrapper reservation-density-150">
+          <div id="reservation-schedules" class="container reservation-schedules">
+            <div class="row">
+              <div class="col-12">
+                <div class="d-flex flex-nowrap overflow-auto">
+                  <div class="schedule-container flex-shrink-0" *ngFor="let court of courts">
+                    <div class="schedule-header schedule-header-link schedule-header-with-color">
+                      <div class="schedule-header-name media">
+                        <div class="media-body full-show text-ellipsis">
+                          <div class="color-sticker pull-left media-object" [style.background-color]="court.color">&nbsp;&nbsp;</div>
+                          {{ court.name }}
+                        </div>
+                      </div>
+                    </div>
+                    <table class="table table-unstriped table-no-thead table-cursor-pointer schedule-table-slots">
+                      <tbody>
+                        <tr *ngFor="let slot of court.slots">
+                          <td class="sts-td slot-time" [class.slot-time-expired]="slot.expired">
+                            <div class="slot-time-divider"></div>
+                            <div class="slot-time-open">{{ slot.time }}h</div>
+                          </td>
+                          <td class="sts-td" [class.slot-time-expired]="slot.expired" >
+                            <a [ngClass]="{'slot-expired': slot.expired, 'slot-free': !slot.expired}" class="slot slot-today" [attr.data-timestart]="slot.timestamp" [attr.data-duration]="slot.duration">
+                              <div class="iewrap">
+                                <div class="media media-once">
+                                  <div class="media-body {{ slot.expired ? '' : 'pointer-cursor' }}" (click)="!slot.expired">
+                                    <div *ngIf="slot.expired">
+                                      -
+                                    </div>
+                                    <div *ngIf="!slot.expired">
+                                      <span *ngIf="!slot.match" (click)="openEnd(content,court.name,slot.timestamp,slot.duration,court.capacite,court.id)">+ Réserver</span>
+                                      <div *ngIf="slot.match" class="iq-media-group iq-media-group-1" (click)="openEndUpdate(contentUpdate,slot.idRes,slot.dateRes)">
+                                        <ng-container *ngFor="let member of slot.players">
+                                           <div class="member-info">
+                      <img class="icon iq-icon-box-3 rounded-pill member-img" [src]="member.image">
+                      <span class="member-name">{{ member.nom }} {{ member.prenom }}</span>
+                      <button *ngIf="canDeleteReservation(slot.dateRes)" class="btn-delete">
+                        <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M20.2871 5.24297C20.6761 5.24297 21 5.56596 21 5.97696V6.35696C21 6.75795 20.6761 7.09095 20.2871 7.09095H3.71385C3.32386 7.09095 3 6.75795 3 6.35696V5.97696C3 5.56596 3.32386 5.24297 3.71385 5.24297H6.62957C7.22185 5.24297 7.7373 4.82197 7.87054 4.22798L8.02323 3.54598C8.26054 2.61699 9.0415 2 9.93527 2H14.0647C14.9488 2 15.7385 2.61699 15.967 3.49699L16.1304 4.22698C16.2627 4.82197 16.7781 5.24297 17.3714 5.24297H20.2871ZM18.8058 19.134C19.1102 16.2971 19.6432 9.55712 19.6432 9.48913C19.6626 9.28313 19.5955 9.08813 19.4623 8.93113C19.3193 8.78413 19.1384 8.69713 18.9391 8.69713H5.06852C4.86818 8.69713 4.67756 8.78413 4.54529 8.93113C4.41108 9.08813 4.34494 9.28313 4.35467 9.48913C4.35646 9.50162 4.37558 9.73903 4.40755 10.1359C4.54958 11.8992 4.94517 16.8102 5.20079 19.134C5.38168 20.846 6.50498 21.922 8.13206 21.961C9.38763 21.99 10.6811 22 12.0038 22C13.2496 22 14.5149 21.99 15.8094 21.961C17.4929 21.932 18.6152 20.875 18.8058 19.134Z" fill="currentColor"></path>
+                        </svg>
+                      </button>
+                    </div>
+                                        </ng-container>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+</div>
+
+

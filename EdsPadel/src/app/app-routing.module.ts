@@ -31,6 +31,7 @@ import { LoginSuperAdminComponent } from './components/login-super-admin/login-s
 import { InscriptionEnLigneComponent } from './components/inscription-en-ligne/inscription-en-ligne.component';
 import { GoogleCalendarComponent } from './google-calendar/google-calendar.component';
 import { CategorieAbonnementtComponent } from './components/categorie-abonnementt/categorie-abonnementt.component';
+import { CalendarReservationComponent } from './components/calendar-reservation/calendar-reservation.component';
 const routes: Routes = [
   {path:'eds/admin/home',component:SuperAdminComponent},
   {path:'eds/admin/login',component:LoginSuperAdminComponent},
@@ -62,7 +63,7 @@ const routes: Routes = [
 {path:':url/inscriptionEnLigne',component:InscriptionEnLigneComponent,canActivate:[authGuard]},
 {path:'google',component:GoogleCalendarComponent},
 {path:':url/categorieAbonnement',component:CategorieAbonnementtComponent,canActivate:[authGuard]},
-
+{path:'calendar',component:CalendarReservationComponent}
 ];
 
 @NgModule({

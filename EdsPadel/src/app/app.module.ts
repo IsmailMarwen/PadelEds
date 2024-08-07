@@ -72,12 +72,17 @@ import { AddComplexeComponent } from './components/add-complexe/add-complexe.com
 import { ColorPickerModule } from 'ngx-color-picker';
 import { LoginSuperAdminComponent } from './components/login-super-admin/login-super-admin.component';
 import { InscriptionEnLigneComponent } from './components/inscription-en-ligne/inscription-en-ligne.component';
-import dayGridPlugin from '@fullcalendar/daygrid'; // Import the DayGrid plugin
-import interactionPlugin from '@fullcalendar/interaction';
-import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector module
+import { FullCalendarModule } from '@fullcalendar/angular';
 import { CategorieAbonnementtComponent } from './components/categorie-abonnementt/categorie-abonnementt.component';
 import { UpdateCategorieAbonnementtComponent } from './components/update-categorie-abonnementt/update-categorie-abonnementt.component';
 import { CreateCategorieAbonnementtComponent } from './components/create-categorie-abonnementt/create-categorie-abonnementt.component';
+import { CalendarReservationComponent } from './components/calendar-reservation/calendar-reservation.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import {DayPilotModule} from "daypilot-pro-angular";
+import { CalendarService } from './services/calendar.service';
+import { AddRdvComponent } from './components/add-rdv/add-rdv.component';
+
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
@@ -139,7 +144,9 @@ import { CreateCategorieAbonnementtComponent } from './components/create-categor
     InscriptionEnLigneComponent,
     CategorieAbonnementtComponent,
     UpdateCategorieAbonnementtComponent,
-    CreateCategorieAbonnementtComponent
+    CreateCategorieAbonnementtComponent,
+    CalendarReservationComponent,
+    AddRdvComponent
   ],
   imports: [
     BrowserModule,
@@ -159,12 +166,21 @@ import { CreateCategorieAbonnementtComponent } from './components/create-categor
     BrowserAnimationsModule,
     NgToastModule,
     ColorPickerModule,
-    FullCalendarModule
+    FullCalendarModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    DayPilotModule
+
   ],
   providers: [
     provideClientHydration(),
-    MessageService
+    MessageService,
+    CalendarService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  
+}
