@@ -17,4 +17,6 @@ public interface IMembre {
     List<Membre> getListMembreValidateByClub(Long idClub);
     List<Membre> getListMembreNotValidateByClub(Long idClub);
     boolean AnnulerCompte(Membre membre);
+    public List<Membre> getNonParticipatingMembers(String heureDebut, String dateDernierRes, Long idClub);
+    public List<Membre> getListMembresEquiv(int niveau);
 }

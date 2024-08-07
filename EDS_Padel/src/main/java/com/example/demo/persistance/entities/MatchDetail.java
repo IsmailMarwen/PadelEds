@@ -36,9 +36,6 @@ public class MatchDetail {
     public String toString() {
         return "MatchDetail{" +
                 "id=" + id +
-                ", reservation=" + reservation +
-                ", coaches=" + coaches +
-                ", membres=" + membres +
                 '}';
     }
 }

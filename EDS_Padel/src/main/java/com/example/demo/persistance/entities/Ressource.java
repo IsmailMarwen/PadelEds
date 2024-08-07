@@ -17,7 +17,7 @@ public class Ressource {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String libelle;
-    private String capacite;
+    private int capacite;
     @ManyToOne
     private Club club;
     @ManyToOne

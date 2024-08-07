@@ -171,5 +171,15 @@ public class MembreService implements IMembre {
         return true;
     }
 
+    @Override
+    public List<Membre> getNonParticipatingMembers(String heureDebut, String dateDernierRes, Long idClub) {
+        return membreRepository.findNonParticipatingMembers(heureDebut, dateDernierRes, idClub);
+
+    }
+    @Override
+    public List<Membre> getListMembresEquiv(int niveau){
+        return this.membreRepository.findMembersByNiveauPadelRange(niveau);
+    }
+
 
 }

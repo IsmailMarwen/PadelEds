@@ -25,6 +25,7 @@ public class Membre extends Utilisateur {
     )
     private List<TypeAbonnementClub> typeAbonnements;
     @OneToMany(mappedBy = "membre", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Reservation> reservations;
     @ManyToMany
     @JoinTable(
@@ -34,4 +35,14 @@ public class Membre extends Utilisateur {
     )
     @JsonIgnore
     private List<MatchDetail> matchs;
+    private int niveauPadel;
+
+    @Override
+    public String toString() {
+        return "Membre{" +
+                "validation=" + validation +
+
+                ", niveauPadel=" + niveauPadel +
+                '}';
+    }
 }

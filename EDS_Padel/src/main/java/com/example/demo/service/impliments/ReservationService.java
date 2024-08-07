@@ -59,7 +59,8 @@ public class ReservationService implements IReservation {
     @Override
     public List<Reservation> getListByRessourceAndDate(Long idRessource, String date) {
         Ressource ressource=ressourceService.getRessourceByIdRessource(idRessource);
-        return reservationRepository.getAllByRessource(ressource);    }
+        return reservationRepository.getAllByRessourceAndDateDernierRes(ressource,date);
+        }
 
 
 }

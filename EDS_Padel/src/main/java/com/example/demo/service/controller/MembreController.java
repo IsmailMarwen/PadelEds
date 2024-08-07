@@ -108,4 +108,14 @@ public ResponseEntity<?> update(@RequestBody Membre membre) {
         iMembre.AnnulerCompte(membre);
         return true;
     }
+    @GetMapping("/getMembresNotParticipe/{heureDebut}/{date}/{idClub}")
+    List<Membre> getMembresNotParticipe(@PathVariable String heureDebut,@PathVariable String date,@PathVariable Long idClub) {
+
+        return iMembre.getNonParticipatingMembers(heureDebut,date,idClub);
+    }
+    @GetMapping("/getMembreEqNiveau/{niveau}")
+    List<Membre> getMembreEqNiveau(@PathVariable int niveau) {
+
+        return iMembre.getListMembresEquiv(niveau);
+    }
 }
